@@ -1,0 +1,4 @@
+/tests/data/output/
+/vue/node_modules/
+/poetry.lock
+/.idea
