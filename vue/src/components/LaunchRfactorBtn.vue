@@ -64,8 +64,6 @@
         Launch option will be remembered the next time you press the launch button. If you want to change the preferred
         option, use the dropdown menu next to the launch button or use the Launch Option inside Graphics Presets
         to choose a different option.<br />
-        <i>From Version 1.1132 you need to explicitly request VR as launch option.
-          rF2 will no longer use the DX_Config.ini value.</i>
       </p>
       <template #modal-footer>
         <div class="d-block text-right">
@@ -93,16 +91,14 @@ name: "LaunchRfactorBtn",
     return { live: false, size: "sm", devicesReady: true, deviceList: [], currentGfxPreset: {},
              showDeviceModal: false, showLaunchModal: false, lastMethod: 0, checkDevices: true,
              launchMethods: {
-               2: {name: 'Launch via Steam in VR [Deprecated]',
-                   desc: 'This option no longer works reliably with rF2 from v1.1132'},
+               2: {name: 'Launch via Steam in VR [Deprecated]'},
                3: {name: 'Launch via Exe in VR',
                    desc: 'If you have a dedicated Server running. This is the method to ' +
-                         'launch rF2 anyway. Make sure you have configured your WebUI ports correctly.'},
-               0: {name: 'Launch via Steam [Deprecated]',
-                   desc: 'This option no longer works reliably with rF2 from v1.1132'},
+                         'launch LMU anyway. Make sure you have configured your WebUI ports correctly.'},
+               0: {name: 'Launch via Steam'},
                1: {name: 'Launch via Exe',
                    desc: 'If you have a dedicated Server running. This is the method to ' +
-                         'launch rF2 anyway. Make sure you have configured your WebUI ports correctly.'}
+                         'launch LMU anyway. Make sure you have configured your WebUI ports correctly.'}
              }
     }
   },
@@ -160,9 +156,9 @@ name: "LaunchRfactorBtn",
       if (r !== undefined && r.result) {
         this.makeToast(`${this.launchMethods[method].name}. Do not change settings here while ` +
             'the game is running. The game would overwrite those settings anyway upon exit.',
-            'success', 'rFactor 2 Launch')
+            'success', 'Le Mans Ultimate Launch')
       } else {
-        this.makeToast('Could not launch rFactor2.exe', 'danger', 'rFactor 2 Launch')
+        this.makeToast('Could not launch rFactor2.exe', 'danger', 'Le Mans Ultimate Launch')
         this.$emit('launch-failed')
       }
     },
@@ -189,7 +185,7 @@ name: "LaunchRfactorBtn",
     },
     buttonText: function () {
       if (this.text !== undefined) { return this.text }
-      return 'Start rFactor 2'
+      return 'Start Le Mans Ultimate'
     },
     btnSizeString: function () {
       if (this.btnSize === undefined) { return this.size }

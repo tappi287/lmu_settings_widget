@@ -24,7 +24,7 @@
 </template>
 
 <script>
-const GIT_RELEASE_URL = 'https://api.github.com/repos/tappi287/rf2_video_settings/releases/latest'
+const GIT_RELEASE_URL = 'https://api.github.com/repos/tappi287/lmu_settings_widget/releases/latest'
 
 export default {
   name: 'AppUpdater',

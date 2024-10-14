@@ -7,8 +7,8 @@
           <span :class="'ml-2'">Controller Devices</span>
       </template>
       <p class="small">
-        Click on the Checkboxes to select input devices here that need to be connected when you start rF2.
-        The app will warn you if a device is not connected while launching rF2.
+        Click on the Checkboxes to select input devices here that need to be connected when you start LMU.
+        The app will warn you if a device is not connected while launching LMU.
       </p>
       <b-list-group class="text-left no-border">
         <b-list-group-item class="bg-transparent p-0 m-2 no-border" v-for="(c, idx) in controller" :key="idx">
@@ -72,11 +72,11 @@ export default {
           if (device.connected && device.watched) {
             msg = "Device is connected and monitored."
           } else if (device.connected && !device.watched) {
-            msg = "Device is connected but not monitored. You will not be notified upon rF2 launch."
+            msg = "Device is connected but not monitored. You will not be notified upon LMU launch."
           } else if (!device.connected && device.watched) {
-            msg = "Device is monitored but not connected. App will warn you about this upon rF2 launch."
+            msg = "Device is monitored but not connected. App will warn you about this upon LMU launch."
           } else if (!device.connected && !device.watched) {
-            msg = "Device is not connected and not monitored. You will not be notified upon rF2 launch."
+            msg = "Device is not connected and not monitored. You will not be notified upon LMU launch."
           }
         }
       })

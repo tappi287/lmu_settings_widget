@@ -3,7 +3,7 @@
     <b-input-group class="pb-2" size="sm">
       <b-input-group-prepend>
         <div class="pl-0 pr-1 rpl-con position-relative bg-transparent">
-          <b-img width=".3rem" class="rpl-icon" src="@/assets/rfW_logo_color.svg"></b-img>
+          <b-img width=".3rem" class="rpl-icon" src="@/assets/lmw_logo.png"></b-img>
         </div>
         <!-- Title -->
         <b-input-group-text class="bg-transparent no-border title text-white pl-0">
@@ -38,14 +38,14 @@
 
       <b-card-text class="mt-3">
         Choose what you would like to see on your dashboard. There is no need to disable the Image Slideshow for
-        performance reasons. It will stop once rF2 is running. App restart required.
+        performance reasons. It will stop once LMU is running. App restart required.
       </b-card-text>
 
     </b-card>
 
     <b-card class="setting-card" bg-variant="dark" text-variant="white">
       <template #header>
-        <h6 class="mb-0 text-center"><span class="title">rFactor 2 Location</span></h6>
+        <h6 class="mb-0 text-center"><span class="title">Le Mans Ultimate Location</span></h6>
       </template>
       <RfLocation />
     </b-card>

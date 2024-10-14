@@ -20,12 +20,12 @@
                          'Detecting rFactor not running can take up to a minute.'">
                 Proceed
               </b-button>
-              <b-button class="ml-2" variant="danger" id="quit-rfactor">Quit rFactor 2</b-button>
+              <b-button class="ml-2" variant="danger" id="quit-rfactor">Quit Le Mans Ultimate</b-button>
 
               <!-- Quit Popover -->
               <b-popover target="quit-rfactor" triggers="click">
-                <template #title>Quit rFactor 2</template>
-                <p>Do you really want to request the currently running instance of rFactor 2 to quit?</p>
+                <template #title>Quit Le Mans Ultimate</template>
+                <p>Do you really want to request the currently running instance of Le Mans Ultimate to quit?</p>
                 <div class="text-right">
                   <b-button variant="danger"
                             @click="quitRfactor(); $root.$emit('bv::hide::popover', 'quit-rfactor')">
@@ -39,7 +39,7 @@
               </b-popover>
             </div>
             <pre class="text-white" v-if="rf2Status !== ''"><span>{{ rf2Status }}</span></pre>
-            <span>rFactor 2 is currently running. Please wait.</span>
+            <span>Le Mans Ultimate is currently running. Please wait.</span>
           </template>
         </div>
       </div>

@@ -10,22 +10,22 @@ from lmu.settingsdef import graphics
 
 
 class VrToolKit:
-    RESHADE_ZIP = 'VRToolkitReshadeUniversal_1.0.0_plus_Clarity.zip'
-    RESHADE_PRESET_DIR = 'ReShade/Presets/'
+    RESHADE_ZIP = 'VRToolkitReshadeUniversal_1.0.1_plus_Clarity.zip'
+    RESHADE_PRESET_DIR = 'reshade-shaders/Presets/'
     RESHADE_TARGET_PRESET_NAME = 'lmu_widget_preset.ini'
-    RESHADE_INI_NAME = 'ReShade.ini'
+    RESHADE_INI_NAME = 'ReShadeVR.ini'
 
     dll_tgt = ('ReShade64.dll', 'dxgi.dll')
     extra_files = [
-        ('rF2_nonPBRmodDay1.png', 'ReShade/Textures'),
-        ('rF2_nonPBRmodDay2.png', 'ReShade/Textures'),
-        ('rF2_ToneDownDay.png', 'ReShade/Textures'),
-        ('lut_ams.png', 'ReShade/Textures'),
-        ('lut_gtr2.png', 'ReShade/Textures'),
-        ('lut_rbr.png', 'ReShade/Textures'),
-        ('lut_filmic_basic.png', 'ReShade/Textures'),
-        ('lut_provia.png', 'ReShade/Textures'),
-        ('lut_technicolor.png', 'ReShade/Textures'),
+        ('rF2_nonPBRmodDay1.png', 'reshade-shaders/Textures'),
+        ('rF2_nonPBRmodDay2.png', 'reshade-shaders/Textures'),
+        ('rF2_ToneDownDay.png', 'reshade-shaders/Textures'),
+        ('lut_ams.png', 'reshade-shaders/Textures'),
+        ('lut_gtr2.png', 'reshade-shaders/Textures'),
+        ('lut_rbr.png', 'reshade-shaders/Textures'),
+        ('lut_filmic_basic.png', 'reshade-shaders/Textures'),
+        ('lut_provia.png', 'reshade-shaders/Textures'),
+        ('lut_technicolor.png', 'reshade-shaders/Textures'),
     ]
     preprocessor_name = 'PreprocessorDefinitions'
     preprocessor = {'VRT_SHARPENING_MODE': 0, 'VRT_USE_CENTER_MASK': 0, 'VRT_DITHERING': 0,

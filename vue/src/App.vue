@@ -40,12 +40,12 @@
           </b-card-text>
 
           <!-- Overwrite rF Location -->
-          <h5>rFactor 2 Location</h5>
+          <h5>Le Mans Ultimate Location</h5>
           <RfLocation class="mt-3 mb-3" />
 
           <template #footer>
             <span class="small">
-              Please make sure that a rFactor 2 Steam installation is present on your machine and that you have at least
+              Please make sure that a Le Mans Ultimate Steam installation is present on your machine and that you have at least
               <b>once started the game</b>.
             </span>
           </template>

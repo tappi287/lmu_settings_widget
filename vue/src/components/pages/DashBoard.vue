@@ -1,24 +1,7 @@
 <template>
   <div v-cloak id="dashboard" class="position-relative mb-3 text-left">
     <div class="vue-flux-container">
-      <vue-flux class="img-slider" id="img" ref="slider"
-          :captions="vfCaptions"
-          :images="vfImages"
-          :options="vfOptions"
-          :transitions="vfTransitions">
-
-        <template v-slot:preloader>
-          <flux-preloader/>
-        </template>
-
-        <template v-slot:caption>
-          <flux-caption v-slot="captionProps" class="img-caption">
-            <b-link :href="captionProps.caption.url" target="_blank" class="text-white int-font title">
-              {{ captionProps.caption.text }}
-            </b-link>
-          </flux-caption>
-        </template>
-      </vue-flux>
+      <b-img class="img-title" id="img" src="@/assets/rfW_Poster.webp"></b-img>
     </div>
     <div id="i-overlay">
       <div id="img-gradient" class="low-round"></div>
@@ -34,8 +17,7 @@
             <b-link class="text-white" @click="$emit('nav', 1)">Graphics Presets</b-link>
           </h6>
           <template v-for="(preset, idx) in gfxHandler.presets.slice(1)">
-            <b-button :key="idx" squared
-                      v-b-popover.bottom.hover="preset.desc"
+            <b-button squared v-b-popover.bottom.hover="preset.desc" :key="idx"
                       :class="gfxHandler.selectedPresetIdx === idx+1 ? 'low-round active' + cls : 'low-round inactive' + cls"
                       :variant="gfxHandler.selectedPresetIdx === idx+1 ? 'rf-orange' : 'rf-blue'"
                       @click="gfxHandler.selectPreset(preset, true)">
@@ -49,11 +31,13 @@
     <div id="spacer" class="no-pointer"></div>
 
     <!-- Server Favourites -->
+    <!--
     <transition name="fade">
       <ServerBrowser ref="serverBrowser" only-favourites class="mt-3" :delay="100" :rfactor-version="rfactorVersion"
                      @make-toast="makeToast" @launch="$refs.slider.stop()"
                      @set-busy="setBusy" v-if="showServerFavs" />
     </transition>
+    -->
   </div>
 </template>
 
@@ -126,7 +110,7 @@ export default {
         userScreenShots = await request.json()
         await this.setupScreenShots()
       } else {
-        this.$refs.slider.stop()
+        // this.$refs.slider.stop()
       }
     },
     setBusy: function (busy) {this.$emit('set-busy', busy) },

@@ -361,7 +361,7 @@ export default {
       this.$bvModal.show('video-modal')
       let r = await getEelJsonObject(window.eel.run_rfactor_config()())
       if (r === undefined || !r.result) {
-        this.makeToast('rFactor 2 Video Setup was aborted.', 'warning', 'Video Setup')
+        this.makeToast('Le Mans Ultimate Video Setup was aborted.', 'warning', 'Video Setup')
         this.$bvModal.hide('video-modal')
         return
       }

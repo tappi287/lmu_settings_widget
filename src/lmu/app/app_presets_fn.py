@@ -57,7 +57,7 @@ def get_presets(preset_type: int):
     presets = [current_preset] + presets
 
     # -- Remove obsolete settings
-    if preset_type == PresetType.graphics and rf.version >= '1.1123':
+    if preset_type == PresetType.graphics:
         for p in presets:
             if not hasattr(p, VideoSettings.app_key):
                 continue

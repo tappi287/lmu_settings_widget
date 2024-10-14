@@ -48,7 +48,7 @@
         Steering Wheel, Bass Shakers and Head Cutter equipment during the benchmark.
         <p class="mt-2">
           Also make sure to <b>not switch focus</b> between windows.
-          The rFactor 2 game executable needs focus to receive keyboard commands send from this app.
+          The Le Mans Ultimate game executable needs focus to receive keyboard commands send from this app.
         </p>
       </b-card-text>
 
@@ -125,7 +125,7 @@
 <script>
 
 import {getEelJsonObject} from "@/main";
-import SettingItem from "@/components/settings/Setting";
+import SettingItem from "@/components/settings/SettingItem.vue";
 import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea";
 import ReplayList from "@/components/ReplayList";
 import BenchmarkResultArea from "@/components/benchmark/BenchmarkResultArea";

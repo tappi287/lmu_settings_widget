@@ -103,7 +103,7 @@ export default {
       this.previousPresetName = ''
       if (!r.result) {
         this.makeToast(r.msg, 'danger')
-        console.error('Error writing preset to rFactor 2!', r.msg)
+        console.error('Error writing preset to Le Mans Ultimate!', r.msg)
         console.log(r)
       } else {
         console.log('Saved Preset:', preset.name)
@@ -117,7 +117,7 @@ export default {
       if (!r.result) {
         console.log(r, r.result)
         this.makeToast(r.msg, 'danger')
-        console.error('Error writing preset to rFactor 2!', r.msg)
+        console.error('Error writing preset to Le Mans Ultimate!', r.msg)
       }
       this.setBusy(false)
     },

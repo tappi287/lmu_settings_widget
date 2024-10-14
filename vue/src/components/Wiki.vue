@@ -4,8 +4,8 @@
       <template #header>
         <h6 class="mb-0 text-center"><span class="title">About</span></h6>
       </template>
-      <a href="https://www.github.com/tappi287/rf2_video_settings" target="_blank" class="text-rf-orange">
-        rF2 Settings Widget v{{ ver }}
+      <a href="https://www.github.com/tappi287/lmu_settings_widget" target="_blank" class="text-rf-orange">
+        LMU Settings Widget v{{ ver }}
       </a>
       published under MIT license &#169; 2020-2021
       <a href="https://sim-site.netlify.app" target="_blank" class="text-rf-orange">Stefan Tapper</a>
@@ -20,8 +20,8 @@
         <h6 class="mb-0 text-center"><span class="title">Wiki</span></h6>
       </template>
       <h6 class="mt-1">Pin to taskbar</h6>
-      <p>If you want to pin this app to your taskbar: type rf2 into your Windows start menu and right click the
-        rf2 Settings Widget app entry > Pin to taskbar. If you try to pin the running app, you'll pin
+      <p>If you want to pin this app to your taskbar: type LMU into your Windows start menu and right click the
+        LMU Settings Widget app entry > Pin to taskbar. If you try to pin the running app, you'll pin
         a shortcut to your web browser.</p>
 
       <h6 class="mt-5">Report a bug</h6>
@@ -43,16 +43,16 @@
       names of the connected players does most likely not reflect the actual number of players.
       The information should be similar to what you see when launching Steam>View>Server</p>
 
-      <h6 class="mt-5">rF2 Notes</h6>
-      <p>Start rF2 while a dedicated server is running on the same machine: Change the WebUI Port in player.json
-      to something different than the default value. Use this app to start rF2 or create a shortcut to rF2.exe
-      and set the StartIn parameter to the rFactor 2 root directory.</p>
+      <h6 class="mt-5">LMU Notes</h6>
+      <p>Start LMU while a dedicated server is running on the same machine: Change the WebUI Port in player.json
+      to something different than the default value. Use this app to start LMU or create a shortcut to LMU.exe
+      and set the StartIn parameter to the Le Mans Ultimate root directory.</p>
       <p></p>
-      <span>Start rF2 from command line and join a password protected server: </span>
+      <span>Start LMU from command line and join a password protected server: </span>
       <pre class="text-muted">rFactor2.exe +multiplayer +connect=:Password@IP:Port</pre>
       <p></p>
       <span>Server XY won't let you join: Unable to install server mod. Take a look at your:</span>
-      <pre class="text-muted mb-0">rFactor 2\UserData\cmpReport.txt</pre>
+      <pre class="text-muted mb-0">Le Mans Ultimate\UserData\cmpReport.txt</pre>
       <span>If you find messages like component XY missing: try to un- and resubscribe to that Item in the
       Steam Workshop.</span>
       <p></p>
@@ -68,7 +68,7 @@
       <b-list-group class="low-round">
         <b-list-group-item class="bg-dark text-white">
           <b-link class="text-rf-orange" target="_blank" href="https://studio397.com">Studio 397 Dev Guide</b-link>
-          <span> - general resource about rFactor 2 development</span>
+          <span> - general resource about Le Mans Ultimate development</span>
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
           <b-link class="text-rf-orange" target="_blank" href="https://github.com/ChrisKnott/Eel">Eel</b-link>

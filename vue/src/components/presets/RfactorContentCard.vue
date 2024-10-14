@@ -59,7 +59,7 @@
 
       <!-- Refresh Popover -->
       <b-popover target="content-refresh-button" triggers="click">
-        <p>Do you want to <b>start rFactor 2</b> and refresh the list of available content?</p>
+        <p>Do you want to <b>start Le Mans Ultimate</b> and refresh the list of available content?</p>
         <p>The game will be quit once the list of content is acquired. This will take ~8 seconds.</p>
         <div class="text-right">
           <LaunchRfactorBtn @make-toast="makeToast" @launch="refreshContent" text="Refresh" />

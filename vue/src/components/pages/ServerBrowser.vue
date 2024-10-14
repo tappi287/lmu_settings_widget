@@ -287,7 +287,7 @@
         <p>This server is password protected.</p>
         <p>If you know the exact password you can enter it here and have this application
           remember it for you.</p>
-        <p><b>Note:</b> rFactor 2 will idle in the main menu and not connect to the server if you
+        <p><b>Note:</b> Le Mans Ultimate will idle in the main menu and not connect to the server if you
           provided an incorrect password.</p>
       </div>
 

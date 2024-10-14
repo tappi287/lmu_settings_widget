@@ -105,7 +105,7 @@
       <b-alert :show="previousPresetName !== ''" dismissible variant="warning" class="mt-3">
         <h5><b-icon class="mr-1" icon="exclamation-triangle-fill"></b-icon>Settings difference on disk</h5>
         The previously selected Preset <i>{{ previousPresetName }}</i> has different settings than the current
-        rFactor 2 settings on disk.
+        Le Mans Ultimate settings on disk.
         <b-link @click="restorePreviousPreset" class="text-rf-orange">
           Click here to select your previous Preset <i>{{ previousPresetName }}</i> and restore it's
           settings.

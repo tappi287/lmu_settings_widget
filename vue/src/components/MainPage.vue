@@ -3,30 +3,21 @@
     <b-navbar class="text-left pl-0 pr-0" type="dark">
       <b-navbar-brand href="#" @click="navActive=0" class="r-icon-brand position-relative"
                       v-b-popover.bottomleft.hover="'DashBoard'">
-        <b-img width="32px" key="1" src="@/assets/rfW_logo_white.svg"
+        <b-img width="32px" height="32px" key="1" src="@/assets/lmw_logo.png"
                :class="navActive === 0 ? 'r-icon top' : 'r-icon top inv'"></b-img>
-        <b-img width="32px" key="2" src="@/assets/rfW_logo.svg"
+        <b-img width="32px" height="32px" key="2" src="@/assets/lmw_logo_white.png"
                :class="navActive !== 0 ? 'r-icon bottom' : 'r-icon bottom inv'"></b-img>
       </b-navbar-brand>
       <b-nav>
-        <b-nav-item-dropdown text="Settings"
-                             :toggle-class="[1,2,3].indexOf(navActive) !== -1 ? 'used pl-0' : 'pl-0'">
-          <b-dropdown-item>
-            <b-nav-item :active="navActive === 1" @click="navActive=1" link-classes="pl-0">
-              Graphics Settings
-            </b-nav-item>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <b-nav-item :active="navActive === 2" @click="navActive=2" link-classes="pl-0">
-              Control Settings
-            </b-nav-item>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <b-nav-item :active="navActive === 3" @click="navActive=3" link-classes="pl-0">
-              Generic Settings
-            </b-nav-item>
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-nav-item :active="navActive === 1" @click="navActive=1" link-classes="pl-0">
+          Graphics Settings
+        </b-nav-item>
+        <b-nav-item :active="navActive === 2" @click="navActive=2" link-classes="pl-0">
+          Control Settings
+        </b-nav-item>
+        <b-nav-item :active="navActive === 3" @click="navActive=3" link-classes="pl-0">
+          Generic Settings
+        </b-nav-item>
         <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0" disabled>
           Replays
         </b-nav-item>
@@ -186,7 +177,7 @@
         </b-col>
         <b-col class="text-right p-0">
           <b-button size="sm" variant="rf-secondary" class="ml-2"
-                    v-b-popover.auto.hover="'Open rF2 vehicle setups folder'"
+                    v-b-popover.auto.hover="'Open LMU vehicle setups folder'"
                     @click="openSetupFolder">
             <b-icon icon="folder"></b-icon>
           </b-button>
@@ -244,8 +235,8 @@ export default {
       navActive: 0,
       searchActive: [1, 2, 3],
       search: '',
-      live: false,  // rFactor 2 running
-      wasLive: true, // rFactor 2 was running before
+      live: false,  // Le Mans Ultimate running
+      wasLive: true, // Le Mans Ultimate was running before
       rf2Status: '',  // Desc of current rF2 status eg. loading/quitting
       firstServerBrowserVisit: true,
       gfxReady: false,
@@ -307,10 +298,10 @@ export default {
       this.quitBusy = true
       const r = await getEelJsonObject(window.eel.quit_rfactor()())
       if (r.result) {
-        this.makeToast('Rfactor 2 is quitting.', 'success', 'rFactor 2 Control')
+        this.makeToast('Le Mans Ultimate is quitting.', 'success', 'Le Mans Ultimate Control')
       } else if (!r.result) {
-        this.makeToast('Could not connect to an rFactor 2 instance to request a game exit.',
-            'warning', 'rFactor 2 Control')
+        this.makeToast('Could not connect to an Le Mans Ultimate instance to request a game exit.',
+            'warning', 'Le Mans Ultimate Control')
       }
       this.quitBusy = false
     },
@@ -349,7 +340,7 @@ export default {
       this.setBusy(false)
     },
     returnedFromLive: async function () {
-      this.makeToast('Rfactor 2 closed. Refreshing settings in 5 seconds.', 'success', 'rFactor 2 Control')
+      this.makeToast('Le Mans Ultimate closed. Refreshing settings in 5 seconds.', 'success', 'Le Mans Ultimate Control')
 
       // Add a timeout to let rF release its resources
       await sleep(5000)
@@ -491,8 +482,8 @@ export default {
   color: black;
   z-index: 2;
   font-size: 0.875rem;
-  left: 0.115rem;
-  top: 0.185rem;
+  left: 0.04rem;
+  top: 0.1rem;
 }
 
 .vr-nav-icon {

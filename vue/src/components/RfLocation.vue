@@ -1,11 +1,11 @@
 <template>
   <b-card-text>
-    If you have multiple rFactor 2 installation paths or trouble with outdated Steam files. You can enter the
+    If you have multiple Le Mans Ultimate installation paths or trouble with outdated Steam files. You can enter the
     installation path manually here and restart the app.<br />
     This will disable auto detection of the rFactor installation.
     <b-form-group class="mt-2" :state="rfOverwriteLocationValid"
-                  :valid-feedback="'rF2 install detected! ' + rfactorPath"
-                  :invalid-feedback="'Could not detect valid rF2 install ' + rfOverwriteLocation">
+                  :valid-feedback="'LMU install detected! ' + rfactorPath"
+                  :invalid-feedback="'Could not detect valid LMU install ' + rfOverwriteLocation">
       <b-input-group>
         <b-form-input v-model="rfOverwriteLocation" :state="rfOverwriteLocationValid"
                       :placeholder="rfactorLocationPlaceholder">
@@ -67,7 +67,7 @@ export default {
       if (this.rfactorPath !== '') {
         return 'Auto detected: ' + this.rfactorPath
       }
-      return 'Path eg. D:\\Steam\\steamapps\\common\\rFactor 2\\'
+      return 'Path eg. D:\\Steam\\steamapps\\common\\Le Mans Ultimate\\'
     }
   },
   created() {

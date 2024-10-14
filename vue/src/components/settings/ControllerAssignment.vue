@@ -139,7 +139,7 @@ export default {
           // Abort non-keyboard settings for rF for now
           this.abortListeningController()
           this.makeToast('Re-mapping rFactor controls to non-keyboard keys is currently not supported!',
-              'danger', 'rFactor 2 Control Mapping')
+              'danger', 'Le Mans Ultimate Control Mapping')
           return
         }
       }
