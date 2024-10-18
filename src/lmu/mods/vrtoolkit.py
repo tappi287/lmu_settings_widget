@@ -319,7 +319,11 @@ class VrToolKit:
                 if line.startswith(self.techniques_name) and self.clarity2_technique in line:
                     clarity_found = True
                 for k, v in self.ini_settings.items():
-                    line_key, value = line.split('=', 1)
+                    splitted_line = line.split('=', 1)
+                    if len(splitted_line) == 2:
+                        line_key, value = line.split('=', 1)
+                    else:
+                        continue
                     if line_key == k:
                         if isinstance(value, str) and value.split('.')[0].isnumeric():
                             # -- Read int
@@ -336,7 +340,7 @@ class VrToolKit:
             self._update_options(update_from_disk=True, clarity_found=clarity_found)
         except Exception as e:
             msg = f'Error reading Reshade Preset Ini file: {e}'
-            logging.error(msg)
+            logging.exception(msg, exc_info=e)
             self.error = msg
             return False
         return True
