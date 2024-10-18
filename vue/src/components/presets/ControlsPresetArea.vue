@@ -16,9 +16,33 @@
               @update-desc="conHandler.updateDesc"
               @update-view-mode="conHandler.updateViewMode"
               @make-toast="makeToast" />
-
     <div>
       <div v-for="(conPreset, idx) in conHandler.presets" :key="conPreset.name">
+        <!-- Headlight rFactor Control Mapping -->
+        <b-card class="mt-2 setting-card" id="hdl-controller-json-area" header-class="p-3"
+                bg-variant="dark" text-variant="white" footer-class="pt-0">
+          <template #header>
+            <div class="position-relative">
+              <b-icon icon="lamp" /><span class="ml-2">rFactor 2 Headlight Control</span>
+              <div class="position-absolute headlight-title-right">
+                <b-button size="sm" class="rounded-right" @click="getSettings"
+                          v-b-popover.hover.bottom="'Refresh Settings if you updated a setting in-game'">
+                  <b-icon icon="arrow-repeat"></b-icon>
+                </b-button>
+              </div>
+            </div>
+          </template>
+          <ControllerAssignment
+              v-for="setting in conPreset.general_controller_assignments"
+              :key="setting.key"
+              :setting="setting"
+              variant="rf-orange" class="mr-3 mb-3"
+              group-id="hdl-controller-json-area"
+              :fixed-width="true"
+              @update-assignment="updateControllerAssignment"
+              @make-toast="makeToast">
+          </ControllerAssignment>
+        </b-card>
         <SettingsCard :preset="conPreset" :idx="idx" :search="search" fixed-width
                       settings-key="freelook_settings" header-icon="card-list"
                       :current_preset_idx="conHandler.selectedPresetIdx"
@@ -51,6 +75,7 @@
 <script>
 import PresetUi from "@/components/presets/PresetUi";
 import SettingsCard from "@/components/settings/SettingsCard";
+import ControllerAssignment from "@/components/settings/ControllerAssignment.vue";
 
 export default {
   name: "ControlsPresetArea",
@@ -60,7 +85,7 @@ export default {
     }
   },
   props: {conHandler: Object, idRef: String, name: String, search: String, fixedWidth: Boolean},
-  components: {PresetUi, SettingsCard},
+  components: {ControllerAssignment, PresetUi, SettingsCard},
   methods: {
     makeToast(message, category = 'secondary', title = 'Update', append = true, delay = 8000) {
       this.$emit('make-toast', message, category, title, append, delay)
@@ -71,6 +96,7 @@ export default {
     receiveControllerDeviceEvent (event) {
       console.log(event.detail)
     },
+    updateControllerAssignment () {},
   },
   computed: {
     displayName: function () {

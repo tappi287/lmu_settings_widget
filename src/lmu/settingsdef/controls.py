@@ -1,3 +1,17 @@
+# Controller Mapping
+controller_assignments = {
+    'VR : Re-Center head position': {
+        'name': 'VR: Re-Center head position',
+        'value': {"device": "Device Identifier", "id": 0},
+        'desc': 'Re-center VR head position',
+    },
+    'VR : Reset IPD': {
+        'name': 'VR: Reset IPD',
+        'value': {"device": "Device Identifier", "id": 0},
+        'desc': 'Reset pupillary distance',
+    }
+}
+
 # JSON Category: Controls
 ui_gamepad_mouse_settings = {
     'UI Gamepad Mouse - Final Speed (pixel/seconds)':

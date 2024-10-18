@@ -262,6 +262,20 @@ class GeneralSteeringOptions(BaseOptions):
         self.read_from_python_dict(controls.general_steering)
 
 
+class GeneralControllerAssignmentOptions(BaseOptions):
+    key = 'Controller Assignments'
+    app_key = 'general_controller_assignments'
+    title = 'Controller Assignments'
+    target = OptionsTarget.controller_json
+    mandatory = False
+
+    def __init__(self):
+        super(GeneralControllerAssignmentOptions, self).__init__()
+
+        # -- Read Default options
+        self.read_from_python_dict(controls.controller_assignments)
+
+
 class GraphicOptions(BaseOptions):
     key = 'Graphic Options'
     app_key = 'graphic_options'
