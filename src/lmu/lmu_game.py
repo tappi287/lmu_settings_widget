@@ -42,6 +42,7 @@ class RfactorPlayer:
         self.version = ''
 
         self.options = self.Options()
+        self.controller_devices = dict()
 
         self.is_valid = False
         self.error = ''
@@ -70,6 +71,7 @@ class RfactorPlayer:
 
         # -- Read Controller JSON
         controller_json = self.read_player_json_dict(self.controller_file, encoding='cp1252')
+        self.read_controller_devices(controller_json)
         r = self._read_options_from_target(OptionsTarget.controller_json, controller_json) and r
         del controller_json
 
@@ -328,6 +330,10 @@ class RfactorPlayer:
                 msg = f'Could not read {file.name} file! {e}'
                 logging.fatal(msg)
                 self.error += f'{msg}\n'
+
+    def read_controller_devices(self, controller_json: dict):
+        if controller_json:
+            self.controller_devices = controller_json.get("Devices", dict())
 
     def read_dx_ini(self) -> Optional[ConfigParser]:
         try:

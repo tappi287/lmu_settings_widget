@@ -27,7 +27,7 @@
         <span class="ml-2">{{ setting.name }}</span>
       </template>
       <div class="d-block">
-        <p style="font-size: small;">Press a Controller or Steering Wheel Button or a Keyboard Key to assign</p>
+        <p style="font-size: small;">{{ captureHintText }}</p>
         <div :class="eventCaptured ? '' : 'old-setting'">
           <h5>{{ capturedEventDeviceName }}</h5>
           <p>
@@ -84,7 +84,8 @@ export default {
     }
   },
   props: {
-    setting: Object, variant: String, fixedWidth: Boolean, groupId: String, rfJson: Boolean
+    setting: Object, variant: String, fixedWidth: Boolean, groupId: String, rfJson: Boolean,
+    lmuAssignment: Boolean, captureHint: String
   },
   methods: {
     makeToast(message, category = 'secondary', title = 'Update', append = true, delay = 8000) {
@@ -112,7 +113,7 @@ export default {
     },
     listenToKeyboard: function (remove = false) {
       // We do not want to capture keyboard events for non-rfactor settings
-      if (!this.rfJson) { return }
+      if (!this.rfJson || this.lmuAssignment) { return }
 
       // Add or Remove Keydown event listener
       const m = document.getElementById(this.modalId)
@@ -222,6 +223,12 @@ export default {
       if (!this.eventCaptured) { return this.typeName }
       return getControllerDeviceTypeName(this.capturedEvent)
     },
+    captureHintText() {
+      if (this.captureHint === "" || this.captureHint === undefined) {
+        return "Press a Controller or Steering Wheel Button or a Keyboard Key to assign"
+      }
+      return this.captureHint
+    }
   }
 }
 </script>

@@ -31,3 +31,8 @@ def save_device_list(js_device_list):
 @eel.expose
 def remove_from_device_list(device_guid):
     return app_controller_fn.remove_from_device_list(device_guid)
+
+
+@eel.expose
+def get_lmu_to_pygame_device_map():
+    return app_controller_fn.get_lmu_to_pygame_device_map()

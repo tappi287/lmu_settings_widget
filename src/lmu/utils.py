@@ -315,6 +315,19 @@ def create_js_joystick_device_list(device_dict: dict, joy_dict: dict = None) -> 
     return js_list
 
 
+def map_lmu_device_to_pygame_device(js_joystick_list: list, lmu_devices: dict) -> dict:
+    lmu_to_pygame_map = dict()
+    for device in js_joystick_list:
+        name = re.sub('[^\\w\\- _.]', '', device['name'])
+
+        for lmu_id, lmu_device in lmu_devices.items():
+            lmu_name = lmu_device.get("product name")
+            if lmu_name == name:
+                lmu_to_pygame_map[device["guid"]] = lmu_id
+
+    return lmu_to_pygame_map
+
+
 def percentile(data, percent: Union[int, float]):
     size = len(data)
     return data[int(math.ceil((size * percent) / 100)) - 1]

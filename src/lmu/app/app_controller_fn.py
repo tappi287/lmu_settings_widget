@@ -3,7 +3,8 @@ import logging
 
 from ..app_settings import AppSettings
 from ..gamecontroller import ControllerEvents
-from ..utils import capture_app_exceptions, create_js_joystick_device_list
+from ..lmu_game import RfactorPlayer
+from ..utils import capture_app_exceptions, create_js_joystick_device_list, map_lmu_device_to_pygame_device
 
 
 @capture_app_exceptions
@@ -40,3 +41,18 @@ def remove_from_device_list(device_guid):
     if device_guid in AppSettings.controller_devices:
         AppSettings.controller_devices.pop(device_guid)
         AppSettings.save()
+
+
+@capture_app_exceptions
+def get_lmu_to_pygame_device_map():
+    rf = RfactorPlayer()
+    if not rf.is_valid:
+        return json.dumps(dict())
+
+    py_game_device_list = create_js_joystick_device_list(AppSettings.controller_devices)
+    return json.dumps(
+        map_lmu_device_to_pygame_device(
+            py_game_device_list,
+            rf.controller_devices
+        )
+    )

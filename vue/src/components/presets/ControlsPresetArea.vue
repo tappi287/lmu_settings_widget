@@ -18,14 +18,14 @@
               @make-toast="makeToast" />
     <div>
       <div v-for="(conPreset, idx) in conHandler.presets" :key="conPreset.name">
-        <!-- Headlight rFactor Control Mapping -->
+        <!-- Controller Assignments -->
         <b-card class="mt-2 setting-card" id="hdl-controller-json-area" header-class="p-3"
                 bg-variant="dark" text-variant="white" footer-class="pt-0">
           <template #header>
-            <div class="position-relative">
-              <b-icon icon="lamp" /><span class="ml-2">rFactor 2 Headlight Control</span>
+            <div class="position-relative" v-if="false">
+              <b-icon icon="lamp" /><span class="ml-2">Controller Assignments</span>
               <div class="position-absolute headlight-title-right">
-                <b-button size="sm" class="rounded-right" @click="getSettings"
+                <b-button size="sm" class="rounded-right"
                           v-b-popover.hover.bottom="'Refresh Settings if you updated a setting in-game'">
                   <b-icon icon="arrow-repeat"></b-icon>
                 </b-button>
@@ -33,12 +33,13 @@
             </div>
           </template>
           <ControllerAssignment
-              v-for="setting in conPreset.general_controller_assignments"
+              v-for="setting in conPreset.general_controller_assignments.options"
+              lmu-assignment
               :key="setting.key"
               :setting="setting"
               variant="rf-orange" class="mr-3 mb-3"
-              group-id="hdl-controller-json-area"
-              :fixed-width="true"
+              group-id="controller-assignments-area"
+              capture-hint="Press a Controller Device button"
               @update-assignment="updateControllerAssignment"
               @make-toast="makeToast">
           </ControllerAssignment>
@@ -76,12 +77,14 @@
 import PresetUi from "@/components/presets/PresetUi";
 import SettingsCard from "@/components/settings/SettingsCard";
 import ControllerAssignment from "@/components/settings/ControllerAssignment.vue";
+import {getEelJsonObject} from "@/main";
 
 export default {
   name: "ControlsPresetArea",
   data: function () {
     return {
-      displayDefaultName: 'Controls'
+      displayDefaultName: 'Controls',
+      lmuToPyGameDeviceMap: {},
     }
   },
   props: {conHandler: Object, idRef: String, name: String, search: String, fixedWidth: Boolean},
@@ -96,13 +99,33 @@ export default {
     receiveControllerDeviceEvent (event) {
       console.log(event.detail)
     },
-    updateControllerAssignment () {},
+    updateControllerAssignment (setting, event) {
+      console.log(setting, event)
+      let button = -1
+      if (event.button !== undefined && event.button !== null) {
+        button = event.button
+      }
+      if (button === -1) {
+        this.makeToast("Currently only buttons are supported.", "Controller Assignment")
+        return
+      }
+
+      if (this.lmuToPyGameDeviceMap[event.guid] !== undefined) {
+        this.conHandler.updateSetting(setting, {"device": this.lmuToPyGameDeviceMap[event.guid], "id": button})
+      }
+    },
   },
   computed: {
     displayName: function () {
       if (this.name === undefined) { return this.displayDefaultName }
       return this.name
     },
+  },
+  async created() {
+    const r = await getEelJsonObject(window.eel.get_lmu_to_pygame_device_map()())
+    if (r !== undefined) {
+      this.lmuToPyGameDeviceMap = r
+    }
   }
 }
 </script>
