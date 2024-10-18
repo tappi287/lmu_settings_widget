@@ -193,8 +193,7 @@ class AdvancedSettingsPreset(BasePreset):
 
 class ControlsSettingsPreset(BasePreset):
     preset_type: int = PresetType.controls
-    option_class_keys = {settings_model.GamepadMouseOptions.app_key, settings_model.FreelookOptions.app_key,
-                         settings_model.GeneralSteeringOptions.app_key,
+    option_class_keys = {#settings_model.GamepadMouseOptions.app_key, settings_model.FreelookOptions.app_key, settings_model.GeneralSteeringOptions.app_key,
                          settings_model.GeneralControllerAssignmentOptions.app_key}
     prefix = 'controls'
 

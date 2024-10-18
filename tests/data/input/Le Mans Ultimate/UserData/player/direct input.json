@@ -520,6 +520,10 @@
     "Wipers":{
       "device":"FANATEC ClubSport Wheel Base V2.5:FSDeviceWheelCSW-7FEE312E9A234D2B",
       "id":57
+    },
+    "VR : Re-Center head position": {
+      "device":"FANATEC ClubSport Wheel Base V2.5:FSDeviceWheelCSW-7FEE312E9A234D2B",
+      "id":24
     }
   },
   "Type":"Direct Input"

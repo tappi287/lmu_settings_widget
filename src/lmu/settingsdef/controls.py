@@ -4,6 +4,7 @@ controller_assignments = {
         'name': 'VR: Re-Center head position',
         'value': {"device": "Device Identifier", "id": 0},
         'desc': 'Re-center VR head position',
+        'create_in_json': True
     },
     'VR : Reset IPD': {
         'name': 'VR: Reset IPD',

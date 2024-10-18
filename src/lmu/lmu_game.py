@@ -230,7 +230,7 @@ class RfactorPlayer:
         for option in preset_options.options:
             if option.key in preset_options.skip_keys:
                 continue
-            if option.key not in player_json_dict[preset_options.key]:
+            if option.key not in player_json_dict[preset_options.key] and not option.create_in_json:
                 logging.warning('Skipping Setting: %s in player.JSON that could not be located!', option.key)
                 continue
             if option.value is None:

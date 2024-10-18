@@ -37,6 +37,7 @@ class Option(JsonRepr):
         self.exists_in_rf = False  # Mark options not found on disk so we can ignore them during comparison and saving
         self.difference = False
         self.difference_value = None
+        self.create_in_json = False
         self.dupl = None  # Mark options that need another value written eg. GPRIX Time + CURNT Time
 
         # Possible settings
@@ -263,7 +264,7 @@ class GeneralSteeringOptions(BaseOptions):
 
 
 class GeneralControllerAssignmentOptions(BaseOptions):
-    key = 'Controller Assignments'
+    key = 'Input'
     app_key = 'general_controller_assignments'
     title = 'Controller Assignments'
     target = OptionsTarget.controller_json

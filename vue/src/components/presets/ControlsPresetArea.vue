@@ -44,6 +44,7 @@
               @make-toast="makeToast">
           </ControllerAssignment>
         </b-card>
+        <!--
         <SettingsCard :preset="conPreset" :idx="idx" :search="search" fixed-width
                       settings-key="freelook_settings" header-icon="card-list"
                       :current_preset_idx="conHandler.selectedPresetIdx"
@@ -68,6 +69,7 @@
                       @update-setting="conHandler.updateSetting"
                       @set-busy="setBusy"
                       @make-toast="makeToast"/>
+        -->
       </div>
     </div>
   </div>
@@ -111,7 +113,9 @@ export default {
       }
 
       if (this.lmuToPyGameDeviceMap[event.guid] !== undefined) {
-        this.conHandler.updateSetting(setting, {"device": this.lmuToPyGameDeviceMap[event.guid], "id": button})
+        const new_value = {"device": this.lmuToPyGameDeviceMap[event.guid], "id": button + 32}
+        setting.value = new_value
+        this.conHandler.updateSetting(setting, new_value)
       }
     },
   },
