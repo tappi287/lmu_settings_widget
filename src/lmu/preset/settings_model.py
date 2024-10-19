@@ -19,7 +19,7 @@ class OptionsTarget:
 
 class Option(JsonRepr):
     # No need to save these internal attributes
-    skip_keys = ['dupl']
+    skip_keys = ['dupl', 'hidden', 'create_in_json', 'difference', 'difference_value']
     # Entries we don't want to export or save
     export_skip_keys = ['settings', 'hidden', 'ini_type', 'desc', 'name', 'exists_in_rf', 'create_in_json'
                         'difference', 'difference_value', 'dupl']

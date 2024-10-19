@@ -91,7 +91,7 @@ name: "LaunchRfactorBtn",
     return { live: false, size: "sm", devicesReady: true, deviceList: [], currentGfxPreset: {},
              showDeviceModal: false, showLaunchModal: false, lastMethod: 0, checkDevices: true,
              launchMethods: {
-               2: {name: 'Launch via Steam in VR [Deprecated]'},
+               2: {name: 'Launch via Steam in VR'},
                3: {name: 'Launch via Exe in VR',
                    desc: 'If you have a dedicated Server running. This is the method to ' +
                          'launch LMU anyway. Make sure you have configured your WebUI ports correctly.'},
@@ -158,7 +158,8 @@ name: "LaunchRfactorBtn",
             'the game is running. The game would overwrite those settings anyway upon exit.',
             'success', 'Le Mans Ultimate Launch')
       } else {
-        this.makeToast('Could not launch rFactor2.exe', 'danger', 'Le Mans Ultimate Launch')
+        this.makeToast('Could not launch Le Mans Ultimate.exe', 'danger',
+            'Le Mans Ultimate Launch')
         this.$emit('launch-failed')
       }
     },

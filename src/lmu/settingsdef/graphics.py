@@ -185,6 +185,7 @@ advanced_settings = {
 adjustable_video_settings = {
     'Launch': {'name': 'Launch', 'value': 1, '_type': int, 'desc': 'Choose how this widget should launch LMU '
                                                                    'if this preset is selected.',
+               'hidden': False,
                'settings': ({'value': 1, 'name': 'via Executable (Desktop)'},
                             {'value': 3, 'name': 'via Executable (VR)'},
                             {'value': 0, 'name': 'via Steam (Desktop)'},

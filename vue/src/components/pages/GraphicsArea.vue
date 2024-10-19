@@ -11,6 +11,7 @@
                 @set-busy="setBusy"
                 @make-toast="makeToast">
     <template #footer v-if="!compact">
+      <!--
       <div class="float-left">
         <template v-if="preset.resolution_settings.options[0].value !== null">
           <div v-b-popover.auto.hover="'Screen Resolution, Window Mode and Refresh Rate have been saved and ' +
@@ -30,13 +31,7 @@
           </div>
         </template>
       </div>
-      <div class="float-right">
-        <b-button @click="launchConfig" size="sm" variant="rf-secondary"
-                  v-b-popover.lefttop.hover="'Launch rf Config to change resolution, refresh rate ' +
-                   'and window mode.'">
-          <b-icon icon="display-fill" /><span class="ml-2">Video Setup</span>
-        </b-button>
-      </div>
+      -->
     </template>
   </SettingsCard>
 
@@ -108,7 +103,7 @@
         for more information.
         <br /><br />
         If you want to adjust settings in-game: create a new preset inside the ReShade UI.
-        The settings you adjust here will use a custom Reshade preset "rf2_widget_preset.ini".
+        The settings you adjust here will use a custom Reshade preset "lmu_widget_preset.ini".
         <br />
         To use these enhancements in PanCake mode: set the <i>"Use Center Mask"</i> setting to <i>Disabled</i>
         <div class="float-right">
@@ -204,38 +199,6 @@
                 @set-busy="setBusy"
                 @make-toast="makeToast">
   </SettingsCard>
-
-  <!-- Video Setup Modal -->
-  <b-modal id="video-modal" centered hide-header-close no-close-on-backdrop no-close-on-esc>
-    <template #modal-title>
-      <b-icon icon="display-fill" variant="primary"></b-icon><span class="ml-2">Video Setup</span>
-    </template>
-    <div class="d-block">
-      <p>rFactor Video Setup application launched. <b>Check your taskbar</b> if the window does not appear
-      in front of you.</p>
-      <p>Window, Resolution and Refresh Rate settings will be saved to
-        <i>{{ preset.name }}</i> once you finished rFactor's Video Setup dialog.
-      </p>
-      <p>Make sure to edit <b>Config_DX11.ini</b>. The widget will update your <i>Config_DX11_VR.ini</i>
-         automatically.</p>
-    </div>
-
-    <template #modal-footer>
-      <div class="d-block" style="font-size: small">
-        <p>
-          If you do not want to store rFactor's Video Setup settings in the {{ preset.name }} Preset choose
-          abort below.
-        </p>
-        <p>
-          Use the Delete button if you want to erase the existing Video Setup settings from this Preset.
-        </p>
-      </div>
-      <div class="d-block text-right">
-        <b-button variant="danger" @click="deleteConfig" class="mr-2">Delete Settings</b-button>
-        <b-button variant="secondary" @click="abortConfig">Abort</b-button>
-      </div>
-    </template>
-  </b-modal>
 </div>
 </template>
 
@@ -260,58 +223,7 @@ export default {
     updateSetting: function (setting, value) {
       this.$emit('update-setting', setting, value)
     },
-    updateOpenVrFsrSetting: function (setting, value) {
-      if (setting.key === 'enabled' && value === true) {
-        if (this.openVrFoveatedEnabled) {
-          this.showOpenVrSettings = false
-          // Disable Foveated
-          this.preset['openvrfoveated_settings'].options.forEach(o => {
-            if (o.key === 'enabled') { this.$emit('update-setting', o, false, false); o.value = false }
-          })
-          this.$nextTick(() => {this.showOpenVrSettings = true})
-        }
-      }
-      this.$emit('update-setting', setting, value)
-    },
-    updateOpenVrFoveatedSetting: function (setting, value) {
-      if (setting.key === 'enabled' && value === true) {
-        if (this.openVrFsrEnabled) {
-          this.showOpenVrSettings = false
-          // Disable FSR
-          this.preset['openvrfsr_settings'].options.forEach(o => {
-            if (o.key === 'enabled') { this.$emit('update-setting', o, false, false); o.value = false }
-          })
-          this.$nextTick(() => {this.showOpenVrSettings = true})
-        }
-      }
-      this.$emit('update-setting', setting, value)
-    },
     setBusy: function (busy) { this.$emit('set-busy', busy) },
-    updateResolutionSettings: async function () {
-      this.$emit('set-busy', true)
-      let r = await getEelJsonObject(window.eel.get_current_dx_config()())
-      if (!r.result) {
-        this.makeToast('Could not load current resolution settings', 'danger', 'Error')
-        this.$emit('set-busy', false)
-        return
-      }
-
-      // Update current preset from settings read from disk
-      console.log('Saving resolution settings:', r.preset.resolution_settings)
-      r.preset.resolution_settings.options.forEach(disk_setting => {
-        this.preset.resolution_settings.options.forEach(setting => {
-          if (disk_setting.key === setting.key) {
-            this.$emit('update-setting', setting, disk_setting.value, false)
-          }
-        })
-      })
-      // Trigger a preset save
-      const setting = this.preset.resolution_settings.options[0]
-      this.$emit('update-setting', setting, setting.value, true)
-      this.$emit('set-busy', false)
-      this.makeToast('Video Settings for Resolution, Refresh Rate and Window Mode successfully updated.',
-          'success', 'Video Setup')
-    },
     _getSetSettingsOption(settings_key, option_key, setValue=null) {
       let result = null
       this.preset[settings_key].options.forEach(o => {
@@ -329,45 +241,6 @@ export default {
     claritySettingDisabled(setting) {
       if (setting.key === 'use_clarity') { return false }
       return !this.clarityEnabled
-    },
-    videoSettingsDisabled(setting) {
-      if (setting.key === 'UseFXAA') { return this.msaaEnabled }
-      return true
-    },
-    openVrFsrSettingDisabled(setting) {
-      if (setting.key === 'enabled') { return false }
-      return !this.openVrFsrEnabled
-    },
-    openVrFoveatedSettingDisabled(setting) {
-      if (setting.key === 'enabled') { return false }
-      return !this.openVrFoveatedEnabled
-    },
-    deleteConfig() {
-      this.preset.resolution_settings.options.forEach(setting => {
-        this.$emit('update-setting', setting, null, false)
-      })
-      // Trigger a preset save
-      const setting = this.preset.resolution_settings.options[0]
-      this.$emit('update-setting', setting, null, true)
-
-      // Abort Video Setup
-      this.abortConfig()
-    },
-    abortConfig() {
-      this.$bvModal.hide('video-modal')
-      this.abortResolutionUpdate = true
-    },
-    launchConfig: async function() {
-      this.$bvModal.show('video-modal')
-      let r = await getEelJsonObject(window.eel.run_rfactor_config()())
-      if (r === undefined || !r.result) {
-        this.makeToast('Le Mans Ultimate Video Setup was aborted.', 'warning', 'Video Setup')
-        this.$bvModal.hide('video-modal')
-        return
-      }
-      if (this.abortResolutionUpdate) { this.abortResolutionUpdate = false; return }
-      this.$bvModal.hide('video-modal')
-      await this.updateResolutionSettings()
     }
   },
   components: {
@@ -377,18 +250,6 @@ export default {
     viewMode: function () {
       if (this.view_mode !== undefined) { return this.view_mode }
       return 0
-    },
-    msaaEnabled: function() {
-      if (this.preset === undefined) { return false }
-      return this._getSetSettingsOption('video_settings', 'MSAA')
-    },
-    openVrFsrEnabled: function () {
-      if (this.preset === undefined) { return false }
-      return this._getSetSettingsOption('openvrfsr_settings', 'enabled')
-    },
-    openVrFoveatedEnabled: function () {
-      if (this.preset === undefined) { return false }
-      return this._getSetSettingsOption('openvrfoveated_settings', 'enabled')
     },
     reshadeEnabled: function () {
       if (this.preset === undefined) { return false }
@@ -435,6 +296,4 @@ export default {
   .video-indicator { line-height: 0.98; }
   /* .reshadeEnabled > div.setting-card { background-color: rgba(234, 234, 234, 0.13) !important; } */
   .reshadeDisabled > div.setting-card { background-color: rgba(56, 56, 56, 0.13) !important; }
-  /* .openvrModEnabled > div.setting-card { background-color: rgba(234, 234, 234, 0.15) !important; } */
-  .openvrModDisabled > div.setting-card { background-color: rgba(56, 56, 56, 0.13) !important; }
 </style>
