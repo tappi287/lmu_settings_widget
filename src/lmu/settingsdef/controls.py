@@ -3,15 +3,27 @@ controller_assignments = {
     'VR : Re-Center head position': {
         'name': 'VR: Re-Center head position',
         'value': None,
-        'desc': 'Re-center VR head position',
+        'desc': 'Re-center Virtual Reality head position',
         'create_in_json': True
     },
     'VR : Reset IPD': {
         'name': 'VR: Reset IPD',
         'value': None,
-        'desc': 'Reset pupillary distance',
+        'desc': 'Reset Virtual Reality pupillary distance',
         'create_in_json': True
-    }
+    },
+    "VR : Decrease IPD": {
+        'name': 'VR: Decrease IPD',
+        'value': None,
+        'desc': 'Decrease Virtual Reality pupillary distance',
+        'create_in_json': True
+    },
+    "VR : Increase IPD": {
+        'name': 'VR: Increase IPD',
+        'value': None,
+        'desc': 'Increase Virtual Reality pupillary distance',
+        'create_in_json': True
+    },
 }
 
 # JSON Category: Controls

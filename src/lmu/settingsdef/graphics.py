@@ -181,13 +181,8 @@ advanced_settings = {
                       'settings': ({'settingType': 'range', 'min': 0, 'max': 288, 'step': 1,
                                     'desc': '0 to disable, LMU default setting: 0'},)},
 }
+
 adjustable_video_settings = {
-    """
-    'VrSettings': {'name': 'VR', 'value': 0, '_type': int,
-                   'settings': ({'value': 0, 'name': 'Disabled'}, {'value': 1, 'name': 'HMD only'},
-                                {'value': 2, 'name': 'HMD + Mirror'})
-                   },
-    """
     'Launch': {'name': 'Launch', 'value': 1, '_type': int, 'desc': 'Choose how this widget should launch LMU '
                                                                    'if this preset is selected.',
                'settings': ({'value': 1, 'name': 'via Executable (Desktop)'},
