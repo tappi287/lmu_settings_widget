@@ -2,14 +2,15 @@
 controller_assignments = {
     'VR : Re-Center head position': {
         'name': 'VR: Re-Center head position',
-        'value': {"device": "Device Identifier", "id": 0},
+        'value': None,
         'desc': 'Re-center VR head position',
         'create_in_json': True
     },
     'VR : Reset IPD': {
         'name': 'VR: Reset IPD',
-        'value': {"device": "Device Identifier", "id": 0},
+        'value': None,
         'desc': 'Reset pupillary distance',
+        'create_in_json': True
     }
 }
 

@@ -21,7 +21,7 @@ class Option(JsonRepr):
     # No need to save these internal attributes
     skip_keys = ['dupl']
     # Entries we don't want to export or save
-    export_skip_keys = ['settings', 'hidden', 'ini_type', 'desc', 'name', 'exists_in_rf',
+    export_skip_keys = ['settings', 'hidden', 'ini_type', 'desc', 'name', 'exists_in_rf', 'create_in_json'
                         'difference', 'difference_value', 'dupl']
 
     def __init__(self):
@@ -99,6 +99,7 @@ class BaseOptions(JsonRepr):
             option.value = detail_dict.get('value')
             option.desc = detail_dict.get('desc')
             option.hidden = detail_dict.get('hidden')
+            option.create_in_json = detail_dict.get('create_in_json', False)
             option.ini_type = detail_dict.get('_type')
             option.dupl = detail_dict.get('_dupl')
             self.options.append(option)

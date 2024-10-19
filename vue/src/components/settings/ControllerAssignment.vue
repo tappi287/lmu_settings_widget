@@ -187,21 +187,23 @@ export default {
     }
   },
   computed: {
-    currentSettingName: function () {
-      let name = 'Not Set!'
-      if (this.setting === undefined) { return name }
-      return name
-    },
     settingVariant: function () {
       if (this.variant === undefined) { return 'secondary' }
       return this.variant
     },
     typeName: function () {
       if (this.rfJson) { return getRfactorControllerDeviceTypeName(this.setting) }
+      if (this.lmuAssignment) { return "" }
       return getControllerDeviceTypeName(this.setting)
     },
     settingValueName: function () {
       if (this.rfJson) { return this.rfValueName }
+      if (this.lmuAssignment) {
+        const val = this.setting.value
+        if (val === undefined || val === null) { return "Not Set!"}
+        if (val.id === undefined) { return "Not Set!" }
+        return `B${val.id - 32}`
+      }
       return getControllerValueName(this.setting)
     },
     settingDeviceName: function () {

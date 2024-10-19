@@ -223,7 +223,7 @@ class RfactorPlayer:
 
     def _update_player_json(self, player_json_dict, preset_options: BaseOptions):
         if preset_options.key not in player_json_dict:
-            self.error += f'Could not locate CATEGORY settings key: {preset_options.key} in player.JSON.\n'
+            self.error += f'Could not locate CATEGORY settings key: {preset_options.key} in <Settings>.JSON.\n'
             logging.error(self.error)
             return False
 
@@ -231,7 +231,7 @@ class RfactorPlayer:
             if option.key in preset_options.skip_keys:
                 continue
             if option.key not in player_json_dict[preset_options.key] and not option.create_in_json:
-                logging.warning('Skipping Setting: %s in player.JSON that could not be located!', option.key)
+                logging.warning('Skipping Setting: %s in <Settings>.JSON that could not be located!', option.key)
                 continue
             if option.value is None:
                 logging.debug('Skipping write of %s because value is None.', option.key)
