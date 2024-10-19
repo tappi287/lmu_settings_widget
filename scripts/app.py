@@ -132,9 +132,6 @@ def start_eel(npm_serve=True):
 
 
 if __name__ == '__main__':
-    # TODO: remove video setup button
-    #       make preset bar buttons more prominent
-    #
     if not in_restore_mode():
         start_eel(prepare_app_start())
 

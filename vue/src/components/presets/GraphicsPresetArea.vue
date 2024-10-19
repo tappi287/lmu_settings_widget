@@ -1,6 +1,7 @@
 <template>
   <div>
-    <PresetUi :id-ref="idRefName" :display-name="displayName"
+    <PresetUi ref="gfxPresetUi"
+              :id-ref="idRefName" :display-name="displayName"
               :presets="gfxHandler.presets"
               :previous-preset-name="gfxHandler.previousPresetName"
               :selected-preset-idx="gfxHandler.selectedPresetIdx"
@@ -22,7 +23,7 @@
                     :current_preset_idx="gfxHandler.selectedPresetIdx"
                     :previous-preset-name="gfxHandler.previousPresetName"
                     :view_mode="gfxHandler.viewMode"
-                    @update-setting="gfxHandler.updateSetting"
+                    @update-setting="updateSetting"
                     @set-busy="setBusy"
                     @make-toast="makeToast" />
     </div>
@@ -45,6 +46,12 @@ export default {
   methods: {
     makeToast(message, category = 'secondary', title = 'Update', append = true, delay = 8000) {
       this.$emit('make-toast', message, category, title, append, delay)
+    },
+    updateSetting: async function (setting, value, save = true) {
+      if (this.$refs.gfxPresetUi !== undefined) {
+        this.$refs.gfxPresetUi.triggerRefreshAnimation()
+      }
+      this.gfxHandler.updateSetting(setting, value, save)
     },
     setBusy: function (busy) {
       this.$emit('set-busy', busy)

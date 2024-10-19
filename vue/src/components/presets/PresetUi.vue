@@ -53,7 +53,7 @@
         <b-input-group-append>
           <!-- Add/Export/Del Preset Buttons -->
           <b-button variant="rf-secondary" @click="createPreset" size="sm" id="add-btn">
-            <b-icon icon="plus"></b-icon>
+            <b-icon icon="file-plus-fill" font-scale="1" animation="throb"></b-icon>
           </b-button>
           <b-popover target="add-btn" v-model="createPresetHintVisible">
             <div @click="createPresetHintVisible=false">
@@ -63,7 +63,7 @@
 
           <b-button variant="rf-secondary" @click="$emit('refresh')" size="sm"
                     v-b-popover.hover.bottom="'Refresh Presets if you updated a setting in-game'">
-            <b-icon icon="arrow-repeat"></b-icon>
+            <b-icon icon="arrow-repeat" animation="spin" v-if="showRefreshAnimation" ></b-icon>
           </b-button>
           <b-button variant="rf-secondary" @click="exportCurrentPreset" size="sm"
                     v-b-popover.hover.bottom="'Export current Preset to your documents dir to be able to share it!'">
@@ -133,6 +133,7 @@ export default {
       createPresetHintVisible: false,
       ignoreDescUpdate: false,
       componentReady: false,
+      showRefreshAnimation: true,
       userPresetsDirInput: '',
       viewMode: 0,
     }
@@ -189,6 +190,10 @@ export default {
       this.viewMode = !this.viewMode ? 1 : 0
       this.$emit('update-view-mode', this.viewMode)
     },
+    triggerRefreshAnimation: function () {
+      this.showRefreshAnimation = false
+      this.$nextTick(() => {this.showRefreshAnimation = true})
+    },
     setReady() { this.componentReady = true; console.log('Comp ready') }
   },
   watch: {
@@ -230,6 +235,10 @@ export default {
 </script>
 
 <style scoped>
+.b-icon-animation-spin, .b-icon-animation-throb {
+  animation-iteration-count: 1;
+  animation-duration: 0.8s;
+}
 .desc-container { position: relative; }
 .desc-textarea { position: relative; }
 .desc-icon { position: absolute; z-index: 99; right: .75rem; top: .5rem; font-size: .75rem }
