@@ -45,15 +45,21 @@
 
         <!-- New Preset Name -->
         <b-form-input v-model="newPresetName" :state="presetFileNameState" class="no-border"
+                      ref="presetFileNameInput"
                       type="text" placeholder="[New Preset Name]" :id="'preset-name-input' + _uid"
                       v-b-popover.hover.bottom="'Enter a name for a new Preset and click the + button'">
         </b-form-input>
 
         <b-input-group-append>
           <!-- Add/Export/Del Preset Buttons -->
-          <b-button :disabled="!addButtonState" variant="rf-secondary" @click="createPreset" size="sm">
+          <b-button variant="rf-secondary" @click="createPreset" size="sm" id="add-btn">
             <b-icon icon="plus"></b-icon>
           </b-button>
+          <b-popover target="add-btn" v-model="createPresetHintVisible">
+            <div @click="createPresetHintVisible=false">
+              Enter a name and press this button again to create a new Preset.
+            </div>
+          </b-popover>
 
           <b-button variant="rf-secondary" @click="$emit('refresh')" size="sm"
                     v-b-popover.hover.bottom="'Refresh Presets if you updated a setting in-game'">
@@ -124,6 +130,7 @@ export default {
     return {
       newPresetName: '',
       presetDesc: '',
+      createPresetHintVisible: false,
       ignoreDescUpdate: false,
       componentReady: false,
       userPresetsDirInput: '',
@@ -154,6 +161,13 @@ export default {
       this.presetDesc = preset.desc
     },
     createPreset: async function () {
+      if (!this.addButtonState) {
+        this.createPresetHintVisible = true
+
+        this.$refs.presetFileNameInput.focus()
+        this.$refs.presetFileNameInput.placeholder = "Enter a Preset name..."
+        return
+      }
       this.$emit('create-preset', this.newPresetName)
       this.newPresetName = ''
     },

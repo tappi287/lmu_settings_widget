@@ -10,14 +10,16 @@
       </b-navbar-brand>
       <b-nav>
         <b-nav-item :active="navActive === 1" @click="navActive=1" link-classes="pl-0">
-          Graphics Settings
+          Graphics
         </b-nav-item>
         <b-nav-item :active="navActive === 2" @click="navActive=2" link-classes="pl-0">
-          Control Settings
+          Controls
         </b-nav-item>
+        <!--
         <b-nav-item :active="navActive === 3" @click="navActive=3" link-classes="pl-0">
           Generic Settings
         </b-nav-item>
+        -->
         <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0" disabled>
           Replays
         </b-nav-item>
