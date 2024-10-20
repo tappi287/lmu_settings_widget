@@ -3,6 +3,9 @@ from pathlib import Path
 
 import pytest
 
+from lmu.app_settings import AppSettings
+from lmu.globals import SETTINGS_FILE_NAME
+
 test_data_input_path = Path(__file__).parent.joinpath("data/input")
 test_data_output_path = Path(__file__).parent.joinpath("data/output")
 test_data_output_path.mkdir(exist_ok=True)
@@ -25,3 +28,20 @@ def clean_test_install_dir() -> None:
 @pytest.fixture
 def test_data_output_dir() -> Path:
     return test_data_output_path
+
+
+@pytest.fixture
+def set_test_install_location(clean_test_install_dir, lmu_test_install_dir) -> Path:
+    from lmu.lmu_location import RfactorLocation
+    RfactorLocation.set_location(lmu_test_install_dir)
+    return lmu_test_install_dir
+
+
+def _overwrite_settings_dir():
+    return test_data_output_path / SETTINGS_FILE_NAME
+
+
+@pytest.fixture
+def app_settings_test_dir() -> type(AppSettings):
+    AppSettings._get_settings_file = _overwrite_settings_dir
+    return AppSettings
