@@ -20,3 +20,8 @@ def test_controls_preset(set_test_install_location, app_settings_test_dir):
         rf.controller_devices
     )
     print(lmu_device_map)
+
+    # Assign a device not in JSON
+    current_preset.general_controller_assignments.options[2].value = {"device": "Non-ExistingDevice", "id": 24}
+    rf.write_settings(current_preset)
+

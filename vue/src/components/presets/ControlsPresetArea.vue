@@ -116,6 +116,9 @@ export default {
         const new_value = {"device": this.lmuToPyGameDeviceMap[event.guid], "id": button + 32}
         setting.value = new_value
         this.conHandler.updateSetting(setting, new_value)
+      } else {
+        this.makeToast("Controller Device not found in LMU Settings. Start and quit the game with the " +
+            "device connected to create a valid button assignment.", "Controller Assignment")
       }
     },
   },
