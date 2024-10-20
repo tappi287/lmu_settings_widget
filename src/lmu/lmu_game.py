@@ -36,7 +36,6 @@ class RfactorPlayer:
         self.ini_file = Path()
         self.ini_vr_file = Path()
         self.ini_first_line = str()
-        self.ini_config = self._create_ini_config_parser()
         self.location = Path('../modules')
         self.version_file = Path()
         self.version = ''
@@ -127,6 +126,7 @@ class RfactorPlayer:
         """
         # -- Write video config to dx_config
         self._write_video_config(preset)
+        self._write_video_config(preset, True)
 
         # -- Write reshade settings
         self.write_mod(preset, VrToolKit)
@@ -174,18 +174,20 @@ class RfactorPlayer:
                 return False
         return True
 
-    def _write_video_config(self, preset: BasePreset):
+    def _write_video_config(self, preset: BasePreset, vr_ini=False):
         """ Update the Config_DX11.ini with supported Video Settings """
         settings_updated = False
+        ini_config = self.read_dx_ini(vr_ini)
+        ini_file = self.ini_vr_file if vr_ini else self.ini_file
 
         for preset_options in self._get_target_options(OptionsTarget.dx_config, preset):
             for option in preset_options.options:
-                if option.key not in self.ini_config[self.ini_config.default_section]:
+                if option.key not in ini_config[ini_config.default_section]:
                     self.error += f'Could not locate settings key: {option.key} in CONFIG_DX11.ini\n'
                     logging.error(self.error)
                     continue
                 if option.value is not None:
-                    self.ini_config[self.ini_config.default_section][option.key] = str(option.value)
+                    ini_config[ini_config.default_section][option.key] = str(option.value)
                     logging.info('Updated Dx Setting: %s: %s', option.key, option.value)
                     settings_updated = True
 
@@ -195,27 +197,25 @@ class RfactorPlayer:
 
         # -- Write Video Config.ini
         try:
-            for ini_file in (self.ini_file, self.ini_vr_file):
-                if not ini_file.exists():
-                    continue
+            if ini_file.exists():
                 # - Write config
                 with open(ini_file, 'w') as f:
-                    self.ini_config.write(f, space_around_delimiters=False)
+                    ini_config.write(f, space_around_delimiters=False)
 
-                # - Restore first ini comment line
-                with open(ini_file, 'r') as f:
-                    f_lines = f.readlines()
-                f_lines = [self.ini_first_line] + f_lines
+            # - Restore first ini comment line
+            with open(ini_file, 'r') as f:
+                f_lines = f.readlines()
+            f_lines = [self.ini_first_line] + f_lines
 
-                # - Remove trailing new line
-                if f_lines[-1] == '\n':
-                    f_lines = f_lines[:-1]
-                # - Remove trailing new line character
-                f_lines[-1] = f_lines[-1].rstrip('\n')
+            # - Remove trailing new line
+            if f_lines[-1] == '\n':
+                f_lines = f_lines[:-1]
+            # - Remove trailing new line character
+            f_lines[-1] = f_lines[-1].rstrip('\n')
 
-                # - Write modified config
-                with open(ini_file, 'w') as f:
-                    f.writelines(f_lines)
+            # - Write modified config
+            with open(ini_file, 'w') as f:
+                f.writelines(f_lines)
         except Exception as e:
             self.error += f'Could not write CONFIG_DX11.ini file! {e}\n'
             logging.error(self.error)
@@ -270,11 +270,11 @@ class RfactorPlayer:
 
         return result
 
-    def _get_options_from_dx_config(self, video_settings: BaseOptions, config: ConfigParser) -> bool:
+    @staticmethod
+    def _get_options_from_dx_config(video_settings: BaseOptions, config: ConfigParser) -> bool:
         if not config:
             return False
-        self.ini_config = config
-        config_dict = self.ini_config[self.ini_config.default_section]
+        config_dict = config[config.default_section]
 
         settings_updated = False
         for option in video_settings.options:
@@ -335,10 +335,11 @@ class RfactorPlayer:
         if controller_json:
             self.controller_devices = controller_json.get("Devices", dict())
 
-    def read_dx_ini(self) -> Optional[ConfigParser]:
+    def read_dx_ini(self, vr_ini=False) -> Optional[ConfigParser]:
         try:
             conf = self._create_ini_config_parser()
-            with open(self.ini_file, 'r') as f:
+            ini_file = self.ini_vr_file if vr_ini else self.ini_file
+            with open(ini_file, 'r') as f:
                 self.ini_first_line = f.readline()
                 conf.read_file(f)
                 return conf
