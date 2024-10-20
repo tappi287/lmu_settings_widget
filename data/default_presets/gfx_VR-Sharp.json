@@ -8,7 +8,7 @@
       },
       {
         "key": "Texture Sharpening",
-        "value": 4
+        "value": 5
       },
       {
         "key": "Heat FX Fade Speed",
@@ -67,11 +67,11 @@
       },
       {
         "key": "Texture Detail",
-        "value": 3
+        "value": 2
       },
       {
         "key": "Texture Filter",
-        "value": 5
+        "value": 3
       },
       {
         "key": "Special FX",
@@ -133,7 +133,7 @@
       },
       {
         "key": "Steering Wheel",
-        "value": 3
+        "value": 0
       },
       {
         "key": "Vertical FOV Degrees",
@@ -171,7 +171,7 @@
       },
       {
         "key": "CAS_Sharpening",
-        "value": 2.52
+        "value": 1.75
       },
       {
         "key": "CAS_Contrast_Clamp",

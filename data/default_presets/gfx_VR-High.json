@@ -67,7 +67,7 @@
       },
       {
         "key": "Texture Detail",
-        "value": 3
+        "value": 2
       },
       {
         "key": "Texture Filter",
@@ -133,7 +133,7 @@
       },
       {
         "key": "Steering Wheel",
-        "value": 3
+        "value": 0
       },
       {
         "key": "Vertical FOV Degrees",
