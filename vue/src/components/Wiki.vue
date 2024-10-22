@@ -7,7 +7,7 @@
       <a href="https://www.github.com/tappi287/lmu_settings_widget" target="_blank" class="text-rf-orange">
         LMU Settings Widget v{{ ver }}
       </a>
-      published under MIT license &#169; 2020-2021
+      published under MIT license &#169; 2020-2024
       <a href="https://sim-site.netlify.app" target="_blank" class="text-rf-orange">Stefan Tapper</a>
       <p class="mt-2">
         If you feel like it: <a href="https://sim-site.netlify.app/page/donate" target="_blank"

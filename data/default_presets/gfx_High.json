@@ -117,7 +117,7 @@
     "options": [
       {
         "key": "Stabilize Horizon",
-        "value": 1
+        "value": 0
       },
       {
         "key": "Exaggerate Yaw",

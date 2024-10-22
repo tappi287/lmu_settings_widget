@@ -71,7 +71,7 @@
       },
       {
         "key": "Texture Filter",
-        "value": 3
+        "value": 5
       },
       {
         "key": "Special FX",
@@ -285,7 +285,7 @@
     "options": [
       {
         "key": "LUT_AmountChroma",
-        "value": 1
+        "value": 0.3
       },
       {
         "key": "LUT_AmountLuma",
@@ -315,7 +315,7 @@
       },
       {
         "key": "VRT_COLOR_CORRECTION_MODE",
-        "value": 0
+        "value": 1
       },
       {
         "key": "VRT_DITHERING",

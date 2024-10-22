@@ -3,7 +3,7 @@
     <b-input-group size="sm">
       <b-input-group-prepend>
         <div class="pl-0 pr-1 rpl-con position-relative bg-transparent">
-          <b-img width=".3rem" class="rpl-icon" src="@/assets/lmw_logo_white.png"></b-img>
+          <b-img width=".3rem" class="rpl-icon" src="@/assets/lmw_logo.png"></b-img>
         </div>
         <!-- Title -->
         <b-input-group-text class="bg-transparent no-border title text-white pl-0">

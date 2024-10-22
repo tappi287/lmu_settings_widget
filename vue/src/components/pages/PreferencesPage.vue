@@ -23,7 +23,7 @@
       <b-checkbox-group :options="appOptions" v-model="appModules" @change="save" />
 
       <b-card-text class="mt-3">
-        Weather to play audio feedback when using rf2-headlights or certain actions within the app.<br />
+        Weather to play audio feedback when using certain actions within the app.<br />
         You can prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app.
         Changes apply after an app restart.
       </b-card-text>
@@ -37,8 +37,7 @@
       <b-checkbox-group :options="dashboardOptions" v-model="dashboardModules" @change="save" />
 
       <b-card-text class="mt-3">
-        Choose what you would like to see on your dashboard. There is no need to disable the Image Slideshow for
-        performance reasons. It will stop once LMU is running. App restart required.
+        Choose what you would like to see on your dashboard.
       </b-card-text>
 
     </b-card>
@@ -64,8 +63,8 @@ export default {
     return {
       dashboardModules: ['img', 'favs', 'cont'],
       dashboardOptions: [
-          {text: 'Play Image Slideshow', value: 'img'},
-          {text: 'Show Server Favourites', value: 'favs'},
+          // {text: 'Play Image Slideshow', value: 'img'},
+          // {text: 'Show Server Favourites', value: 'favs'},
           {text: 'Show Controller Devices', value: 'cont'}
       ],
       appModules: ['audio', 'edge_preferred'],

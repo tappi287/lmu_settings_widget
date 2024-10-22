@@ -8,7 +8,7 @@
       },
       {
         "key": "Texture Sharpening",
-        "value": 4
+        "value": 5
       },
       {
         "key": "Heat FX Fade Speed",
@@ -117,7 +117,7 @@
     "options": [
       {
         "key": "Stabilize Horizon",
-        "value": 1
+        "value": 0
       },
       {
         "key": "Exaggerate Yaw",
@@ -171,7 +171,7 @@
       },
       {
         "key": "CAS_Sharpening",
-        "value": 2.52
+        "value": 2.49
       },
       {
         "key": "CAS_Contrast_Clamp",
