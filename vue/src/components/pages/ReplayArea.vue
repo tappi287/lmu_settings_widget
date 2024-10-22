@@ -94,7 +94,7 @@ export default {
     },
   },
   created() {
-    if (this.rfactorVersion >= '1.1122') { this.watchEnabled = true }
+    if (this.rfactorVersion >= '0.3') { this.watchEnabled = true }
     this.getReplayPreset()
   }
 }

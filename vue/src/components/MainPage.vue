@@ -20,7 +20,7 @@
           Generic Settings
         </b-nav-item>
         -->
-        <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0" disabled>
+        <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0">
           Replays
         </b-nav-item>
         <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0" disabled>
@@ -402,7 +402,9 @@ export default {
     },
     stopSlideShow: async function () {
       if (this.$refs.dash !== undefined) {
-        await this.$refs.dash.$refs.slider.stop()
+        if (this.$refs.dash.$refs.slider !== undefined) {
+          await this.$refs.dash.$refs.slider.stop()
+        }
       }
     },
     openSetupFolder: async function () {

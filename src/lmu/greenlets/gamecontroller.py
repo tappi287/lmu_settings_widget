@@ -6,10 +6,10 @@ import eel
 import gevent.event
 import gevent.timeout
 
-from .app.app_main import CLOSE_EVENT
-from .app_settings import AppSettings
-from .utils import create_js_pygame_event_dict, create_js_joystick_device_list, capture_app_exceptions
-from .utils import get_pygame_joy_dict
+from lmu.app.app_main import CLOSE_EVENT
+from lmu.app_settings import AppSettings
+from lmu.utils import create_js_pygame_event_dict, create_js_joystick_device_list, capture_app_exceptions
+from lmu.utils import get_pygame_joy_dict
 
 try:
     import pygame

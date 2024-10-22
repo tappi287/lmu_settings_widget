@@ -56,6 +56,8 @@ KNOWN_APPS = {
     }
 }
 
+GAME_EXECUTABLE = KNOWN_APPS["2399420"]["executable"]
+
 RF2_APPID = [k for k in KNOWN_APPS.keys()][0]
 FPSVR_APPID = [k for k in KNOWN_APPS.keys()][1]
 LMU_APPID = [k for k in KNOWN_APPS.keys()][2]

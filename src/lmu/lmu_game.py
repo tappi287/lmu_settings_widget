@@ -5,7 +5,7 @@ from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
 
-from lmu.globals import LMU_APPID
+from lmu.globals import LMU_APPID, GAME_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
@@ -399,7 +399,7 @@ class RfactorPlayer:
         # Solution for non-loading rF2 plugins in PyInstaller executable:
         #    ctypes.windll.kernel32.SetDllDirectoryA(None)
         # See https://github.com/pyinstaller/pyinstaller/wiki/Recipe-subprocess#windows-dll-loading-order
-        executable = self.location / "Le Mans Ultimate.exe"
+        executable = self.location / GAME_EXECUTABLE
         cmd = [str(WindowsPath(executable))]
 
         # -- Use Steam Launch as default
@@ -419,21 +419,4 @@ class RfactorPlayer:
 
         logging.info('Launching %s', cmd)
         subprocess.Popen(cmd, cwd=self.location)
-        return True
-
-    def run_config(self) -> bool:
-        if not self._check_bin_dir():
-            return False
-
-        executable = self.location / "rF Config.exe"
-        if not executable.exists():
-            return False
-
-        p = subprocess.Popen(executable.as_posix(), cwd=self.location, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                             stdin=subprocess.PIPE)
-        out, errs = p.communicate()
-        if p.returncode != 0:
-            self.error += str(out, encoding='utf-8')
-            return False
-
         return True

@@ -12,11 +12,12 @@ from lmu import eel_mod
 from lmu.app import expose_app_methods
 from lmu.app.app_main import CLOSE_EVENT, close_callback, restore_backup
 from lmu.app_settings import AppSettings
-from lmu.gamecontroller import controller_greenlet, controller_event_loop
+from lmu.greenlets.gamecontroller import controller_greenlet, controller_event_loop
 from lmu.log import setup_logging
+from lmu.greenlets.rf2greenlet import rfactor_event_loop, rfactor_greenlet
 from lmu.runasadmin import run_as_admin
 from lmu.utils import AppExceptionHook
-from lmu.globals import FROZEN, get_current_modules_dir, get_data_dir
+from lmu.globals import FROZEN, get_current_modules_dir
 
 os.chdir(get_current_modules_dir())
 
@@ -63,12 +64,16 @@ def prepare_app_start() -> bool:
 def _main_app_loop():
     # -- Game Controller Greenlet
     cg = gevent.spawn(controller_greenlet)
+    # -- Game Greenlet
+    rg = gevent.spawn(rfactor_greenlet)
 
     # -- Run until window/tab closed
     logging.debug('Entering Event Loop')
     while not CLOSE_EVENT.is_set():
         # Controller event loop
         controller_event_loop()
+        # Game Event Loop
+        rfactor_event_loop()
         # Capture exception events
         AppExceptionHook.exception_event_loop()
 
@@ -76,7 +81,7 @@ def _main_app_loop():
 
     # -- Shutdown Greenlets
     logging.debug('Shutting down Greenlets.')
-    # gevent.joinall((cg, hg, rg, yg), timeout=15.0, raise_error=True)
+    gevent.joinall((cg, rg), timeout=15.0, raise_error=True)
 
 
 def start_eel(npm_serve=True):

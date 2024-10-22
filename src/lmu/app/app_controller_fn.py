@@ -2,7 +2,7 @@ import json
 import logging
 
 from ..app_settings import AppSettings
-from ..gamecontroller import ControllerEvents
+from lmu.greenlets.gamecontroller import ControllerEvents
 from ..lmu_game import RfactorPlayer
 from ..utils import capture_app_exceptions, create_js_joystick_device_list, map_lmu_device_to_pygame_device
 

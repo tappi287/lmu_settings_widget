@@ -14,7 +14,7 @@ import eel
 import gevent
 import psutil
 
-from .globals import get_settings_dir, FROZEN
+from .globals import get_settings_dir, FROZEN, GAME_EXECUTABLE
 
 try:
     import pygame
@@ -377,10 +377,10 @@ def rfactor_process_with_id_exists(pid: Optional[int]) -> bool:
 
     try:
         p = psutil.Process(pid)
+        if p.name().lower().startswith(GAME_EXECUTABLE):
+            return True
     except psutil.NoSuchProcess:
         return False
-    if p.name().lower().startswith('rfactor2.exe'):
-        return True
 
 
 def get_widest(str_list, space=3):
