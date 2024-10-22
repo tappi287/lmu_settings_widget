@@ -86,9 +86,9 @@ class BasePreset:
                keep_export_data: bool = False) -> bool:
         file_name = create_file_safe_name(unique_name or self.name)
         if export_dir is None:
-            file = get_user_export_dir() / f'{file_name}.json'
+            file = get_user_export_dir() / f'{self.prefix}_{file_name}.json'
         else:
-            file = export_dir / f'{file_name}.json'
+            file = export_dir / f'{self.prefix}_{file_name}.json'
         self.name = unique_name or self.name
 
         # -- Weather to export unsafe data like e.g. video mode

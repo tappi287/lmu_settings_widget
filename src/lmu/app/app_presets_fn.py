@@ -6,6 +6,7 @@ from subprocess import Popen
 import gevent
 
 from ..app_settings import AppSettings
+from ..globals import FROZEN
 from ..preset.preset import PresetType
 from ..preset.preset_base import PRESET_TYPES, load_presets_from_dir
 from ..preset.presets_dir import get_user_presets_dir, get_user_export_dir
@@ -105,8 +106,12 @@ def export_preset(preset_js_dict):
     """ Export a preset to file """
     p = _create_preset_instance_from_js_dict(preset_js_dict)
 
-    if not p.save_unique_file():
-        return json.dumps({'result': False, 'msg': f'Error exporting Preset: {p.name}'})
+    if FROZEN:
+        if not p.save_unique_file():
+            return json.dumps({'result': False, 'msg': f'Error exporting Preset: {p.name}'})
+    else:
+        # Save with same/non-unique name in Dev Env so default presets are more easily created
+        p.export()
 
     # -- Open Explorer Window
     export_path = str(WindowsPath(get_user_export_dir()))
