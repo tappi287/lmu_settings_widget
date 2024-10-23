@@ -141,6 +141,7 @@ class RfactorPlayer:
 
         # -- Update Controller Json settings
         controller_json_dict = self.read_player_json_dict(self.controller_file, encoding='cp1252')
+        preset.additional_write_operations(controller_json=controller_json_dict)
         update_result = self._write_to_target(
             OptionsTarget.controller_json, preset, controller_json_dict) and update_result
 

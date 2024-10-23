@@ -82,6 +82,9 @@ class BasePreset:
         """ Should be overwritten in sub classes """
         pass
 
+    def additional_write_operations(self, *args, **kwargs):
+        pass
+
     def export(self, unique_name: str = None, export_dir: Optional[Path] = None,
                keep_export_data: bool = False) -> bool:
         file_name = create_file_safe_name(unique_name or self.name)
@@ -200,6 +203,24 @@ class ControlsSettingsPreset(BasePreset):
 
     def __init__(self, name: str = None, desc: str = None):
         super(ControlsSettingsPreset, self).__init__(name, desc)
+
+    def additional_write_operations(self, *args, **kwargs):
+        if "controller_json" not in kwargs:
+            return
+        if not hasattr(self, "general_controller_assignments"):
+            return
+
+        # Check that device is registered and enumerated by the game
+        # blank options which contain devices that no longer exist
+        controller_json = kwargs['controller_json']
+        game_devices = controller_json.get("Devices")
+
+        for option in self.general_controller_assignments.options:
+            if not isinstance(option.value, dict):
+                continue
+            option_device = option.value.get("device")
+            if option_device not in game_devices:
+                option.value = dict()
 
 
 class SessionPreset(BasePreset):
