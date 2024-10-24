@@ -45,6 +45,14 @@
       {
         "key": "Max Framerate",
         "value": 0
+      },
+      {
+        "key": "Max Headlights",
+        "value": 256
+      },
+      {
+        "key": "Headlights On Cars",
+        "value": true
       }
     ],
     "title": "Advanced Display Settings"

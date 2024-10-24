@@ -235,7 +235,7 @@ export default {
   data: function () {
     return {
       navActive: 0,
-      searchActive: [1, 2, 3],
+      searchActive: [1, ],
       search: '',
       live: false,  // Le Mans Ultimate running
       wasLive: true, // Le Mans Ultimate was running before
