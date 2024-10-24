@@ -1,0 +1,2332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rF [
+<!ENTITY rFEnt "rFactor Entity">
+]>
+<rFactorXML version="1.0">
+<RaceResults>
+<Setting>Multiplayer</Setting>
+<ServerName></ServerName>
+<ClientFuelVisible>0</ClientFuelVisible>
+<PlayerFile>Settings</PlayerFile>
+<DateTime>1729798290</DateTime>
+<TimeString>2024/10/24 21:31:30</TimeString>
+<Mod>S397_RC_WBYEL6BENXsd</Mod>
+<TrackVenue>Fuji Speedway</TrackVenue>
+<TrackCourse>Fuji Speedway</TrackCourse>
+<TrackEvent>6 Hours of Fuji</TrackEvent>
+<TrackData>C:\SteamLibrary\steamapps\common\Le Mans Ultimate\Installed\Locations\FujiWEC_2023\1.07\layoutFuji.mas</TrackData>
+<TrackLength>4535.8</TrackLength>
+<GameVersion>0.3000</GameVersion>
+<Dedicated>0</Dedicated>
+<ConnectionType upload="1000" download="8000">ADSL2+ 16M</ConnectionType>
+<RaceLaps>0</RaceLaps>
+<RaceTime>22</RaceTime>
+<MechFailRate>1</MechFailRate>
+<DamageMult>100</DamageMult>
+<FuelMult>1</FuelMult>
+<TireMult>1</TireMult>
+<VehiclesAllowed>*</VehiclesAllowed>
+<ParcFerme>3</ParcFerme>
+<FixedSetups>0</FixedSetups>
+<FreeSettings>63</FreeSettings>
+<FixedUpgrades>0</FixedUpgrades>
+<LimitedTires>1</LimitedTires>
+<Race>
+<DateTime>1729798934</DateTime>
+<TimeString>2024/10/24 21:42:14</TimeString>
+<Laps>2147483647</Laps>
+<Minutes>22</Minutes>
+<Stream>
+<Penalty et="118.5">Markus Doerschmidt received Drive Thru penalty, 0s, 0laps for &quot;Speeding&quot;. Result: penalties=1, 1st=Drive Thru,0s</Penalty>
+<Penalty et="118.5">Arno Belot received Drive Thru penalty, 0s, 0laps for &quot;Speeding&quot;. Result: penalties=1, 1st=Drive Thru,0s</Penalty>
+<Incident et="121.8">Jasper Adams(4) reported contact (375.85) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="121.8">Mikhail Deev(18) reported contact (336.02) with another vehicle Jasper Adams(4)</Incident>
+<Incident et="139.3">Brice Francois(6) reported contact (464.52) with another vehicle Jan 295(7)</Incident>
+<Incident et="139.3">Jan 295(7) reported contact (223.10) with another vehicle Brice Francois(6)</Incident>
+<Incident et="142.2">Markus Doerschmidt(3) reported contact (763.89) with another vehicle Brice Francois(6)</Incident>
+<Incident et="142.2">Brice Francois(6) reported contact (706.65) with another vehicle Markus Doerschmidt(3)</Incident>
+<Incident et="142.5">Brice Francois(6) reported contact (772.32) with another vehicle Andrey SHkoDA(20)</Incident>
+<Incident et="142.5">Andrey SHkoDA(20) reported contact (868.32) with another vehicle Brice Francois(6)</Incident>
+<Sector et="142.5">Andrey SHkoDA(20) reports new suspension damage</Sector>
+<Incident et="142.6">Markus Doerschmidt(3) reported contact (904.71) with another vehicle Brice Francois(6)</Incident>
+<Incident et="142.7">Brice Francois(6) reported contact (723.34) with another vehicle Markus Doerschmidt(3)</Incident>
+<Sector et="160.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="160.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Score et="160.8">TANO GIOVINAZZI(19) lap=0 point=1 t=42.227 et=160.700</Score>
+<Sector et="160.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="160.8">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="160.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="160.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="160.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="160.8">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="160.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="160.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="160.8">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="160.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="160.8">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="160.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="160.8">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="160.8">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="160.8">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="160.9">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="160.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="160.9">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="161.0">Emmanuel CARDENAS(13) set new best for sector 2</Sector>
+<Score et="161.3">Antoine Regnier(0) lap=0 point=1 t=42.699 et=161.180</Score>
+<Score et="161.9">Fernando Sanchez(2) lap=0 point=1 t=43.304 et=161.780</Score>
+<Score et="162.2">Emmanuel CARDENAS(13) lap=0 point=1 t=43.512 et=161.980</Score>
+<Score et="162.4">Jonas Fischer(15) lap=0 point=1 t=43.801 et=162.280</Score>
+<Score et="162.6">Theo Saunders(1) lap=0 point=1 t=44.057 et=162.520</Score>
+<Score et="163.1">Vincent Delcoigne(8) lap=0 point=1 t=44.601 et=163.080</Score>
+<Score et="163.6">Mikhail Deev(18) lap=0 point=1 t=45.008 et=163.480</Score>
+<Score et="164.0">Arno Belot(5) lap=0 point=1 t=-1.000 et=163.900</Score>
+<Score et="164.2">Jasper Adams(4) lap=0 point=1 t=45.717 et=164.180</Score>
+<Score et="164.5">Stefan Tapper(14) lap=0 point=1 t=46.018 et=164.480</Score>
+<Score et="164.8">Andrey SHkoDA(20) lap=0 point=1 t=46.209 et=164.680</Score>
+<Score et="164.9">Brice Francois(6) lap=0 point=1 t=46.356 et=164.820</Score>
+<Score et="165.6">Luan Lindlau(16) lap=0 point=1 t=47.050 et=165.520</Score>
+<Score et="165.9">Markus Doerschmidt(3) lap=0 point=1 t=-1.000 et=165.800</Score>
+<Score et="166.1">Jan 295(7) lap=0 point=1 t=47.476 et=165.940</Score>
+<Score et="166.3">Lewis Edmondson(17) lap=0 point=1 t=47.765 et=166.240</Score>
+<Score et="167.0">Clement Rousseaux(12) lap=0 point=1 t=48.466 et=166.940</Score>
+<Incident et="169.6">Brice Francois(6) reported contact (62.81) with another vehicle Andrey SHkoDA(20)</Incident>
+<Incident et="169.6">Andrey SHkoDA(20) reported contact (201.29) with another vehicle Brice Francois(6)</Incident>
+<Incident et="169.7">Brice Francois(6) reported contact (119.18) with another vehicle Andrey SHkoDA(20)</Incident>
+<Incident et="170.0">Brice Francois(6) reported contact (356.48) with another vehicle Andrey SHkoDA(20)</Incident>
+<Score et="170.0">Lorenzo Azzoni(11) lap=0 point=1 t=51.483 et=169.960</Score>
+<Incident et="170.2">Andrey SHkoDA(20) reported contact (171.02) with another vehicle Brice Francois(6)</Incident>
+<Score et="171.0">Valdemar Hounisen(9) lap=0 point=1 t=52.448 et=170.920</Score>
+<Sector et="187.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="187.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="187.4">Theo Saunders(1) set new best for sector 3</Sector>
+<Score et="187.5">TANO GIOVINAZZI(19) lap=0 point=2 t=68.917 et=187.380</Score>
+<Sector et="187.5">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="187.5">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="187.5">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="187.5">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="187.5">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="187.5">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="187.5">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="187.5">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="187.5">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="187.5">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="187.5">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="187.5">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="187.5">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="187.5">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="187.5">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="187.6">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="187.6">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="187.7">Emmanuel CARDENAS(13) set new best for sector 3</Sector>
+<Score et="188.3">Antoine Regnier(0) lap=0 point=2 t=69.713 et=188.180</Score>
+<Score et="188.8">Fernando Sanchez(2) lap=0 point=2 t=70.282 et=188.760</Score>
+<Score et="189.3">Emmanuel CARDENAS(13) lap=0 point=2 t=70.678 et=189.160</Score>
+<Score et="189.6">Jonas Fischer(15) lap=0 point=2 t=71.013 et=189.480</Score>
+<Score et="190.2">Theo Saunders(1) lap=0 point=2 t=71.646 et=190.120</Score>
+<Score et="190.7">Vincent Delcoigne(8) lap=0 point=2 t=72.212 et=190.680</Score>
+<Incident et="190.8">Jan 295(7) reported contact (457.66) with another vehicle Markus Doerschmidt(3)</Incident>
+<Incident et="190.9">Markus Doerschmidt(3) reported contact (118.86) with another vehicle Jan 295(7)</Incident>
+<Score et="191.2">Mikhail Deev(18) lap=0 point=2 t=72.559 et=191.040</Score>
+<Score et="191.9">Jasper Adams(4) lap=0 point=2 t=73.380 et=191.860</Score>
+<Incident et="191.9">Markus Doerschmidt(3) reported contact (212.27) with another vehicle Jan 295(7)</Incident>
+<Incident et="191.9">Jan 295(7) reported contact (188.20) with another vehicle Markus Doerschmidt(3)</Incident>
+<Score et="192.5">Stefan Tapper(14) lap=0 point=2 t=73.992 et=192.455</Score>
+<Score et="193.2">Andrey SHkoDA(20) lap=0 point=2 t=74.635 et=193.100</Score>
+<Incident et="193.3">Markus Doerschmidt(3) reported contact (1647.08) with another vehicle Jan 295(7)</Incident>
+<Incident et="193.3">Jan 295(7) reported contact (1637.03) with another vehicle Markus Doerschmidt(3)</Incident>
+<Score et="193.7">Brice Francois(6) lap=0 point=2 t=75.123 et=193.600</Score>
+<Score et="194.5">Luan Lindlau(16) lap=0 point=2 t=75.963 et=194.440</Score>
+<Score et="195.8">Jan 295(7) lap=0 point=2 t=77.210 et=195.680</Score>
+<Score et="196.0">Lewis Edmondson(17) lap=0 point=2 t=77.413 et=195.880</Score>
+<Score et="196.1">Markus Doerschmidt(3) lap=0 point=2 t=-1.000 et=196.020</Score>
+<Score et="196.5">Clement Rousseaux(12) lap=0 point=2 t=77.908 et=196.380</Score>
+<Score et="197.0">Lorenzo Azzoni(11) lap=0 point=2 t=78.410 et=196.880</Score>
+<Score et="197.8">Valdemar Hounisen(9) lap=0 point=2 t=79.281 et=197.760</Score>
+<Score et="199.5">Arno Belot(5) lap=0 point=2 t=-1.000 et=199.400</Score>
+<Sector et="223.8">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="223.8">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="223.9">Jan 295(7) set new best for sector 1</Sector>
+<Sector et="223.9">Theo Saunders(1) set new best for sector 1</Sector>
+<Sector et="223.9">Jasper Adams(4) set new best for sector 1</Sector>
+<Sector et="223.9">Brice Francois(6) set new best for sector 1</Sector>
+<Sector et="223.9">Lewis Edmondson(17) set new best for sector 1</Sector>
+<Sector et="223.9">Markus Doerschmidt(3) set new best for sector 1</Sector>
+<Sector et="223.9">Mikhail Deev(18) set new best for sector 1</Sector>
+<Sector et="223.9">Lorenzo Azzoni(11) set new best for sector 1</Sector>
+<Score et="223.9">TANO GIOVINAZZI(19) lap=1 point=0 t=105.314 et=223.780</Score>
+<Sector et="223.9">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="223.9">Fernando Sanchez(2) set new best for sector 1</Sector>
+<Sector et="223.9">Arno Belot(5) set new best for sector 1</Sector>
+<Sector et="223.9">Clement Rousseaux(12) set new best for sector 1</Sector>
+<Sector et="223.9">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="223.9">Jonas Fischer(15) set new best for sector 1</Sector>
+<Sector et="223.9">Valdemar Hounisen(9) set new best for sector 1</Sector>
+<Sector et="223.9">Luan Lindlau(16) set new best for sector 1</Sector>
+<Sector et="223.9">Vincent Delcoigne(8) set new best for sector 1</Sector>
+<Sector et="223.9">Andrey SHkoDA(20) set new best for sector 1</Sector>
+<Sector et="224.0">Emmanuel CARDENAS(13) set new best for sector 1</Sector>
+<Score et="224.9">Antoine Regnier(0) lap=1 point=0 t=106.374 et=224.840</Score>
+<Score et="225.4">Fernando Sanchez(2) lap=1 point=0 t=106.878 et=225.360</Score>
+<Score et="226.3">Emmanuel CARDENAS(13) lap=1 point=0 t=107.586 et=226.060</Score>
+<Score et="226.6">Jonas Fischer(15) lap=1 point=0 t=108.053 et=226.520</Score>
+<Score et="227.4">Theo Saunders(1) lap=1 point=0 t=108.926 et=227.400</Score>
+<Score et="228.2">Mikhail Deev(18) lap=1 point=0 t=109.674 et=228.140</Score>
+<Score et="228.3">Vincent Delcoigne(8) lap=1 point=0 t=109.752 et=228.220</Score>
+<Score et="229.1">Jasper Adams(4) lap=1 point=0 t=110.573 et=229.040</Score>
+<Score et="229.7">Stefan Tapper(14) lap=1 point=0 t=111.245 et=229.708</Score>
+<Score et="230.6">Andrey SHkoDA(20) lap=1 point=0 t=112.087 et=230.560</Score>
+<Score et="230.8">Brice Francois(6) lap=1 point=0 t=112.249 et=230.720</Score>
+<Score et="231.3">Luan Lindlau(16) lap=1 point=0 t=112.793 et=231.260</Score>
+<Score et="232.6">Jan 295(7) lap=1 point=0 t=114.014 et=232.480</Score>
+<Score et="233.3">Lewis Edmondson(17) lap=1 point=0 t=114.734 et=233.200</Score>
+<Score et="234.4">Lorenzo Azzoni(11) lap=1 point=0 t=115.824 et=234.300</Score>
+<Score et="234.8">Valdemar Hounisen(9) lap=1 point=0 t=116.264 et=234.740</Score>
+<Score et="235.7">Clement Rousseaux(12) lap=1 point=0 t=117.081 et=235.560</Score>
+<Score et="241.7">Markus Doerschmidt(3) lap=1 point=0 t=-1.000 et=241.580</Score>
+<Incident et="241.7">Mikhail Deev(18) reported contact (32.93) with another vehicle Vincent Delcoigne(8)</Incident>
+<Score et="241.7">Arno Belot(5) lap=1 point=0 t=-1.000 et=241.660</Score>
+<Incident et="241.7">Vincent Delcoigne(8) reported contact (126.21) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="241.8">Mikhail Deev(18) reported contact (75.41) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="241.8">Mikhail Deev(18) reported contact (165.57) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="242.3">Vincent Delcoigne(8) reported contact (95.38) with another vehicle Mikhail Deev(18)</Incident>
+<Sector et="259.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="259.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="259.9">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="259.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="259.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Score et="259.9">TANO GIOVINAZZI(19) lap=1 point=1 t=36.037 et=259.820</Score>
+<Sector et="259.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="259.9">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="259.9">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="259.9">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="259.9">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="259.9">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="259.9">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="260.0">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="260.0">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="260.0">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="260.0">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="260.0">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="260.0">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="260.0">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="260.1">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="260.1">Emmanuel CARDENAS(13) set new best for sector 2</Sector>
+<Sector et="260.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="260.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="260.8">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="260.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="260.8">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Score et="260.8">Antoine Regnier(0) lap=1 point=1 t=35.835 et=260.680</Score>
+<Sector et="260.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="260.8">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="260.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="260.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="260.8">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="260.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="260.8">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="260.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="260.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="260.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="260.8">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="260.8">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="260.9">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="260.9">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="260.9">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="261.0">Emmanuel CARDENAS(13) set new best for sector 2</Sector>
+<Score et="261.8">Fernando Sanchez(2) lap=1 point=1 t=36.370 et=261.720</Score>
+<Score et="262.4">Emmanuel CARDENAS(13) lap=1 point=1 t=36.078 et=262.140</Score>
+<Score et="262.9">Jonas Fischer(15) lap=1 point=1 t=36.270 et=262.800</Score>
+<Score et="263.4">Theo Saunders(1) lap=1 point=1 t=35.927 et=263.320</Score>
+<Score et="265.1">Vincent Delcoigne(8) lap=1 point=1 t=36.799 et=265.020</Score>
+<Score et="265.6">Mikhail Deev(18) lap=1 point=1 t=37.364 et=265.500</Score>
+<Score et="265.8">Jasper Adams(4) lap=1 point=1 t=36.679 et=265.720</Score>
+<Score et="266.5">Stefan Tapper(14) lap=1 point=1 t=36.779 et=266.487</Score>
+<Score et="267.5">Brice Francois(6) lap=1 point=1 t=36.649 et=267.380</Score>
+<Score et="267.9">Andrey SHkoDA(20) lap=1 point=1 t=37.193 et=267.760</Score>
+<Score et="268.3">Luan Lindlau(16) lap=1 point=1 t=36.951 et=268.220</Score>
+<Penalty et="268.8">Markus Doerschmidt served 1st Drive Thru penalty, result: penalties=0, 1st=Drive Thru,0s</Penalty>
+<Score et="268.9">Jan 295(7) lap=1 point=1 t=36.293 et=268.780</Score>
+<Score et="269.8">Lewis Edmondson(17) lap=1 point=1 t=36.456 et=269.660</Score>
+<Score et="270.5">Lorenzo Azzoni(11) lap=1 point=1 t=36.057 et=270.360</Score>
+<Score et="271.0">Valdemar Hounisen(9) lap=1 point=1 t=36.237 et=270.980</Score>
+<Score et="272.5">Clement Rousseaux(12) lap=1 point=1 t=36.807 et=272.360</Score>
+<Score et="278.1">Arno Belot(5) lap=1 point=1 t=36.411 et=278.060</Score>
+<Sector et="286.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="286.7">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="286.7">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="286.7">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="286.7">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="286.7">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="286.7">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="286.7">Jasper Adams(4) set new best for sector 3</Sector>
+<Score et="286.7">TANO GIOVINAZZI(19) lap=1 point=2 t=62.816 et=286.600</Score>
+<Sector et="286.7">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="286.7">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="286.7">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="286.7">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="286.7">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="286.7">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="286.7">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="286.7">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="286.7">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="286.8">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="286.8">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="286.8">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="286.9">Emmanuel CARDENAS(13) set new best for sector 3</Sector>
+<Sector et="287.5">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="287.5">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="287.5">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="287.5">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Score et="287.5">Antoine Regnier(0) lap=1 point=2 t=62.606 et=287.460</Score>
+<Sector et="287.5">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="287.5">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="287.6">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="287.6">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="287.6">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="287.6">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="287.6">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="287.6">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="287.6">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="287.6">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="287.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="287.6">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="287.6">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="287.6">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="287.6">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="287.7">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="287.7">Emmanuel CARDENAS(13) set new best for sector 3</Sector>
+<Score et="289.0">Fernando Sanchez(2) lap=1 point=2 t=63.474 et=288.820</Score>
+<Score et="289.3">Emmanuel CARDENAS(13) lap=1 point=2 t=63.068 et=289.120</Score>
+<Score et="289.8">Jonas Fischer(15) lap=1 point=2 t=63.154 et=289.680</Score>
+<Score et="290.2">Theo Saunders(1) lap=1 point=2 t=62.781 et=290.180</Score>
+<Score et="292.2">Vincent Delcoigne(8) lap=1 point=2 t=63.844 et=292.060</Score>
+<Score et="292.9">Mikhail Deev(18) lap=1 point=2 t=64.702 et=292.840</Score>
+<Score et="293.6">Jasper Adams(4) lap=1 point=2 t=64.498 et=293.540</Score>
+<Score et="293.9">Stefan Tapper(14) lap=1 point=2 t=64.188 et=293.896</Score>
+<Score et="294.5">Brice Francois(6) lap=1 point=2 t=63.734 et=294.460</Score>
+<Score et="295.4">Andrey SHkoDA(20) lap=1 point=2 t=64.754 et=295.320</Score>
+<Score et="295.8">Luan Lindlau(16) lap=1 point=2 t=64.395 et=295.660</Score>
+<Score et="296.3">Jan 295(7) lap=1 point=2 t=63.665 et=296.160</Score>
+<Score et="297.3">Lewis Edmondson(17) lap=1 point=2 t=63.978 et=297.180</Score>
+<Score et="297.5">Lorenzo Azzoni(11) lap=1 point=2 t=63.124 et=297.420</Score>
+<Score et="298.4">Valdemar Hounisen(9) lap=1 point=2 t=63.551 et=298.280</Score>
+<Score et="299.4">Clement Rousseaux(12) lap=1 point=2 t=63.794 et=299.340</Score>
+<Score et="303.3">Markus Doerschmidt(3) lap=1 point=1 t=61.595 et=303.180</Score>
+<Score et="305.3">Arno Belot(5) lap=1 point=2 t=63.558 et=305.220</Score>
+<Sector et="323.0">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="323.0">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="323.0">Theo Saunders(1) set new best for sector 1</Sector>
+<Score et="323.1">TANO GIOVINAZZI(19) lap=2 point=0 t=99.181 et=322.960</Score>
+<Sector et="323.1">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="323.1">Jasper Adams(4) set new best for sector 1</Sector>
+<Sector et="323.1">Fernando Sanchez(2) set new best for sector 1</Sector>
+<Sector et="323.1">Arno Belot(5) set new best for sector 1</Sector>
+<Sector et="323.1">Clement Rousseaux(12) set new best for sector 1</Sector>
+<Sector et="323.1">Luan Lindlau(16) set new best for sector 1</Sector>
+<Sector et="323.1">Jonas Fischer(15) set new best for sector 1</Sector>
+<Sector et="323.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="323.1">Lewis Edmondson(17) set new best for sector 1</Sector>
+<Sector et="323.1">Brice Francois(6) set new best for sector 1</Sector>
+<Sector et="323.1">Valdemar Hounisen(9) set new best for sector 1</Sector>
+<Sector et="323.1">Vincent Delcoigne(8) set new best for sector 1</Sector>
+<Sector et="323.1">Andrey SHkoDA(20) set new best for sector 1</Sector>
+<Sector et="323.1">Lorenzo Azzoni(11) set new best for sector 1</Sector>
+<Sector et="323.1">Jan 295(7) set new best for sector 1</Sector>
+<Sector et="323.1">Markus Doerschmidt(3) set new best for sector 1</Sector>
+<Sector et="323.1">Mikhail Deev(18) set new best for sector 1</Sector>
+<Sector et="323.4">Emmanuel CARDENAS(13) set new best for sector 1</Sector>
+<Sector et="324.0">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="324.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="324.1">Clement Rousseaux(12) set new best for sector 1</Sector>
+<Sector et="324.1">Theo Saunders(1) set new best for sector 1</Sector>
+<Score et="324.1">Antoine Regnier(0) lap=2 point=0 t=99.157 et=324.000</Score>
+<Sector et="324.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="324.2">Lorenzo Azzoni(11) set new best for sector 1</Sector>
+<Sector et="324.2">Luan Lindlau(16) set new best for sector 1</Sector>
+<Sector et="324.2">Jonas Fischer(15) set new best for sector 1</Sector>
+<Sector et="324.2">Jasper Adams(4) set new best for sector 1</Sector>
+<Sector et="324.2">Fernando Sanchez(2) set new best for sector 1</Sector>
+<Sector et="324.2">Lewis Edmondson(17) set new best for sector 1</Sector>
+<Sector et="324.2">Vincent Delcoigne(8) set new best for sector 1</Sector>
+<Sector et="324.2">Arno Belot(5) set new best for sector 1</Sector>
+<Sector et="324.2">Valdemar Hounisen(9) set new best for sector 1</Sector>
+<Sector et="324.2">Andrey SHkoDA(20) set new best for sector 1</Sector>
+<Sector et="324.2">Markus Doerschmidt(3) set new best for sector 1</Sector>
+<Sector et="324.2">Jan 295(7) set new best for sector 1</Sector>
+<Sector et="324.2">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="324.2">Brice Francois(6) set new best for sector 1</Sector>
+<Sector et="324.2">Mikhail Deev(18) set new best for sector 1</Sector>
+<Sector et="324.3">Emmanuel CARDENAS(13) set new best for sector 1</Sector>
+<Score et="325.3">Fernando Sanchez(2) lap=2 point=0 t=99.853 et=325.200</Score>
+<Score et="325.9">Emmanuel CARDENAS(13) lap=2 point=0 t=99.685 et=325.740</Score>
+<Score et="326.7">Jonas Fischer(15) lap=2 point=0 t=100.084 et=326.600</Score>
+<Score et="327.3">Theo Saunders(1) lap=2 point=0 t=99.756 et=327.160</Score>
+<Score et="329.2">Vincent Delcoigne(8) lap=2 point=0 t=100.910 et=329.140</Score>
+<Score et="329.8">Mikhail Deev(18) lap=2 point=0 t=101.528 et=329.680</Score>
+<Score et="330.7">Jasper Adams(4) lap=2 point=0 t=101.583 et=330.620</Score>
+<Score et="330.7">Markus Doerschmidt(3) lap=1 point=2 t=89.073 et=330.660</Score>
+<Score et="331.4">Stefan Tapper(14) lap=2 point=0 t=101.675 et=331.383</Score>
+<Score et="331.4">Brice Francois(6) lap=2 point=0 t=100.687 et=331.400</Score>
+<Score et="332.2">Andrey SHkoDA(20) lap=2 point=0 t=101.557 et=332.120</Score>
+<Score et="332.8">Luan Lindlau(16) lap=2 point=0 t=101.434 et=332.700</Score>
+<Score et="333.2">Jan 295(7) lap=2 point=0 t=100.630 et=333.120</Score>
+<Score et="334.2">Lewis Edmondson(17) lap=2 point=0 t=100.861 et=334.060</Score>
+<Score et="334.3">Lorenzo Azzoni(11) lap=2 point=0 t=99.926 et=334.220</Score>
+<Score et="334.9">Valdemar Hounisen(9) lap=2 point=0 t=100.121 et=334.860</Score>
+<Score et="347.0">Clement Rousseaux(12) lap=2 point=0 t=111.301 et=346.860</Score>
+<Score et="349.1">Arno Belot(5) lap=2 point=0 t=107.421 et=349.080</Score>
+<Score et="358.9">TANO GIOVINAZZI(19) lap=2 point=1 t=35.856 et=358.820</Score>
+<Sector et="360.0">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="360.0">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="360.0">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="360.1">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="360.1">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="360.1">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="360.1">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Score et="360.1">Antoine Regnier(0) lap=2 point=1 t=35.971 et=359.980</Score>
+<Sector et="360.1">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="360.1">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="360.1">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="360.1">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="360.1">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="360.1">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="360.1">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="360.1">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="360.1">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="360.1">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="360.1">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="360.1">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="360.2">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="360.3">Emmanuel CARDENAS(13) set new best for sector 2</Sector>
+<Score et="361.4">Fernando Sanchez(2) lap=2 point=1 t=36.186 et=361.380</Score>
+<Score et="361.9">Emmanuel CARDENAS(13) lap=2 point=1 t=36.035 et=361.780</Score>
+<Score et="362.8">Jonas Fischer(15) lap=2 point=1 t=-1.000 et=362.720</Score>
+<Score et="363.1">Theo Saunders(1) lap=2 point=1 t=35.899 et=363.060</Score>
+<Score et="366.2">Mikhail Deev(18) lap=2 point=1 t=36.422 et=366.100</Score>
+<Score et="366.5">Vincent Delcoigne(8) lap=2 point=1 t=37.230 et=366.360</Score>
+<Score et="367.1">Jasper Adams(4) lap=2 point=1 t=36.466 et=367.100</Score>
+<Score et="367.6">Markus Doerschmidt(3) lap=2 point=0 t=125.911 et=367.500</Score>
+<Score et="367.9">Brice Francois(6) lap=2 point=1 t=36.398 et=367.800</Score>
+<Score et="368.3">Stefan Tapper(14) lap=2 point=1 t=36.918 et=368.300</Score>
+<Score et="369.0">Andrey SHkoDA(20) lap=2 point=1 t=36.782 et=368.900</Score>
+<Score et="369.3">Luan Lindlau(16) lap=2 point=1 t=36.523 et=369.220</Score>
+<Score et="369.8">Jan 295(7) lap=2 point=1 t=36.546 et=369.660</Score>
+<Score et="370.3">Lorenzo Azzoni(11) lap=2 point=1 t=35.897 et=370.120</Score>
+<Score et="370.9">Lewis Edmondson(17) lap=2 point=1 t=36.732 et=370.800</Score>
+<Score et="371.4">Valdemar Hounisen(9) lap=2 point=1 t=36.462 et=371.320</Score>
+<Score et="383.6">Clement Rousseaux(12) lap=2 point=1 t=36.695 et=383.540</Score>
+<Sector et="385.5">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="385.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="385.6">Theo Saunders(1) set new best for sector 3</Sector>
+<Score et="385.6">TANO GIOVINAZZI(19) lap=2 point=2 t=62.508 et=385.480</Score>
+<Sector et="385.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="385.6">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="385.6">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="385.6">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="385.6">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="385.6">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="385.6">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="385.6">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="385.6">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="385.6">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="385.7">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="385.7">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="385.7">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="385.7">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="385.7">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="385.7">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="385.7">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="385.8">Emmanuel CARDENAS(13) set new best for sector 3</Sector>
+<Score et="386.7">Antoine Regnier(0) lap=2 point=2 t=62.637 et=386.640</Score>
+<Score et="388.4">Fernando Sanchez(2) lap=2 point=2 t=63.064 et=388.260</Score>
+<Incident et="388.8">Stefan Tapper(14) reported contact (1472.74) with another vehicle Andrey SHkoDA(20)</Incident>
+<Incident et="388.9">Andrey SHkoDA(20) reported contact (454.93) with another vehicle Stefan Tapper(14)</Incident>
+<Score et="389.0">Emmanuel CARDENAS(13) lap=2 point=2 t=63.066 et=388.800</Score>
+<Score et="389.7">Jonas Fischer(15) lap=2 point=2 t=-1.000 et=389.620</Score>
+<Incident et="390.1">Stefan Tapper(14) reported contact (778.92) with another vehicle Luan Lindlau(16)</Incident>
+<Incident et="390.1">Luan Lindlau(16) reported contact (598.56) with another vehicle Stefan Tapper(14)</Incident>
+<Score et="390.1">Theo Saunders(1) lap=2 point=2 t=62.888 et=390.040</Score>
+<Incident et="390.6">Stefan Tapper(14) reported contact (618.85) with another vehicle Luan Lindlau(16)</Incident>
+<Incident et="390.6">Luan Lindlau(16) reported contact (503.97) with another vehicle Stefan Tapper(14)</Incident>
+<Incident et="390.7">Stefan Tapper(14) reported contact (573.11) with another vehicle Andrey SHkoDA(20)</Incident>
+<Incident et="390.8">Andrey SHkoDA(20) reported contact (306.59) with another vehicle Stefan Tapper(14)</Incident>
+<Score et="393.3">Mikhail Deev(18) lap=2 point=2 t=63.607 et=393.280</Score>
+<Score et="393.9">Vincent Delcoigne(8) lap=2 point=2 t=64.692 et=393.820</Score>
+<Score et="394.7">Jasper Adams(4) lap=2 point=2 t=63.968 et=394.600</Score>
+<Score et="395.2">Brice Francois(6) lap=2 point=2 t=63.701 et=395.100</Score>
+<Score et="397.0">Jan 295(7) lap=2 point=2 t=63.797 et=396.920</Score>
+<Score et="397.4">Lorenzo Azzoni(11) lap=2 point=2 t=63.103 et=397.320</Score>
+<Score et="398.0">Lewis Edmondson(17) lap=2 point=2 t=63.825 et=397.900</Score>
+<Score et="398.9">Valdemar Hounisen(9) lap=2 point=2 t=63.932 et=398.780</Score>
+<Score et="399.7">Luan Lindlau(16) lap=2 point=2 t=66.981 et=399.680</Score>
+<Score et="401.1">Andrey SHkoDA(20) lap=2 point=2 t=68.858 et=400.980</Score>
+<Score et="401.8">Stefan Tapper(14) lap=2 point=2 t=70.379 et=401.762</Score>
+<Score et="404.1">Markus Doerschmidt(3) lap=2 point=1 t=36.483 et=403.980</Score>
+<Sector et="405.7">Emmanuel CARDENAS(13) reports new suspension damage</Sector>
+<Incident et="405.8">Mikhail Deev(18) reported contact (7245.83) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Incident et="405.8">Emmanuel CARDENAS(13) reported contact (7854.45) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="405.8">Mikhail Deev(18) reported contact (20.45) with Wheel</Incident>
+<Incident et="405.8">Mikhail Deev(18) reported contact (96.59) with Wheel</Incident>
+<Sector et="406.8">Vincent Delcoigne(8) reports new suspension damage</Sector>
+<Incident et="406.8">Emmanuel CARDENAS(13) reported contact (161.36) with Wheel</Incident>
+<Incident et="406.8">Vincent Delcoigne(8) reported contact (1056.11) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Incident et="407.7">Vincent Delcoigne(8) reported contact (17.50) with Wheel</Incident>
+<Incident et="407.7">Vincent Delcoigne(8) reported contact (34.89) with Wheel</Incident>
+<Sector et="407.9">Brice Francois(6) reports new suspension damage</Sector>
+<Sector et="408.0">Emmanuel CARDENAS(13) reports new suspension damage</Sector>
+<Incident et="408.0">Brice Francois(6) reported contact (4809.95) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Incident et="408.1">Emmanuel CARDENAS(13) reported contact (5325.59) with another vehicle Brice Francois(6)</Incident>
+<Incident et="408.5">Vincent Delcoigne(8) reported contact (96.20) with Wheel</Incident>
+<Incident et="409.4">Vincent Delcoigne(8) reported contact (41.81) with Wheel</Incident>
+<Incident et="410.8">Brice Francois(6) reported contact (71.19) with Wheel</Incident>
+<Score et="411.0">Clement Rousseaux(12) lap=2 point=2 t=64.116 et=410.960</Score>
+<Incident et="414.2">Lorenzo Azzoni(11) reported contact (247.27) with Wheel</Incident>
+<Incident et="419.4">Jasper Adams(4) reported contact (29.98) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="419.4">Jasper Adams(4) reported contact (86.04) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="419.4">Mikhail Deev(18) reported contact (39.96) with another vehicle Jasper Adams(4)</Incident>
+<Incident et="419.4">Mikhail Deev(18) reported contact (70.69) with another vehicle Jasper Adams(4)</Incident>
+<Incident et="419.7">Jasper Adams(4) reported contact (137.96) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="419.7">Mikhail Deev(18) reported contact (222.56) with another vehicle Jasper Adams(4)</Incident>
+<Score et="422.3">TANO GIOVINAZZI(19) lap=3 point=0 t=99.223 et=422.200</Score>
+<Score et="422.5">Arno Belot(5) lap=2 point=1 t=73.391 et=422.460</Score>
+<Sector et="423.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="423.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="423.1">Luan Lindlau(16) set new best for sector 1</Sector>
+<Sector et="423.1">Vincent Delcoigne(8) set new best for sector 1</Sector>
+<Sector et="423.1">Fernando Sanchez(2) set new best for sector 1</Sector>
+<Sector et="423.1">Arno Belot(5) set new best for sector 1</Sector>
+<Score et="423.1">Antoine Regnier(0) lap=3 point=0 t=99.045 et=423.040</Score>
+<Sector et="423.1">Antoine Regnier(0) set new best for sector 1</Sector>
+<Sector et="423.1">Lewis Edmondson(17) set new best for sector 1</Sector>
+<Sector et="423.1">Clement Rousseaux(12) set new best for sector 1</Sector>
+<Sector et="423.1">Jonas Fischer(15) set new best for sector 1</Sector>
+<Sector et="423.2">Theo Saunders(1) set new best for sector 1</Sector>
+<Sector et="423.2">Jasper Adams(4) set new best for sector 1</Sector>
+<Sector et="423.2">Brice Francois(6) set new best for sector 1</Sector>
+<Sector et="423.2">TANO GIOVINAZZI(19) set new best for sector 1</Sector>
+<Sector et="423.2">Jan 295(7) set new best for sector 1</Sector>
+<Sector et="423.2">Andrey SHkoDA(20) set new best for sector 1</Sector>
+<Sector et="423.2">Markus Doerschmidt(3) set new best for sector 1</Sector>
+<Sector et="423.2">Valdemar Hounisen(9) set new best for sector 1</Sector>
+<Sector et="423.2">Lorenzo Azzoni(11) set new best for sector 1</Sector>
+<Sector et="423.2">Mikhail Deev(18) set new best for sector 1</Sector>
+<Sector et="423.6">Emmanuel CARDENAS(13) set new best for sector 1</Sector>
+<Score et="425.3">Fernando Sanchez(2) lap=3 point=0 t=99.978 et=425.180</Score>
+<Score et="426.5">Jonas Fischer(15) lap=3 point=0 t=-1.000 et=426.400</Score>
+<Score et="427.1">Theo Saunders(1) lap=3 point=0 t=99.851 et=427.000</Score>
+<Score et="431.5">Markus Doerschmidt(3) lap=2 point=2 t=63.923 et=431.420</Score>
+<Score et="432.9">Vincent Delcoigne(8) lap=3 point=0 t=103.688 et=432.820</Score>
+<Score et="432.9">Jasper Adams(4) lap=3 point=0 t=102.207 et=432.840</Score>
+<Score et="433.5">Brice Francois(6) lap=3 point=0 t=101.951 et=433.360</Score>
+<Sector et="434.1">Mikhail Deev(18) reports new suspension damage</Sector>
+<Incident et="434.1">Mikhail Deev(18) reported contact (2316.98) with Immovable</Incident>
+<Sector et="434.2">Mikhail Deev(18) reports new suspension damage</Sector>
+<Score et="434.2">Jan 295(7) lap=3 point=0 t=100.977 et=434.100</Score>
+<Score et="434.5">Lorenzo Azzoni(11) lap=3 point=0 t=100.211 et=434.440</Score>
+<Score et="434.9">Lewis Edmondson(17) lap=3 point=0 t=100.764 et=434.840</Score>
+<Score et="435.4">Valdemar Hounisen(9) lap=3 point=0 t=100.466 et=435.320</Score>
+<Score et="436.8">Luan Lindlau(16) lap=3 point=0 t=104.040 et=436.740</Score>
+<Incident et="437.5">Mikhail Deev(18) reported contact (1390.47) with Immovable</Incident>
+<Score et="439.5">Stefan Tapper(14) lap=3 point=0 t=108.114 et=439.496</Score>
+<Incident et="440.3">Mikhail Deev(18) reported contact (1238.44) with Immovable</Incident>
+<Incident et="442.8">Mikhail Deev(18) reported contact (1073.81) with Immovable</Incident>
+<Score et="445.0">Andrey SHkoDA(20) lap=3 point=0 t=112.748 et=444.860</Score>
+<Incident et="445.1">Mikhail Deev(18) reported contact (212.66) with Immovable</Incident>
+<Score et="447.8">Clement Rousseaux(12) lap=3 point=0 t=100.861 et=447.720</Score>
+<Incident et="448.2">Mikhail Deev(18) reported contact (1380.06) with Immovable</Incident>
+<Score et="449.6">Arno Belot(5) lap=2 point=2 t=100.451 et=449.520</Score>
+<Incident et="453.4">Mikhail Deev(18) reported contact (834.51) with Immovable</Incident>
+<Score et="453.8">Emmanuel CARDENAS(13) lap=3 point=0 t=127.808 et=453.560</Score>
+<Incident et="456.5">Jasper Adams(4) reported contact (27.22) with another vehicle Vincent Delcoigne(8)</Incident>
+<Score et="458.6">TANO GIOVINAZZI(19) lap=3 point=1 t=36.275 et=458.460</Score>
+<Sector et="459.0">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="459.0">Antoine Regnier(0) set new best for sector 2</Sector>
+<Score et="459.0">Antoine Regnier(0) lap=3 point=1 t=35.885 et=458.940</Score>
+<Sector et="459.0">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="459.0">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="459.0">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="459.0">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="459.0">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="459.0">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="459.0">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="459.0">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="459.1">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="459.1">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="459.1">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="459.1">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="459.1">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="459.1">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="459.1">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="459.1">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="459.1">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="459.1">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="459.3">Emmanuel CARDENAS(13) set new best for sector 2</Sector>
+<Score et="459.4">Mikhail Deev(18) lap=3 point=0 t=129.625 et=459.300</Score>
+<Score et="461.7">Fernando Sanchez(2) lap=3 point=1 t=36.377 et=461.560</Score>
+<Score et="462.9">Jonas Fischer(15) lap=3 point=1 t=36.408 et=462.820</Score>
+<Score et="463.0">Theo Saunders(1) lap=3 point=1 t=35.980 et=462.980</Score>
+<Incident et="465.9">Theo Saunders(1) reported contact (693.39) with another vehicle Jonas Fischer(15)</Incident>
+<Incident et="465.9">Jonas Fischer(15) reported contact (594.18) with another vehicle Theo Saunders(1)</Incident>
+<Incident et="466.5">Mikhail Deev(18) reported contact (3579.13) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Score et="468.2">Markus Doerschmidt(3) lap=3 point=0 t=100.536 et=468.040</Score>
+<Score et="470.4">Jasper Adams(4) lap=3 point=1 t=37.420 et=470.260</Score>
+<Incident et="470.8">Mikhail Deev(18) reported contact (1214.47) with Immovable</Incident>
+<Score et="470.9">Vincent Delcoigne(8) lap=3 point=1 t=37.910 et=470.740</Score>
+<Score et="471.1">Brice Francois(6) lap=3 point=1 t=37.613 et=470.980</Score>
+<Score et="471.2">Lorenzo Azzoni(11) lap=3 point=1 t=36.644 et=471.080</Score>
+<Score et="471.5">Jan 295(7) lap=3 point=1 t=-1.000 et=471.440</Score>
+<Score et="471.7">Lewis Edmondson(17) lap=3 point=1 t=36.812 et=471.640</Score>
+<Score et="471.9">Valdemar Hounisen(9) lap=3 point=1 t=36.498 et=471.820</Score>
+<Score et="473.5">Luan Lindlau(16) lap=3 point=1 t=36.712 et=473.460</Score>
+<Score et="476.1">Stefan Tapper(14) lap=3 point=1 t=36.631 et=476.127</Score>
+<Score et="481.5">Andrey SHkoDA(20) lap=3 point=1 t=36.489 et=481.360</Score>
+<Incident et="482.4">Valdemar Hounisen(9) reported contact (102.38) with another vehicle Lewis Edmondson(17)</Incident>
+<Incident et="482.4">Lewis Edmondson(17) reported contact (198.71) with another vehicle Valdemar Hounisen(9)</Incident>
+<Score et="484.4">Clement Rousseaux(12) lap=3 point=1 t=36.605 et=484.320</Score>
+<Sector et="485.2">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="485.2">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Score et="485.2">TANO GIOVINAZZI(19) lap=3 point=2 t=62.909 et=485.100</Score>
+<Sector et="485.2">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="485.2">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="485.2">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="485.2">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="485.2">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="485.2">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="485.2">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="485.2">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="485.2">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="485.2">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="485.2">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="485.2">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="485.2">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="485.2">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="485.3">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="485.3">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="485.3">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="485.3">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="485.4">Emmanuel CARDENAS(13) set new best for sector 3</Sector>
+<Score et="485.8">Antoine Regnier(0) lap=3 point=2 t=62.694 et=485.740</Score>
+<Score et="486.4">Arno Belot(5) lap=3 point=0 t=137.218 et=486.300</Score>
+<Incident et="488.4">Mikhail Deev(18) reported contact (1164.38) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Incident et="488.5">Mikhail Deev(18) reported contact (172.57) with Wing</Incident>
+<Incident et="488.5">Emmanuel CARDENAS(13) reported contact (1177.15) with another vehicle Mikhail Deev(18)</Incident>
+<Score et="488.7">Fernando Sanchez(2) lap=3 point=2 t=63.466 et=488.640</Score>
+<Incident et="490.2">Mikhail Deev(18) reported contact (170.61) with another vehicle Emmanuel CARDENAS(13)</Incident>
+<Incident et="490.3">Emmanuel CARDENAS(13) reported contact (185.38) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="491.0">Emmanuel CARDENAS(13) reported contact (265.66) with another vehicle Mikhail Deev(18)</Incident>
+<Incident et="495.5">Vincent Delcoigne(8) reported contact (515.61) with another vehicle Lorenzo Azzoni(11)</Incident>
+<Incident et="495.5">Lorenzo Azzoni(11) reported contact (449.35) with another vehicle Vincent Delcoigne(8)</Incident>
+<Score et="498.0">Jonas Fischer(15) lap=3 point=2 t=71.523 et=497.920</Score>
+<Score et="498.8">Jasper Adams(4) lap=3 point=2 t=65.875 et=498.720</Score>
+<Score et="499.0">Vincent Delcoigne(8) lap=3 point=2 t=66.086 et=498.900</Score>
+<Score et="499.2">Brice Francois(6) lap=3 point=2 t=65.739 et=499.100</Score>
+<Score et="499.4">Lorenzo Azzoni(11) lap=3 point=2 t=64.911 et=499.340</Score>
+<Score et="499.6">Jan 295(7) lap=3 point=2 t=-1.000 et=499.520</Score>
+<Score et="499.8">Valdemar Hounisen(9) lap=3 point=2 t=64.370 et=499.700</Score>
+<Score et="500.6">Theo Saunders(1) lap=3 point=2 t=73.485 et=500.480</Score>
+<Score et="500.8">Lewis Edmondson(17) lap=3 point=2 t=65.872 et=500.700</Score>
+<Score et="501.2">Luan Lindlau(16) lap=3 point=2 t=64.337 et=501.080</Score>
+<Score et="504.0">Stefan Tapper(14) lap=3 point=2 t=64.465 et=503.961</Score>
+<Incident et="505.0">Valdemar Hounisen(9) reported contact (20.17) with another vehicle Jan 295(7)</Incident>
+<Incident et="505.0">Jan 295(7) reported contact (16.79) with another vehicle Valdemar Hounisen(9)</Incident>
+<Incident et="506.5">Valdemar Hounisen(9) reported contact (387.59) with another vehicle Jan 295(7)</Incident>
+<Incident et="506.5">Jan 295(7) reported contact (558.98) with another vehicle Valdemar Hounisen(9)</Incident>
+<Score et="506.7">Markus Doerschmidt(3) lap=3 point=1 t=38.584 et=506.620</Score>
+<Score et="508.7">Andrey SHkoDA(20) lap=3 point=2 t=63.755 et=508.620</Score>
+<Incident et="511.2">Brice Francois(6) reported contact (95.03) with another vehicle Lorenzo Azzoni(11)</Incident>
+<Incident et="511.2">Lorenzo Azzoni(11) reported contact (143.05) with another vehicle Brice Francois(6)</Incident>
+<Score et="511.7">Clement Rousseaux(12) lap=3 point=2 t=63.892 et=511.600</Score>
+<Score et="521.9">TANO GIOVINAZZI(19) lap=4 point=0 t=99.521 et=521.720</Score>
+<Score et="522.5">Antoine Regnier(0) lap=4 point=0 t=99.375 et=522.420</Score>
+<Score et="522.7">Arno Belot(5) lap=3 point=1 t=36.313 et=522.600</Score>
+<Score et="525.1">Fernando Sanchez(2) lap=4 point=0 t=99.907 et=525.080</Score>
+<Incident et="528.6">Jan 295(7) reported contact (65.75) with another vehicle Valdemar Hounisen(9)</Incident>
+<Incident et="528.6">Valdemar Hounisen(9) reported contact (45.68) with another vehicle Jan 295(7)</Incident>
+<Score et="534.4">Markus Doerschmidt(3) lap=3 point=2 t=66.242 et=534.280</Score>
+<Score et="535.1">Jonas Fischer(15) lap=4 point=0 t=108.550 et=534.960</Score>
+<Score et="535.9">Jasper Adams(4) lap=4 point=0 t=102.964 et=535.800</Score>
+<Score et="536.2">Lorenzo Azzoni(11) lap=4 point=0 t=101.721 et=536.160</Score>
+<Score et="536.8">Brice Francois(6) lap=4 point=0 t=103.365 et=536.720</Score>
+<Score et="537.3">Jan 295(7) lap=4 point=0 t=-1.000 et=537.240</Score>
+<Score et="537.3">Valdemar Hounisen(9) lap=4 point=0 t=101.928 et=537.260</Score>
+<Score et="537.8">Theo Saunders(1) lap=4 point=0 t=110.662 et=537.660</Score>
+<Score et="538.2">Vincent Delcoigne(8) lap=4 point=0 t=105.304 et=538.120</Score>
+<Score et="538.3">Lewis Edmondson(17) lap=4 point=0 t=103.337 et=538.160</Score>
+<Score et="538.5">Luan Lindlau(16) lap=4 point=0 t=101.742 et=538.480</Score>
+<Score et="541.1">Stefan Tapper(14) lap=4 point=0 t=101.545 et=541.042</Score>
+<Incident et="543.8">Jan 295(7) reported contact (50.04) with another vehicle Valdemar Hounisen(9)</Incident>
+<Incident et="543.9">Valdemar Hounisen(9) reported contact (6.89) with another vehicle Jan 295(7)</Incident>
+<Score et="545.8">Andrey SHkoDA(20) lap=4 point=0 t=100.785 et=545.660</Score>
+<Incident et="545.9">Jan 295(7) reported contact (58.01) with another vehicle Valdemar Hounisen(9)</Incident>
+<Incident et="545.9">Valdemar Hounisen(9) reported contact (20.56) with another vehicle Jan 295(7)</Incident>
+<Score et="548.4">Clement Rousseaux(12) lap=4 point=0 t=100.689 et=548.400</Score>
+<Score et="549.9">Arno Belot(5) lap=3 point=2 t=63.525 et=549.820</Score>
+<Score et="558.2">TANO GIOVINAZZI(19) lap=4 point=1 t=36.407 et=558.120</Score>
+<Sector et="558.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="558.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="558.7">Arno Belot(5) set new best for sector 2</Sector>
+<Score et="558.7">Antoine Regnier(0) lap=4 point=1 t=36.225 et=558.640</Score>
+<Sector et="558.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="558.7">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="558.7">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="558.7">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="558.8">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="558.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="558.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="558.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="558.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="558.8">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="558.8">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="558.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="558.8">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="558.8">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="558.8">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="558.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="558.8">Mikhail Deev(18) set new best for sector 2</Sector>
+<Score et="561.5">Fernando Sanchez(2) lap=4 point=1 t=36.313 et=561.400</Score>
+<Score et="571.2">Jonas Fischer(15) lap=4 point=1 t=36.172 et=571.120</Score>
+<Score et="571.5">Markus Doerschmidt(3) lap=4 point=0 t=103.397 et=571.440</Score>
+<Score et="572.0">Jasper Adams(4) lap=4 point=1 t=36.152 et=571.960</Score>
+<Score et="572.4">Lorenzo Azzoni(11) lap=4 point=1 t=36.075 et=572.220</Score>
+<Score et="573.5">Brice Francois(6) lap=4 point=1 t=36.722 et=573.440</Score>
+<Score et="573.6">Valdemar Hounisen(9) lap=4 point=1 t=36.293 et=573.540</Score>
+<Score et="574.0">Theo Saunders(1) lap=4 point=1 t=36.245 et=573.920</Score>
+<Score et="574.3">Jan 295(7) lap=4 point=1 t=36.914 et=574.160</Score>
+<Score et="575.0">Lewis Edmondson(17) lap=4 point=1 t=36.704 et=574.880</Score>
+<Score et="575.8">Luan Lindlau(16) lap=4 point=1 t=37.193 et=575.680</Score>
+<Score et="576.0">Vincent Delcoigne(8) lap=4 point=1 t=37.862 et=575.980</Score>
+<Incident et="577.1">Valdemar Hounisen(9) reported contact (101.67) with another vehicle Brice Francois(6)</Incident>
+<Score et="577.4">Stefan Tapper(14) lap=4 point=1 t=36.369 et=577.410</Score>
+<Incident et="579.9">Theo Saunders(1) reported contact (25.69) with another vehicle Jan 295(7)</Incident>
+<Incident et="580.3">Valdemar Hounisen(9) reported contact (222.74) with another vehicle Brice Francois(6)</Incident>
+<Incident et="580.3">Brice Francois(6) reported contact (163.15) with another vehicle Valdemar Hounisen(9)</Incident>
+<Score et="582.3">Andrey SHkoDA(20) lap=4 point=1 t=36.495 et=582.140</Score>
+<Sector et="584.9">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="584.9">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="585.0">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="585.0">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="585.0">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="585.0">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="585.0">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="585.0">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="585.0">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="585.0">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Score et="585.0">TANO GIOVINAZZI(19) lap=4 point=2 t=63.168 et=584.880</Score>
+<Sector et="585.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="585.0">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="585.0">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="585.0">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="585.0">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="585.0">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="585.0">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="585.0">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="585.0">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="585.0">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Score et="585.2">Clement Rousseaux(12) lap=4 point=1 t=36.631 et=585.040</Score>
+<Score et="586.0">Antoine Regnier(0) lap=4 point=2 t=63.472 et=585.900</Score>
+<Score et="586.7">Arno Belot(5) lap=4 point=0 t=100.330 et=586.620</Score>
+<Score et="588.5">Fernando Sanchez(2) lap=4 point=2 t=63.372 et=588.460</Score>
+<Incident et="594.9">Theo Saunders(1) reported contact (147.45) with another vehicle Jan 295(7)</Incident>
+<Incident et="594.9">Jan 295(7) reported contact (170.81) with another vehicle Theo Saunders(1)</Incident>
+<Incident et="596.2">Jan 295(7) reported contact (88.11) with another vehicle Theo Saunders(1)</Incident>
+<Incident et="596.2">Theo Saunders(1) reported contact (134.77) with another vehicle Jan 295(7)</Incident>
+<Score et="598.5">Jonas Fischer(15) lap=4 point=2 t=63.443 et=598.400</Score>
+<Score et="599.1">Jasper Adams(4) lap=4 point=2 t=63.252 et=599.060</Score>
+<Incident et="599.3">Brice Francois(6) reported contact (298.32) with another vehicle Valdemar Hounisen(9)</Incident>
+<Incident et="599.3">Valdemar Hounisen(9) reported contact (250.39) with another vehicle Brice Francois(6)</Incident>
+<Score et="599.5">Lorenzo Azzoni(11) lap=4 point=2 t=63.235 et=599.380</Score>
+<Score et="601.2">Brice Francois(6) lap=4 point=2 t=64.311 et=601.040</Score>
+<Score et="601.2">Valdemar Hounisen(9) lap=4 point=2 t=-1.000 et=601.120</Score>
+<Score et="601.9">Jan 295(7) lap=4 point=2 t=64.543 et=601.800</Score>
+<Score et="602.1">Theo Saunders(1) lap=4 point=2 t=64.283 et=601.940</Score>
+<Score et="602.8">Lewis Edmondson(17) lap=4 point=2 t=64.621 et=602.780</Score>
+<Score et="603.7">Vincent Delcoigne(8) lap=4 point=2 t=65.435 et=603.560</Score>
+<Score et="603.9">Luan Lindlau(16) lap=4 point=2 t=65.312 et=603.800</Score>
+<Score et="604.6">Stefan Tapper(14) lap=4 point=2 t=63.585 et=604.626</Score>
+<Incident et="606.7">Andrey SHkoDA(20) reported contact (524.81) with Immovable</Incident>
+<Score et="608.2">Markus Doerschmidt(3) lap=4 point=1 t=36.683 et=608.120</Score>
+<Score et="610.2">Andrey SHkoDA(20) lap=4 point=2 t=-1.000 et=610.040</Score>
+<Score et="612.2">Clement Rousseaux(12) lap=4 point=2 t=63.714 et=612.120</Score>
+<Score et="621.4">TANO GIOVINAZZI(19) lap=5 point=0 t=99.594 et=621.300</Score>
+<Score et="622.5">Antoine Regnier(0) lap=5 point=0 t=99.980 et=622.400</Score>
+<Score et="622.8">Arno Belot(5) lap=4 point=1 t=36.079 et=622.700</Score>
+<Score et="625.1">Fernando Sanchez(2) lap=5 point=0 t=99.918 et=625.000</Score>
+<Incident et="626.2">Andrey SHkoDA(20) reported contact (674.68) with Immovable</Incident>
+<Score et="635.3">Jonas Fischer(15) lap=5 point=0 t=100.276 et=635.220</Score>
+<Score et="635.8">Markus Doerschmidt(3) lap=4 point=2 t=64.311 et=635.740</Score>
+<Score et="636.2">Jasper Adams(4) lap=5 point=0 t=100.256 et=636.060</Score>
+<Score et="637.8">Valdemar Hounisen(9) lap=5 point=0 t=100.422 et=637.680</Score>
+<Score et="638.4">Brice Francois(6) lap=5 point=0 t=101.585 et=638.300</Score>
+<Score et="639.2">Jan 295(7) lap=5 point=0 t=101.812 et=639.060</Score>
+<Score et="639.4">Theo Saunders(1) lap=5 point=0 t=101.663 et=639.320</Score>
+<Score et="639.9">Lewis Edmondson(17) lap=5 point=0 t=101.645 et=639.820</Score>
+<Score et="640.7">Vincent Delcoigne(8) lap=5 point=0 t=102.452 et=640.580</Score>
+<Score et="641.0">Luan Lindlau(16) lap=5 point=0 t=102.525 et=641.000</Score>
+<Score et="641.7">Stefan Tapper(14) lap=5 point=0 t=100.679 et=641.721</Score>
+<Score et="643.3">Lorenzo Azzoni(11) lap=5 point=0 t=107.046 et=643.200</Score>
+<Score et="648.9">Clement Rousseaux(12) lap=5 point=0 t=100.433 et=648.840</Score>
+<Score et="649.9">Arno Belot(5) lap=4 point=2 t=63.143 et=649.760</Score>
+<Score et="656.0">Andrey SHkoDA(20) lap=5 point=0 t=110.224 et=655.880</Score>
+<Score et="658.2">TANO GIOVINAZZI(19) lap=5 point=1 t=36.783 et=658.080</Score>
+<Sector et="658.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="658.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="658.9">Arno Belot(5) set new best for sector 2</Sector>
+<Score et="658.9">Antoine Regnier(0) lap=5 point=1 t=36.406 et=658.800</Score>
+<Sector et="658.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="658.9">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="658.9">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="658.9">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="658.9">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="658.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="658.9">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="658.9">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="658.9">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="658.9">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="658.9">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="658.9">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="658.9">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="658.9">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="658.9">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="658.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="659.0">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Score et="661.3">Fernando Sanchez(2) lap=5 point=1 t=36.243 et=661.240</Score>
+<Score et="671.9">Jonas Fischer(15) lap=5 point=1 t=36.586 et=671.820</Score>
+<Score et="672.5">Jasper Adams(4) lap=5 point=1 t=36.345 et=672.400</Score>
+<Score et="672.9">Markus Doerschmidt(3) lap=5 point=0 t=101.311 et=672.740</Score>
+<Score et="673.7">Valdemar Hounisen(9) lap=5 point=1 t=35.901 et=673.580</Score>
+<Score et="675.1">Brice Francois(6) lap=5 point=1 t=-1.000 et=675.060</Score>
+<Score et="675.7">Theo Saunders(1) lap=5 point=1 t=36.312 et=675.640</Score>
+<Score et="676.2">Jan 295(7) lap=5 point=1 t=37.100 et=676.160</Score>
+<Score et="676.7">Lewis Edmondson(17) lap=5 point=1 t=36.813 et=676.620</Score>
+<Score et="677.1">Vincent Delcoigne(8) lap=5 point=1 t=36.491 et=677.080</Score>
+<Score et="677.9">Luan Lindlau(16) lap=5 point=1 t=36.771 et=677.780</Score>
+<Score et="678.1">Stefan Tapper(14) lap=5 point=1 t=36.366 et=678.087</Score>
+<Score et="679.8">Lorenzo Azzoni(11) lap=5 point=1 t=36.501 et=679.700</Score>
+<Sector et="685.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="685.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="685.6">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="685.6">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="685.6">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="685.6">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="685.6">Antoine Regnier(0) set new best for sector 3</Sector>
+<Score et="685.6">TANO GIOVINAZZI(19) lap=5 point=2 t=64.218 et=685.520</Score>
+<Score et="685.6">Clement Rousseaux(12) lap=5 point=1 t=36.694 et=685.540</Score>
+<Sector et="685.6">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="685.6">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="685.6">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="685.6">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="685.6">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="685.7">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="685.7">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="685.7">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="685.7">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="685.7">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="685.7">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="685.7">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="685.7">Mikhail Deev(18) set new best for sector 3</Sector>
+<Score et="685.9">Antoine Regnier(0) lap=5 point=2 t=63.386 et=685.780</Score>
+<Score et="688.3">Fernando Sanchez(2) lap=5 point=2 t=63.154 et=688.160</Score>
+<Score et="693.2">Arno Belot(5) lap=5 point=0 t=106.545 et=693.160</Score>
+<Score et="693.6">Andrey SHkoDA(20) lap=5 point=1 t=37.520 et=693.400</Score>
+<Score et="699.8">Jonas Fischer(15) lap=5 point=2 t=64.483 et=699.720</Score>
+<Score et="700.1">Jasper Adams(4) lap=5 point=2 t=63.990 et=700.040</Score>
+<Score et="700.7">Valdemar Hounisen(9) lap=5 point=2 t=62.970 et=700.640</Score>
+<Score et="702.6">Brice Francois(6) lap=5 point=2 t=-1.000 et=702.480</Score>
+<Score et="703.0">Theo Saunders(1) lap=5 point=2 t=63.567 et=702.900</Score>
+<Score et="703.4">Jan 295(7) lap=5 point=2 t=64.265 et=703.320</Score>
+<Score et="704.4">Lewis Edmondson(17) lap=5 point=2 t=64.551 et=704.360</Score>
+<Incident et="705.0">Antoine Regnier(0) reported contact (366.28) with another vehicle TANO GIOVINAZZI(19)</Incident>
+<Incident et="705.0">TANO GIOVINAZZI(19) reported contact (496.36) with another vehicle Antoine Regnier(0)</Incident>
+<Score et="705.0">Vincent Delcoigne(8) lap=5 point=2 t=64.318 et=704.900</Score>
+<Score et="705.5">Luan Lindlau(16) lap=5 point=2 t=64.430 et=705.440</Score>
+<Score et="705.7">Stefan Tapper(14) lap=5 point=2 t=64.007 et=705.728</Score>
+<Score et="706.4">Lorenzo Azzoni(11) lap=5 point=2 t=63.006 et=706.200</Score>
+<Score et="709.6">Markus Doerschmidt(3) lap=5 point=1 t=36.753 et=709.500</Score>
+<Score et="712.8">Clement Rousseaux(12) lap=5 point=2 t=63.845 et=712.680</Score>
+<Score et="721.8">Andrey SHkoDA(20) lap=5 point=2 t=65.837 et=721.720</Score>
+<Score et="722.6">TANO GIOVINAZZI(19) lap=6 point=0 t=101.150 et=722.460</Score>
+<Score et="725.0">Fernando Sanchez(2) lap=6 point=0 t=99.951 et=724.960</Score>
+<Score et="728.9">Antoine Regnier(0) lap=6 point=0 t=106.432 et=728.840</Score>
+<Score et="736.7">Jonas Fischer(15) lap=6 point=0 t=101.380 et=736.600</Score>
+<Score et="736.9">Markus Doerschmidt(3) lap=5 point=2 t=64.062 et=736.800</Score>
+<Score et="737.2">Jasper Adams(4) lap=6 point=0 t=101.000 et=737.060</Score>
+<Score et="737.6">Valdemar Hounisen(9) lap=6 point=0 t=99.835 et=737.500</Score>
+<Score et="739.4">Brice Francois(6) lap=6 point=0 t=-1.000 et=739.340</Score>
+<Score et="740.0">Theo Saunders(1) lap=6 point=0 t=100.618 et=739.940</Score>
+<Score et="740.3">Jan 295(7) lap=6 point=0 t=101.241 et=740.300</Score>
+<Score et="741.4">Lewis Edmondson(17) lap=6 point=0 t=101.499 et=741.320</Score>
+<Score et="742.0">Vincent Delcoigne(8) lap=6 point=0 t=101.360 et=741.940</Score>
+<Score et="742.5">Luan Lindlau(16) lap=6 point=0 t=101.326 et=742.340</Score>
+<Score et="742.5">Stefan Tapper(14) lap=6 point=0 t=100.812 et=742.533</Score>
+<Score et="743.3">Lorenzo Azzoni(11) lap=6 point=0 t=100.021 et=743.220</Score>
+<Score et="755.3">Clement Rousseaux(12) lap=6 point=0 t=106.391 et=755.220</Score>
+<Score et="759.1">TANO GIOVINAZZI(19) lap=6 point=1 t=36.552 et=759.000</Score>
+<Score et="759.2">Andrey SHkoDA(20) lap=6 point=0 t=103.208 et=759.080</Score>
+<Score et="761.5">Fernando Sanchez(2) lap=6 point=1 t=36.446 et=761.400</Score>
+<Sector et="764.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="764.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Score et="764.8">Antoine Regnier(0) lap=6 point=1 t=35.953 et=764.780</Score>
+<Sector et="764.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="764.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="764.9">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="764.9">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="764.9">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="764.9">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="764.9">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="764.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="764.9">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="764.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="764.9">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="764.9">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="764.9">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="764.9">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="764.9">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="764.9">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="765.0">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="766.0">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Score et="772.9">Jonas Fischer(15) lap=6 point=1 t=36.178 et=772.780</Score>
+<Score et="773.6">Jasper Adams(4) lap=6 point=1 t=36.457 et=773.520</Score>
+<Score et="773.8">Markus Doerschmidt(3) lap=6 point=0 t=100.921 et=773.660</Score>
+<Score et="773.9">Valdemar Hounisen(9) lap=6 point=1 t=36.239 et=773.740</Score>
+<Score et="776.0">Brice Francois(6) lap=6 point=1 t=36.588 et=775.940</Score>
+<Score et="776.4">Theo Saunders(1) lap=6 point=1 t=36.385 et=776.340</Score>
+<Score et="776.8">Jan 295(7) lap=6 point=1 t=36.388 et=776.700</Score>
+<Score et="778.2">Lewis Edmondson(17) lap=6 point=1 t=-1.000 et=778.040</Score>
+<Score et="778.7">Vincent Delcoigne(8) lap=6 point=1 t=36.691 et=778.640</Score>
+<Score et="779.3">Luan Lindlau(16) lap=6 point=1 t=36.880 et=779.220</Score>
+<Score et="779.3">Stefan Tapper(14) lap=6 point=1 t=36.807 et=779.340</Score>
+<Score et="779.6">Lorenzo Azzoni(11) lap=6 point=1 t=-1.000 et=779.580</Score>
+<Sector et="786.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="786.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Score et="786.3">TANO GIOVINAZZI(19) lap=6 point=2 t=63.753 et=786.200</Score>
+<Sector et="786.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="786.3">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="786.3">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="786.3">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="786.3">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="786.3">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="786.3">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="786.3">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="786.3">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="786.3">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="786.4">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="786.4">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="786.4">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="786.4">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="786.4">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="786.4">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="786.4">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="786.4">Mikhail Deev(18) set new best for sector 3</Sector>
+<Score et="788.6">Fernando Sanchez(2) lap=6 point=2 t=63.546 et=788.500</Score>
+<Score et="791.6">Antoine Regnier(0) lap=6 point=2 t=62.693 et=791.520</Score>
+<Score et="792.3">Clement Rousseaux(12) lap=6 point=1 t=36.961 et=792.200</Score>
+<Score et="794.0">Arno Belot(5) lap=5 point=1 t=100.742 et=793.920</Score>
+<Score et="795.9">Andrey SHkoDA(20) lap=6 point=1 t=36.687 et=795.760</Score>
+<Score et="799.9">Jonas Fischer(15) lap=6 point=2 t=63.186 et=799.800</Score>
+<Score et="801.0">Valdemar Hounisen(9) lap=6 point=2 t=63.415 et=800.920</Score>
+<Score et="801.6">Jasper Adams(4) lap=6 point=2 t=64.486 et=801.540</Score>
+<Score et="803.3">Brice Francois(6) lap=6 point=2 t=63.821 et=803.160</Score>
+<Score et="803.7">Theo Saunders(1) lap=6 point=2 t=63.721 et=803.660</Score>
+<Score et="804.2">Jan 295(7) lap=6 point=2 t=63.767 et=804.080</Score>
+<Score et="805.2">Lewis Edmondson(17) lap=6 point=2 t=-1.000 et=805.180</Score>
+<Score et="805.9">Vincent Delcoigne(8) lap=6 point=2 t=63.910 et=805.840</Score>
+<Score et="807.0">Luan Lindlau(16) lap=6 point=2 t=64.577 et=806.900</Score>
+<Score et="807.3">Stefan Tapper(14) lap=6 point=2 t=64.765 et=807.298</Score>
+<Score et="807.6">Lorenzo Azzoni(11) lap=6 point=2 t=-1.000 et=807.500</Score>
+<Score et="810.4">Markus Doerschmidt(3) lap=6 point=1 t=36.648 et=810.320</Score>
+<Score et="819.4">Clement Rousseaux(12) lap=6 point=2 t=64.100 et=819.320</Score>
+<Score et="821.3">Arno Belot(5) lap=5 point=2 t=128.106 et=821.280</Score>
+<Score et="823.0">Andrey SHkoDA(20) lap=6 point=2 t=63.789 et=822.880</Score>
+<Score et="823.0">TANO GIOVINAZZI(19) lap=7 point=0 t=100.476 et=822.940</Score>
+<Score et="825.3">Fernando Sanchez(2) lap=7 point=0 t=100.247 et=825.200</Score>
+<Score et="828.7">Antoine Regnier(0) lap=7 point=0 t=99.679 et=828.520</Score>
+<Score et="836.7">Jonas Fischer(15) lap=7 point=0 t=100.018 et=836.620</Score>
+<Score et="837.6">Valdemar Hounisen(9) lap=7 point=0 t=100.070 et=837.580</Score>
+<Score et="837.9">Markus Doerschmidt(3) lap=6 point=2 t=64.199 et=837.860</Score>
+<Score et="838.8">Jasper Adams(4) lap=7 point=0 t=101.693 et=838.740</Score>
+<Score et="839.9">Brice Francois(6) lap=7 point=0 t=100.477 et=839.820</Score>
+<Score et="840.5">Theo Saunders(1) lap=7 point=0 t=100.505 et=840.460</Score>
+<Score et="840.9">Jan 295(7) lap=7 point=0 t=100.553 et=840.860</Score>
+<Score et="842.3">Lewis Edmondson(17) lap=7 point=0 t=-1.000 et=842.180</Score>
+<Score et="843.0">Vincent Delcoigne(8) lap=7 point=0 t=100.970 et=842.900</Score>
+<Score et="843.9">Luan Lindlau(16) lap=7 point=0 t=101.421 et=843.760</Score>
+<Score et="844.6">Lorenzo Azzoni(11) lap=7 point=0 t=-1.000 et=844.440</Score>
+<Score et="844.7">Stefan Tapper(14) lap=7 point=0 t=102.119 et=844.652</Score>
+<Score et="856.7">Clement Rousseaux(12) lap=7 point=0 t=101.392 et=856.620</Score>
+<Score et="859.1">TANO GIOVINAZZI(19) lap=7 point=1 t=36.054 et=858.980</Score>
+<Score et="859.9">Andrey SHkoDA(20) lap=7 point=0 t=100.669 et=859.760</Score>
+<Score et="861.6">Fernando Sanchez(2) lap=7 point=1 t=36.299 et=861.500</Score>
+<Score et="864.4">Arno Belot(5) lap=6 point=0 t=171.131 et=864.300</Score>
+<Penalty et="864.4">Arno Belot served 1st Drive Thru penalty, result: penalties=0, 1st=Drive Thru,0s</Penalty>
+<Sector et="864.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="864.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="864.7">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="864.7">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="864.7">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="864.7">Arno Belot(5) set new best for sector 2</Sector>
+<Sector et="864.7">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="864.7">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="864.7">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="864.7">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="864.7">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="864.7">Jonas Fischer(15) set new best for sector 2</Sector>
+<Score et="864.7">Antoine Regnier(0) lap=7 point=1 t=36.103 et=864.620</Score>
+<Sector et="864.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="864.8">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="864.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="864.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="864.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="864.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="864.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="864.8">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="873.2">Jonas Fischer(15) lap=7 point=1 t=36.508 et=873.140</Score>
+<Score et="873.6">Valdemar Hounisen(9) lap=7 point=1 t=35.898 et=873.480</Score>
+<Score et="874.9">Markus Doerschmidt(3) lap=7 point=0 t=101.204 et=874.860</Score>
+<Score et="875.4">Jasper Adams(4) lap=7 point=1 t=36.621 et=875.360</Score>
+<Score et="876.8">Theo Saunders(1) lap=7 point=1 t=36.227 et=876.680</Score>
+<Score et="877.3">Brice Francois(6) lap=7 point=1 t=37.393 et=877.220</Score>
+<Score et="877.4">Jan 295(7) lap=7 point=1 t=36.430 et=877.280</Score>
+<Score et="878.6">Lewis Edmondson(17) lap=7 point=1 t=36.370 et=878.560</Score>
+<Score et="879.7">Vincent Delcoigne(8) lap=7 point=1 t=36.630 et=879.540</Score>
+<Score et="880.4">Luan Lindlau(16) lap=7 point=1 t=36.572 et=880.320</Score>
+<Score et="880.7">Lorenzo Azzoni(11) lap=7 point=1 t=-1.000 et=880.540</Score>
+<Incident et="880.8">Jan 295(7) reported contact (334.64) with another vehicle Brice Francois(6)</Incident>
+<Incident et="880.8">Brice Francois(6) reported contact (322.27) with another vehicle Jan 295(7)</Incident>
+<Score et="881.2">Stefan Tapper(14) lap=7 point=1 t=36.545 et=881.197</Score>
+<Sector et="886.1">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="886.1">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="886.1">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="886.1">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="886.1">Arno Belot(5) set new best for sector 3</Sector>
+<Sector et="886.1">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="886.1">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="886.1">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="886.1">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="886.1">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="886.1">Antoine Regnier(0) set new best for sector 3</Sector>
+<Score et="886.1">TANO GIOVINAZZI(19) lap=7 point=2 t=63.083 et=886.020</Score>
+<Sector et="886.1">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="886.1">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="886.1">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="886.1">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="886.2">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="886.2">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="886.2">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="886.2">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="886.2">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Score et="888.7">Fernando Sanchez(2) lap=7 point=2 t=63.359 et=888.560</Score>
+<Score et="891.8">Antoine Regnier(0) lap=7 point=2 t=63.213 et=891.720</Score>
+<Score et="893.3">Clement Rousseaux(12) lap=7 point=1 t=36.550 et=893.180</Score>
+<Score et="896.2">Andrey SHkoDA(20) lap=7 point=1 t=36.396 et=896.140</Score>
+<Score et="901.4">Valdemar Hounisen(9) lap=7 point=2 t=63.709 et=901.280</Score>
+<Score et="901.4">Jonas Fischer(15) lap=7 point=2 t=64.693 et=901.320</Score>
+<Score et="902.6">Jasper Adams(4) lap=7 point=2 t=63.822 et=902.580</Score>
+<Score et="904.0">Theo Saunders(1) lap=7 point=2 t=63.423 et=903.880</Score>
+<Score et="904.7">Jan 295(7) lap=7 point=2 t=63.789 et=904.640</Score>
+<Score et="905.1">Brice Francois(6) lap=7 point=2 t=65.191 et=905.020</Score>
+<Score et="906.2">Lewis Edmondson(17) lap=7 point=2 t=63.955 et=906.140</Score>
+<Score et="906.9">Vincent Delcoigne(8) lap=7 point=2 t=63.934 et=906.840</Score>
+<Score et="907.4">Luan Lindlau(16) lap=7 point=2 t=63.632 et=907.380</Score>
+<Score et="907.9">Lorenzo Azzoni(11) lap=7 point=2 t=-1.000 et=907.820</Score>
+<Score et="908.3">Stefan Tapper(14) lap=7 point=2 t=63.647 et=908.299</Score>
+<Score et="911.5">Markus Doerschmidt(3) lap=7 point=1 t=36.572 et=911.440</Score>
+<Score et="920.5">Clement Rousseaux(12) lap=7 point=2 t=63.741 et=920.360</Score>
+<Score et="922.7">TANO GIOVINAZZI(19) lap=8 point=0 t=99.700 et=922.620</Score>
+<Score et="924.1">Andrey SHkoDA(20) lap=7 point=2 t=-1.000 et=923.940</Score>
+<Score et="925.3">Fernando Sanchez(2) lap=8 point=0 t=99.989 et=925.200</Score>
+<Score et="928.7">Antoine Regnier(0) lap=8 point=0 t=100.091 et=928.600</Score>
+<Score et="938.6">Valdemar Hounisen(9) lap=8 point=0 t=101.019 et=938.600</Score>
+<Score et="938.7">Jonas Fischer(15) lap=8 point=0 t=102.022 et=938.640</Score>
+<Score et="939.2">Markus Doerschmidt(3) lap=7 point=2 t=64.223 et=939.100</Score>
+<Score et="939.5">Jasper Adams(4) lap=8 point=0 t=100.688 et=939.440</Score>
+<Score et="940.9">Theo Saunders(1) lap=8 point=0 t=100.431 et=940.880</Score>
+<Score et="942.4">Brice Francois(6) lap=8 point=0 t=102.523 et=942.340</Score>
+<Score et="943.1">Lewis Edmondson(17) lap=8 point=0 t=100.874 et=943.060</Score>
+<Score et="943.4">Jan 295(7) lap=8 point=0 t=102.533 et=943.400</Score>
+<Score et="943.5">Vincent Delcoigne(8) lap=8 point=0 t=100.542 et=943.460</Score>
+<Incident et="943.7">Valdemar Hounisen(9) reported contact (32.98) with another vehicle Jonas Fischer(15)</Incident>
+<Incident et="943.7">Jonas Fischer(15) reported contact (26.04) with another vehicle Valdemar Hounisen(9)</Incident>
+<Score et="944.3">Luan Lindlau(16) lap=8 point=0 t=100.477 et=944.220</Score>
+<Score et="944.8">Lorenzo Azzoni(11) lap=8 point=0 t=-1.000 et=944.720</Score>
+<Score et="945.4">Stefan Tapper(14) lap=8 point=0 t=100.729 et=945.381</Score>
+<Incident et="950.6">Valdemar Hounisen(9) reported contact (772.07) with another vehicle Jonas Fischer(15)</Incident>
+<Incident et="950.7">Jonas Fischer(15) reported contact (772.40) with another vehicle Valdemar Hounisen(9)</Incident>
+<Score et="957.7">Clement Rousseaux(12) lap=8 point=0 t=101.017 et=957.640</Score>
+<Score et="959.2">TANO GIOVINAZZI(19) lap=8 point=1 t=36.430 et=959.060</Score>
+<Score et="961.4">Andrey SHkoDA(20) lap=8 point=0 t=101.532 et=961.280</Score>
+<Score et="961.7">Fernando Sanchez(2) lap=8 point=1 t=36.476 et=961.660</Score>
+<Sector et="964.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="964.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="964.7">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="964.7">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="964.7">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="964.7">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="964.7">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="964.7">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="964.7">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Score et="964.8">Antoine Regnier(0) lap=8 point=1 t=36.015 et=964.620</Score>
+<Sector et="964.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="964.8">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="964.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="964.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="964.8">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="964.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="964.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="964.8">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="964.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="964.8">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="975.5">Jonas Fischer(15) lap=8 point=1 t=36.772 et=975.420</Score>
+<Score et="975.9">Jasper Adams(4) lap=8 point=1 t=36.382 et=975.820</Score>
+<Score et="976.0">Markus Doerschmidt(3) lap=8 point=0 t=101.051 et=975.920</Score>
+<Score et="976.9">Theo Saunders(1) lap=8 point=1 t=35.979 et=976.860</Score>
+<Score et="978.6">Valdemar Hounisen(9) lap=8 point=1 t=39.968 et=978.560</Score>
+<Score et="979.5">Brice Francois(6) lap=8 point=1 t=37.020 et=979.360</Score>
+<Score et="980.0">Lewis Edmondson(17) lap=8 point=1 t=36.838 et=979.900</Score>
+<Score et="980.3">Jan 295(7) lap=8 point=1 t=36.802 et=980.200</Score>
+<Score et="981.0">Vincent Delcoigne(8) lap=8 point=1 t=37.471 et=980.920</Score>
+<Score et="981.3">Luan Lindlau(16) lap=8 point=1 t=36.994 et=981.220</Score>
+<Score et="981.5">Lorenzo Azzoni(11) lap=8 point=1 t=36.702 et=981.420</Score>
+<Score et="982.0">Stefan Tapper(14) lap=8 point=1 t=36.636 et=982.017</Score>
+<Sector et="986.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="986.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="986.3">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="986.3">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="986.3">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="986.3">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="986.3">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="986.3">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="986.3">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="986.4">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="986.4">Antoine Regnier(0) set new best for sector 3</Sector>
+<Score et="986.4">TANO GIOVINAZZI(19) lap=8 point=2 t=63.599 et=986.220</Score>
+<Sector et="986.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="986.4">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="986.4">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="986.4">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="986.4">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="986.4">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="986.4">Mikhail Deev(18) set new best for sector 3</Sector>
+<Sector et="986.4">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Score et="988.9">Fernando Sanchez(2) lap=8 point=2 t=63.585 et=988.780</Score>
+<Score et="991.8">Antoine Regnier(0) lap=8 point=2 t=63.116 et=991.720</Score>
+<Score et="995.1">Clement Rousseaux(12) lap=8 point=1 t=37.419 et=995.060</Score>
+<Score et="997.9">Andrey SHkoDA(20) lap=8 point=1 t=36.514 et=997.800</Score>
+<Score et="1002.6">Jonas Fischer(15) lap=8 point=2 t=63.933 et=1002.580</Score>
+<Score et="1003.2">Jasper Adams(4) lap=8 point=2 t=63.690 et=1003.120</Score>
+<Score et="1004.1">Theo Saunders(1) lap=8 point=2 t=63.155 et=1004.040</Score>
+<Score et="1005.5">Valdemar Hounisen(9) lap=8 point=2 t=66.794 et=1005.400</Score>
+<Incident et="1005.5">Luan Lindlau(16) reported contact (105.97) with another vehicle Lorenzo Azzoni(11)</Incident>
+<Incident et="1005.5">Lorenzo Azzoni(11) reported contact (142.22) with another vehicle Luan Lindlau(16)</Incident>
+<Score et="1006.8">Brice Francois(6) lap=8 point=2 t=64.361 et=1006.700</Score>
+<Score et="1007.6">Lewis Edmondson(17) lap=8 point=2 t=64.418 et=1007.480</Score>
+<Score et="1007.9">Jan 295(7) lap=8 point=2 t=64.414 et=1007.800</Score>
+<Score et="1009.4">Luan Lindlau(16) lap=8 point=2 t=65.083 et=1009.320</Score>
+<Score et="1009.6">Lorenzo Azzoni(11) lap=8 point=2 t=64.799 et=1009.520</Score>
+<Score et="1009.8">Vincent Delcoigne(8) lap=8 point=2 t=66.223 et=1009.680</Score>
+<Score et="1010.0">Stefan Tapper(14) lap=8 point=2 t=64.656 et=1010.037</Score>
+<Score et="1012.6">Markus Doerschmidt(3) lap=8 point=1 t=36.671 et=1012.580</Score>
+<Score et="1022.4">Clement Rousseaux(12) lap=8 point=2 t=64.676 et=1022.320</Score>
+<Score et="1023.0">TANO GIOVINAZZI(19) lap=9 point=0 t=100.189 et=1022.820</Score>
+<Score et="1025.1">Andrey SHkoDA(20) lap=8 point=2 t=63.679 et=1024.960</Score>
+<Score et="1025.7">Fernando Sanchez(2) lap=9 point=0 t=100.381 et=1025.580</Score>
+<Score et="1028.5">Antoine Regnier(0) lap=9 point=0 t=99.853 et=1028.460</Score>
+<Score et="1039.8">Markus Doerschmidt(3) lap=8 point=2 t=63.849 et=1039.760</Score>
+<Score et="1040.6">Jasper Adams(4) lap=9 point=0 t=101.026 et=1040.460</Score>
+<Score et="1040.6">Jonas Fischer(15) lap=9 point=0 t=101.824 et=1040.480</Score>
+<Score et="1041.0">Theo Saunders(1) lap=9 point=0 t=100.055 et=1040.940</Score>
+<Score et="1042.2">Valdemar Hounisen(9) lap=9 point=0 t=103.444 et=1042.040</Score>
+<Score et="1043.9">Brice Francois(6) lap=9 point=0 t=101.481 et=1043.820</Score>
+<Score et="1044.1">Lewis Edmondson(17) lap=9 point=0 t=100.962 et=1044.020</Score>
+<Score et="1045.0">Jan 295(7) lap=9 point=0 t=101.595 et=1044.980</Score>
+<Score et="1046.6">Lorenzo Azzoni(11) lap=9 point=0 t=101.752 et=1046.480</Score>
+<Score et="1046.7">Luan Lindlau(16) lap=9 point=0 t=102.385 et=1046.620</Score>
+<Score et="1048.1">Stefan Tapper(14) lap=9 point=0 t=102.675 et=1048.056</Score>
+<Score et="1048.1">Vincent Delcoigne(8) lap=9 point=0 t=104.494 et=1047.940</Score>
+<Score et="1059.1">TANO GIOVINAZZI(19) lap=9 point=1 t=36.211 et=1059.020</Score>
+<Score et="1059.5">Clement Rousseaux(12) lap=9 point=0 t=101.784 et=1059.420</Score>
+<Score et="1062.1">Andrey SHkoDA(20) lap=9 point=0 t=100.665 et=1061.940</Score>
+<Score et="1062.4">Fernando Sanchez(2) lap=9 point=1 t=36.710 et=1062.280</Score>
+<Sector et="1064.6">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1064.6">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1064.7">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="1064.7">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="1064.7">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="1064.7">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="1064.7">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Score et="1064.7">Antoine Regnier(0) lap=9 point=1 t=36.135 et=1064.600</Score>
+<Sector et="1064.7">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1064.7">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="1064.7">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="1064.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="1064.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="1064.8">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="1064.8">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="1064.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="1064.8">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="1064.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="1064.8">Mikhail Deev(18) set new best for sector 2</Sector>
+<Sector et="1064.8">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="1076.5">Markus Doerschmidt(3) lap=9 point=0 t=100.544 et=1076.460</Score>
+<Score et="1076.8">Jasper Adams(4) lap=9 point=1 t=-1.000 et=1076.720</Score>
+<Score et="1077.4">Theo Saunders(1) lap=9 point=1 t=36.294 et=1077.240</Score>
+<Score et="1077.8">Jonas Fischer(15) lap=9 point=1 t=37.159 et=1077.640</Score>
+<Score et="1079.0">Valdemar Hounisen(9) lap=9 point=1 t=36.864 et=1078.900</Score>
+<Score et="1080.7">Lewis Edmondson(17) lap=9 point=1 t=36.628 et=1080.660</Score>
+<Score et="1081.3">Brice Francois(6) lap=9 point=1 t=37.415 et=1081.240</Score>
+<Score et="1081.7">Jan 295(7) lap=9 point=1 t=36.667 et=1081.660</Score>
+<Score et="1082.7">Lorenzo Azzoni(11) lap=9 point=1 t=-1.000 et=1082.660</Score>
+<Score et="1083.7">Luan Lindlau(16) lap=9 point=1 t=-1.000 et=1083.560</Score>
+<Score et="1084.4">Vincent Delcoigne(8) lap=9 point=1 t=36.369 et=1084.320</Score>
+<Score et="1084.5">Stefan Tapper(14) lap=9 point=1 t=36.471 et=1084.526</Score>
+<Sector et="1086.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1086.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Score et="1086.0">TANO GIOVINAZZI(19) lap=9 point=2 t=63.089 et=1085.900</Score>
+<Sector et="1086.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1086.0">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="1086.0">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="1086.0">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="1086.0">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="1086.0">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="1086.1">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="1086.1">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="1086.1">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="1086.1">Valdemar Hounisen(9) set new best for sector 3</Sector>
+<Sector et="1086.1">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="1086.1">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="1086.1">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="1086.1">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="1086.1">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="1086.1">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Score et="1090.1">Fernando Sanchez(2) lap=9 point=2 t=64.440 et=1090.020</Score>
+<Score et="1091.5">Antoine Regnier(0) lap=9 point=2 t=-1.000 et=1091.360</Score>
+<Score et="1096.5">Clement Rousseaux(12) lap=9 point=1 t=36.915 et=1096.340</Score>
+<Score et="1098.5">Andrey SHkoDA(20) lap=9 point=1 t=36.389 et=1098.340</Score>
+<Score et="1104.0">Jasper Adams(4) lap=9 point=2 t=-1.000 et=1103.920</Score>
+<Score et="1104.3">Theo Saunders(1) lap=9 point=2 t=63.292 et=1104.240</Score>
+<Score et="1105.2">Jonas Fischer(15) lap=9 point=2 t=64.625 et=1105.100</Score>
+<Score et="1105.8">Valdemar Hounisen(9) lap=9 point=2 t=63.702 et=1105.740</Score>
+<Score et="1108.0">Lewis Edmondson(17) lap=9 point=2 t=63.907 et=1107.940</Score>
+<Score et="1108.7">Brice Francois(6) lap=9 point=2 t=64.829 et=1108.660</Score>
+<Score et="1109.2">Jan 295(7) lap=9 point=2 t=64.211 et=1109.200</Score>
+<Score et="1110.3">Lorenzo Azzoni(11) lap=9 point=2 t=-1.000 et=1110.160</Score>
+<Score et="1110.8">Luan Lindlau(16) lap=9 point=2 t=-1.000 et=1110.660</Score>
+<Score et="1111.5">Vincent Delcoigne(8) lap=9 point=2 t=63.522 et=1111.460</Score>
+<Score et="1111.9">Stefan Tapper(14) lap=9 point=2 t=63.863 et=1111.919</Score>
+<Score et="1113.2">Markus Doerschmidt(3) lap=9 point=1 t=36.706 et=1113.160</Score>
+<Score et="1122.6">TANO GIOVINAZZI(19) lap=10 point=0 t=99.608 et=1122.420</Score>
+<Score et="1123.9">Clement Rousseaux(12) lap=9 point=2 t=64.366 et=1123.780</Score>
+<Score et="1125.8">Andrey SHkoDA(20) lap=9 point=2 t=63.646 et=1125.600</Score>
+<Score et="1126.8">Fernando Sanchez(2) lap=10 point=0 t=101.135 et=1126.700</Score>
+<Score et="1128.4">Antoine Regnier(0) lap=10 point=0 t=99.882 et=1128.340</Score>
+<Score et="1140.7">Markus Doerschmidt(3) lap=9 point=2 t=64.153 et=1140.620</Score>
+<Score et="1141.3">Theo Saunders(1) lap=10 point=0 t=100.281 et=1141.220</Score>
+<Score et="1141.3">Jasper Adams(4) lap=10 point=0 t=-1.000 et=1141.220</Score>
+<Score et="1142.3">Jonas Fischer(15) lap=10 point=0 t=101.620 et=1142.100</Score>
+<Score et="1145.3">Lewis Edmondson(17) lap=10 point=0 t=101.127 et=1145.160</Score>
+<Score et="1145.5">Brice Francois(6) lap=10 point=0 t=101.594 et=1145.420</Score>
+<Score et="1146.4">Jan 295(7) lap=10 point=0 t=101.261 et=1146.240</Score>
+<Score et="1147.1">Lorenzo Azzoni(11) lap=10 point=0 t=-1.000 et=1147.000</Score>
+<Score et="1147.9">Luan Lindlau(16) lap=10 point=0 t=-1.000 et=1147.780</Score>
+<Score et="1148.6">Vincent Delcoigne(8) lap=10 point=0 t=100.487 et=1148.440</Score>
+<Score et="1148.8">Stefan Tapper(14) lap=10 point=0 t=100.734 et=1148.790</Score>
+<Score et="1158.9">TANO GIOVINAZZI(19) lap=10 point=1 t=36.401 et=1158.820</Score>
+<Score et="1160.9">Clement Rousseaux(12) lap=10 point=0 t=101.443 et=1160.860</Score>
+<Sector et="1162.8">Valdemar Hounisen(9) reports new suspension damage</Sector>
+<Incident et="1162.8">Valdemar Hounisen(9) reported contact (1280.11) with Immovable</Incident>
+<Score et="1163.1">Andrey SHkoDA(20) lap=10 point=0 t=101.010 et=1162.960</Score>
+<Score et="1163.4">Fernando Sanchez(2) lap=10 point=1 t=36.507 et=1163.220</Score>
+<Sector et="1164.4">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1164.4">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1164.4">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="1164.4">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="1164.5">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="1164.5">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="1164.5">Jasper Adams(4) set new best for sector 2</Sector>
+<Score et="1164.5">Antoine Regnier(0) lap=10 point=1 t=36.030 et=1164.360</Score>
+<Sector et="1164.5">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1164.5">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="1164.5">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="1164.5">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="1164.5">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="1164.5">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="1164.5">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="1164.5">Valdemar Hounisen(9) set new best for sector 2</Sector>
+<Sector et="1164.5">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="1164.5">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="1164.6">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="1166.1">Valdemar Hounisen(9) lap=10 point=0 t=123.938 et=1165.980</Score>
+<Score et="1177.7">Markus Doerschmidt(3) lap=10 point=0 t=101.125 et=1177.580</Score>
+<Score et="1177.8">Theo Saunders(1) lap=10 point=1 t=36.421 et=1177.640</Score>
+<Score et="1178.3">Jasper Adams(4) lap=10 point=1 t=36.961 et=1178.180</Score>
+<Score et="1178.9">Jonas Fischer(15) lap=10 point=1 t=36.709 et=1178.800</Score>
+<Score et="1181.5">Lewis Edmondson(17) lap=10 point=1 t=36.338 et=1181.480</Score>
+<Score et="1182.6">Jan 295(7) lap=10 point=1 t=36.252 et=1182.500</Score>
+<Score et="1182.9">Brice Francois(6) lap=10 point=1 t=37.360 et=1182.780</Score>
+<Score et="1183.3">Lorenzo Azzoni(11) lap=10 point=1 t=36.244 et=1183.240</Score>
+<Score et="1184.4">Luan Lindlau(16) lap=10 point=1 t=36.595 et=1184.360</Score>
+<Score et="1185.0">Vincent Delcoigne(8) lap=10 point=1 t=36.495 et=1184.920</Score>
+<Score et="1185.2">Stefan Tapper(14) lap=10 point=1 t=36.443 et=1185.233</Score>
+<Sector et="1185.8">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1185.8">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1185.8">Theo Saunders(1) set new best for sector 3</Sector>
+<Score et="1185.8">TANO GIOVINAZZI(19) lap=10 point=2 t=63.289 et=1185.720</Score>
+<Sector et="1185.8">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1185.8">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="1185.8">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="1185.8">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="1185.8">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="1185.8">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="1185.8">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="1185.8">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="1185.8">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="1185.9">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="1185.9">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="1185.9">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="1185.9">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="1185.9">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Score et="1191.1">Fernando Sanchez(2) lap=10 point=2 t=64.286 et=1191.000</Score>
+<Score et="1191.4">Antoine Regnier(0) lap=10 point=2 t=62.979 et=1191.320</Score>
+<Score et="1197.7">Clement Rousseaux(12) lap=10 point=1 t=36.736 et=1197.600</Score>
+<Score et="1199.7">Andrey SHkoDA(20) lap=10 point=1 t=36.628 et=1199.580</Score>
+<Incident et="1203.5">Jan 295(7) reported contact (116.91) with another vehicle Lorenzo Azzoni(11)</Incident>
+<Score et="1204.8">Theo Saunders(1) lap=10 point=2 t=63.434 et=1204.660</Score>
+<Score et="1205.4">Jasper Adams(4) lap=10 point=2 t=64.115 et=1205.340</Score>
+<Incident et="1209.8">Antoine Regnier(0) reported contact (356.79) with another vehicle Fernando Sanchez(2)</Incident>
+<Incident et="1209.8">Fernando Sanchez(2) reported contact (141.17) with another vehicle Antoine Regnier(0)</Incident>
+<Score et="1209.8">Lewis Edmondson(17) lap=10 point=2 t=64.615 et=1209.760</Score>
+<Score et="1211.3">Jan 295(7) lap=10 point=2 t=64.893 et=1211.140</Score>
+<Score et="1211.7">Lorenzo Azzoni(11) lap=10 point=2 t=64.563 et=1211.560</Score>
+<Score et="1211.9">Brice Francois(6) lap=10 point=2 t=66.436 et=1211.860</Score>
+<Score et="1212.1">Luan Lindlau(16) lap=10 point=2 t=64.275 et=1212.040</Score>
+<Score et="1212.8">Vincent Delcoigne(8) lap=10 point=2 t=64.253 et=1212.680</Score>
+<Score et="1213.0">Stefan Tapper(14) lap=10 point=2 t=64.164 et=1212.954</Score>
+<Score et="1214.5">Markus Doerschmidt(3) lap=10 point=1 t=36.791 et=1214.380</Score>
+<Incident et="1215.5">Brice Francois(6) reported contact (275.05) with another vehicle Luan Lindlau(16)</Incident>
+<Incident et="1215.5">Luan Lindlau(16) reported contact (351.31) with another vehicle Brice Francois(6)</Incident>
+<Sector et="1217.6">Luan Lindlau(16) reports new suspension damage</Sector>
+<Incident et="1217.6">Luan Lindlau(16) reported contact (1457.53) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="1217.7">Vincent Delcoigne(8) reported contact (1488.78) with another vehicle Luan Lindlau(16)</Incident>
+<Score et="1219.1">Jonas Fischer(15) lap=10 point=2 t=76.936 et=1219.020</Score>
+<Score et="1223.0">TANO GIOVINAZZI(19) lap=11 point=0 t=100.401 et=1222.820</Score>
+<Incident et="1224.7">Luan Lindlau(16) reported contact (16.67) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="1224.7">Luan Lindlau(16) reported contact (51.42) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="1224.7">Luan Lindlau(16) reported contact (121.56) with another vehicle Vincent Delcoigne(8)</Incident>
+<Incident et="1224.8">Vincent Delcoigne(8) reported contact (56.09) with another vehicle Luan Lindlau(16)</Incident>
+<Incident et="1224.8">Vincent Delcoigne(8) reported contact (133.08) with another vehicle Luan Lindlau(16)</Incident>
+<Score et="1224.9">Clement Rousseaux(12) lap=10 point=2 t=63.980 et=1224.840</Score>
+<Score et="1227.1">Andrey SHkoDA(20) lap=10 point=2 t=63.983 et=1226.940</Score>
+<Score et="1228.8">Fernando Sanchez(2) lap=11 point=0 t=101.953 et=1228.660</Score>
+<Score et="1229.1">Antoine Regnier(0) lap=11 point=0 t=100.687 et=1229.020</Score>
+<Score et="1241.7">Theo Saunders(1) lap=11 point=0 t=100.404 et=1241.620</Score>
+<Score et="1241.9">Markus Doerschmidt(3) lap=10 point=2 t=64.231 et=1241.820</Score>
+<Score et="1242.6">Jasper Adams(4) lap=11 point=0 t=101.237 et=1242.460</Score>
+<Score et="1247.3">Lewis Edmondson(17) lap=11 point=0 t=102.046 et=1247.200</Score>
+<Score et="1248.4">Lorenzo Azzoni(11) lap=11 point=0 t=101.317 et=1248.320</Score>
+<Score et="1248.8">Jan 295(7) lap=11 point=0 t=102.403 et=1248.640</Score>
+<Score et="1249.5">Brice Francois(6) lap=11 point=0 t=103.942 et=1249.360</Score>
+<Incident et="1250.4">Andrey SHkoDA(20) reported contact (2287.56) with Immovable</Incident>
+<Score et="1251.0">Stefan Tapper(14) lap=11 point=0 t=102.193 et=1250.983</Score>
+<Score et="1253.8">Vincent Delcoigne(8) lap=11 point=0 t=105.224 et=1253.660</Score>
+<Score et="1254.4">Luan Lindlau(16) lap=11 point=0 t=106.474 et=1254.240</Score>
+<Score et="1256.9">Jonas Fischer(15) lap=11 point=0 t=114.642 et=1256.740</Score>
+<Score et="1259.2">TANO GIOVINAZZI(19) lap=11 point=1 t=36.224 et=1259.060</Score>
+<Score et="1261.8">Clement Rousseaux(12) lap=11 point=0 t=100.933 et=1261.800</Score>
+<Sector et="1265.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1265.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1265.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="1265.8">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="1265.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="1265.9">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="1265.9">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="1265.9">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="1265.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Score et="1265.9">Antoine Regnier(0) lap=11 point=1 t=36.741 et=1265.760</Score>
+<Sector et="1265.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1265.9">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="1265.9">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="1265.9">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Sector et="1265.9">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="1265.9">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="1265.9">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="1265.9">Luan Lindlau(16) set new best for sector 2</Sector>
+<Score et="1266.2">Fernando Sanchez(2) lap=11 point=1 t=37.430 et=1266.100</Score>
+<Score et="1272.9">Andrey SHkoDA(20) lap=11 point=0 t=109.820 et=1272.780</Score>
+<Score et="1278.4">Theo Saunders(1) lap=11 point=1 t=36.680 et=1278.300</Score>
+<Score et="1278.9">Markus Doerschmidt(3) lap=11 point=0 t=101.282 et=1278.860</Score>
+<Score et="1279.1">Jasper Adams(4) lap=11 point=1 t=36.544 et=1279.000</Score>
+<Score et="1283.5">Lewis Edmondson(17) lap=11 point=1 t=36.228 et=1283.420</Score>
+<Score et="1284.3">Lorenzo Azzoni(11) lap=11 point=1 t=35.882 et=1284.200</Score>
+<Score et="1285.2">Jan 295(7) lap=11 point=1 t=36.377 et=1285.020</Score>
+<Score et="1286.5">Brice Francois(6) lap=11 point=1 t=-1.000 et=1286.420</Score>
+<Sector et="1287.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1287.0">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1287.0">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="1287.1">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="1287.1">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="1287.1">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="1287.1">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="1287.1">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Score et="1287.1">TANO GIOVINAZZI(19) lap=11 point=2 t=64.154 et=1286.980</Score>
+<Sector et="1287.1">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1287.1">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="1287.1">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="1287.1">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="1287.1">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="1287.1">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="1287.1">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="1287.2">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Sector et="1287.2">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Score et="1287.8">Stefan Tapper(14) lap=11 point=1 t=36.776 et=1287.760</Score>
+<Score et="1291.7">Luan Lindlau(16) lap=11 point=1 t=37.391 et=1291.640</Score>
+<Score et="1292.2">Vincent Delcoigne(8) lap=11 point=1 t=38.411 et=1292.060</Score>
+<Score et="1293.0">Antoine Regnier(0) lap=11 point=2 t=63.897 et=1292.920</Score>
+<Score et="1293.6">Jonas Fischer(15) lap=11 point=1 t=36.744 et=1293.480</Score>
+<Score et="1294.1">Fernando Sanchez(2) lap=11 point=2 t=65.346 et=1294.000</Score>
+<Score et="1298.7">Clement Rousseaux(12) lap=11 point=1 t=36.767 et=1298.560</Score>
+<Score et="1305.5">Theo Saunders(1) lap=11 point=2 t=63.790 et=1305.420</Score>
+<Score et="1306.3">Jasper Adams(4) lap=11 point=2 t=63.765 et=1306.220</Score>
+<Score et="1311.4">Andrey SHkoDA(20) lap=11 point=1 t=38.520 et=1311.300</Score>
+<Score et="1311.4">Lorenzo Azzoni(11) lap=11 point=2 t=63.031 et=1311.340</Score>
+<Score et="1311.9">Lewis Edmondson(17) lap=11 point=2 t=64.662 et=1311.860</Score>
+<Score et="1312.7">Jan 295(7) lap=11 point=2 t=63.998 et=1312.640</Score>
+<Score et="1313.9">Brice Francois(6) lap=11 point=2 t=-1.000 et=1313.720</Score>
+<Score et="1314.9">Stefan Tapper(14) lap=11 point=2 t=63.949 et=1314.932</Score>
+<Score et="1315.9">Markus Doerschmidt(3) lap=11 point=1 t=36.942 et=1315.820</Score>
+<Score et="1319.2">Luan Lindlau(16) lap=11 point=2 t=64.826 et=1319.080</Score>
+<Score et="1320.6">Vincent Delcoigne(8) lap=11 point=2 t=66.884 et=1320.540</Score>
+<Score et="1321.1">Jonas Fischer(15) lap=11 point=2 t=64.272 et=1321.000</Score>
+<Score et="1323.8">TANO GIOVINAZZI(19) lap=12 point=0 t=100.834 et=1323.660</Score>
+<Score et="1325.8">Clement Rousseaux(12) lap=11 point=2 t=63.934 et=1325.740</Score>
+<Score et="1329.8">Antoine Regnier(0) lap=12 point=0 t=100.620 et=1329.640</Score>
+<Score et="1330.8">Fernando Sanchez(2) lap=12 point=0 t=101.978 et=1330.640</Score>
+<Score et="1339.4">Andrey SHkoDA(20) lap=11 point=2 t=66.486 et=1339.260</Score>
+<Score et="1342.9">Theo Saunders(1) lap=12 point=0 t=101.223 et=1342.840</Score>
+<Score et="1343.2">Jasper Adams(4) lap=12 point=0 t=100.697 et=1343.160</Score>
+<Score et="1343.7">Markus Doerschmidt(3) lap=11 point=2 t=64.766 et=1343.640</Score>
+<Score et="1348.3">Lorenzo Azzoni(11) lap=12 point=0 t=99.814 et=1348.120</Score>
+<Score et="1348.9">Lewis Edmondson(17) lap=12 point=0 t=101.562 et=1348.760</Score>
+<Score et="1349.7">Jan 295(7) lap=12 point=0 t=100.962 et=1349.620</Score>
+<Score et="1350.8">Brice Francois(6) lap=12 point=0 t=-1.000 et=1350.740</Score>
+<Score et="1351.7">Stefan Tapper(14) lap=12 point=0 t=100.728 et=1351.711</Score>
+<Score et="1356.6">Luan Lindlau(16) lap=12 point=0 t=102.277 et=1356.520</Score>
+<Score et="1358.6">Jonas Fischer(15) lap=12 point=0 t=101.744 et=1358.480</Score>
+<Score et="1358.7">Vincent Delcoigne(8) lap=12 point=0 t=104.974 et=1358.640</Score>
+<Score et="1361.1">TANO GIOVINAZZI(19) lap=12 point=1 t=37.314 et=1360.980</Score>
+<Score et="1362.6">Clement Rousseaux(12) lap=12 point=0 t=100.693 et=1362.500</Score>
+<Sector et="1365.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1365.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Score et="1365.8">Antoine Regnier(0) lap=12 point=1 t=36.065 et=1365.720</Score>
+<Sector et="1365.8">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1365.8">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="1365.8">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="1365.8">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="1365.8">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="1365.8">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="1365.8">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="1365.8">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="1365.8">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="1365.8">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="1365.8">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="1365.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="1365.9">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="1365.9">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="1365.9">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="1367.2">Fernando Sanchez(2) lap=12 point=1 t=36.523 et=1367.160</Score>
+<Score et="1377.2">Andrey SHkoDA(20) lap=12 point=0 t=104.388 et=1377.160</Score>
+<Score et="1379.4">Theo Saunders(1) lap=12 point=1 t=36.537 et=1379.380</Score>
+<Score et="1379.9">Jasper Adams(4) lap=12 point=1 t=36.713 et=1379.860</Score>
+<Score et="1380.9">Markus Doerschmidt(3) lap=12 point=0 t=101.970 et=1380.840</Score>
+<Score et="1384.2">Lorenzo Azzoni(11) lap=12 point=1 t=35.887 et=1384.020</Score>
+<Score et="1385.3">Lewis Edmondson(17) lap=12 point=1 t=36.476 et=1385.240</Score>
+<Score et="1386.2">Jan 295(7) lap=12 point=1 t=-1.000 et=1386.060</Score>
+<Score et="1387.2">Brice Francois(6) lap=12 point=1 t=-1.000 et=1387.200</Score>
+<Score et="1388.1">Stefan Tapper(14) lap=12 point=1 t=36.333 et=1388.044</Score>
+<Sector et="1388.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1388.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1388.4">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="1388.4">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="1388.4">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="1388.4">Jonas Fischer(15) set new best for sector 3</Sector>
+<Score et="1388.4">TANO GIOVINAZZI(19) lap=12 point=2 t=64.666 et=1388.320</Score>
+<Sector et="1388.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1388.4">Brice Francois(6) set new best for sector 3</Sector>
+<Sector et="1388.4">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="1388.5">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="1388.5">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="1388.5">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="1388.5">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="1388.5">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="1388.5">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="1388.5">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="1388.5">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Score et="1392.7">Antoine Regnier(0) lap=12 point=2 t=62.993 et=1392.640</Score>
+<Score et="1394.1">Luan Lindlau(16) lap=12 point=1 t=37.437 et=1393.960</Score>
+<Score et="1394.3">Fernando Sanchez(2) lap=12 point=2 t=63.607 et=1394.240</Score>
+<Score et="1395.0">Jonas Fischer(15) lap=12 point=1 t=36.442 et=1394.920</Score>
+<Score et="1396.1">Vincent Delcoigne(8) lap=12 point=1 t=37.339 et=1395.980</Score>
+<Score et="1399.4">Clement Rousseaux(12) lap=12 point=1 t=36.742 et=1399.240</Score>
+<Score et="1406.4">Theo Saunders(1) lap=12 point=2 t=63.463 et=1406.300</Score>
+<Score et="1407.1">Jasper Adams(4) lap=12 point=2 t=63.905 et=1407.060</Score>
+<Score et="1411.2">Lorenzo Azzoni(11) lap=12 point=2 t=62.970 et=1411.100</Score>
+<Score et="1412.6">Lewis Edmondson(17) lap=12 point=2 t=63.721 et=1412.480</Score>
+<Score et="1413.8">Jan 295(7) lap=12 point=2 t=-1.000 et=1413.780</Score>
+<Score et="1414.4">Andrey SHkoDA(20) lap=12 point=1 t=37.025 et=1414.200</Score>
+<Score et="1414.8">Brice Francois(6) lap=12 point=2 t=-1.000 et=1414.760</Score>
+<Score et="1415.3">Stefan Tapper(14) lap=12 point=2 t=63.588 et=1415.298</Score>
+<Score et="1417.6">Markus Doerschmidt(3) lap=12 point=1 t=36.736 et=1417.580</Score>
+<Score et="1421.9">Luan Lindlau(16) lap=12 point=2 t=65.353 et=1421.880</Score>
+<Score et="1422.3">Jonas Fischer(15) lap=12 point=2 t=63.741 et=1422.220</Score>
+<Score et="1423.7">Vincent Delcoigne(8) lap=12 point=2 t=64.993 et=1423.620</Score>
+<Score et="1425.8">TANO GIOVINAZZI(19) lap=13 point=0 t=102.058 et=1425.720</Score>
+<Score et="1427.0">Clement Rousseaux(12) lap=12 point=2 t=64.415 et=1426.900</Score>
+<Score et="1429.8">Antoine Regnier(0) lap=13 point=0 t=100.023 et=1429.660</Score>
+<Score et="1431.1">Fernando Sanchez(2) lap=13 point=0 t=100.359 et=1431.000</Score>
+<Score et="1441.9">Andrey SHkoDA(20) lap=12 point=2 t=64.600 et=1441.760</Score>
+<Score et="1443.3">Theo Saunders(1) lap=13 point=0 t=100.384 et=1443.220</Score>
+<Score et="1444.6">Jasper Adams(4) lap=13 point=0 t=101.350 et=1444.500</Score>
+<Score et="1445.2">Markus Doerschmidt(3) lap=12 point=2 t=64.237 et=1445.080</Score>
+<Score et="1447.7">Lorenzo Azzoni(11) lap=13 point=0 t=99.494 et=1447.620</Score>
+<Score et="1449.5">Lewis Edmondson(17) lap=13 point=0 t=100.680 et=1449.440</Score>
+<Score et="1451.3">Jan 295(7) lap=13 point=0 t=-1.000 et=1451.260</Score>
+<Score et="1452.0">Brice Francois(6) lap=13 point=0 t=-1.000 et=1451.920</Score>
+<Score et="1452.5">Stefan Tapper(14) lap=13 point=0 t=100.740 et=1452.451</Score>
+<Score et="1459.9">Jonas Fischer(15) lap=13 point=0 t=101.324 et=1459.800</Score>
+<Score et="1460.2">Luan Lindlau(16) lap=13 point=0 t=103.586 et=1460.120</Score>
+<Score et="1461.1">Vincent Delcoigne(8) lap=13 point=0 t=102.395 et=1461.020</Score>
+<Score et="1462.3">TANO GIOVINAZZI(19) lap=13 point=1 t=36.519 et=1462.240</Score>
+<Score et="1463.9">Clement Rousseaux(12) lap=13 point=0 t=101.389 et=1463.880</Score>
+<Sector et="1465.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1465.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Score et="1465.9">Antoine Regnier(0) lap=13 point=1 t=36.146 et=1465.820</Score>
+<Sector et="1465.9">Antoine Regnier(0) set new best for sector 2</Sector>
+<Sector et="1465.9">Lewis Edmondson(17) set new best for sector 2</Sector>
+<Sector et="1465.9">Clement Rousseaux(12) set new best for sector 2</Sector>
+<Sector et="1465.9">Luan Lindlau(16) set new best for sector 2</Sector>
+<Sector et="1465.9">Jan 295(7) set new best for sector 2</Sector>
+<Sector et="1465.9">Theo Saunders(1) set new best for sector 2</Sector>
+<Sector et="1465.9">Jasper Adams(4) set new best for sector 2</Sector>
+<Sector et="1465.9">TANO GIOVINAZZI(19) set new best for sector 2</Sector>
+<Sector et="1465.9">Markus Doerschmidt(3) set new best for sector 2</Sector>
+<Sector et="1465.9">Vincent Delcoigne(8) set new best for sector 2</Sector>
+<Sector et="1466.0">Lorenzo Azzoni(11) set new best for sector 2</Sector>
+<Sector et="1466.0">Brice Francois(6) set new best for sector 2</Sector>
+<Sector et="1466.0">Jonas Fischer(15) set new best for sector 2</Sector>
+<Sector et="1466.0">Fernando Sanchez(2) set new best for sector 2</Sector>
+<Sector et="1466.0">Andrey SHkoDA(20) set new best for sector 2</Sector>
+<Score et="1468.0">Fernando Sanchez(2) lap=13 point=1 t=36.899 et=1467.900</Score>
+<Score et="1479.8">Theo Saunders(1) lap=13 point=1 t=36.515 et=1479.740</Score>
+<Score et="1480.5">Andrey SHkoDA(20) lap=13 point=0 t=103.229 et=1480.400</Score>
+<Score et="1481.4">Jasper Adams(4) lap=13 point=1 t=36.809 et=1481.320</Score>
+<Score et="1482.3">Markus Doerschmidt(3) lap=13 point=0 t=101.432 et=1482.280</Score>
+<Score et="1483.8">Lorenzo Azzoni(11) lap=13 point=1 t=36.094 et=1483.720</Score>
+<Score et="1486.0">Lewis Edmondson(17) lap=13 point=1 t=36.434 et=1485.880</Score>
+<Score et="1487.7">Jan 295(7) lap=13 point=1 t=-1.000 et=1487.680</Score>
+<Score et="1488.9">Brice Francois(6) lap=13 point=1 t=36.875 et=1488.800</Score>
+<Score et="1488.9">Stefan Tapper(14) lap=13 point=1 t=36.474 et=1488.925</Score>
+<Sector et="1489.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1489.3">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1489.4">Lewis Edmondson(17) set new best for sector 3</Sector>
+<Sector et="1489.4">Clement Rousseaux(12) set new best for sector 3</Sector>
+<Sector et="1489.4">Markus Doerschmidt(3) set new best for sector 3</Sector>
+<Sector et="1489.4">Vincent Delcoigne(8) set new best for sector 3</Sector>
+<Sector et="1489.4">Luan Lindlau(16) set new best for sector 3</Sector>
+<Sector et="1489.4">Jan 295(7) set new best for sector 3</Sector>
+<Sector et="1489.4">Lorenzo Azzoni(11) set new best for sector 3</Sector>
+<Sector et="1489.4">Theo Saunders(1) set new best for sector 3</Sector>
+<Sector et="1489.4">Antoine Regnier(0) set new best for sector 3</Sector>
+<Sector et="1489.4">Jasper Adams(4) set new best for sector 3</Sector>
+<Sector et="1489.4">Brice Francois(6) set new best for sector 3</Sector>
+<Score et="1489.4">TANO GIOVINAZZI(19) lap=13 point=2 t=63.570 et=1489.280</Score>
+<Sector et="1489.4">TANO GIOVINAZZI(19) set new best for sector 3</Sector>
+<Sector et="1489.5">Fernando Sanchez(2) set new best for sector 3</Sector>
+<Sector et="1489.5">Jonas Fischer(15) set new best for sector 3</Sector>
+<Sector et="1489.5">Andrey SHkoDA(20) set new best for sector 3</Sector>
+<Score et="1492.8">Antoine Regnier(0) lap=13 point=2 t=63.063 et=1492.740</Score>
+<Score et="1496.1">Fernando Sanchez(2) lap=13 point=2 t=65.000 et=1496.000</Score>
+<Score et="1496.8">Jonas Fischer(15) lap=13 point=1 t=36.900 et=1496.700</Score>
+<Score et="1497.6">Luan Lindlau(16) lap=13 point=1 t=37.366 et=1497.480</Score>
+<Score et="1498.6">Vincent Delcoigne(8) lap=13 point=1 t=37.501 et=1498.520</Score>
+<Score et="1500.5">Clement Rousseaux(12) lap=13 point=1 t=36.601 et=1500.480</Score>
+<Score et="1506.9">Theo Saunders(1) lap=13 point=2 t=63.594 et=1506.820</Score>
+<Score et="1508.6">Jasper Adams(4) lap=13 point=2 t=64.010 et=1508.520</Score>
+<Score et="1510.5">Lorenzo Azzoni(11) lap=13 point=2 t=62.754 et=1510.380</Score>
+<Score et="1513.2">Lewis Edmondson(17) lap=13 point=2 t=63.656 et=1513.100</Score>
+<Score et="1515.4">Jan 295(7) lap=13 point=2 t=-1.000 et=1515.340</Score>
+<Score et="1516.4">Brice Francois(6) lap=13 point=2 t=64.384 et=1516.300</Score>
+<Score et="1516.7">Stefan Tapper(14) lap=13 point=2 t=64.236 et=1516.687</Score>
+<Score et="1517.4">Andrey SHkoDA(20) lap=13 point=1 t=36.899 et=1517.300</Score>
+<Score et="1519.4">Markus Doerschmidt(3) lap=13 point=1 t=37.077 et=1519.340</Score>
+<Score et="1524.1">Jonas Fischer(15) lap=13 point=2 t=64.215 et=1524.020</Score>
+<Score et="1525.3">Luan Lindlau(16) lap=13 point=2 t=65.043 et=1525.160</Score>
+<Score et="1526.2">Checkered for TANO GIOVINAZZI, laps=14/2147483647, endET=1526.079956/1438.462524, crossedAfterTime=0</Score>
+<Score et="1526.2">TANO GIOVINAZZI(19) lap=14 point=0 t=100.365 et=1526.080</Score>
+<Score et="1526.6">Vincent Delcoigne(8) lap=13 point=2 t=65.484 et=1526.520</Score>
+<Score et="1527.6">Clement Rousseaux(12) lap=13 point=2 t=63.583 et=1527.460</Score>
+<Score et="1529.7">Antoine Regnier(0) lap=14 point=0 t=99.940 et=1529.600</Score>
+<Score et="1532.9">Fernando Sanchez(2) lap=14 point=0 t=101.811 et=1532.800</Score>
+<Score et="1544.4">Theo Saunders(1) lap=14 point=0 t=101.041 et=1544.280</Score>
+<Score et="1544.7">Andrey SHkoDA(20) lap=13 point=2 t=64.254 et=1544.640</Score>
+<Score et="1546.2">Jasper Adams(4) lap=14 point=0 t=101.545 et=1546.040</Score>
+<Score et="1546.9">Markus Doerschmidt(3) lap=13 point=2 t=64.524 et=1546.800</Score>
+<Score et="1550.4">Lewis Edmondson(17) lap=14 point=0 t=100.830 et=1550.260</Score>
+<Score et="1552.8">Jan 295(7) lap=14 point=0 t=-1.000 et=1552.680</Score>
+<Score et="1553.2">Brice Francois(6) lap=14 point=0 t=101.169 et=1553.100</Score>
+<Score et="1553.6">Stefan Tapper(14) lap=14 point=0 t=101.146 et=1553.597</Score>
+<Score et="1555.5">Lorenzo Azzoni(11) lap=14 point=0 t=107.798 et=1555.420</Score>
+<Score et="1561.2">Jonas Fischer(15) lap=14 point=0 t=101.323 et=1561.120</Score>
+<Score et="1562.5">Luan Lindlau(16) lap=14 point=0 t=102.296 et=1562.400</Score>
+<Score et="1564.4">Vincent Delcoigne(8) lap=14 point=0 t=103.322 et=1564.340</Score>
+<Score et="1564.4">Clement Rousseaux(12) lap=14 point=0 t=-1.000 et=1564.380</Score>
+<Score et="1583.9">Andrey SHkoDA(20) lap=14 point=0 t=103.318 et=1583.720</Score>
+<Score et="1584.3">Markus Doerschmidt(3) lap=14 point=0 t=101.918 et=1584.200</Score>
+</Stream>
+<FormationAndStart>1</FormationAndStart>
+<MostLapsCompleted>14</MostLapsCompleted>
+<Driver>
+<Name>Antoine Regnier</Name>
+<Connected>1</Connected>
+<VehFile>16_PROTON9F4BBEF5.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #16:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>16</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>4</GridPos>
+<Position>2</Position>
+<ClassGridPos>4</ClassGridPos>
+<ClassPosition>2</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="2" et="118.4625" s1="42.6988" s2="27.0139" s3="36.6612" topspeed="243.24" fcompound="0,Soft" rcompound="0,Soft">106.3739</Lap>
+<Lap num="2" p="2" et="224.8400" s1="35.8350" s2="26.7711" s3="36.5505" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.1566</Lap>
+<Lap num="3" p="2" et="324.0000" s1="35.9713" s2="26.6654" s3="36.4084" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.0450</Lap>
+<Lap num="4" p="2" et="423.0400" s1="35.8849" s2="26.8091" s3="36.6812" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.3752</Lap>
+<Lap num="5" p="2" et="522.4200" s1="36.2250" s2="27.2470" s3="36.5078" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.9798</Lap>
+<Lap num="6" p="3" et="622.4000" s1="36.4063" s2="26.9800" s3="43.0462" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">106.4325</Lap>
+<Lap num="7" p="3" et="728.8400" s1="35.9526" s2="26.7404" s3="36.9858" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">99.6788</Lap>
+<Lap num="8" p="3" et="828.5200" s1="36.1025" s2="27.1104" s3="36.8778" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">100.0908</Lap>
+<Lap num="9" p="3" et="928.6000" s1="36.0146" s2="27.1014" s3="36.7369" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.8529</Lap>
+<Lap num="10" p="3" et="1028.4600" s1="36.1348" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.8818</Lap>
+<Lap num="11" p="3" et="1128.3400" s1="36.0300" s2="26.9493" s3="37.7074" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.6868</Lap>
+<Lap num="12" p="2" et="1229.0200" s1="36.7413" s2="27.1556" s3="36.7230" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.6200</Lap>
+<Lap num="13" p="2" et="1329.6400" s1="36.0648" s2="26.9286" s3="37.0294" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.0228</Lap>
+<Lap num="14" p="2" et="1429.6600" s1="36.1462" s2="26.9171" s3="36.8770" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.9403</Lap>
+<BestLapTime>99.0450</BestLapTime>
+<FinishTime>1411.1375</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,ABS=2,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>TANO GIOVINAZZI</Name>
+<Connected>1</Connected>
+<VehFile>21_AFCORSEFDF53F44.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #21:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>21</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>3</GridPos>
+<Position>1</Position>
+<ClassGridPos>3</ClassGridPos>
+<ClassPosition>1</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="1" et="118.4625" s1="42.2270" s2="26.6899" s3="36.3967" topspeed="246.39" fcompound="0,Soft" rcompound="0,Soft">105.3136</Lap>
+<Lap num="2" p="1" et="223.7800" s1="36.0374" s2="26.7789" s3="36.3651" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.1814</Lap>
+<Lap num="3" p="1" et="322.9600" s1="35.8559" s2="26.6523" s3="36.7149" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.2231</Lap>
+<Lap num="4" p="1" et="422.2000" s1="36.2755" s2="26.6330" s3="36.6121" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.5206</Lap>
+<Lap num="5" p="1" et="521.7200" s1="36.4068" s2="26.7615" s3="36.4252" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.5935</Lap>
+<Lap num="6" p="1" et="621.3000" s1="36.7831" s2="27.4352" s3="36.9313" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.1496</Lap>
+<Lap num="7" p="1" et="722.4600" s1="36.5516" s2="27.2012" s3="36.7233" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.4761</Lap>
+<Lap num="8" p="1" et="822.9400" s1="36.0540" s2="27.0289" s3="36.6168" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.6996</Lap>
+<Lap num="9" p="1" et="922.6200" s1="36.4297" s2="27.1689" s3="36.5908" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.1893</Lap>
+<Lap num="10" p="1" et="1022.8200" s1="36.2106" s2="26.8783" s3="36.5188" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.6077</Lap>
+<Lap num="11" p="1" et="1122.4200" s1="36.4006" s2="26.8885" s3="37.1113" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.4005</Lap>
+<Lap num="12" p="1" et="1222.8199" s1="36.2236" s2="27.9301" s3="36.6808" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.8345</Lap>
+<Lap num="13" p="1" et="1323.6600" s1="37.3136" s2="27.3519" s3="37.3926" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">102.0581</Lap>
+<Lap num="14" p="1" et="1425.7200" s1="36.5187" s2="27.0509" s3="36.7957" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">100.3652</Lap>
+<BestLapTime>99.1814</BestLapTime>
+<FinishTime>1407.6174</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Lorenzo Azzoni</Name>
+<Connected>1</Connected>
+<VehFile>85_IRONDAM1563682E.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Iron Dames #85:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>85</CarNumber>
+<TeamName>Iron Dames</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>1</GridPos>
+<Position>10</Position>
+<ClassGridPos>1</ClassGridPos>
+<ClassPosition>10</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="16" et="118.4625" s1="51.4826" s2="26.9269" s3="37.4140" topspeed="243.69" fcompound="0,Soft" rcompound="0,Soft">115.8236</Lap>
+<Lap num="2" p="16" et="234.3000" s1="36.0572" s2="27.0671" s3="36.8018" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.9262</Lap>
+<Lap num="3" p="10" et="334.2200" s1="35.8975" s2="27.2054" s3="37.1083" topspeed="268.46" fcompound="0,Soft" rcompound="0,Soft">100.2111</Lap>
+<Lap num="4" p="6" et="434.4400" s1="36.6438" s2="28.2668" s3="36.8108" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">101.7213</Lap>
+<Lap num="5" p="14" et="536.1600" s1="36.0746" s2="27.1605" s3="43.8106" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">107.0457</Lap>
+<Lap num="6" p="14" et="643.2000" s1="36.5005" s2="26.5054" s3="37.0145" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.0205</Lap>
+<Lap num="7" p="13" et="743.2200" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="8" p="13" et="844.4400" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="9" p="11" et="944.7200" s1="36.7020" s2="28.0970" s3="36.9526" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">101.7516</Lap>
+<Lap num="10" p="10" et="1046.4800" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="11" p="7" et="1147.0000" s1="36.2443" s2="28.3186" s3="36.7542" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">101.3170</Lap>
+<Lap num="12" p="6" et="1248.3199" s1="35.8816" s2="27.1494" s3="36.7828" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.8138</Lap>
+<Lap num="13" p="6" et="1348.1200" s1="35.8871" s2="27.0826" s3="36.5238" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">99.4935</Lap>
+<Lap num="14" p="10" et="1447.6200" s1="36.0936" s2="26.6599" s3="45.0441" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">107.7976</Lap>
+<BestLapTime>99.4935</BestLapTime>
+<FinishTime>1436.9575</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Emmanuel CARDENAS</Name>
+<Connected>1</Connected>
+<VehFile>86_GRRACIN56C59091.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>GR Racing #86:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>86</CarNumber>
+<TeamName>GR Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>5</GridPos>
+<Position>19</Position>
+<ClassGridPos>5</ClassGridPos>
+<ClassPosition>19</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="4" et="118.4625" s1="43.5122" s2="27.1658" s3="36.9075" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">107.5856</Lap>
+<Lap num="2" p="4" et="226.0600" s1="36.0776" s2="26.9908" s3="36.6169" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.6853</Lap>
+<Lap num="3" p="17" et="325.7400" s1="36.0349" s2="27.0312" s3="64.7421" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft" pit="1">127.8082</Lap>
+<BestLapTime>99.6853</BestLapTime>
+<Laps>3</Laps>
+<Pitstops>1</Pitstops>
+<FinishStatus>DNF</FinishStatus>
+<DNFReason>Suspension</DNFReason>
+<ControlAndAids startLap="1" endLap="3">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Theo Saunders</Name>
+<Connected>1</Connected>
+<VehFile>56_REXY8A686597.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Project 1 - AO #56:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>56</CarNumber>
+<TeamName>Project 1 - AO</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>7</GridPos>
+<Position>4</Position>
+<ClassGridPos>7</ClassGridPos>
+<ClassPosition>4</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="6" et="118.4625" s1="44.0571" s2="27.5889" s3="37.2796" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">108.9256</Lap>
+<Lap num="2" p="6" et="227.4000" s1="35.9270" s2="26.8537" s3="36.9749" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.7556</Lap>
+<Lap num="3" p="5" et="327.1600" s1="35.8990" s2="26.9887" s3="36.9631" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">99.8508</Lap>
+<Lap num="4" p="10" et="427.0000" s1="35.9803" s2="37.5049" s3="37.1769" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">110.6620</Lap>
+<Lap num="5" p="9" et="537.6600" s1="36.2448" s2="28.0382" s3="37.3801" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.6630</Lap>
+<Lap num="6" p="8" et="639.3200" s1="36.3124" s2="27.2546" s3="37.0515" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">100.6185</Lap>
+<Lap num="7" p="8" et="739.9400" s1="36.3853" s2="27.3358" s3="36.7835" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.5046</Lap>
+<Lap num="8" p="7" et="840.4600" s1="36.2271" s2="27.1960" s3="37.0077" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.4308</Lap>
+<Lap num="9" p="6" et="940.8800" s1="35.9787" s2="27.1762" s3="36.8996" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.0545</Lap>
+<Lap num="10" p="5" et="1040.9399" s1="36.2941" s2="26.9984" s3="36.9889" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.2814</Lap>
+<Lap num="11" p="4" et="1141.2200" s1="36.4208" s2="27.0132" s3="36.9697" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.4037</Lap>
+<Lap num="12" p="4" et="1241.6200" s1="36.6801" s2="27.1101" s3="37.4325" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">101.2227</Lap>
+<Lap num="13" p="4" et="1342.8400" s1="36.5369" s2="26.9263" s3="36.9205" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.3837</Lap>
+<Lap num="14" p="4" et="1443.2200" s1="36.5148" s2="27.0797" s3="37.4465" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">101.0410</Lap>
+<BestLapTime>99.7556</BestLapTime>
+<FinishTime>1425.8175</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Valdemar Hounisen</Name>
+<Connected>1</Connected>
+<VehFile>86_GRRACIN56C59091.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>GR Racing #86:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>86</CarNumber>
+<TeamName>GR Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>2</GridPos>
+<Position>17</Position>
+<ClassGridPos>2</ClassGridPos>
+<ClassPosition>17</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="17" et="118.4625" s1="52.4485" s2="26.8329" s3="36.9826" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">116.2640</Lap>
+<Lap num="2" p="17" et="234.7400" s1="36.2374" s2="27.3139" s3="36.5695" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.1208</Lap>
+<Lap num="3" p="12" et="334.8600" s1="36.4622" s2="27.4702" s3="36.5340" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.4664</Lap>
+<Lap num="4" p="9" et="435.3200" s1="36.4977" s2="27.8718" s3="37.5583" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">101.9279</Lap>
+<Lap num="5" p="6" et="537.2600" s1="36.2926" topspeed="259.45" fcompound="0,Soft" rcompound="0,Soft">100.4222</Lap>
+<Lap num="6" p="6" et="637.6800" s1="35.9014" s2="27.0690" s3="36.8644" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">99.8348</Lap>
+<Lap num="7" p="5" et="737.5000" s1="36.2385" s2="27.1768" s3="36.6548" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.0701</Lap>
+<Lap num="8" p="4" et="837.5800" s1="35.8979" s2="27.8112" s3="37.3102" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">101.0193</Lap>
+<Lap num="9" p="7" et="938.6000" s1="39.9676" s2="26.8264" s3="36.6497" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">103.4437</Lap>
+<Lap num="10" p="16" et="1042.0400" s1="36.8635" s2="26.8385" s3="60.2363" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft" pit="1">123.9384</Lap>
+<BestLapTime>99.8348</BestLapTime>
+<Laps>10</Laps>
+<Pitstops>1</Pitstops>
+<FinishStatus>DNF</FinishStatus>
+<DNFReason>Suspension</DNFReason>
+<ControlAndAids startLap="1" endLap="10">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Fernando Sanchez</Name>
+<Connected>1</Connected>
+<VehFile>83_AFCORSE7FBCECA5.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #83:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>83</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>6</GridPos>
+<Position>3</Position>
+<ClassGridPos>6</ClassGridPos>
+<ClassPosition>3</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="3" et="118.4625" s1="43.3038" s2="26.9787" s3="36.5954" topspeed="246.84" fcompound="0,Soft" rcompound="0,Soft">106.8779</Lap>
+<Lap num="2" p="3" et="225.3600" s1="36.3703" s2="27.1034" s3="36.3792" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.8530</Lap>
+<Lap num="3" p="3" et="325.2000" s1="36.1861" s2="26.8777" s3="36.9139" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.9778</Lap>
+<Lap num="4" p="3" et="425.1800" s1="36.3772" s2="27.0889" s3="36.4408" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.9070</Lap>
+<Lap num="5" p="3" et="525.0800" s1="36.3135" s2="27.0583" s3="36.5466" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.9183</Lap>
+<Lap num="6" p="2" et="625.0000" s1="36.2433" s2="26.9102" s3="36.7979" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.9514</Lap>
+<Lap num="7" p="2" et="724.9600" s1="36.4464" s2="27.0995" s3="36.7010" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.2469</Lap>
+<Lap num="8" p="2" et="825.2000" s1="36.2989" s2="27.0596" s3="36.6301" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.9886</Lap>
+<Lap num="9" p="2" et="925.2000" s1="36.4764" s2="27.1086" s3="36.7962" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.3812</Lap>
+<Lap num="10" p="2" et="1025.5800" s1="36.7097" s2="27.7305" s3="36.6948" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.1350</Lap>
+<Lap num="11" p="2" et="1126.7000" s1="36.5066" s2="27.7794" s3="37.6670" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.9530</Lap>
+<Lap num="12" p="3" et="1228.6600" s1="37.4297" s2="27.9166" s3="36.6316" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.9779</Lap>
+<Lap num="13" p="3" et="1330.6400" s1="36.5227" s2="27.0842" s3="36.7518" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.3588</Lap>
+<Lap num="14" p="3" et="1431.0000" s1="36.8987" s2="28.1016" s3="36.8105" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.8108</Lap>
+<BestLapTime>99.8530</BestLapTime>
+<FinishTime>1414.3375</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Jonas Fischer</Name>
+<Connected>1</Connected>
+<VehFile>33_CORVETT9BB51D89.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Corvette Racing #33:LM</VehName>
+<Category>WEC 2023, GTE, Corvette C8.R GTE</Category>
+<CarType>Corvette C8.R GTE</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>33</CarNumber>
+<TeamName>Corvette Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>8</GridPos>
+<Position>11</Position>
+<ClassGridPos>8</ClassGridPos>
+<ClassPosition>11</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="5" et="118.4625" s1="43.8005" s2="27.2125" s3="37.0401" topspeed="246.39" fcompound="0,Soft" rcompound="0,Soft">108.0531</Lap>
+<Lap num="2" p="5" et="226.5200" s1="36.2703" s2="26.8835" s3="36.9305" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">100.0843</Lap>
+<Lap num="3" p="4" et="326.6000" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="4" p="4" et="426.4000" s1="36.4083" s2="35.1149" s3="37.0269" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">108.5500</Lap>
+<Lap num="5" p="4" et="534.9600" s1="36.1716" s2="27.2717" s3="36.8328" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.2762</Lap>
+<Lap num="6" p="4" et="635.2200" s1="36.5861" s2="27.8973" s3="36.8970" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.3804</Lap>
+<Lap num="7" p="4" et="736.6000" s1="36.1781" s2="27.0084" s3="36.8318" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.0182</Lap>
+<Lap num="8" p="5" et="836.6200" s1="36.5084" s2="28.1845" s3="37.3288" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">102.0217</Lap>
+<Lap num="9" p="5" et="938.6400" s1="36.7715" s2="27.1613" s3="37.8911" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">101.8240</Lap>
+<Lap num="10" p="6" et="1040.4800" s1="37.1591" s2="27.4658" s3="36.9946" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">101.6195</Lap>
+<Lap num="11" p="13" et="1142.1000" s1="36.7090" s2="40.2271" s3="37.7063" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">114.6423</Lap>
+<Lap num="12" p="12" et="1256.7400" s1="36.7435" s2="27.5282" s3="37.4723" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.7440</Lap>
+<Lap num="13" p="11" et="1358.4800" s1="36.4424" s2="27.2983" s3="37.5833" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.3240</Lap>
+<Lap num="14" p="11" et="1459.8000" s1="36.8997" s2="27.3149" s3="37.1085" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.3231</Lap>
+<BestLapTime>100.0182</BestLapTime>
+<FinishTime>1442.6575</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,Opposite,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Jasper Adams</Name>
+<Connected>1</Connected>
+<VehFile>55_GMB2DFFBF6F.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>GMB Motorsport #55:LM</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>55</CarNumber>
+<TeamName>GMB Motorsport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>14</GridPos>
+<Position>5</Position>
+<ClassGridPos>14</ClassGridPos>
+<ClassPosition>5</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="9" et="118.4625" s1="45.7169" s2="27.6628" s3="37.1936" topspeed="245.49" fcompound="0,Soft" rcompound="0,Soft">110.5733</Lap>
+<Lap num="2" p="9" et="229.0400" s1="36.6789" s2="27.8188" s3="37.0855" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.5833</Lap>
+<Lap num="3" p="7" et="330.6200" s1="36.4665" s2="27.5015" s3="38.2387" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">102.2066</Lap>
+<Lap num="4" p="5" et="432.8400" s1="37.4200" s2="28.4552" s3="37.0887" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">102.9639</Lap>
+<Lap num="5" p="5" et="535.8000" s1="36.1522" s2="27.0999" s3="37.0035" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">100.2556</Lap>
+<Lap num="6" p="5" et="636.0600" s1="36.3449" s2="27.6455" s3="37.0097" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">101.0001</Lap>
+<Lap num="7" p="6" et="737.0600" s1="36.4570" s2="28.0290" s3="37.2073" topspeed="267.11" fcompound="0,Soft" rcompound="0,Soft">101.6933</Lap>
+<Lap num="8" p="6" et="838.7400" s1="36.6208" s2="27.2010" s3="36.8660" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">100.6879</Lap>
+<Lap num="9" p="4" et="939.4400" s1="36.3823" s2="27.3079" s3="37.3358" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">101.0259</Lap>
+<Lap num="10" p="4" et="1040.4600" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="11" p="5" et="1141.2200" s1="36.9614" s2="27.1538" s3="37.1213" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.2366</Lap>
+<Lap num="12" p="5" et="1242.4600" s1="36.5444" s2="27.2201" s3="36.9326" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">100.6971</Lap>
+<Lap num="13" p="5" et="1343.1600" s1="36.7134" s2="27.1917" s3="37.4452" topspeed="268.01" fcompound="0,Soft" rcompound="0,Soft">101.3502</Lap>
+<Lap num="14" p="5" et="1444.5000" s1="36.8088" s2="27.2007" s3="37.5353" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">101.5448</Lap>
+<BestLapTime>100.2556</BestLapTime>
+<FinishTime>1427.5775</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,ABS=2,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Clement Rousseaux</Name>
+<Connected>1</Connected>
+<VehFile>33_CORVETT9BB51D89.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Corvette Racing #33:LM</VehName>
+<Category>WEC 2023, GTE, Corvette C8.R GTE</Category>
+<CarType>Corvette C8.R GTE</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>33</CarNumber>
+<TeamName>Corvette Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>20</GridPos>
+<Position>14</Position>
+<ClassGridPos>20</ClassGridPos>
+<ClassPosition>14</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="18" et="118.4625" s1="48.4661" s2="29.4420" s3="39.1727" topspeed="245.49" fcompound="0,Soft" rcompound="0,Soft">117.0808</Lap>
+<Lap num="2" p="18" et="235.5600" s1="36.8072" s2="26.9863" s3="47.5076" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">111.3011</Lap>
+<Lap num="3" p="16" et="346.8600" s1="36.6954" s2="27.4201" s3="36.7459" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.8615</Lap>
+<Lap num="4" p="16" et="447.7200" s1="36.6046" s2="27.2869" s3="36.7974" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.6889</Lap>
+<Lap num="5" p="15" et="548.4000" s1="36.6307" s2="27.0833" s3="36.7192" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.4332</Lap>
+<Lap num="6" p="15" et="648.8400" s1="36.6941" s2="27.1510" s3="42.5463" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">106.3914</Lap>
+<Lap num="7" p="15" et="755.2200" s1="36.9615" s2="27.1382" s3="37.2924" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.3921</Lap>
+<Lap num="8" p="15" et="856.6200" s1="36.5497" s2="27.1909" s3="37.2765" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.0171</Lap>
+<Lap num="9" p="15" et="957.6400" s1="37.4189" s2="27.2568" s3="37.1087" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.7845</Lap>
+<Lap num="10" p="14" et="1059.4200" s1="36.9147" s2="27.4513" s3="37.0767" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.4426</Lap>
+<Lap num="11" p="14" et="1160.8600" s1="36.7357" s2="27.2448" s3="36.9524" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.9329</Lap>
+<Lap num="12" p="14" et="1261.8000" s1="36.7670" s2="27.1671" s3="36.7590" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.6931</Lap>
+<Lap num="13" p="14" et="1362.5000" s1="36.7416" s2="27.6738" s3="36.9738" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.3892</Lap>
+<Lap num="14" p="14" et="1463.8800" s1="36.6006" s2="26.9821" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.4332</BestLapTime>
+<FinishTime>1445.9175</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Luan Lindlau</Name>
+<Connected>1</Connected>
+<VehFile>57_KESSELLC54EE96D.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Kessel Racing #57:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>57</CarNumber>
+<TeamName>Kessel Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>17</GridPos>
+<Position>12</Position>
+<ClassGridPos>17</ClassGridPos>
+<ClassPosition>12</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="13" et="118.4625" s1="47.0496" s2="28.9136" s3="36.8296" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">112.7928</Lap>
+<Lap num="2" p="13" et="231.2600" s1="36.9510" s2="27.4435" s3="37.0398" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.4344</Lap>
+<Lap num="3" p="13" et="332.7000" s1="36.5232" s2="30.4577" s3="37.0590" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">104.0399</Lap>
+<Lap num="4" p="13" et="436.7400" s1="36.7120" s2="27.6245" s3="37.4058" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.7423</Lap>
+<Lap num="5" p="12" et="538.4800" s1="37.1930" s2="28.1186" s3="37.2131" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">102.5247</Lap>
+<Lap num="6" p="12" et="641.0000" s1="36.7711" s2="27.6593" s3="36.8953" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">101.3257</Lap>
+<Lap num="7" p="12" et="742.3400" s1="36.8801" s2="27.6971" s3="36.8438" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">101.4209</Lap>
+<Lap num="8" p="12" et="843.7600" s1="36.5720" s2="27.0599" s3="36.8447" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.4766</Lap>
+<Lap num="9" p="12" et="944.2200" s1="36.9938" s2="28.0891" s3="37.3022" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">102.3851</Lap>
+<Lap num="10" p="11" et="1046.6200" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="11" p="12" et="1147.7800" s1="36.5946" s2="27.6802" s3="42.1987" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">106.4735</Lap>
+<Lap num="12" p="11" et="1254.2400" s1="37.3905" s2="27.4358" s3="37.4510" topspeed="259.90" fcompound="0,Soft" rcompound="0,Soft">102.2773</Lap>
+<Lap num="13" p="12" et="1356.5200" s1="37.4365" s2="27.9161" s3="38.2334" topspeed="260.80" fcompound="0,Soft" rcompound="0,Soft">103.5861</Lap>
+<Lap num="14" p="12" et="1460.1200" s1="37.3656" s2="27.6779" s3="37.2528" topspeed="262.16" fcompound="0,Soft" rcompound="0,Soft">102.2963</Lap>
+<BestLapTime>100.4766</BestLapTime>
+<FinishTime>1443.9375</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Brice Francois</Name>
+<Connected>1</Connected>
+<VehFile>21_AFCORSEFDF53F44.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #21:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>21</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>19</GridPos>
+<Position>8</Position>
+<ClassGridPos>19</ClassGridPos>
+<ClassPosition>8</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="12" et="118.4625" s1="46.3565" s2="28.7663" s3="37.1267" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">112.2494</Lap>
+<Lap num="2" p="11" et="230.7200" s1="36.6490" s2="27.0855" s3="36.9523" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">100.6868</Lap>
+<Lap num="3" p="8" et="331.4000" s1="36.3976" s2="27.3031" s3="38.2502" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">101.9508</Lap>
+<Lap num="4" p="7" et="433.3600" s1="37.6132" s2="28.1255" s3="37.6261" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">103.3647</Lap>
+<Lap num="5" p="7" et="536.7200" s1="36.7220" s2="27.5891" s3="37.2743" topspeed="262.16" fcompound="0,Soft" rcompound="0,Soft">101.5854</Lap>
+<Lap num="6" p="7" et="638.3000" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="7" p="7" et="739.3400" s1="36.5879" s2="27.2332" s3="36.6561" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">100.4772</Lap>
+<Lap num="8" p="8" et="839.8200" s1="37.3932" s2="27.7981" s3="37.3318" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">102.5231</Lap>
+<Lap num="9" p="8" et="942.3400" s1="37.0195" s2="27.3411" s3="37.1204" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">101.4810</Lap>
+<Lap num="10" p="8" et="1043.8199" s1="37.4154" s2="27.4132" s3="36.7654" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">101.5940</Lap>
+<Lap num="11" p="9" et="1145.4200" s1="37.3601" s2="29.0763" s3="37.5056" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">103.9420</Lap>
+<Lap num="12" p="9" et="1249.3600" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="13" p="9" et="1350.7400" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="14" p="8" et="1451.9200" s1="36.8752" s2="27.5087" s3="36.7847" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">101.1686</Lap>
+<BestLapTime>100.4772</BestLapTime>
+<FinishTime>1434.6375</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Vincent Delcoigne</Name>
+<Connected>1</Connected>
+<VehFile>72_TFSPORTECC3A2D4.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>TF Sport #72:LM</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>72</CarNumber>
+<TeamName>TF Sport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>9</GridPos>
+<Position>13</Position>
+<ClassGridPos>9</ClassGridPos>
+<ClassPosition>13</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="8" et="118.4625" s1="44.6005" s2="27.6115" s3="37.5404" topspeed="248.64" fcompound="0,Soft" rcompound="0,Soft">109.7525</Lap>
+<Lap num="2" p="7" et="228.2200" s1="36.7992" s2="27.0447" s3="37.0665" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">100.9104</Lap>
+<Lap num="3" p="6" et="329.1400" s1="37.2303" s2="27.4614" s3="38.9961" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">103.6878</Lap>
+<Lap num="4" p="11" et="432.8200" s1="37.9097" s2="28.1762" s3="39.2184" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">105.3044</Lap>
+<Lap num="5" p="11" et="538.1200" s1="37.8621" s2="27.5726" s3="37.0175" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">102.4522</Lap>
+<Lap num="6" p="11" et="640.5800" s1="36.4915" s2="27.8267" s3="37.0414" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">101.3596</Lap>
+<Lap num="7" p="11" et="741.9400" s1="36.6913" s2="27.2191" s3="37.0596" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.9701</Lap>
+<Lap num="8" p="11" et="842.9000" s1="36.6301" s2="27.3040" s3="36.6083" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.5423</Lap>
+<Lap num="9" p="13" et="943.4600" s1="37.4711" s2="28.7514" s3="38.2717" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">104.4943</Lap>
+<Lap num="10" p="12" et="1047.9399" s1="36.3687" s2="27.1532" s3="36.9656" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.4874</Lap>
+<Lap num="11" p="11" et="1148.4399" s1="36.4954" s2="27.7581" s3="40.9708" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">105.2242</Lap>
+<Lap num="12" p="13" et="1253.6600" s1="38.4111" s2="28.4733" s3="38.0900" topspeed="259.00" fcompound="0,Soft" rcompound="0,Soft">104.9744</Lap>
+<Lap num="13" p="13" et="1358.6400" s1="37.3385" s2="27.6541" s3="37.4023" topspeed="259.00" fcompound="0,Soft" rcompound="0,Soft">102.3949</Lap>
+<Lap num="14" p="13" et="1461.0200" s1="37.5010" s2="27.9835" s3="37.8370" topspeed="259.00" fcompound="0,Soft" rcompound="0,Soft">103.3215</Lap>
+<BestLapTime>100.4874</BestLapTime>
+<FinishTime>1445.8774</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Markus Doerschmidt</Name>
+<Connected>1</Connected>
+<VehFile>54_AFCORSEB48DBC46.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #54:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>54</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>12</GridPos>
+<Position>16</Position>
+<ClassGridPos>12</ClassGridPos>
+<ClassPosition>16</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="19" et="118.4625" topspeed="239.18" fcompound="1,Medium" rcompound="1,Medium" pit="1">--.----</Lap>
+<Lap num="2" p="20" et="241.5800" s1="61.5950" s2="27.4777" s3="36.8382" topspeed="245.04" fcompound="1,Medium" rcompound="1,Medium">125.9108</Lap>
+<Lap num="3" p="19" et="367.5000" s1="36.4826" s2="27.4401" s3="36.6132" topspeed="264.86" fcompound="1,Medium" rcompound="1,Medium">100.5359</Lap>
+<Lap num="4" p="17" et="468.0400" s1="38.5836" s2="27.6582" s3="37.1556" topspeed="266.21" fcompound="1,Medium" rcompound="1,Medium">103.3974</Lap>
+<Lap num="5" p="17" et="571.4400" s1="36.6830" s2="27.6283" s3="36.9998" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.3111</Lap>
+<Lap num="6" p="17" et="672.7400" s1="36.7531" s2="27.3091" s3="36.8592" topspeed="265.31" fcompound="1,Medium" rcompound="1,Medium">100.9213</Lap>
+<Lap num="7" p="17" et="773.6600" s1="36.6484" s2="27.5507" s3="37.0049" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.2040</Lap>
+<Lap num="8" p="17" et="874.8600" s1="36.5721" s2="27.6505" s3="36.8288" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.0514</Lap>
+<Lap num="9" p="17" et="975.9200" s1="36.6708" s2="27.1784" s3="36.6949" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">100.5442</Lap>
+<Lap num="10" p="17" et="1076.4600" s1="36.7063" s2="27.4471" s3="36.9714" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.1249</Lap>
+<Lap num="11" p="16" et="1177.5800" s1="36.7909" s2="27.4401" s3="37.0508" topspeed="266.21" fcompound="1,Medium" rcompound="1,Medium">101.2817</Lap>
+<Lap num="12" p="16" et="1278.8600" s1="36.9424" s2="27.8232" s3="37.2045" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.9701</Lap>
+<Lap num="13" p="16" et="1380.8400" s1="36.7361" s2="27.5013" s3="37.1948" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.4323</Lap>
+<Lap num="14" p="16" et="1482.2800" s1="37.0771" s2="27.4471" s3="37.3940" topspeed="265.76" fcompound="1,Medium" rcompound="1,Medium">101.9183</Lap>
+<BestLapTime>100.5359</BestLapTime>
+<FinishTime>1465.7374</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Jan 295</Name>
+<Connected>1</Connected>
+<VehFile>911_PROTON8153440A.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #911:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>911</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>16</GridPos>
+<Position>7</Position>
+<ClassGridPos>16</ClassGridPos>
+<ClassPosition>7</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="14" et="118.4625" s1="47.4763" s2="29.7334" s3="36.8049" topspeed="244.14" fcompound="0,Soft" rcompound="0,Soft">114.0145</Lap>
+<Lap num="2" p="14" et="232.4800" s1="36.2926" s2="27.3719" s3="36.9653" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">100.6298</Lap>
+<Lap num="3" p="9" et="333.1200" s1="36.5460" s2="27.2508" s3="37.1803" topspeed="262.16" fcompound="0,Soft" rcompound="0,Soft">100.9771</Lap>
+<Lap num="4" p="8" et="434.1000" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="5" p="8" et="537.2400" s1="36.9141" s2="27.6285" s3="37.2699" topspeed="259.90" fcompound="0,Soft" rcompound="0,Soft">101.8125</Lap>
+<Lap num="6" p="9" et="639.0600" s1="37.0997" s2="27.1655" s3="36.9763" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">101.2414</Lap>
+<Lap num="7" p="9" et="740.3000" s1="36.3877" s2="27.3796" s3="36.7859" topspeed="262.16" fcompound="0,Soft" rcompound="0,Soft">100.5533</Lap>
+<Lap num="8" p="10" et="840.8600" s1="36.4298" s2="27.3594" s3="38.7441" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">102.5333</Lap>
+<Lap num="9" p="10" et="943.4000" s1="36.8018" s2="27.6119" s3="37.1817" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">101.5953</Lap>
+<Lap num="10" p="9" et="1044.9800" s1="36.6675" s2="27.5439" s3="37.0492" topspeed="260.35" fcompound="0,Soft" rcompound="0,Soft">101.2606</Lap>
+<Lap num="11" p="8" et="1146.2400" s1="36.2517" s2="28.6416" s3="37.5098" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">102.4031</Lap>
+<Lap num="12" p="8" et="1248.6400" s1="36.3774" s2="27.6206" s3="36.9640" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">100.9620</Lap>
+<Lap num="13" p="8" et="1349.6200" topspeed="260.80" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="14" p="7" et="1451.2600" topspeed="261.26" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.5533</BestLapTime>
+<FinishTime>1434.2175</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,ABS=1,Clutch</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Andrey SHkoDA</Name>
+<Connected>1</Connected>
+<VehFile>16_PROTON9F4BBEF5.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #16:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>16</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>15</GridPos>
+<Position>15</Position>
+<ClassGridPos>15</ClassGridPos>
+<ClassPosition>15</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="11" et="118.4625" s1="46.2092" s2="28.4261" s3="37.4520" topspeed="242.79" fcompound="0,Soft" rcompound="0,Soft">112.0873</Lap>
+<Lap num="2" p="12" et="230.5600" s1="37.1931" s2="27.5612" s3="36.8027" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">101.5571</Lap>
+<Lap num="3" p="15" et="332.1200" s1="36.7824" s2="32.0756" s3="43.8902" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">112.7482</Lap>
+<Lap num="4" p="15" et="444.8600" s1="36.4885" s2="27.2663" s3="37.0305" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">100.7853</Lap>
+<Lap num="5" p="16" et="545.6600" s1="36.4951" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">110.2236</Lap>
+<Lap num="6" p="16" et="655.8800" s1="37.5202" s2="28.3166" s3="37.3713" topspeed="262.16" fcompound="0,Soft" rcompound="0,Soft">103.2081</Lap>
+<Lap num="7" p="16" et="759.0800" s1="36.6871" s2="27.1024" s3="36.8795" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">100.6689</Lap>
+<Lap num="8" p="16" et="859.7600" s1="36.3962" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">101.5316</Lap>
+<Lap num="9" p="16" et="961.2800" s1="36.5140" s2="27.1649" s3="36.9862" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">100.6651</Lap>
+<Lap num="10" p="15" et="1061.9399" s1="36.3893" s2="27.2568" s3="37.3634" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">101.0095</Lap>
+<Lap num="11" p="15" et="1162.9600" s1="36.6283" s2="27.3551" s3="45.8363" topspeed="262.61" fcompound="0,Soft" rcompound="0,Soft">109.8197</Lap>
+<Lap num="12" p="15" et="1272.7800" s1="38.5204" s2="27.9656" s3="37.9017" topspeed="259.00" fcompound="0,Soft" rcompound="0,Soft">104.3877</Lap>
+<Lap num="13" p="15" et="1377.1600" s1="37.0254" s2="27.5745" s3="38.6292" topspeed="259.90" fcompound="0,Soft" rcompound="0,Soft">103.2290</Lap>
+<Lap num="14" p="15" et="1480.4000" s1="36.8987" s2="27.3549" s3="39.0646" topspeed="260.35" fcompound="0,Soft" rcompound="0,Soft">103.3181</Lap>
+<BestLapTime>100.6651</BestLapTime>
+<FinishTime>1465.2574</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,Clutch</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Stefan Tapper</Name>
+<Connected>1</Connected>
+<VehFile>16_PROTON9F4BBEF5.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #16:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>16</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>10</GridPos>
+<Position>9</Position>
+<ClassGridPos>10</ClassGridPos>
+<ClassPosition>9</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="10" et="118.4625" s1="46.0176" s2="27.9747" s3="37.2533" topspeed="245.06" fcompound="0,Soft" rcompound="0,Soft">111.2455</Lap>
+<Lap num="2" p="10" et="229.7080" s1="36.7792" s2="27.4088" s3="37.4867" topspeed="262.81" fcompound="0,Soft" rcompound="0,Soft">101.6747</Lap>
+<Lap num="3" p="14" et="331.3827" s1="36.9177" s2="33.4613" s3="37.7348" topspeed="261.89" fcompound="0,Soft" rcompound="0,Soft">108.1137</Lap>
+<Lap num="4" p="14" et="439.4964" s1="36.6309" s2="27.8337" s3="37.0807" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">101.5453</Lap>
+<Lap num="5" p="13" et="541.0417" s1="36.3687" s2="27.2161" s3="37.0945" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.6793</Lap>
+<Lap num="6" p="13" et="641.7209" s1="36.3662" s2="27.6410" s3="36.8048" topspeed="263.68" fcompound="0,Soft" rcompound="0,Soft">100.8120</Lap>
+<Lap num="7" p="14" et="742.5330" s1="36.8068" s2="27.9586" s3="37.3536" topspeed="266.72" fcompound="0,Soft" rcompound="0,Soft">102.1189</Lap>
+<Lap num="8" p="14" et="844.6519" s1="36.5450" s2="27.1021" s3="37.0821" topspeed="265.91" fcompound="0,Soft" rcompound="0,Soft">100.7292</Lap>
+<Lap num="9" p="14" et="945.3810" s1="36.6363" s2="28.0196" s3="38.0187" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">102.6746</Lap>
+<Lap num="10" p="13" et="1048.0557" s1="36.4707" s2="27.3925" s3="36.8713" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.7345</Lap>
+<Lap num="11" p="10" et="1148.7902" s1="36.4431" s2="27.7211" s3="38.0291" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">102.1932</Lap>
+<Lap num="12" p="10" et="1250.9834" s1="36.7765" s2="27.1725" s3="36.7786" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.7275</Lap>
+<Lap num="13" p="10" et="1351.7109" s1="36.3331" s2="27.2544" s3="37.1523" topspeed="263.72" fcompound="0,Soft" rcompound="0,Soft">100.7399</Lap>
+<Lap num="14" p="9" et="1452.4508" s1="36.4741" s2="27.7621" s3="36.9102" topspeed="264.52" fcompound="0,Soft" rcompound="0,Soft">101.1464</Lap>
+<BestLapTime>100.6793</BestLapTime>
+<FinishTime>1435.1346</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Lewis Edmondson</Name>
+<Connected>1</Connected>
+<VehFile>98_NORTHWE595AFE33.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Northwest AMR #98:PL</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>98</CarNumber>
+<TeamName>Northwest AMR</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>18</GridPos>
+<Position>6</Position>
+<ClassGridPos>18</ClassGridPos>
+<ClassPosition>6</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="15" et="118.4625" s1="47.7652" s2="29.6474" s3="37.3215" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">114.7341</Lap>
+<Lap num="2" p="15" et="233.2000" s1="36.4562" s2="27.5222" s3="36.8824" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.8608</Lap>
+<Lap num="3" p="11" et="334.0600" s1="36.7316" s2="27.0933" s3="36.9387" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">100.7636</Lap>
+<Lap num="4" p="12" et="434.8400" s1="36.8125" s2="29.0594" s3="37.4650" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">103.3369</Lap>
+<Lap num="5" p="10" et="538.1600" s1="36.7045" s2="27.9167" s3="37.0235" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">101.6447</Lap>
+<Lap num="6" p="10" et="639.8200" s1="36.8133" s2="27.7377" s3="36.9481" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">101.4990</Lap>
+<Lap num="7" p="10" et="741.3200" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="8" p="9" et="842.1800" s1="36.3699" s2="27.5854" s3="36.9185" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.8738</Lap>
+<Lap num="9" p="9" et="943.0600" s1="36.8381" s2="27.5803" s3="36.5432" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.9615</Lap>
+<Lap num="10" p="7" et="1044.0200" s1="36.6277" s2="27.2795" s3="37.2194" topspeed="268.01" fcompound="0,Soft" rcompound="0,Soft">101.1266</Lap>
+<Lap num="11" p="6" et="1145.1600" s1="36.3375" s2="28.2771" s3="37.4318" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">102.0464</Lap>
+<Lap num="12" p="7" et="1247.2000" s1="36.2281" s2="28.4338" s3="36.9004" topspeed="265.76" fcompound="0,Soft" rcompound="0,Soft">101.5624</Lap>
+<Lap num="13" p="7" et="1348.7600" s1="36.4758" s2="27.2450" s3="36.9591" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">100.6799</Lap>
+<Lap num="14" p="6" et="1449.4399" s1="36.4341" s2="27.2220" s3="37.1735" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">100.8296</Lap>
+<BestLapTime>100.6799</BestLapTime>
+<FinishTime>1431.7975</FinishTime>
+<Laps>14</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="14">PlayerControl,ABS=2,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Mikhail Deev</Name>
+<Connected>1</Connected>
+<VehFile>66_JMW36916B99.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>JMW Motorsport #66:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>66</CarNumber>
+<TeamName>JMW Motorsport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>13</GridPos>
+<Position>18</Position>
+<ClassGridPos>13</ClassGridPos>
+<ClassPosition>18</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="7" et="118.4625" s1="45.0083" s2="27.5511" s3="37.1144" topspeed="244.59" fcompound="0,Soft" rcompound="0,Soft">109.6738</Lap>
+<Lap num="2" p="8" et="228.1400" s1="37.3635" s2="27.3389" s3="36.8259" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">101.5283</Lap>
+<Lap num="3" p="18" et="329.6800" s1="36.4218" s2="27.1853" s3="66.0175" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft" pit="1">129.6247</Lap>
+<BestLapTime>101.5283</BestLapTime>
+<Laps>3</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>DNF</FinishStatus>
+<DNFReason>Accident</DNFReason>
+<ControlAndAids startLap="1" endLap="3">PlayerControl,ABS=1,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Arno Belot</Name>
+<Connected>1</Connected>
+<VehFile>86_GRRACIN80C016E1.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>GR Racing #86:EC</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>86</CarNumber>
+<TeamName>GR Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<GridPos>11</GridPos>
+<Position>20</Position>
+<ClassGridPos>11</ClassGridPos>
+<ClassPosition>20</ClassPosition>
+<LapRankIncludingDiscos>21</LapRankIncludingDiscos>
+<Lap num="1" p="20" et="118.4625" topspeed="243.24" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="19" et="241.6600" s1="36.4113" s2="27.1467" s3="43.8634" topspeed="261.71" fcompound="0,Soft" rcompound="0,Soft" pit="1">107.4213</Lap>
+<Lap num="3" p="20" et="349.0800" s1="73.3906" s2="27.0599" s3="36.7670" topspeed="244.14" fcompound="0,Soft" rcompound="0,Soft">137.2175</Lap>
+<Lap num="4" p="18" et="486.3000" s1="36.3133" s2="27.2120" s3="36.8047" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">100.3300</Lap>
+<Lap num="5" p="18" et="586.6200" s1="36.0790" s2="27.0638" s3="43.4021" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft" pit="1">106.5449</Lap>
+<Lap num="6" p="18" et="693.1600" s1="100.7423" s2="27.3640" s3="43.0247" topspeed="235.58" fcompound="0,Soft" rcompound="0,Soft" pit="1">171.1310</Lap>
+<BestLapTime>100.3300</BestLapTime>
+<Laps>6</Laps>
+<Pitstops>2</Pitstops>
+<FinishStatus>DQ</FinishStatus>
+<ControlAndAids startLap="1" endLap="6">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+</Race>
+</RaceResults>
+</rFactorXML>

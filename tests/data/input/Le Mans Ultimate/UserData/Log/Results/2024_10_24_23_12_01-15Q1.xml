@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rF [
+<!ENTITY rFEnt "rFactor Entity">
+]>
+<rFactorXML version="1.0">
+<RaceResults>
+<Setting>Multiplayer</Setting>
+<ServerName></ServerName>
+<ClientFuelVisible>0</ClientFuelVisible>
+<PlayerFile>Settings</PlayerFile>
+<DateTime>1729803678</DateTime>
+<TimeString>2024/10/24 23:01:18</TimeString>
+<Mod>S397_RC_Oh3VKoBq3dKx</Mod>
+<TrackVenue>Fuji Speedway</TrackVenue>
+<TrackCourse>Fuji Speedway</TrackCourse>
+<TrackEvent>6 Hours of Fuji</TrackEvent>
+<TrackData>C:\SteamLibrary\steamapps\common\Le Mans Ultimate\Installed\Locations\FujiWEC_2023\1.07\layoutFuji.mas</TrackData>
+<TrackLength>4535.8</TrackLength>
+<GameVersion>0.3000</GameVersion>
+<Dedicated>0</Dedicated>
+<ConnectionType upload="1000" download="8000">ADSL2+ 16M</ConnectionType>
+<RaceLaps>0</RaceLaps>
+<RaceTime>22</RaceTime>
+<MechFailRate>1</MechFailRate>
+<DamageMult>100</DamageMult>
+<FuelMult>1</FuelMult>
+<TireMult>1</TireMult>
+<VehiclesAllowed>*</VehiclesAllowed>
+<ParcFerme>3</ParcFerme>
+<FixedSetups>0</FixedSetups>
+<FreeSettings>63</FreeSettings>
+<FixedUpgrades>0</FixedUpgrades>
+<LimitedTires>1</LimitedTires>
+<Qualify>
+<DateTime>1729803859</DateTime>
+<TimeString>2024/10/24 23:04:19</TimeString>
+<Laps>2147483647</Laps>
+<Minutes>6</Minutes>
+<Stream>
+<Score et="61.4">Timo Inomy(0) lap=0 point=1 t=-1.000 et=61.319</Score>
+<Score et="61.4">Timo Inomy(0) lap=0 point=2 t=-1.000 et=61.319</Score>
+<Score et="61.4">Timo Inomy(0) lap=1 point=0 t=-1.000 et=61.319</Score>
+<Score et="67.1">Ewen Dobet(4) lap=0 point=1 t=-1.000 et=67.000</Score>
+<Score et="68.9">Cesar Serrador(15) lap=0 point=1 t=-1.000 et=68.840</Score>
+<Score et="69.4">Lorenzo Sasso(13) lap=0 point=1 t=-1.000 et=69.300</Score>
+<Score et="69.5">Tobias Rosendahl(3) lap=0 point=1 t=-1.000 et=69.420</Score>
+<Score et="69.7">damien kevin#2833(7) lap=0 point=1 t=-1.000 et=69.560</Score>
+<Score et="76.6">Stefan Tapper(10) lap=0 point=1 t=-1.000 et=76.621</Score>
+<Score et="77.0">Matthieu Gautron(11) lap=0 point=1 t=-1.000 et=76.980</Score>
+<Score et="77.9">Gaetano Agro(1) lap=0 point=1 t=-1.000 et=77.840</Score>
+<Score et="78.1">didier didco2000(8) lap=0 point=1 t=-1.000 et=77.960</Score>
+<Score et="79.3">Thiago Furini(6) lap=0 point=1 t=-1.000 et=79.040</Score>
+<Score et="81.5">Sergii Kitsenko(5) lap=0 point=1 t=-1.000 et=81.480</Score>
+<Score et="83.0">jack lang(9) lap=0 point=1 t=-1.000 et=82.860</Score>
+<Score et="83.4">Pasquale Diana(17) lap=0 point=1 t=-1.000 et=83.320</Score>
+<Score et="86.1">Manto Castilla(16) lap=0 point=1 t=-1.000 et=86.020</Score>
+<Score et="87.0">Vincent Delcoigne(2) lap=0 point=1 t=-1.000 et=86.960</Score>
+<Score et="95.1">Ewen Dobet(4) lap=0 point=2 t=-1.000 et=94.940</Score>
+<Score et="96.9">Cesar Serrador(15) lap=0 point=2 t=-1.000 et=96.860</Score>
+<Score et="97.0">damien kevin#2833(7) lap=0 point=2 t=-1.000 et=96.920</Score>
+<Score et="97.3">Tobias Rosendahl(3) lap=0 point=2 t=-1.000 et=97.160</Score>
+<Score et="97.4">Lorenzo Sasso(13) lap=0 point=2 t=-1.000 et=97.220</Score>
+<Score et="104.0">Stefan Tapper(10) lap=0 point=2 t=-1.000 et=103.957</Score>
+<Score et="105.3">Matthieu Gautron(11) lap=0 point=2 t=-1.000 et=105.180</Score>
+<Score et="105.9">Gaetano Agro(1) lap=0 point=2 t=-1.000 et=105.780</Score>
+<Score et="106.4">didier didco2000(8) lap=0 point=2 t=-1.000 et=106.280</Score>
+<Score et="106.9">Thiago Furini(6) lap=0 point=2 t=-1.000 et=106.680</Score>
+<Score et="109.1">Sergii Kitsenko(5) lap=0 point=2 t=-1.000 et=109.080</Score>
+<Score et="110.8">jack lang(9) lap=0 point=2 t=-1.000 et=110.740</Score>
+<Score et="111.1">Pasquale Diana(17) lap=0 point=2 t=-1.000 et=110.960</Score>
+<Score et="113.8">Manto Castilla(16) lap=0 point=2 t=-1.000 et=113.780</Score>
+<Score et="114.9">Vincent Delcoigne(2) lap=0 point=2 t=-1.000 et=114.800</Score>
+<Score et="127.8">Timo Inomy(0) lap=1 point=1 t=-1.000 et=127.760</Score>
+<Score et="132.5">Ewen Dobet(4) lap=1 point=0 t=-1.000 et=132.420</Score>
+<Score et="134.3">Lorenzo Sasso(13) lap=1 point=0 t=-1.000 et=134.220</Score>
+<Score et="134.3">Cesar Serrador(15) lap=1 point=0 t=-1.000 et=134.240</Score>
+<Score et="134.4">damien kevin#2833(7) lap=1 point=0 t=-1.000 et=134.320</Score>
+<Score et="135.9">Tobias Rosendahl(3) lap=1 point=0 t=-1.000 et=135.820</Score>
+<Score et="141.3">Stefan Tapper(10) lap=1 point=0 t=-1.000 et=141.241</Score>
+<Score et="142.9">Matthieu Gautron(11) lap=1 point=0 t=-1.000 et=142.780</Score>
+<Score et="143.5">Chris Zink(12) lap=0 point=1 t=-1.000 et=143.380</Score>
+<Score et="143.6">Gaetano Agro(1) lap=1 point=0 t=-1.000 et=143.480</Score>
+<Score et="143.7">Thiago Furini(6) lap=1 point=0 t=-1.000 et=143.540</Score>
+<Score et="143.8">didier didco2000(8) lap=1 point=0 t=-1.000 et=143.680</Score>
+<Score et="146.6">Sergii Kitsenko(5) lap=1 point=0 t=-1.000 et=146.540</Score>
+<Score et="147.7">jack lang(9) lap=1 point=0 t=-1.000 et=147.540</Score>
+<Score et="151.8">Vincent Delcoigne(2) lap=1 point=0 t=-1.000 et=151.720</Score>
+<Score et="154.8">Timo Inomy(0) lap=1 point=2 t=-1.000 et=154.740</Score>
+<Score et="156.4">Manto Castilla(16) lap=1 point=0 t=-1.000 et=156.380</Score>
+<Score et="160.9">Pasquale Diana(17) lap=1 point=0 t=-1.000 et=160.825</Score>
+<Score et="160.9">Pasquale Diana(17) lap=1 point=1 t=-1.000 et=160.825</Score>
+<Score et="160.9">Pasquale Diana(17) lap=1 point=2 t=-1.000 et=160.825</Score>
+<Score et="160.9">Pasquale Diana(17) lap=2 point=0 t=-1.000 et=160.825</Score>
+<Sector et="169.0">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="169.0">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="169.0">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="169.1">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="169.1">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="169.1">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Score et="169.1">Ewen Dobet(4) lap=1 point=1 t=36.547 et=168.960</Score>
+<Sector et="169.1">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="169.1">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="169.1">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="169.1">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="169.1">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="169.1">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="169.1">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="169.1">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="169.1">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="169.1">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="169.1">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="169.2">Thiago Furini(6) set new best for sector 2</Sector>
+<Sector et="169.2">jack lang(9) set new best for sector 2</Sector>
+<Score et="170.8">Chris Zink(12) lap=0 point=2 t=-1.000 et=170.800</Score>
+<Score et="171.0">damien kevin#2833(7) lap=1 point=1 t=36.548 et=170.880</Score>
+<Score et="171.0">Cesar Serrador(15) lap=1 point=1 t=36.654 et=170.900</Score>
+<Score et="171.2">Lorenzo Sasso(13) lap=1 point=1 t=36.816 et=171.040</Score>
+<Sector et="171.7">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="171.7">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="171.8">didier didco2000(8) set new best for sector 2</Sector>
+<Score et="171.8">Tobias Rosendahl(3) lap=1 point=1 t=35.858 et=171.680</Score>
+<Sector et="171.8">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="171.8">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="171.8">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="171.8">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="171.8">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="171.8">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="171.8">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="171.8">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="171.8">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="171.8">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="171.8">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="171.8">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="171.8">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="171.9">jack lang(9) set new best for sector 2</Sector>
+<Sector et="171.9">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="171.9">Thiago Furini(6) set new best for sector 2</Sector>
+<Score et="177.2">Stefan Tapper(10) lap=1 point=1 t=35.980 et=177.221</Score>
+<Score et="179.8">Thiago Furini(6) lap=1 point=1 t=36.066 et=179.600</Score>
+<Score et="179.8">Matthieu Gautron(11) lap=1 point=1 t=36.995 et=179.760</Score>
+<Score et="180.0">Gaetano Agro(1) lap=1 point=1 t=36.427 et=179.900</Score>
+<Score et="180.8">didier didco2000(8) lap=1 point=1 t=37.036 et=180.700</Score>
+<Score et="183.7">Sergii Kitsenko(5) lap=1 point=1 t=37.140 et=183.680</Score>
+<Score et="185.3">jack lang(9) lap=1 point=1 t=37.638 et=185.180</Score>
+<Score et="188.6">Vincent Delcoigne(2) lap=1 point=1 t=36.777 et=188.500</Score>
+<Score et="191.9">Timo Inomy(0) lap=2 point=0 t=-1.000 et=191.780</Score>
+<Score et="192.8">Manto Castilla(16) lap=1 point=1 t=36.328 et=192.700</Score>
+<Sector et="196.3">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="196.3">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="196.3">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="196.3">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Score et="196.4">Ewen Dobet(4) lap=1 point=2 t=63.756 et=196.180</Score>
+<Sector et="196.4">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="196.4">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="196.4">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="196.4">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="196.4">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="196.4">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="196.4">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="196.4">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="196.4">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="196.4">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="196.4">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="196.4">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="196.4">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="196.5">jack lang(9) set new best for sector 3</Sector>
+<Sector et="196.5">Thiago Furini(6) set new best for sector 3</Sector>
+<Score et="198.1">Lorenzo Sasso(13) lap=1 point=2 t=63.793 et=198.000</Score>
+<Score et="198.5">damien kevin#2833(7) lap=1 point=2 t=63.968 et=198.300</Score>
+<Score et="199.4">Cesar Serrador(15) lap=1 point=2 t=65.104 et=199.340</Score>
+<Score et="200.7">Tobias Rosendahl(3) lap=1 point=2 t=64.791 et=200.620</Score>
+<Score et="204.4">Stefan Tapper(10) lap=1 point=2 t=63.163 et=204.404</Score>
+<Sector et="204.4">Stefan Tapper(10) set new best for sector 3</Sector>
+<Sector et="204.5">Stefan Tapper(10) set new best for sector 3</Sector>
+<Sector et="204.5">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="204.5">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="204.5">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="204.5">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="204.5">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="204.5">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="204.5">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="204.5">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="204.6">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="204.6">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="204.6">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="204.6">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="204.6">jack lang(9) set new best for sector 3</Sector>
+<Sector et="204.6">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="204.6">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="204.6">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="204.7">Thiago Furini(6) set new best for sector 3</Sector>
+<Score et="207.0">Thiago Furini(6) lap=1 point=2 t=63.266 et=206.800</Score>
+<Score et="207.1">Matthieu Gautron(11) lap=1 point=2 t=64.226 et=207.000</Score>
+<Score et="207.4">Gaetano Agro(1) lap=1 point=2 t=63.843 et=207.320</Score>
+<Score et="208.5">didier didco2000(8) lap=1 point=2 t=64.773 et=208.440</Score>
+<Score et="210.9">Sergii Kitsenko(5) lap=1 point=2 t=64.280 et=210.820</Score>
+<Score et="213.0">jack lang(9) lap=1 point=2 t=65.349 et=212.900</Score>
+<Score et="213.8">Chris Zink(12) lap=1 point=0 t=-1.000 et=213.640</Score>
+<Score et="215.7">Vincent Delcoigne(2) lap=1 point=2 t=63.853 et=215.580</Score>
+<Score et="220.1">Manto Castilla(16) lap=1 point=2 t=63.584 et=219.960</Score>
+<Score et="227.9">Timo Inomy(0) lap=2 point=1 t=-1.000 et=227.800</Score>
+<Score et="230.7">Pasquale Diana(17) lap=2 point=1 t=-1.000 et=230.600</Score>
+<Sector et="233.2">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="233.2">Ewen Dobet(4) set new best for sector 1</Sector>
+<Score et="233.2">Ewen Dobet(4) lap=2 point=0 t=100.727 et=233.140</Score>
+<Sector et="233.2">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="233.2">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="233.2">didier didco2000(8) set new best for sector 1</Sector>
+<Sector et="233.2">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="233.3">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="233.3">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="233.3">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="233.3">Manto Castilla(16) set new best for sector 1</Sector>
+<Sector et="233.3">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="233.3">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="233.3">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="233.3">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="233.3">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="233.3">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Sector et="233.3">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="233.4">jack lang(9) set new best for sector 1</Sector>
+<Sector et="233.4">Thiago Furini(6) set new best for sector 1</Sector>
+<Sector et="234.8">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="234.8">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="234.9">didier didco2000(8) set new best for sector 1</Sector>
+<Score et="234.9">Lorenzo Sasso(13) lap=2 point=0 t=100.589 et=234.800</Score>
+<Sector et="234.9">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="234.9">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="234.9">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="234.9">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="234.9">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="234.9">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="234.9">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="234.9">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="234.9">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="234.9">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="234.9">Manto Castilla(16) set new best for sector 1</Sector>
+<Sector et="235.0">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="235.0">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Sector et="235.0">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="235.0">jack lang(9) set new best for sector 1</Sector>
+<Sector et="235.1">Thiago Furini(6) set new best for sector 1</Sector>
+<Score et="235.3">damien kevin#2833(7) lap=2 point=0 t=100.931 et=235.260</Score>
+<Score et="237.2">Cesar Serrador(15) lap=2 point=0 t=102.831 et=237.080</Score>
+<Score et="237.7">Tobias Rosendahl(3) lap=2 point=0 t=101.739 et=237.560</Score>
+<Score et="241.1">Stefan Tapper(10) lap=2 point=0 t=99.878 et=241.119</Score>
+<Sector et="241.1">Stefan Tapper(10) set new best for sector 1</Sector>
+<Sector et="241.2">Stefan Tapper(10) set new best for sector 1</Sector>
+<Sector et="241.2">didier didco2000(8) set new best for sector 1</Sector>
+<Sector et="241.2">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="241.2">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="241.2">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="241.2">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="241.2">Manto Castilla(16) set new best for sector 1</Sector>
+<Sector et="241.2">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="241.2">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="241.2">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="241.3">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="241.3">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="241.3">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="241.3">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="241.3">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Sector et="241.3">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="241.3">jack lang(9) set new best for sector 1</Sector>
+<Sector et="241.4">Thiago Furini(6) set new best for sector 1</Sector>
+<Sector et="243.4">Thiago Furini(6) set new best for sector 1</Sector>
+<Sector et="243.4">Thiago Furini(6) set new best for sector 1</Sector>
+<Score et="243.4">Thiago Furini(6) lap=2 point=0 t=99.754 et=243.300</Score>
+<Sector et="243.4">Thiago Furini(6) set new best for sector 1</Sector>
+<Sector et="243.4">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="243.4">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="243.5">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="243.5">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="243.5">didier didco2000(8) set new best for sector 1</Sector>
+<Sector et="243.5">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="243.5">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="243.5">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="243.5">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="243.5">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="243.5">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="243.5">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="243.5">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="243.5">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Sector et="243.6">jack lang(9) set new best for sector 1</Sector>
+<Sector et="243.8">Manto Castilla(16) set new best for sector 1</Sector>
+<Score et="244.2">Matthieu Gautron(11) lap=2 point=0 t=101.370 et=244.140</Score>
+<Score et="244.6">Gaetano Agro(1) lap=2 point=0 t=101.018 et=244.480</Score>
+<Score et="245.9">didier didco2000(8) lap=2 point=0 t=102.185 et=245.860</Score>
+<Score et="248.1">Sergii Kitsenko(5) lap=2 point=0 t=101.496 et=248.040</Score>
+<Score et="249.8">jack lang(9) lap=2 point=0 t=102.128 et=249.680</Score>
+<Score et="249.9">Chris Zink(12) lap=1 point=1 t=36.122 et=249.760</Score>
+<Score et="252.2">Vincent Delcoigne(2) lap=2 point=0 t=100.442 et=252.160</Score>
+<Sector et="254.9">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="254.9">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="254.9">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="254.9">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="254.9">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="254.9">Chris Zink(12) set new best for sector 3</Sector>
+<Score et="254.9">Timo Inomy(0) lap=2 point=2 t=63.039 et=254.820</Score>
+<Sector et="254.9">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="254.9">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="254.9">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="254.9">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="254.9">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="255.0">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="255.0">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="255.0">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="255.0">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="255.0">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="255.0">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="255.0">jack lang(9) set new best for sector 3</Sector>
+<Sector et="255.1">Thiago Furini(6) set new best for sector 3</Sector>
+<Score et="256.9">Manto Castilla(16) lap=2 point=0 t=100.506 et=256.880</Score>
+<Score et="258.2">Pasquale Diana(17) lap=2 point=2 t=-1.000 et=258.100</Score>
+<Score et="264.7">Thiago Furini(6) lap=2 point=1 t=-1.000 et=264.494</Score>
+<Score et="264.7">Thiago Furini(6) lap=2 point=2 t=-1.000 et=264.494</Score>
+<Score et="264.7">Thiago Furini(6) lap=3 point=0 t=-1.000 et=264.494</Score>
+<Score et="270.0">Ewen Dobet(4) lap=2 point=1 t=36.456 et=269.600</Score>
+<Score et="271.2">Lorenzo Sasso(13) lap=2 point=1 t=36.357 et=271.160</Score>
+<Score et="272.1">damien kevin#2833(7) lap=2 point=1 t=36.741 et=272.000</Score>
+<Sector et="273.7">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="273.7">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="273.7">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="273.7">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="273.8">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="273.8">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="273.8">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="273.8">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="273.8">Pasquale Diana(17) set new best for sector 2</Sector>
+<Score et="273.8">Tobias Rosendahl(3) lap=2 point=1 t=36.094 et=273.660</Score>
+<Score et="273.8">Cesar Serrador(15) lap=2 point=1 t=36.576 et=273.640</Score>
+<Sector et="273.8">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="273.8">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="273.8">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="273.8">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="273.8">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="273.8">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="273.9">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="273.9">jack lang(9) set new best for sector 2</Sector>
+<Sector et="273.9">Thiago Furini(6) set new best for sector 2</Sector>
+<Sector et="273.9">Ewen Dobet(4) set new best for sector 2</Sector>
+<Score et="277.0">Chris Zink(12) lap=1 point=2 t=63.249 et=276.900</Score>
+<Score et="277.3">Stefan Tapper(10) lap=2 point=1 t=36.140 et=277.259</Score>
+<Score et="281.6">Gaetano Agro(1) lap=2 point=1 t=36.986 et=281.480</Score>
+<Score et="281.8">Matthieu Gautron(11) lap=2 point=1 t=37.651 et=281.800</Score>
+<Score et="282.4">didier didco2000(8) lap=2 point=1 t=36.533 et=282.400</Score>
+<Score et="284.6">Sergii Kitsenko(5) lap=2 point=1 t=36.527 et=284.560</Score>
+<Score et="286.6">jack lang(9) lap=2 point=1 t=36.691 et=286.360</Score>
+<Score et="288.8">Vincent Delcoigne(2) lap=2 point=1 t=36.585 et=288.740</Score>
+<Score et="291.6">Timo Inomy(0) lap=3 point=0 t=99.785 et=291.560</Score>
+<Score et="293.6">Manto Castilla(16) lap=2 point=1 t=36.578 et=293.460</Score>
+<Score et="295.6">Pasquale Diana(17) lap=3 point=0 t=-1.000 et=295.460</Score>
+<Score et="297.0">Ewen Dobet(4) lap=2 point=2 t=63.711 et=296.860</Score>
+<Score et="298.5">Lorenzo Sasso(13) lap=2 point=2 t=63.584 et=298.380</Score>
+<Score et="299.5">damien kevin#2833(7) lap=2 point=2 t=64.159 et=299.420</Score>
+<Score et="300.9">Tobias Rosendahl(3) lap=2 point=2 t=63.203 et=300.760</Score>
+<Score et="301.3">Cesar Serrador(15) lap=2 point=2 t=64.096 et=301.160</Score>
+<Score et="306.3">Stefan Tapper(10) lap=2 point=2 t=-1.000 et=306.410</Score>
+<Score et="306.3">Stefan Tapper(10) lap=3 point=0 t=-1.000 et=306.410</Score>
+<Score et="309.0">Matthieu Gautron(11) lap=2 point=2 t=64.779 et=308.920</Score>
+<Score et="309.4">Gaetano Agro(1) lap=2 point=2 t=64.776 et=309.260</Score>
+<Score et="310.4">didier didco2000(8) lap=2 point=2 t=64.441 et=310.300</Score>
+<Score et="311.9">Sergii Kitsenko(5) lap=2 point=2 t=63.763 et=311.800</Score>
+<Score et="314.0">Chris Zink(12) lap=2 point=0 t=100.307 et=313.960</Score>
+<Score et="314.3">jack lang(9) lap=2 point=2 t=64.450 et=314.120</Score>
+<Score et="321.1">Manto Castilla(16) lap=2 point=2 t=64.110 et=321.000</Score>
+<Score et="324.2">Vincent Delcoigne(2) lap=2 point=2 t=71.924 et=324.080</Score>
+<Score et="327.9">Timo Inomy(0) lap=3 point=1 t=36.256 et=327.820</Score>
+<Sector et="331.3">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="331.3">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="331.3">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="331.3">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="331.3">Chris Zink(12) set new best for sector 2</Sector>
+<Score et="331.3">Pasquale Diana(17) lap=3 point=1 t=35.761 et=331.220</Score>
+<Sector et="331.3">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="331.4">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="331.4">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="331.4">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="331.4">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="331.4">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="331.4">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="331.4">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="331.4">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="331.4">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="331.4">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="331.4">jack lang(9) set new best for sector 2</Sector>
+<Sector et="331.4">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="331.5">Thiago Furini(6) set new best for sector 2</Sector>
+<Score et="333.8">Ewen Dobet(4) lap=3 point=0 t=100.524 et=333.660</Score>
+<Score et="335.2">Lorenzo Sasso(13) lap=3 point=0 t=100.292 et=335.100</Score>
+<Score et="336.8">damien kevin#2833(7) lap=3 point=0 t=101.444 et=336.700</Score>
+<Score et="337.8">Tobias Rosendahl(3) lap=3 point=0 t=100.058 et=337.620</Score>
+<Score et="338.2">Cesar Serrador(15) lap=3 point=0 t=101.043 et=338.120</Score>
+<Score et="345.6">Matthieu Gautron(11) lap=3 point=0 t=101.304 et=345.440</Score>
+<Score et="346.8">Gaetano Agro(1) lap=3 point=0 t=102.294 et=346.780</Score>
+<Score et="347.5">didier didco2000(8) lap=3 point=0 t=101.564 et=347.420</Score>
+<Score et="348.9">Sergii Kitsenko(5) lap=3 point=0 t=100.694 et=348.720</Score>
+<Score et="350.5">Chris Zink(12) lap=2 point=1 t=36.474 et=350.420</Score>
+<Score et="350.8">jack lang(9) lap=3 point=0 t=101.007 et=350.680</Score>
+<Sector et="351.4">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="351.4">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="351.5">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="351.5">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="351.5">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="351.5">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="351.5">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="351.5">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="351.5">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="351.5">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="351.5">Ewen Dobet(4) set new best for sector 2</Sector>
+<Sector et="351.5">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="351.5">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="351.5">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="351.5">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="351.5">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="351.5">jack lang(9) set new best for sector 2</Sector>
+<Sector et="351.6">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="351.7">Thiago Furini(6) set new best for sector 2</Sector>
+<Score et="352.7">Cesar Serrador(15) lap=3 point=1 t=-1.000 et=352.642</Score>
+<Score et="352.7">Cesar Serrador(15) lap=3 point=2 t=-1.000 et=352.642</Score>
+<Score et="352.7">Cesar Serrador(15) lap=4 point=0 t=-1.000 et=352.642</Score>
+<Sector et="354.7">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="354.7">Timo Inomy(0) set new best for sector 3</Sector>
+<Score et="354.7">Timo Inomy(0) lap=3 point=2 t=63.045 et=354.620</Score>
+<Sector et="354.7">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="354.7">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="354.7">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="354.7">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="354.7">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="354.7">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="354.7">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="354.7">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="354.7">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="354.7">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="354.7">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="354.8">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="354.8">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="354.8">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="354.8">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="354.8">jack lang(9) set new best for sector 3</Sector>
+<Sector et="354.9">Thiago Furini(6) set new best for sector 3</Sector>
+<Sector et="358.0">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="358.0">Pasquale Diana(17) set new best for sector 3</Sector>
+<Score et="358.0">Manto Castilla(16) lap=3 point=0 t=101.029 et=357.920</Score>
+<Score et="358.0">Pasquale Diana(17) lap=3 point=2 t=62.486 et=357.940</Score>
+<Sector et="358.0">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="358.0">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="358.0">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="358.1">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="358.1">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="358.1">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="358.1">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="358.1">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="358.1">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="358.1">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="358.1">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="358.1">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="358.1">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="358.1">jack lang(9) set new best for sector 3</Sector>
+<Sector et="358.1">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="358.2">Thiago Furini(6) set new best for sector 3</Sector>
+<Sector et="358.2">Manto Castilla(16) set new best for sector 3</Sector>
+<Score et="358.7">Tobias Rosendahl(3) lap=3 point=1 t=-1.000 et=358.599</Score>
+<Score et="358.7">Tobias Rosendahl(3) lap=3 point=2 t=-1.000 et=358.599</Score>
+<Score et="358.7">Tobias Rosendahl(3) lap=4 point=0 t=-1.000 et=358.599</Score>
+<Score et="361.0">Vincent Delcoigne(2) lap=3 point=0 t=108.736 et=360.900</Score>
+<Score et="370.4">Ewen Dobet(4) lap=3 point=1 t=36.567 et=370.240</Score>
+<Score et="370.6">Lorenzo Sasso(13) lap=3 point=1 t=-1.000 et=370.515</Score>
+<Score et="370.6">Lorenzo Sasso(13) lap=3 point=2 t=-1.000 et=370.515</Score>
+<Score et="370.6">Lorenzo Sasso(13) lap=4 point=0 t=-1.000 et=370.515</Score>
+<Score et="373.0">damien kevin#2833(7) lap=3 point=1 t=36.183 et=372.880</Score>
+<Sector et="374.8">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="374.8">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="374.8">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="374.8">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="374.9">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="374.9">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="374.9">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="374.9">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="374.9">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="374.9">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="374.9">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="374.9">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="374.9">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="374.9">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="374.9">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="374.9">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="375.0">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="375.0">jack lang(9) set new best for sector 3</Sector>
+<Sector et="375.0">Thiago Furini(6) set new best for sector 3</Sector>
+<Score et="377.6">Chris Zink(12) lap=2 point=2 t=63.576 et=377.520</Score>
+<Sector et="378.1">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="378.1">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="378.2">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="378.2">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="378.2">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="378.2">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="378.2">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="378.2">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="378.2">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="378.2">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="378.2">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="378.2">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="378.2">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="378.2">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="378.2">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="378.3">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="378.3">jack lang(9) set new best for sector 3</Sector>
+<Sector et="378.4">Thiago Furini(6) set new best for sector 3</Sector>
+<Sector et="378.4">Manto Castilla(16) set new best for sector 3</Sector>
+<Score et="382.0">Matthieu Gautron(11) lap=3 point=1 t=36.470 et=381.920</Score>
+<Score et="383.2">Gaetano Agro(1) lap=3 point=1 t=36.319 et=383.100</Score>
+<Score et="383.9">didier didco2000(8) lap=3 point=1 t=36.328 et=383.760</Score>
+<Score et="385.4">Sergii Kitsenko(5) lap=3 point=1 t=36.557 et=385.280</Score>
+<Score et="387.1">jack lang(9) lap=3 point=1 t=36.303 et=386.980</Score>
+<Score et="391.4">Timo Inomy(0) lap=4 point=0 t=99.789 et=391.360</Score>
+<Sector et="394.6">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="394.6">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="394.6">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="394.6">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="394.6">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="394.6">didier didco2000(8) set new best for sector 1</Sector>
+<Score et="394.6">Pasquale Diana(17) lap=4 point=0 t=99.037 et=394.500</Score>
+<Sector et="394.6">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="394.6">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="394.6">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="394.6">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="394.6">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="394.6">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="394.6">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="394.7">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="394.7">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="394.7">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Sector et="394.7">jack lang(9) set new best for sector 1</Sector>
+<Sector et="394.8">Manto Castilla(16) set new best for sector 1</Sector>
+<Sector et="394.9">Thiago Furini(6) set new best for sector 1</Sector>
+<Score et="395.0">Manto Castilla(16) lap=3 point=1 t=36.958 et=394.860</Score>
+<Score et="397.5">Ewen Dobet(4) lap=3 point=2 t=63.771 et=397.440</Score>
+<Score et="398.0">Vincent Delcoigne(2) lap=3 point=1 t=37.000 et=397.900</Score>
+<Score et="400.4">damien kevin#2833(7) lap=3 point=2 t=63.566 et=400.260</Score>
+<Score et="402.1">Manto Castilla(16) lap=3 point=2 t=-1.000 et=402.014</Score>
+<Score et="402.1">Manto Castilla(16) lap=4 point=0 t=-1.000 et=402.014</Score>
+<Score et="409.2">Matthieu Gautron(11) lap=3 point=2 t=63.653 et=409.100</Score>
+<Score et="410.2">Gaetano Agro(1) lap=3 point=2 t=63.285 et=410.060</Score>
+<Score et="411.4">didier didco2000(8) lap=3 point=2 t=63.887 et=411.320</Score>
+<Score et="412.8">Sergii Kitsenko(5) lap=3 point=2 t=63.978 et=412.700</Score>
+<Score et="414.7">Chris Zink(12) lap=3 point=0 t=100.677 et=414.620</Score>
+<Sector et="414.7">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="414.7">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="414.7">Matthieu Gautron(11) set new best for sector 1</Sector>
+<Sector et="414.8">Gaetano Agro(1) set new best for sector 1</Sector>
+<Sector et="414.8">damien kevin#2833(7) set new best for sector 1</Sector>
+<Sector et="414.8">didier didco2000(8) set new best for sector 1</Sector>
+<Sector et="414.8">Pasquale Diana(17) set new best for sector 1</Sector>
+<Sector et="414.8">Vincent Delcoigne(2) set new best for sector 1</Sector>
+<Sector et="414.8">Tobias Rosendahl(3) set new best for sector 1</Sector>
+<Sector et="414.8">Sergii Kitsenko(5) set new best for sector 1</Sector>
+<Sector et="414.8">Timo Inomy(0) set new best for sector 1</Sector>
+<Sector et="414.8">Chris Zink(12) set new best for sector 1</Sector>
+<Sector et="414.8">Ewen Dobet(4) set new best for sector 1</Sector>
+<Sector et="414.8">Cesar Serrador(15) set new best for sector 1</Sector>
+<Sector et="414.8">Lorenzo Sasso(13) set new best for sector 1</Sector>
+<Sector et="414.8">Sergio Sanchez(18) set new best for sector 1</Sector>
+<Score et="414.8">jack lang(9) lap=3 point=2 t=63.930 et=414.620</Score>
+<Sector et="414.9">jack lang(9) set new best for sector 1</Sector>
+<Sector et="414.9">Manto Castilla(16) set new best for sector 1</Sector>
+<Sector et="415.0">Thiago Furini(6) set new best for sector 1</Sector>
+<Score et="424.6">Chris Zink(12) lap=3 point=1 t=-1.000 et=424.537</Score>
+<Score et="424.6">Chris Zink(12) lap=3 point=2 t=-1.000 et=424.537</Score>
+<Score et="424.6">Chris Zink(12) lap=4 point=0 t=-1.000 et=424.537</Score>
+<Score et="425.5">Vincent Delcoigne(2) lap=3 point=2 t=64.541 et=425.440</Score>
+<Score et="430.3">Timo Inomy(0) lap=4 point=1 t=-1.000 et=430.220</Score>
+<Score et="430.3">Timo Inomy(0) lap=4 point=2 t=-1.000 et=430.220</Score>
+<Score et="430.3">Timo Inomy(0) lap=5 point=0 t=-1.000 et=430.220</Score>
+<Sector et="430.8">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="430.8">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="430.9">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="430.9">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="430.9">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="430.9">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="430.9">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="430.9">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="430.9">Cesar Serrador(15) set new best for sector 2</Sector>
+<Score et="430.9">Pasquale Diana(17) lap=4 point=1 t=36.240 et=430.740</Score>
+<Sector et="430.9">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="430.9">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="430.9">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="430.9">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="430.9">jack lang(9) set new best for sector 2</Sector>
+<Sector et="431.0">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="431.0">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="431.0">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="431.0">Thiago Furini(6) set new best for sector 2</Sector>
+<Sector et="431.1">Ewen Dobet(4) set new best for sector 2</Sector>
+<Score et="434.5">Ewen Dobet(4) lap=4 point=0 t=100.644 et=434.320</Score>
+<Score et="437.0">damien kevin#2833(7) lap=4 point=0 t=100.163 et=436.860</Score>
+<Score et="444.7">Ewen Dobet(4) lap=4 point=1 t=-1.000 et=444.633</Score>
+<Score et="444.7">Ewen Dobet(4) lap=4 point=2 t=-1.000 et=444.633</Score>
+<Score et="444.7">Ewen Dobet(4) lap=5 point=0 t=-1.000 et=444.633</Score>
+<Score et="446.0">Matthieu Gautron(11) lap=4 point=0 t=100.420 et=445.860</Score>
+<Score et="447.1">Gaetano Agro(1) lap=4 point=0 t=100.263 et=447.040</Score>
+<Score et="448.6">didier didco2000(8) lap=4 point=0 t=101.125 et=448.540</Score>
+<Score et="450.0">damien kevin#2833(7) lap=4 point=1 t=-1.000 et=449.927</Score>
+<Score et="450.0">damien kevin#2833(7) lap=4 point=2 t=-1.000 et=449.927</Score>
+<Score et="450.0">damien kevin#2833(7) lap=5 point=0 t=-1.000 et=449.927</Score>
+<Sector et="450.9">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="451.0">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="451.0">damien kevin#2833(7) set new best for sector 2</Sector>
+<Sector et="451.0">didier didco2000(8) set new best for sector 2</Sector>
+<Sector et="451.0">Vincent Delcoigne(2) set new best for sector 2</Sector>
+<Sector et="451.0">Matthieu Gautron(11) set new best for sector 2</Sector>
+<Sector et="451.1">Tobias Rosendahl(3) set new best for sector 2</Sector>
+<Sector et="451.1">Chris Zink(12) set new best for sector 2</Sector>
+<Sector et="451.1">Pasquale Diana(17) set new best for sector 2</Sector>
+<Sector et="451.1">Cesar Serrador(15) set new best for sector 2</Sector>
+<Sector et="451.1">Sergio Sanchez(18) set new best for sector 2</Sector>
+<Sector et="451.1">Timo Inomy(0) set new best for sector 2</Sector>
+<Sector et="451.1">Sergii Kitsenko(5) set new best for sector 2</Sector>
+<Sector et="451.1">jack lang(9) set new best for sector 2</Sector>
+<Sector et="451.1">Lorenzo Sasso(13) set new best for sector 2</Sector>
+<Sector et="451.1">Gaetano Agro(1) set new best for sector 2</Sector>
+<Sector et="451.1">Manto Castilla(16) set new best for sector 2</Sector>
+<Sector et="451.2">Thiago Furini(6) set new best for sector 2</Sector>
+<Sector et="451.2">Ewen Dobet(4) set new best for sector 2</Sector>
+<Score et="457.0">Gaetano Agro(1) lap=4 point=1 t=-1.000 et=456.890</Score>
+<Score et="457.0">Gaetano Agro(1) lap=4 point=2 t=-1.000 et=456.890</Score>
+<Score et="457.0">Gaetano Agro(1) lap=5 point=0 t=-1.000 et=456.890</Score>
+<Sector et="457.4">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="457.4">Pasquale Diana(17) set new best for sector 3</Sector>
+<Score et="457.4">Pasquale Diana(17) lap=4 point=2 t=62.852 et=457.360</Score>
+<Sector et="457.4">Pasquale Diana(17) set new best for sector 3</Sector>
+<Sector et="457.4">damien kevin#2833(7) set new best for sector 3</Sector>
+<Sector et="457.5">Matthieu Gautron(11) set new best for sector 3</Sector>
+<Sector et="457.5">Chris Zink(12) set new best for sector 3</Sector>
+<Sector et="457.5">Manto Castilla(16) set new best for sector 3</Sector>
+<Sector et="457.5">Tobias Rosendahl(3) set new best for sector 3</Sector>
+<Sector et="457.5">Timo Inomy(0) set new best for sector 3</Sector>
+<Sector et="457.5">Gaetano Agro(1) set new best for sector 3</Sector>
+<Sector et="457.5">Sergii Kitsenko(5) set new best for sector 3</Sector>
+<Sector et="457.5">didier didco2000(8) set new best for sector 3</Sector>
+<Sector et="457.5">Vincent Delcoigne(2) set new best for sector 3</Sector>
+<Sector et="457.5">Cesar Serrador(15) set new best for sector 3</Sector>
+<Sector et="457.5">Lorenzo Sasso(13) set new best for sector 3</Sector>
+<Sector et="457.5">Sergio Sanchez(18) set new best for sector 3</Sector>
+<Sector et="457.6">Ewen Dobet(4) set new best for sector 3</Sector>
+<Sector et="457.6">jack lang(9) set new best for sector 3</Sector>
+<Score et="457.6">didier didco2000(8) lap=4 point=1 t=-1.000 et=457.473</Score>
+<Score et="457.6">didier didco2000(8) lap=4 point=2 t=-1.000 et=457.473</Score>
+<Score et="457.6">didier didco2000(8) lap=5 point=0 t=-1.000 et=457.473</Score>
+<Sector et="457.7">Thiago Furini(6) set new best for sector 3</Sector>
+<Score et="462.2">Vincent Delcoigne(2) lap=4 point=0 t=101.214 et=462.120</Score>
+<Score et="462.9">jack lang(9) lap=4 point=0 t=-1.000 et=462.781</Score>
+<Score et="462.9">Matthieu Gautron(11) lap=4 point=1 t=-1.000 et=462.821</Score>
+<Score et="462.9">Matthieu Gautron(11) lap=4 point=2 t=-1.000 et=462.821</Score>
+<Score et="462.9">Matthieu Gautron(11) lap=5 point=0 t=-1.000 et=462.821</Score>
+</Stream>
+<MostLapsCompleted>5</MostLapsCompleted>
+<Driver>
+<Name>Pasquale Diana</Name>
+<Connected>1</Connected>
+<VehFile>54_AFCORSEB48DBC46.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #54:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>54</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>1</Position>
+<ClassPosition>1</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="17" et="--.---" topspeed="237.38" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="17" et="160.8250" topspeed="0.00" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="3" p="17" et="160.8250" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="4" p="1" et="295.4600" s1="35.7615" s2="26.7240" s3="36.5515" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.0370</Lap>
+<BestLapTime>99.0370</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="1">PlayerControl</ControlAndAids>
+<ControlAndAids startLap="2" endLap="2">UnknownControl</ControlAndAids>
+<ControlAndAids startLap="3" endLap="4">PlayerControl</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Thiago Furini</Name>
+<Connected>1</Connected>
+<VehFile>56_REXY8A686597.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Project 1 - AO #56:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>56</CarNumber>
+<TeamName>Project 1 - AO</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>2</Position>
+<ClassPosition>2</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="7" et="--.---" topspeed="243.69" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="1" et="143.5400" s1="36.0656" s2="27.2001" s3="36.4886" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.7543</Lap>
+<Lap num="3" p="1" et="243.3000" topspeed="254.50" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>99.7543</BestLapTime>
+<Laps>3</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="3">PlayerControl,ABS=2,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Timo Inomy</Name>
+<Connected>1</Connected>
+<VehFile>74_KESSELED952BC5.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Kessel Racing #74:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>74</CarNumber>
+<TeamName>Kessel Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>3</Position>
+<ClassPosition>3</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="1" et="--.---" topspeed="168.91" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="1" et="61.3188" topspeed="246.84" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="3" p="2" et="191.7800" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">99.7852</Lap>
+<Lap num="4" p="2" et="291.5600" s1="36.2557" s2="26.7896" s3="36.7441" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">99.7894</Lap>
+<Lap num="5" p="3" et="391.3600" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>99.7852</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl,ABS=1,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Stefan Tapper</Name>
+<Connected>1</Connected>
+<VehFile>16_PROTON9F4BBEF5.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #16:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>16</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>4</Position>
+<ClassPosition>4</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="11" et="--.---" topspeed="245.64" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="1" et="141.2411" s1="35.9803" s2="27.1826" s3="36.7149" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">99.8778</Lap>
+<Lap num="3" p="3" et="241.1189" s1="36.1405" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>99.8778</BestLapTime>
+<Laps>3</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="3">PlayerControl</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Tobias Rosendahl</Name>
+<Connected>1</Connected>
+<VehFile>60_IRONLYN23215450.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Iron Lynx #60:EC</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>60</CarNumber>
+<TeamName>Iron Lynx</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>5</Position>
+<ClassPosition>5</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="5" et="--.---" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="4" et="135.8200" s1="35.8581" s2="28.9333" s3="36.9475" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">101.7389</Lap>
+<Lap num="3" p="4" et="237.5600" s1="36.0938" s2="27.1096" s3="36.8548" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.0583</Lap>
+<Lap num="4" p="4" et="337.6200" topspeed="246.84" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.0583</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,ABS=2</ControlAndAids>
+</Driver>
+<Driver>
+<Name>damien kevin#2833</Name>
+<Connected>1</Connected>
+<VehFile>21_AFCORSEFDF53F44.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>AF Corse #21:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>21</CarNumber>
+<TeamName>AF Corse</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>6</Position>
+<ClassPosition>6</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="8" et="--.---" topspeed="244.59" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="3" et="134.3200" s1="36.5479" s2="27.4205" s3="36.9631" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.9315</Lap>
+<Lap num="3" p="9" et="235.2600" s1="36.7413" s2="27.4182" s3="37.2842" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.4437</Lap>
+<Lap num="4" p="6" et="336.7000" s1="36.1830" s2="27.3831" s3="36.5971" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">100.1633</Lap>
+<Lap num="5" p="6" et="436.8600" topspeed="249.09" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.1633</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl,ABS=1,AutoShift=3,Clutch,AutoLift,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Gaetano Agro</Name>
+<Connected>1</Connected>
+<VehFile>100_WALKEN1B80023E.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Walkenhorst Motorsport #100:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>100</CarNumber>
+<TeamName>Walkenhorst Motorsport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>7</Position>
+<ClassPosition>7</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="2" et="--.---" topspeed="246.39" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="6" et="143.4800" s1="36.4267" s2="27.4165" s3="37.1748" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.0180</Lap>
+<Lap num="3" p="11" et="244.4800" s1="36.9856" s2="27.7903" s3="37.5179" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">102.2939</Lap>
+<Lap num="4" p="7" et="346.7800" s1="36.3191" s2="26.9659" s3="36.9784" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.2634</Lap>
+<Lap num="5" p="7" et="447.0400" topspeed="249.99" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.2634</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Lorenzo Sasso</Name>
+<Connected>1</Connected>
+<VehFile>85_IRONDAM1164A8C6.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Iron Dames #85:EC</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>85</CarNumber>
+<TeamName>Iron Dames</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>8</Position>
+<ClassPosition>8</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="14" et="--.---" topspeed="245.49" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="1" et="134.2200" s1="36.8165" s2="26.9763" s3="36.7958" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.5885</Lap>
+<Lap num="3" p="4" et="234.8000" s1="36.3568" s2="27.2275" s3="36.7081" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.2924</Lap>
+<Lap num="4" p="5" et="335.1000" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.2924</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,ABS=1,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Chris Zink</Name>
+<Connected>1</Connected>
+<VehFile>98_NORTHWE595AFE33.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Northwest AMR #98:PL</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>98</CarNumber>
+<TeamName>Northwest AMR</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>9</Position>
+<ClassPosition>9</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="13" et="--.---" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="4" et="213.6400" s1="36.1221" s2="27.1271" s3="37.0578" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.3071</Lap>
+<Lap num="3" p="7" et="313.9600" s1="36.4738" s2="27.1019" s3="37.1015" topspeed="266.21" fcompound="0,Soft" rcompound="0,Soft">100.6772</Lap>
+<Lap num="4" p="7" et="414.6200" topspeed="248.19" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.3071</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Matthieu Gautron</Name>
+<Connected>1</Connected>
+<VehFile>85_IRONDAM1563682E.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Iron Dames #85:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>85</CarNumber>
+<TeamName>Iron Dames</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>10</Position>
+<ClassPosition>10</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="12" et="--.---" topspeed="244.59" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="6" et="142.7800" s1="36.9946" s2="27.2314" s3="37.1443" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">101.3703</Lap>
+<Lap num="3" p="13" et="244.1400" s1="37.6515" s2="27.1277" s3="36.5249" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">101.3040</Lap>
+<Lap num="4" p="9" et="345.4400" s1="36.4699" s2="27.1831" s3="36.7671" topspeed="264.41" fcompound="0,Soft" rcompound="0,Soft">100.4201</Lap>
+<Lap num="5" p="10" et="445.8600" topspeed="251.35" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.4201</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Vincent Delcoigne</Name>
+<Connected>1</Connected>
+<VehFile>25_ORTLMA14S6SD.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>ORT by TF #25:LM</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>25</CarNumber>
+<TeamName>ORT by TF</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>11</Position>
+<ClassPosition>11</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="3" et="--.---" topspeed="247.29" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="3" et="151.7200" s1="36.7766" s2="27.0763" s3="36.5888" topspeed="267.11" fcompound="0,Soft" rcompound="0,Soft">100.4417</Lap>
+<Lap num="3" p="7" et="252.1600" s1="36.5848" s2="35.3395" s3="36.8117" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">108.7360</Lap>
+<Lap num="4" p="11" et="360.9000" s1="36.9995" s2="27.5410" s3="36.6737" topspeed="267.11" fcompound="0,Soft" rcompound="0,Soft">101.2143</Lap>
+<BestLapTime>100.4417</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Manto Castilla</Name>
+<Connected>1</Connected>
+<VehFile>100_WALKEN1B80023E.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Walkenhorst Motorsport #100:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>100</CarNumber>
+<TeamName>Walkenhorst Motorsport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>12</Position>
+<ClassPosition>12</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="16" et="--.---" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="4" et="156.3800" s1="36.3284" s2="27.2560" s3="36.9213" topspeed="265.31" fcompound="0,Soft" rcompound="0,Soft">100.5056</Lap>
+<Lap num="3" p="8" et="256.8800" s1="36.5782" s2="27.5321" s3="36.9184" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">101.0287</Lap>
+<Lap num="4" p="9" et="357.9200" s1="36.9577" topspeed="264.86" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.5056</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Ewen Dobet</Name>
+<Connected>1</Connected>
+<VehFile>66_JMW36916B99.VEH</VehFile>
+<UpgradeCode>54010000 00000000 00000000 00000000</UpgradeCode>
+<VehName>JMW Motorsport #66:LM</VehName>
+<Category>WEC 2023, GTE, Ferrari 488 GTE EVO</Category>
+<CarType>Ferrari 488 GTE EVO</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>66</CarNumber>
+<TeamName>JMW Motorsport</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>13</Position>
+<ClassPosition>13</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="4" et="--.---" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="1" et="132.4200" s1="36.5468" s2="27.2087" s3="36.9715" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.7271</Lap>
+<Lap num="3" p="7" et="233.1400" s1="36.4562" s2="27.2549" s3="36.8132" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">100.5244</Lap>
+<Lap num="4" p="10" et="333.6600" s1="36.5669" s2="27.2037" s3="36.8737" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">100.6443</Lap>
+<Lap num="5" p="11" et="434.3200" topspeed="245.94" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>100.5244</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl,ABS=2</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Sergii Kitsenko</Name>
+<Connected>1</Connected>
+<VehFile>77_PROTONLAECAE80B.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Dempsey-Proton Racing #77:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>77</CarNumber>
+<TeamName>Dempsey-Proton Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>14</Position>
+<ClassPosition>14</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="6" et="--.---" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="8" et="146.5400" s1="37.1398" s2="27.1403" s3="37.2157" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">101.4958</Lap>
+<Lap num="3" p="10" et="248.0400" s1="36.5266" s2="27.2363" s3="36.9312" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">100.6941</Lap>
+<BestLapTime>100.6941</BestLapTime>
+<Laps>3</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="3">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>jack lang</Name>
+<Connected>1</Connected>
+<VehFile>86_GRRACIN56C59091.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>GR Racing #86:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>86</CarNumber>
+<TeamName>GR Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>15</Position>
+<ClassPosition>15</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="10" et="--.---" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="10" et="147.5400" s1="37.6376" s2="27.7116" s3="36.7784" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">102.1276</Lap>
+<Lap num="3" p="12" et="249.6800" s1="36.6913" s2="27.7585" s3="36.5573" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">101.0071</Lap>
+<Lap num="4" p="15" et="350.6800" s1="36.3027" s2="27.6273" topspeed="263.96" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>101.0071</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,ABS=1,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Cesar Serrador</Name>
+<Connected>1</Connected>
+<VehFile>777_DSTATI5BFA7EF3.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>D&apos;station Racing #777:LM</VehName>
+<Category>WEC 2023, GTE, Aston Martin Vantage AMR</Category>
+<CarType>Aston Martin Vantage AMR</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>777</CarNumber>
+<TeamName>D&apos;station Racing</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>16</Position>
+<ClassPosition>16</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="15" et="--.---" topspeed="246.39" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="4" et="134.2400" s1="36.6540" s2="28.4498" s3="37.7276" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">102.8314</Lap>
+<Lap num="3" p="12" et="237.0800" s1="36.5762" s2="27.5197" s3="36.9469" topspeed="266.66" fcompound="0,Soft" rcompound="0,Soft">101.0428</Lap>
+<Lap num="4" p="14" et="338.1200" topspeed="260.35" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>101.0428</BestLapTime>
+<Laps>4</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+<ControlAndAids startLap="1" endLap="4">PlayerControl,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>didier didco2000</Name>
+<Connected>1</Connected>
+<VehFile>88_PROTONL745C67A8.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Proton Competition #88:LM</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>88</CarNumber>
+<TeamName>Proton Competition</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>17</Position>
+<ClassPosition>17</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Lap num="1" p="9" et="--.---" topspeed="245.04" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<Lap num="2" p="9" et="143.6800" s1="37.0357" s2="27.7377" s3="37.4121" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">102.1855</Lap>
+<Lap num="3" p="15" et="245.8600" s1="36.5332" s2="27.9073" s3="37.1236" topspeed="263.06" fcompound="0,Soft" rcompound="0,Soft">101.5641</Lap>
+<Lap num="4" p="17" et="347.4200" s1="36.3277" s2="27.5590" s3="37.2386" topspeed="263.51" fcompound="0,Soft" rcompound="0,Soft">101.1253</Lap>
+<Lap num="5" p="17" et="448.5400" topspeed="247.29" fcompound="0,Soft" rcompound="0,Soft">--.----</Lap>
+<BestLapTime>101.1253</BestLapTime>
+<Laps>5</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>Finished Normally</FinishStatus>
+<ControlAndAids startLap="1" endLap="5">PlayerControl,ABS=1,Clutch,AutoBlip</ControlAndAids>
+</Driver>
+<Driver>
+<Name>Sergio Sanchez</Name>
+<Connected>1</Connected>
+<VehFile>56_BTR7B047051.VEH</VehFile>
+<UpgradeCode>aa000000 00000000 00000000 00000000</UpgradeCode>
+<VehName>Project 1 - AO #56:MZ</VehName>
+<Category>WEC 2023, GTE, Porsche 911 RSR-19</Category>
+<CarType>Porsche 911 RSR-19</CarType>
+<CarClass>GTE</CarClass>
+<CarNumber>56</CarNumber>
+<TeamName>Project 1 - AO</TeamName>
+<isPlayer>1</isPlayer>
+<ServerScored>1</ServerScored>
+<Position>18</Position>
+<ClassPosition>18</ClassPosition>
+<LapRankIncludingDiscos>19</LapRankIncludingDiscos>
+<Laps>0</Laps>
+<Pitstops>0</Pitstops>
+<FinishStatus>None</FinishStatus>
+</Driver>
+</Qualify>
+</RaceResults>
+</rFactorXML>
