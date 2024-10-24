@@ -25,6 +25,9 @@ game_settings = {
                                       'desc': '0 (none) to 4 (highest); how much to compress VCR file (uses less disk '
                                               'space but takes more time to write when a session ends)'},)
                         },
+    "Custom Replay Folder": {"name": "Custom Replay Folder", "value": "",
+                             "desc": "Specify a custom folder where to store the replays",
+                             "settings": tuple()},
     'Auto Skip Garaged Vehicles': {'name': 'Auto Skip Garage', 'value': False,
                                    'desc': 'If On, vehicles in garage stalls will be skipped when cycling cameras. '
                                            'Set this value to 0 to see all vehicles; the left shift key can be held '
@@ -42,7 +45,7 @@ game_settings = {
                         'settings': ({'value': 0, 'name': 'Off [Default]'},
                                      {'value': 1, 'name': 'Accurate'})
                         },
-    'Inactive Sleep Time': {'name': 'Inactive Sleep Time', 'value': 25,
+    'Inactive Sleep Time': {'name': 'Inactive Sleep Time', 'value': -1,
                             'settings': ({'settingType': 'range', 'min': 0, 'max': 500, 'step': 1,
                                           'desc': 'Number of milliseconds to sleep each message loop if the game is '
                                                   'not the active application (-1 to disable). Will give more CPU '
@@ -115,7 +118,7 @@ session_settings = {
                           'desc': '0=none, 1=race only, 2=always',
                           'settings': ({'value': 0, 'name': 'Never'},
                                        {'value': 1, 'name': 'Race Only [Default]'},
-                                       {'value': 2, 'name': 'Always'})},
+                                       {'value': 2, 'name': 'Always'})}
 }
 # Benchmark specific: Race Conditions
 session_conditions = {
