@@ -18,6 +18,7 @@ pygame = "==2.4.0"
 psutil = "6.1.0"
 gevent-websocket = "==0.10.1"
 gevent = "^24.10.2"
+pytest = "^8.3.3"
 
 
 [tool.poetry.group.dev.dependencies]

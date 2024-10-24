@@ -2,6 +2,8 @@
     Utilities to read Valve's Steam Library on a Windows Machine
 """
 import logging
+import sys
+
 try:
     import winreg as registry
 except ImportError:
@@ -50,13 +52,18 @@ class SteamApps:
 
     @staticmethod
     def find_steam_location() -> Optional[str]:
-        try:
-            key = registry.OpenKey(registry.HKEY_CURRENT_USER, "Software\Valve\Steam")
-        except FileNotFoundError as e:
-            logging.error(e)
-            return None
+        if sys.platform != "linux":
+            # Windows use registry entry
+            try:
+                key = registry.OpenKey(registry.HKEY_CURRENT_USER, "Software\Valve\Steam")
+            except FileNotFoundError as e:
+                logging.error(e)
+                return None
 
-        return registry.QueryValueEx(key, "SteamPath")[0]
+            return registry.QueryValueEx(key, "SteamPath")[0]
+        else:
+            # Linux default path
+            return Path.home().joinpath(".steam/root").as_posix()
 
     @classmethod
     def find_steam_libraries(cls) -> Optional[List[Path]]:
