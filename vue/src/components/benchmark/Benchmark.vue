@@ -127,7 +127,7 @@
 import {getEelJsonObject} from "@/main";
 import SettingItem from "@/components/settings/SettingItem.vue";
 import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea";
-import ReplayList from "@/components/ReplayList";
+import ReplayList from "@/components/widgets/ReplayList.vue";
 import BenchmarkResultArea from "@/components/benchmark/BenchmarkResultArea";
 import DevPresets from "@/components/benchmark/DevPresets";
 // --- </ Prepare receiving Benchmark Progress Events

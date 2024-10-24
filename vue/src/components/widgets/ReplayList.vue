@@ -68,10 +68,19 @@
 
     <b-table :items="computedReplayList" :fields="replayFields" table-variant="dark" small borderless
              primary-key="id" class="server-list" thead-class="text-white"
-             ref="replayTable"
+             ref="replayTable" sort-icon-left
              selectable selected-variant="primary"
              :select-mode="editing ? 'range' : 'single'"
              @row-selected="selectRows">
+      <!-- Replay Type -->
+      <template v-slot:cell(type)="replay">
+        <b-button size="sm" @click="toggleRowDetails(replay)" class="text-light m-0 mr-2 no-border no-bg"
+                  :disabled="replay.item.result_file === ''">
+          <b-icon :icon="replay.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
+                  variant="secondary" shift-v="1"/>
+        </b-button>
+        <span :class="'text-' + replayTypeText(replay.item).var">{{ replayTypeText(replay.item).text }}</span>
+      </template>
       <!-- Name -->
       <template v-slot:cell(name)="replay">
         <!-- Name Link -->
@@ -87,6 +96,10 @@
           <b-popover :target="'replay-action-btn-' + replay.item.id + _uid" triggers="click">
             <template #title>
               {{ replay.item.name }}
+              <b-button @click="$root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
+                        size="sm" aria-label="Close" variant="secondary" class="float-right p-0">
+                <b-icon icon="x-lg"></b-icon>
+              </b-button>
             </template>
             <div>
               <p>Rename or watch this replay.</p>
@@ -104,9 +117,11 @@
                         aria-label="Rename" class="mr-2">
                 Rename
               </b-button>
-              <b-button @click="$root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
-                        size="sm" aria-label="Close" variant="rf-secondary">
-                Close
+              <b-button v-if="replay.item.result_file !== ''"
+                        @click="toggleRowDetails(replay); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
+                        size="sm" variant="rf-secondary"
+                        aria-label="Show Results" class="mr-2">
+                Show Results
               </b-button>
             </div>
           </b-popover>
@@ -116,9 +131,13 @@
           <span :class="'replay-link text-' + replayTypeText(replay.item).var">{{ replay.item.name }}</span>
         </template>
       </template>
-      <!-- Replay Type -->
-      <template v-slot:cell(type)="replay">
-        <span :class="'text-' + replayTypeText(replay.item).var">{{ replayTypeText(replay.item).text }}</span>
+
+      <template #row-details="replay">
+        <ResultDisplay
+            :result-file="replay.item.result_file"
+            @make-toast="makeToast"
+            @set-busy="setBusy"
+        />
       </template>
     </b-table>
   </div>
@@ -126,14 +145,16 @@
 
 <script>
 import {getEelJsonObject} from "@/main";
+import ResultDisplay from "@/components/widgets/ResultDisplay.vue";
 
 export default {
   name: "ReplayList",
+  components: {ResultDisplay},
   data: function () {
     return {
       replays: [],
       replayFields: [
-        { key: 'type', label: 'T', sortable: true, class: 'text-left' },
+        { key: 'type', label: '', sortable: true, class: 'text-left' },
         { key: 'name', label: 'Name', sortable: true, class: 'text-left' },
         { key: 'size', label: 'Size', sortable: true, class: 'text-right secondary-info' },
         { key: 'date', label: 'Last modified', sortable: true, class: 'text-right secondary-info' },
@@ -151,6 +172,9 @@ export default {
       this.$emit('make-toast', message, category, title, append, delay)
     },
     setBusy: function (busy) { this.isBusy = busy; this.$emit('set-busy', busy) },
+    toggleRowDetails(row) {
+      row.toggleDetails()
+    },
     getReplays: async function() {
       this.setBusy(true)
       const r = await getEelJsonObject(window.eel.get_replays()())

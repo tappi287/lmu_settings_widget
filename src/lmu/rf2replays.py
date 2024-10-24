@@ -7,6 +7,8 @@ from lmu.lmu_game import RfactorPlayer
 from lmu.utils import create_file_safe_name
 
 REPLAY_FILE_SUFFIX = ".Vcr"
+RESULT_FILE_SUFFIX = ".xml"
+RESULT_TIME_THRESHOLD = 60.0  # 60s
 
 
 def get_replay_location_from_rfactor_player(rf: RfactorPlayer) -> Path | None:
@@ -22,6 +24,11 @@ def get_replays_location() -> Path | None:
         return
 
     return get_replay_location_from_rfactor_player(rf)
+
+
+def get_result_location_from_rfactor_player(rf: RfactorPlayer) -> Path | None:
+    user_data_path = rf.player_file.parents[1]
+    return user_data_path.joinpath("Log/Results")
 
 
 def rename_replay(replay: dict, new_name: str, replay_location: Path | None = None):
@@ -57,9 +64,62 @@ def delete_replays(replays: list, replay_location: Path | None = None):
     return True, list()
 
 
-def get_replays(replay_location: Path | None = None) -> list[dict]:
+def create_result_files_lookup(result_location: Path) -> dict[str, list[dict[Path, float]]]:
+    """Store Result Files in groups within same hour
+
+    Example:
+    2010-01-01-13(hour) Store all files for 01.01.2010 1pm
+    {"2010010113": [{"path": Path("File.xml"), "m_time": 123.0}]
+
+    """
+    result_files = dict()
+    for f in result_location.glob(f"*{RESULT_FILE_SUFFIX}"):
+        m_time = f.stat().st_mtime
+        timestamp_group = datetime.fromtimestamp(m_time).strftime("%Y%m%d%H")
+        if timestamp_group not in result_files:
+            result_files[timestamp_group] = list()
+        result_files[timestamp_group].append({"path": f, "m_time": m_time})
+
+    return result_files
+
+
+def match_result_file_to_replay(replay_file_stats, result_files: dict[str, list[dict[Path, float]]]) -> str:
+    """Find matching result files, written within the same seconds/time threshold"""
+    timestamp_group = datetime.fromtimestamp(replay_file_stats.st_mtime).strftime("%Y%m%d%H")
+    result_file = str()
+
+    if timestamp_group not in result_files:
+        return result_file
+
+    # Get file candidates within the same hour
+    # and store them by their timedelta to the replay file
+    candidates = {abs(r.get("m_time") - replay_file_stats.st_mtime): r for r in result_files[timestamp_group]}
+    if not candidates:
+        return result_file
+
+    # Match the file candidate with the lowest delta to replay file modified date
+    delta, result_entry = sorted(candidates.items())[0]
+    # Make sure time delta is within threshold
+    if delta < RESULT_TIME_THRESHOLD:
+        result_file = result_entry["path"].as_posix()
+
+    return result_file
+
+
+def get_replays(rf: RfactorPlayer | None = None) -> list[dict]:
     """Return attributes of all replays as JSON ready list sorted by date"""
-    p = replay_location or get_replays_location()
+    result_location, result_files = None, dict()
+    if rf is None:
+        rf = RfactorPlayer()
+        p = get_replay_location_from_rfactor_player(rf)
+        result_location = get_result_location_from_rfactor_player(rf)
+    else:
+        p = get_replay_location_from_rfactor_player(rf)
+        result_location = get_result_location_from_rfactor_player(rf)
+
+    if result_location is not None and result_location.exists():
+        result_files = create_result_files_lookup(result_location)
+
     replays = list()
 
     for idx, r in enumerate(p.glob(f"*{REPLAY_FILE_SUFFIX}")):
@@ -78,10 +138,14 @@ def get_replays(replay_location: Path | None = None) -> list[dict]:
         elif re.match(r".*(WU\s\d)", r.stem):
             replay_type = 5  # WarmUp
 
+        result_file = match_result_file_to_replay(s, result_files)
+
+        # define Entry
         replay = {
             "id": idx,
             "name": r.stem,
             "size": f"{s.st_size / 1048576:.2f}MB",
+            "result_file": result_file,
             "ctime": s.st_mtime,
             "type": replay_type,
             "date": datetime.fromtimestamp(s.st_mtime).strftime("%Y-%m-%d %H:%M"),

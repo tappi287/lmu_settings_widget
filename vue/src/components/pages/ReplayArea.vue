@@ -45,10 +45,11 @@
 
 <script>
 
-import ReplayList from "@/components/ReplayList";
+import ReplayList from "@/components/widgets/ReplayList.vue";
+import ResultDisplay from "@/components/widgets/ResultDisplay.vue";
 export default {
   name: "ReplayArea",
-  components: {ReplayList},
+  components: {ResultDisplay, ReplayList},
   data: function () {
     return {
       nonePreset: {name: 'None', isNonePreset: true},

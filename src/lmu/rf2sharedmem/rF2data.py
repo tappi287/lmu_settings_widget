@@ -6,6 +6,7 @@ Auto-generated from rF2data.cs
 
 import ctypes
 import mmap
+import sys
 from enum import IntEnum, Enum
 
 
@@ -815,7 +816,17 @@ class SubscribedBuffer(Enum):
 
 class SimInfo:
     def __init__(self):
+        self._rf2_tele = None
+        self.Rf2Tele = None
+        self._rf2_scor = None
+        self.Rf2Scor = None
+        self._rf2_ext = None
+        self.Rf2Ext = None
 
+        if sys.platform != "linux":
+            self.win_init_memory_maps()
+
+    def win_init_memory_maps(self):
         self._rf2_tele = mmap.mmap(0, ctypes.sizeof(rF2Telemetry), "$rFactor2SMMP_Telemetry$")
         self.Rf2Tele = rF2Telemetry.from_buffer(self._rf2_tele)
         self._rf2_scor = mmap.mmap(0, ctypes.sizeof(rF2Scoring), "$rFactor2SMMP_Scoring$")

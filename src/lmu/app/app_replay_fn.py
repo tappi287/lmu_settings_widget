@@ -23,9 +23,7 @@ def get_replays():
         return json.dumps({"result": False, "msg": rf.error})
 
     # Sort by change date
-    return json.dumps(
-        {"result": True, "replays": rf2replays.get_replays(rf2replays.get_replay_location_from_rfactor_player(rf))}
-    )
+    return json.dumps({"result": True, "replays": rf2replays.get_replays(rf)})
 
 
 @capture_app_exceptions

@@ -140,7 +140,7 @@ DirectInputKeyCodeTable = {
     'DIK_SLEEP':      (0xDF, 0x0), # Windows
     }
 
-SendInput = ctypes.windll.user32.SendInput
+# SendInput = ctypes.windll.user32.SendInput
 
 # C struct redefinitions
 PUL = ctypes.POINTER(ctypes.c_ulong)

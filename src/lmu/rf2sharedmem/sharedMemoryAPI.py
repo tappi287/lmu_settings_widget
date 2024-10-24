@@ -38,9 +38,10 @@ class SimInfoAPI(rF2data.SimInfo):
         and translated.
         """
         self.sharedMemoryVerified = False    # Verify every time it is called.
+        if self.Rf2Ext is None:
+            return
 
         versionStr = Cbytestring2Python(self.Rf2Ext.mVersion)
-        msg = ''
 
         if versionStr == '':
             msg = "\nrFactor 2 Shared Memory not present." + self.__HELP
@@ -202,9 +203,12 @@ class SimInfoAPI(rF2data.SimInfo):
     def close(self):
         # This didn't help with the errors
         try:
-            self._rf2_tele.close()
-            self._rf2_scor.close()
-            self._rf2_ext.close()
+            if self._rf2_tele is not None:
+                self._rf2_tele.close()
+            if self._rf2_scor is not None:
+                self._rf2_scor.close()
+            if self._rf2_ext is not None:
+                self._rf2_ext.close()
         except BufferError:  # "cannot close exported pointers exist"
             pass
 
