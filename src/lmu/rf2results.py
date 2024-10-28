@@ -5,10 +5,12 @@ from lxml import etree
 
 from lmu.utils import JsonRepr
 
+EMPTY_LAP_STRING = "-:--.---"
+
 
 def to_lap_time_string(lap_time: float) -> str:
     if lap_time == 0.0:
-        return "-:--.---"
+        return EMPTY_LAP_STRING
     s, ms = divmod(lap_time * 1000, 1000)
     m, s = divmod(s, 60)
     h, m = divmod(m, 60)
@@ -39,9 +41,9 @@ class ResultsLapEntry(ResultsJsonRepr):
     def __init__(self, e: etree._Element):
         self.num = int()
         self.p = int()
-        self.s1 = float()
-        self.s2 = float()
-        self.s3 = float()
+        self.s1 = str()
+        self.s2 = str()
+        self.s3 = str()
         self.topspeed = float()
         self.pit = bool()
         self.fcompound = str()
@@ -85,6 +87,10 @@ class ResultsDriverEntry(ResultsJsonRepr):
         self.finish_delta_formatted = str()
         self.finish_delta_laps = int()
         self.finish_delta_laps_formatted = str()
+        self.purple_lap_formatted = str()
+        self.purple_s1 = str()
+        self.purple_s2 = str()
+        self.purple_s3 = str()
 
         if e is not None:
             self.name = get_text_from_element(e, "Name")
@@ -155,17 +161,29 @@ class RfactorResults(ResultsJsonRepr):
 
         for idx, element in enumerate(et.iterfind(".//Driver")):
             self.drivers.append(ResultsDriverEntry(element))
-        self._create_finished_delta()
+        self._create_global_data()
 
         for element in et.find("RaceResults/Race/Stream"):
             element: etree._Element
             self.entries.append(ResultStreamEntry(element))
 
-    def _create_finished_delta(self):
+    def _create_global_data(self):
         lead_times = dict()
+        all_laps, all_s1, all_s2, all_s3 = list(), list(), list(), list()
         for driver in self.drivers:
             if driver.class_position == 1:
                 lead_times[driver.car_class] = (driver.finish_time, driver.race_laps)
+            all_laps += [lap.laptime for lap in driver.laps if lap.laptime > 0.0]
+            all_s1 += [lap.s1 for lap in driver.laps if lap.s1 != EMPTY_LAP_STRING]
+            all_s2 += [lap.s2 for lap in driver.laps if lap.s2 != EMPTY_LAP_STRING]
+            all_s3 += [lap.s3 for lap in driver.laps if lap.s3 != EMPTY_LAP_STRING]
+
+        purple_lap, purple_s1, purple_s2, purple_s3 = -1.0, -1.0, -1.0, -1.0
+        if all_laps and all_s1 and all_s2 and all_s3:
+            purple_lap = sorted(all_laps)[0]
+            purple_s1 = sorted(all_s1)[0]
+            purple_s2 = sorted(all_s2)[0]
+            purple_s3 = sorted(all_s3)[0]
 
         for driver in self.drivers:
             lead_time, lead_laps = lead_times.get(driver.car_class, (None, None))
@@ -176,3 +194,14 @@ class RfactorResults(ResultsJsonRepr):
             driver.finish_delta_laps = max(0, lead_laps - driver.race_laps)
             if driver.finish_delta_laps:
                 driver.finish_delta_laps_formatted = f"+{driver.finish_delta_laps}L"
+
+            # Set Purple laps and sectors
+            for lap in driver.laps:
+                if lap.laptime == purple_lap:
+                    driver.purple_lap_formatted = to_lap_time_string(lap.laptime)
+                if lap.s1 == purple_s1:
+                    driver.purple_s1 = purple_s1
+                if lap.s2 == purple_s2:
+                    driver.purple_s2 = purple_s2
+                if lap.s3 == purple_s3:
+                    driver.purple_s3 = purple_s3

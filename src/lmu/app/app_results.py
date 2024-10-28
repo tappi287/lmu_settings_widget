@@ -20,10 +20,13 @@ def get_result_file(file_name: str):
 @capture_app_exceptions
 def _get_result_file_fn(file_name: str):
     xml_file = Path(file_name)
-    if xml_file.is_file():
+    if not xml_file.is_file():
+        json.dumps({"result": False, "msg": "File not found"})
+
+    try:
         race_result = RfactorResults(xml_file)
-    else:
-        json.dumps({"result": False})
+    except Exception as e:
+        return json.dumps({"result": False, "msg": str(e)})
 
     logging.info(f"Providing result data for {xml_file.name}")
     return json.dumps({"result": True, "data": race_result.to_js_object()})

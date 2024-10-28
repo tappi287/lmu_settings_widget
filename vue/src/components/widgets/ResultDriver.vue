@@ -1,5 +1,4 @@
-<script xmlns="">
-import {getEelJsonObject} from "@/main";
+<script>
 
 export default {
   name: "ResultDisplay",
@@ -9,7 +8,7 @@ export default {
       driverFields: [
         {key: "num", label: "#", sortable: true, class: 'text-left'},
         {key: "p", label: "Position", class: 'text-left'},
-        {key: "laptime_formatted", label: "laptime", sortable: true, class: 'text-left'},
+        {key: "laptime_formatted", label: "Lap Time", sortable: true, class: 'text-left'},
         {key: "s1", label: "S1", sortable: true, class: 'text-left'},
         {key: "s2", label: "S2", sortable: true, class: 'text-left'},
         {key: "s3", label: "S3", sortable: true, class: 'text-left'},
@@ -28,6 +27,42 @@ export default {
     setBusy: function (busy) {
       this.isBusy = busy;
       this.$emit('set-busy', busy)
+    },
+    isFastestLap(entry) {
+      return entry.laptime_formatted === this.driver.fastest_lap_formatted;
+    },
+    isPurpleLap(entry) {
+      return entry.laptime_formatted === this.driver.purple_lap_formatted
+    },
+    isPurpleSector(sectorTime, sectorNum) {
+      if (sectorNum === 1) {
+        return sectorTime === this.driver.purple_s1
+      } else if (sectorNum === 2) {
+        return sectorTime === this.driver.purple_s2
+      } else if (sectorNum === 3) {
+        return sectorTime === this.driver.purple_s3
+      }
+      return false
+    },
+    isFastestSector(sectorTime, sectorNum) {
+      if (sectorNum === 1) {
+        return sectorTime === this.driver.s1_fastest
+      } else if (sectorNum === 2) {
+        return sectorTime === this.driver.s2_fastest
+      } else if (sectorNum === 3) {
+        return sectorTime === this.driver.s3_fastest
+      }
+      return false
+    },
+    getLapClass(entry) {
+      if (this.isPurpleLap(entry)) { return "text-purple"}
+      if (this.isFastestLap(entry)) { return "text-success" }
+      return ""
+    },
+    getSectorClass(sectorTime, sectorNum) {
+      if (this.isPurpleSector(sectorTime, sectorNum)) { return "text-purple" }
+      if (this.isFastestSector(sectorTime, sectorNum)) { return "text-success" }
+      return ""
     }
   }
 }
@@ -38,6 +73,18 @@ export default {
            sort-by="num" no-sort-reset sort-icon-left
            table-variant="dark" small borderless
            class="server-list" thead-class="text-white">
+    <template #cell(laptime_formatted)="row">
+      <span :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
+    </template>
+    <template #cell(s1)="row">
+      <span :class="getSectorClass(row.item.s1, 1)">{{ row.item.s1 }}</span>
+    </template>
+    <template #cell(s2)="row">
+      <span :class="getSectorClass(row.item.s2, 2)">{{ row.item.s2 }}</span>
+    </template>
+    <template #cell(s3)="row">
+      <span :class="getSectorClass(row.item.s3, 3)">{{ row.item.s3 }}</span>
+    </template>
     <template #cell(pit)="row">
       {{ row.item.pit ? 'In Pit' : '-' }}
     </template>
@@ -45,5 +92,7 @@ export default {
 </template>
 
 <style scoped>
-
+.text-purple {
+  color: #e400da;
+}
 </style>
