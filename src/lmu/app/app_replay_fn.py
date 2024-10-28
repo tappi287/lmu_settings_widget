@@ -129,3 +129,17 @@ def play_replay(replay_name):
     # CommandQueue.append(Command(Command.switch_fullscreen, timeout=30.0))
 
     return json.dumps({"result": True, "msg": rf.error})
+
+
+@capture_app_exceptions
+def replay_playback_command(playback_command: int | str):
+    playback_command = int(playback_command)
+    CommandQueue.append(Command(Command.replay_playback, playback_command, timeout=5.0))
+    return json.dumps({"result": True})
+
+
+@capture_app_exceptions
+def replay_time_command(replay_time: float | str):
+    replay_time = float(replay_time)
+    CommandQueue.append(Command(Command.replay_time, replay_time, timeout=5.0))
+    return json.dumps({"result": True})

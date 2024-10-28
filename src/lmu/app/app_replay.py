@@ -36,3 +36,13 @@ def rename_replay(replay: dict, new_name: str):
 @eel.expose
 def play_replay(replay_name):
     return lmu.app.app_replay_fn.play_replay(replay_name)
+
+
+@eel.expose
+def replay_playback_command(playback_command: int | str):
+    return lmu.app.app_replay_fn.replay_playback_command(playback_command)
+
+
+@eel.expose
+def replay_time_command(replay_time: float | str):
+    return lmu.app.app_replay_fn.replay_time_command(replay_time)

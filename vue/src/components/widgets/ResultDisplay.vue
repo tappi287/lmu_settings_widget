@@ -51,6 +51,12 @@ export default {
     isPurpleLap(entry) {
       if (entry.fastest_lap_formatted === entry.purple_lap_formatted) { return "text-purple" }
       return ""
+    },
+    async gotoReplayTime(time) {
+      await getEelJsonObject(window.eel.replay_time_command(time)())
+    },
+    async replayPlaybackCommand(command) {
+      await getEelJsonObject(window.eel.replay_playback_command(command)())
     }
   },
   computed: {
@@ -98,64 +104,81 @@ export default {
 </script>
 
 <template>
-  <b-tabs align="left" no-fade>
-    <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
-      <!-- RESULT -->
-      <b-table :items="raceResultItems" :fields="raceResultFields"
-               sort-by="position" no-sort-reset sort-icon-left
-               table-variant="dark" small borderless
-               class="server-list" thead-class="text-white"
-               ref="resultTable"
-      >
-        <template #cell(name)="row">
-          <b-button size="sm" @click="row.toggleDetails" class="text-light m-0 mr-2 no-border no-bg">
-            <b-icon :icon="row.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
-                    variant="secondary" shift-v="1"/>
-            {{ row.item.name }}
-          </b-button>
-        </template>
-        <template #cell(fastest_lap_formatted)="row">
-          <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
-        </template>
-        <!-- LAP TIMES -->
-        <template #row-details="detail">
-          <ResultDriver :driver="detail.item" />
-        </template>
-      </b-table>
-    </b-tab>
-    <!-- INCIDENTS -->
-    <b-tab title="Incidents" title-link-class="btn-secondary pt-1 pb-1">
-      <b-table :items="resultData.entries"
-               :fields="incidentFields"
-               :filter="incidentFilter"
-               sort-by="et" no-sort-reset sort-icon-left
-               table-variant="dark" small borderless
-               class="server-list" thead-class="text-white">
-        <template #cell(et)="row">
-          <span class="text-monospace">{{ row.item.et }}</span>
-        </template>
-        <!-- A custom formatted header cell for field 'name' -->
-        <template #head(drivers)="data">
-          <span class="mr-1">{{ data.label }}</span>
-          <template v-if="incidentFilter!==null">
-            <b-link @click="incidentFilter=null" class="float-right text-warning">
-              Clear Filter
+  <div>
+    <b-button-group size="sm" class="text-center text-monospace text-bold">
+      <b-button @click="replayPlaybackCommand(0)" variant="rf-blue">|<</b-button>
+      <b-button @click="replayPlaybackCommand(2)" variant="rf-secondary"><<<</b-button>
+      <b-button @click="replayPlaybackCommand(3)" variant="rf-secondary"><<</b-button>
+      <b-button @click="replayPlaybackCommand(4)" variant="rf-secondary"><</b-button>
+      <b-button @click="replayPlaybackCommand(5)" variant="rf-secondary"><|</b-button>
+      <b-button @click="replayPlaybackCommand(6)" variant="rf-secondary">||</b-button>
+      <b-button @click="replayPlaybackCommand(7)" variant="rf-secondary">|></b-button>
+      <b-button @click="replayPlaybackCommand(8)" variant="rf-secondary">></b-button>
+      <b-button @click="replayPlaybackCommand(9)" variant="rf-secondary">>></b-button>
+      <b-button @click="replayPlaybackCommand(10)" variant="rf-secondary">>>></b-button>
+      <b-button @click="replayPlaybackCommand(1)" variant="rf-blue">>|</b-button>
+    </b-button-group>
+    <b-tabs align="left" no-fade>
+      <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
+        <!-- RESULT -->
+        <b-table :items="raceResultItems" :fields="raceResultFields"
+                 sort-by="position" no-sort-reset sort-icon-left
+                 table-variant="dark" small borderless
+                 class="server-list" thead-class="text-white"
+                 ref="resultTable"
+        >
+          <template #cell(name)="row">
+            <b-button size="sm" @click="row.toggleDetails" class="text-light m-0 mr-2 no-border no-bg">
+              <b-icon :icon="row.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
+                      variant="secondary" shift-v="1"/>
+              {{ row.item.name }}
+            </b-button>
+          </template>
+          <template #cell(fastest_lap_formatted)="row">
+            <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
+          </template>
+          <!-- LAP TIMES -->
+          <template #row-details="detail">
+            <ResultDriver :driver="detail.item" />
+          </template>
+        </b-table>
+      </b-tab>
+      <!-- INCIDENTS -->
+      <b-tab title="Incidents" title-link-class="btn-secondary pt-1 pb-1">
+        <b-table :items="resultData.entries"
+                 :fields="incidentFields"
+                 :filter="incidentFilter"
+                 sort-by="et" no-sort-reset sort-icon-left
+                 table-variant="dark" small borderless
+                 class="server-list" thead-class="text-white">
+          <template #cell(et)="row">
+            <b-link class="text-monospace" @click="gotoReplayTime(row.item.et)">
+              {{ row.item.et }}
             </b-link>
           </template>
-        </template>
-        <template #cell(drivers)="row">
-          <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
-                  @click="incidentFilter=d"
-                  class="mr-1 small" variant="secondary">
-            {{ d }}
-          </b-link>
-        </template>
-        <template #cell(text)="row">
-          <span class="small">{{ row.item.text }}</span>
-        </template>
-      </b-table>
-    </b-tab>
-  </b-tabs>
+          <!-- A custom formatted header cell for field 'name' -->
+          <template #head(drivers)="data">
+            <span class="mr-1">{{ data.label }}</span>
+            <template v-if="incidentFilter!==null">
+              <b-link @click="incidentFilter=null" class="float-right text-warning">
+                Clear Filter
+              </b-link>
+            </template>
+          </template>
+          <template #cell(drivers)="row">
+            <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
+                    @click="incidentFilter=d"
+                    class="mr-1 small" variant="secondary">
+              {{ d }}
+            </b-link>
+          </template>
+          <template #cell(text)="row">
+            <span class="small">{{ row.item.text }}</span>
+          </template>
+        </b-table>
+      </b-tab>
+    </b-tabs>
+  </div>
 </template>
 
 <style scoped>

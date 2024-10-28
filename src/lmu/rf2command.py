@@ -12,20 +12,21 @@ from .utils import AppAudioFx
 
 
 class CommandUrls:
-    series = '/rest/race/series'
+    series = "/rest/race/series"
 
     @classmethod
     def set_series_args(cls, series_id: str):
-        if AppSettings.last_rf_version >= '1.1125':
+        if AppSettings.last_rf_version >= "1.1125":
             # -- new Protocol from v1125
-            return {'url': f'{cls.series}?signature={series_id}'}
+            return {"url": f"{cls.series}?signature={series_id}"}
         else:
             # -- previous versions
-            return {'url': cls.series, 'data': series_id}
+            return {"url": cls.series, "data": series_id}
 
 
 class Command:
-    """ A command to be held in the CommandQueue and to be send to rF2 if it is in the desired state """
+    """A command to be held in the CommandQueue and to be send to rF2 if it is in the desired state"""
+
     wait_for_state = 0
     play_replay = 1
     switch_fullscreen = 2
@@ -40,11 +41,27 @@ class Command:
     timeout_command = 11
     record_benchmark = 12
     set_session_settings = 13
+    replay_playback = 14
+    replay_time = 15
 
-    names = {0: 'wait_for_state', 1: 'play_replay', 2: 'switch_fullscreen', 3: 'quit',
-             4: 'get_content', 5: 'set_content', 6: 'start_race',
-             7: 'drive', 8: 'press_key', 9: 'press_shift_key', 10: 'press_ctrl_key',
-             11: 'timeout_command', 12: 'record_benchmark', 13: 'set_session_settings'}
+    names = {
+        0: "wait_for_state",
+        1: "play_replay",
+        2: "switch_fullscreen",
+        3: "quit",
+        4: "get_content",
+        5: "set_content",
+        6: "start_race",
+        7: "drive",
+        8: "press_key",
+        9: "press_shift_key",
+        10: "press_ctrl_key",
+        11: "timeout_command",
+        12: "record_benchmark",
+        13: "set_session_settings",
+        14: "replay_playback",
+        15: "replay_time",
+    }
 
     default_timeout = 480.0  # Seconds
 
@@ -57,19 +74,19 @@ class Command:
         self.reset_queue = False
         self.created = time.time()
 
-        self.method = getattr(self, f'{self.names.get(command)}_method')
+        self.method = getattr(self, f"{self.names.get(command)}_method")
 
     def execute(self):
         if callable(self.method):
             self.method()
         else:
-            logging.error('Could not find method to execute for command: %s %s', self.command,
-                          self.names.get(self.command))
+            logging.error(
+                "Could not find method to execute for command: %s %s", self.command, self.names.get(self.command)
+            )
 
     def activate(self):
         self.created = time.time()
-        logging.debug('rFactor command activated: %s, Timeout: %s',
-                      Command.names.get(self.command), self.timeout)
+        logging.debug("rFactor command activated: %s, Timeout: %s", Command.names.get(self.command), self.timeout)
 
     @property
     def timed_out(self) -> bool:
@@ -78,18 +95,18 @@ class Command:
             result = True
 
         if result:
-            logging.info('Rfactor Command timed out: %s', Command.names.get(self.command))
+            logging.info("Rfactor Command timed out: %s", Command.names.get(self.command))
 
         return result
 
     @staticmethod
     def _get_all_tracks_cars_series(selected):
-        for series in AppSettings.content.get('series', list()):
-            if series and series.get('shortName') == 'All Tracks & Cars':
-                if AppSettings.last_rf_version >= '1.1125' and series.get('signature', None):
-                    selected['series'] = series.get('signature')
-                elif series.get('id'):
-                    selected['series'] = series.get('id')
+        for series in AppSettings.content.get("series", list()):
+            if series and series.get("shortName") == "All Tracks & Cars":
+                if AppSettings.last_rf_version >= "1.1125" and series.get("signature", None):
+                    selected["series"] = series.get("signature")
+                elif series.get("id"):
+                    selected["series"] = series.get("id")
                 break
         return selected
 
@@ -101,13 +118,13 @@ class Command:
 
     def wait_for_state_method(self):
         if self.data == RfactorConnect.state:
-            logging.debug('Found desired command state: %s', RfactorState.names.get(self.data))
+            logging.debug("Found desired command state: %s", RfactorState.names.get(self.data))
             self.finished = True
-        RfactorStatusEvent.set(f'Waiting for state: {RfactorState.names.get(self.data)}')
+        RfactorStatusEvent.set(f"Waiting for state: {RfactorState.names.get(self.data)}")
 
     def quit_method(self):
-        logging.debug('Executing command quit rF2.')
-        RfactorStatusEvent.set('Sending quit event to WebUI')
+        logging.debug("Executing command quit rF2.")
+        RfactorStatusEvent.set("Sending quit event to WebUI")
         quit_result = RfactorConnect.quit()
         RfactorQuitEvent.quit_result.set(quit_result)
 
@@ -118,19 +135,19 @@ class Command:
         is_playing_replay = False
 
         if not self.data:
-            logging.error('Can not play replay without name!')
+            logging.error("Can not play replay without name!")
             return False
 
-        RfactorStatusEvent.set(f'Getting Replay Id: {self.data}')
+        RfactorStatusEvent.set(f"Getting Replay Id: {self.data}")
 
         # RfactorConnect.wait_for_rf2_ui(20.0)
         replays = RfactorConnect.get_replays()
         gevent.sleep(0.1)
 
         for r in replays:
-            if r.get('replayName', '') == self.data:
-                logging.debug('Matched Web UI replay with requested replay id: %s', r.get('id'))
-                RfactorConnect.play_replay(r.get('id', 0))
+            if r.get("replayName", "") == self.data:
+                logging.debug("Matched Web UI replay with requested replay id: %s", r.get("id"))
+                RfactorConnect.play_replay(r.get("id", 0))
                 is_playing_replay = True
                 break
 
@@ -139,47 +156,48 @@ class Command:
         AppSettings.save()
 
         if not is_playing_replay:
-            RfactorStatusEvent.set(f'Could not find Replay: {self.data}')
+            RfactorStatusEvent.set(f"Could not find Replay: {self.data}")
             self.reset_queue = True
             return False
 
-        logging.debug('Playing replay: %s', self.data)
+        logging.debug("Playing replay: %s", self.data)
         RfactorLiveEvent.set(True)
-        RfactorStatusEvent.set(f'Loading Replay {self.data}')
+        RfactorStatusEvent.set(f"Loading Replay {self.data}")
 
         self.finished = True
         return True
 
     def switch_fullscreen_method(self):
-        RfactorStatusEvent.set(f'Switching rF2 Monitor to fullscreen mode.')
-        logging.debug('Switching rF Event Monitor to fullscreen.')
-        RfactorConnect.post_request('/navigation/action/NAV_TO_FULL_EVENT_MONITOR')
+        RfactorStatusEvent.set(f"Switching rF2 Monitor to fullscreen mode.")
+        logging.debug("Switching rF Event Monitor to fullscreen.")
+        RfactorConnect.post_request("/navigation/action/NAV_TO_FULL_EVENT_MONITOR")
         self.finished = True
 
     @staticmethod
     def trigger_app_save_method():
-        logging.debug('Executing command App-Settings save.')
+        logging.debug("Executing command App-Settings save.")
         AppSettings.save()
 
     def get_content_method(self):
-        logging.debug('Executing command get available rF Series/Cars/Tracks content.')
-        RfactorStatusEvent.set('Getting available content via WebUI')
+        logging.debug("Executing command get available rF Series/Cars/Tracks content.")
+        RfactorStatusEvent.set("Getting available content via WebUI")
 
         # -- Check if All Tracks Cars is selected
-        c = RfactorConnect.get_request('/rest/race/selection')
+        c = RfactorConnect.get_request("/rest/race/selection")
         if self._check_request(c):
             current_selection = c.json() or dict()
-            current_series = current_selection.get('series', dict()).get('id') or \
-                             current_selection.get('series', dict()).get('signature')
+            current_series = current_selection.get("series", dict()).get("id") or current_selection.get(
+                "series", dict()
+            ).get("signature")
 
-            all_series = self._get_all_tracks_cars_series(dict()).get('series', '')
+            all_series = self._get_all_tracks_cars_series(dict()).get("series", "")
 
             if current_series and all_series and current_series != all_series:
-                logging.debug('Skipping get content command. All Tracks and Cars series is not active.')
+                logging.debug("Skipping get content command. All Tracks and Cars series is not active.")
                 self.finished = True
                 return
         else:
-            logging.debug('Could not get current content selection')
+            logging.debug("Could not get current content selection")
             return
 
         # -- Get content
@@ -195,19 +213,19 @@ class Command:
                 try:
                     AppSettings.content[name] = r.json()
                 except Exception as e:
-                    logging.error('Could not decode response to get content request: %s %s', name, e)
+                    logging.error("Could not decode response to get content request: %s %s", name, e)
             gevent.sleep(0.01)
 
         AppSettings.save(save_content=True)
 
     def set_content_method(self):
         # -- Set Series/Cars/Tracks
-        logging.debug('Executing command set rF Series/Cars/Tracks content.')
-        RfactorStatusEvent.set('Setting content via WebUI')
+        logging.debug("Executing command set rF Series/Cars/Tracks content.")
+        RfactorStatusEvent.set("Setting content via WebUI")
 
         # -- LookUp All tracks & Cars Series if no series selected
         selected = self.data
-        if not selected.get('series'):
+        if not selected.get("series"):
             selected = self._get_all_tracks_cars_series(selected)
 
         content_updated = False
@@ -217,19 +235,19 @@ class Command:
                 continue
 
             # -- Check the current selection
-            s = RfactorConnect.get_request('/rest/race/selection')
+            s = RfactorConnect.get_request("/rest/race/selection")
             if self._check_request(s):
                 current_selection = s.json() or dict()
-                if 'car' in current_selection.keys():
-                    current_selection['cars'] = current_selection.pop('car')
-                if 'track' in current_selection.keys():
-                    current_selection['tracks'] = current_selection.pop('track')
+                if "car" in current_selection.keys():
+                    current_selection["cars"] = current_selection.pop("car")
+                if "track" in current_selection.keys():
+                    current_selection["tracks"] = current_selection.pop("track")
 
-                current_id = current_selection[name].get('id') or current_selection[name].get('signature')
+                current_id = current_selection[name].get("id") or current_selection[name].get("signature")
 
                 # -- Skip selection if selection already matches
                 if current_id == content_id:
-                    logging.debug('Skipping already selected: %s %s', name, current_id)
+                    logging.debug("Skipping already selected: %s %s", name, current_id)
                     continue
 
             # -- Content get request to enumerate content in WebUi
@@ -241,7 +259,7 @@ class Command:
 
             # -- Try POST set request
             while (retries := retries - 1) >= 0:
-                logging.debug('Requesting set content: %s %s', url, content_id)
+                logging.debug("Requesting set content: %s %s", url, content_id)
                 if url == CommandUrls.series:
                     r = RfactorConnect.post_request(**CommandUrls.set_series_args(content_id))
                 else:
@@ -252,7 +270,7 @@ class Command:
                     try:
                         # -- Try a get content request to workaround internal WebUI error
                         gevent.sleep(0.1)
-                        logging.debug('Trying workaround get content request to %s', url)
+                        logging.debug("Trying workaround get content request to %s", url)
                         c = RfactorConnect.get_request(url=url)
                         if not c:
                             # -- Probably no connection
@@ -265,45 +283,45 @@ class Command:
                             # -- Try to get an updated signature of the All Tracks & Cars Series
                             if url == CommandUrls.series:
                                 selected = self._get_all_tracks_cars_series(selected)
-                                content_id = selected['series']
-                                logging.debug('Updated All Tracks & Cars Series to: %s', content_id)
+                                content_id = selected["series"]
+                                logging.debug("Updated All Tracks & Cars Series to: %s", content_id)
                             content_updated = True
 
                         gevent.sleep(0.1)
                     except Exception as e:
-                        logging.error('Error during workaround get content request: %s', e)
-                    logging.debug('Re-trying failed set content request #%s', retries)
+                        logging.error("Error during workaround get content request: %s", e)
+                    logging.debug("Re-trying failed set content request #%s", retries)
 
         if content_updated:
-            logging.debug('Updated content during Set Content Command. Saving updated content list.')
+            logging.debug("Updated content during Set Content Command. Saving updated content list.")
             AppSettings.save(save_content=True)
 
         AppAudioFx.play_audio(AppAudioFx.switch)
         # -- Navigate to Main Menu
-        RfactorConnect.post_request('/navigation/action/NAV_TO_MAIN_MENU', data=None)
+        RfactorConnect.post_request("/navigation/action/NAV_TO_MAIN_MENU", data=None)
         self.finished = True
 
     def set_session_settings_method(self):
         if not self.data or not isinstance(self.data, dict):
-            logging.error('Command set_session_settings was not provided with data of the correct type!')
+            logging.error("Command set_session_settings was not provided with data of the correct type!")
             return
 
         # -- Update Session Settings
-        r = RfactorConnect.get_request('/rest/sessions')
+        r = RfactorConnect.get_request("/rest/sessions")
         if not self._check_request(r):
-            logging.error('Command set session settings could not get current session settings.')
+            logging.error("Command set session settings could not get current session settings.")
             return
         current_settings = r.json()
 
         for key, target_value in self.data.items():
-            current_value = current_settings.get(key, dict()).get('currentValue')
+            current_value = current_settings.get(key, dict()).get("currentValue")
 
             if current_value is None:
-                logging.error('Could not locate and update setting: %s in current rF2 session settings', key)
+                logging.error("Could not locate and update setting: %s in current rF2 session settings", key)
                 continue
 
             if current_value == target_value:
-                logging.info('Skipping session setting %s that already has desired value %s', key, target_value)
+                logging.info("Skipping session setting %s that already has desired value %s", key, target_value)
                 continue
 
             high = int(max(target_value, current_value))
@@ -314,28 +332,29 @@ class Command:
             while (num_sends := num_sends - 1) >= 0:
                 retries, result = 3, None
                 while (retries := retries - 1) >= 0:
-                    logging.debug('Updating setting %s in direction %s', key, direction)
-                    s = RfactorConnect.post_request('/rest/sessions/settings',
-                                                    json={'sessionSetting': key, 'value': direction})
+                    logging.debug("Updating setting %s in direction %s", key, direction)
+                    s = RfactorConnect.post_request(
+                        "/rest/sessions/settings", json={"sessionSetting": key, "value": direction}
+                    )
                     if self._check_request(s):
                         result = s.json()
                         break
                     else:
-                        logging.info('Re-trying failed set session settings request #%s', retries)
+                        logging.info("Re-trying failed set session settings request #%s", retries)
                         gevent.sleep(0.1)
 
-                if result and str(result.get('currentValue')) == str(target_value):
+                if result and str(result.get("currentValue")) == str(target_value):
                     break
 
         AppAudioFx.play_audio(AppAudioFx.switch)
         # -- Navigate to Main Menu
-        RfactorConnect.post_request('/navigation/action/NAV_TO_MAIN_MENU', data=None)
+        RfactorConnect.post_request("/navigation/action/NAV_TO_MAIN_MENU", data=None)
         self.finished = True
 
     def start_race_method(self):
-        logging.debug('Executing command start race')
-        RfactorStatusEvent.set('Starting Race Session')
-        r = RfactorConnect.post_request('/rest/race/startRace')
+        logging.debug("Executing command start race")
+        RfactorStatusEvent.set("Starting Race Session")
+        r = RfactorConnect.post_request("/rest/race/startRace")
 
         AppAudioFx.play_audio(AppAudioFx.confirm)
 
@@ -344,9 +363,9 @@ class Command:
         self.finished = True
 
     def drive_method(self):
-        logging.debug('Executing command drive')
-        RfactorStatusEvent.set('Requesting to Drive')
-        r = RfactorConnect.post_request('/rest/garage/drive')
+        logging.debug("Executing command drive")
+        RfactorStatusEvent.set("Requesting to Drive")
+        r = RfactorConnect.post_request("/rest/garage/drive")
 
         AppAudioFx.play_audio(AppAudioFx.switch)
 
@@ -356,54 +375,69 @@ class Command:
 
     def press_key_method(self):
         if self.data:
-            RfactorStatusEvent.set(f'Sending key: {self.data}')
-            logging.debug('Executing command press key: %s', self.data)
+            RfactorStatusEvent.set(f"Sending key: {self.data}")
+            logging.debug("Executing command press key: %s", self.data)
             PressReleaseKey(self.data)
             AppAudioFx.play_audio(AppAudioFx.switch)
         else:
-            logging.error('Command press key did not contain any Key Code.')
+            logging.error("Command press key did not contain any Key Code.")
         self.finished = True
 
     def press_shift_key_method(self):
         if self.data:
-            RfactorStatusEvent.set(f'Sending key + left Shift: {self.data}')
-            logging.debug('Executing command press key + LSHIFT: %s', self.data)
-            PressKey('DIK_LSHIFT')
+            RfactorStatusEvent.set(f"Sending key + left Shift: {self.data}")
+            logging.debug("Executing command press key + LSHIFT: %s", self.data)
+            PressKey("DIK_LSHIFT")
             PressReleaseKey(self.data)
-            ReleaseKey('DIK_LSHIFT')
+            ReleaseKey("DIK_LSHIFT")
         else:
-            logging.error('Command press key + LSHIFT did not contain any Key Code.')
+            logging.error("Command press key + LSHIFT did not contain any Key Code.")
         self.finished = True
 
     def press_ctrl_key_method(self):
         if self.data:
-            RfactorStatusEvent.set(f'Sending key + left Ctrl: {self.data}')
-            logging.debug('Executing command press key + DIK_LCONTROL: %s', self.data)
-            PressKey('DIK_LCONTROL')
+            RfactorStatusEvent.set(f"Sending key + left Ctrl: {self.data}")
+            logging.debug("Executing command press key + DIK_LCONTROL: %s", self.data)
+            PressKey("DIK_LCONTROL")
             PressReleaseKey(self.data)
-            ReleaseKey('DIK_LCONTROL')
+            ReleaseKey("DIK_LCONTROL")
         else:
-            logging.error('Command press key + DIK_LCONTROL did not contain any Key Code.')
+            logging.error("Command press key + DIK_LCONTROL did not contain any Key Code.")
         self.finished = True
 
     def timeout_command_method(self):
         start = time.time()
         t = self.data
         if isinstance(t, (int, float)):
-            RfactorStatusEvent.set(f'Waiting for {self.data}s')
+            RfactorStatusEvent.set(f"Waiting for {self.data}s")
             gevent.sleep(t)
-        logging.debug(f'Executed command timeout for {(time.time() - start):.2f}s')
+        logging.debug(f"Executed command timeout for {(time.time() - start):.2f}s")
         self.finished = True
 
     def record_benchmark_method(self):
         RecordBenchmarkEvent.set(True)
-        RfactorStatusEvent.set(f'Recording Benchmark.')
+        RfactorStatusEvent.set(f"Recording Benchmark.")
         AppAudioFx.play_audio(AppAudioFx.ping)
+        self.finished = True
+
+    def replay_playback_method(self):
+        if self.data:
+            RfactorConnect.replay_playback_command(self.data)
+        else:
+            logging.error("Command replay playback did not contain any argument.")
+        self.finished = True
+
+    def replay_time_method(self):
+        if self.data:
+            RfactorConnect.replay_time_command(self.data)
+        else:
+            logging.error("Command replay time did not contain any time argument.")
         self.finished = True
 
 
 class CommandQueue:
-    """ Queue commands to send to rF2 """
+    """Queue commands to send to rF2"""
+
     queue: List[Command] = list()
     current_command: Optional[Command] = None
 
@@ -417,7 +451,7 @@ class CommandQueue:
 
     @classmethod
     def reset(cls):
-        logging.debug('Resetting rF2 Web Ui Command Queue')
+        logging.debug("Resetting rF2 Web Ui Command Queue")
         cls.queue = list()
 
     @classmethod
@@ -464,7 +498,7 @@ class CommandQueue:
         if not command and (time.time() - cls.last_command_time) > cls.idle_timeout:
             # -- Reset rF2 FrontEnd status message
             if not RfactorStatusEvent.empty:
-                RfactorStatusEvent.set('')
+                RfactorStatusEvent.set("")
             RfactorConnect.set_to_idle_timeout()
 
             # -- Call the check connection method every loop
