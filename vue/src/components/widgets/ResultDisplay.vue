@@ -11,15 +11,21 @@ export default {
       raceResultFields: [
         // {key: "expandRow", label: "", sortable: false, class: 'text-left'},
         {key: 'position', label: 'P', sortable: true, class: 'text-left'},
-        {key: 'class_position', label: 'Class P', class: 'text-left'},
         {key: 'name', label: 'Name', class: 'text-left'},
         {key: 'fastest_lap_formatted', label: 'Best Lap', sortable: true, class: 'text-right'},
         {key: 'car_class', label: 'Class', class: 'text-right'},
+        {key: 'class_position', label: 'P', class: 'text-left'},
         {key: 'car_number', label: '#', class: 'text-right'},
         {key: 'car_type', label: 'Car', class: 'text-right'},
         {key: 'finish_delta_laps_formatted', label: '', class: 'text-right secondary-info'},
         {key: 'finish_time_formatted', label: 'Time', class: 'text-right secondary-info'},
       ],
+      incidentFields: [
+          {key: 'et', label: 'Time', sortable: true, class: 'text-left'},
+          {key: 'drivers', label: 'Drivers', sortable: true, class: 'text-left'},
+          {key: 'text', label: 'Text', sortable: false, class: 'text-right'}
+      ],
+      incidentFilter: null,
       resultData: {}
     }
   },
@@ -92,34 +98,64 @@ export default {
 </script>
 
 <template>
-  <div>
-    <b-tabs align="left" no-fade>
-      <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
-        <b-table :items="raceResultItems" :fields="raceResultFields"
-                 sort-by="position" no-sort-reset sort-icon-left
-                 table-variant="dark" small borderless
-                 class="server-list" thead-class="text-white"
-                 ref="resultTable"
-        >
-          <template #cell(name)="row">
-            <b-button size="sm" @click="row.toggleDetails" class="text-light m-0 mr-2 no-border no-bg">
-              <b-icon :icon="row.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
-                      variant="secondary" shift-v="1"/>
-              {{ row.item.name }}
-            </b-button>
+  <b-tabs align="left" no-fade>
+    <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
+      <!-- RESULT -->
+      <b-table :items="raceResultItems" :fields="raceResultFields"
+               sort-by="position" no-sort-reset sort-icon-left
+               table-variant="dark" small borderless
+               class="server-list" thead-class="text-white"
+               ref="resultTable"
+      >
+        <template #cell(name)="row">
+          <b-button size="sm" @click="row.toggleDetails" class="text-light m-0 mr-2 no-border no-bg">
+            <b-icon :icon="row.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
+                    variant="secondary" shift-v="1"/>
+            {{ row.item.name }}
+          </b-button>
+        </template>
+        <template #cell(fastest_lap_formatted)="row">
+          <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
+        </template>
+        <!-- LAP TIMES -->
+        <template #row-details="detail">
+          <ResultDriver :driver="detail.item" />
+        </template>
+      </b-table>
+    </b-tab>
+    <!-- INCIDENTS -->
+    <b-tab title="Incidents" title-link-class="btn-secondary pt-1 pb-1">
+      <b-table :items="resultData.entries"
+               :fields="incidentFields"
+               :filter="incidentFilter"
+               sort-by="et" no-sort-reset sort-icon-left
+               table-variant="dark" small borderless
+               class="server-list" thead-class="text-white">
+        <template #cell(et)="row">
+          <span class="text-monospace">{{ row.item.et }}</span>
+        </template>
+        <!-- A custom formatted header cell for field 'name' -->
+        <template #head(drivers)="data">
+          <span class="mr-1">{{ data.label }}</span>
+          <template v-if="incidentFilter!==null">
+            <b-link @click="incidentFilter=null" class="float-right text-warning">
+              Clear Filter
+            </b-link>
           </template>
-          <template #cell(fastest_lap_formatted)="row">
-            <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
-          </template>
-          <template #row-details="detail">
-            <ResultDriver :driver="detail.item" />
-          </template>
-        </b-table>
-      </b-tab>
-      <b-tab title="Events" title-link-class="btn-secondary pt-1 pb-1">
-      </b-tab>
-    </b-tabs>
-  </div>
+        </template>
+        <template #cell(drivers)="row">
+          <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
+                  @click="incidentFilter=d"
+                  class="mr-1 small" variant="secondary">
+            {{ d }}
+          </b-link>
+        </template>
+        <template #cell(text)="row">
+          <span class="small">{{ row.item.text }}</span>
+        </template>
+      </b-table>
+    </b-tab>
+  </b-tabs>
 </template>
 
 <style scoped>

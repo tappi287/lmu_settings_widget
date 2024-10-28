@@ -113,6 +113,8 @@ class ResultsDriverEntry(ResultsJsonRepr):
 
 
 class ResultStreamEntry(ResultsJsonRepr):
+    SUPPORTED_TYPES = ("Incident",)
+
     def __init__(self, e: etree._Element = None):
         self.et = 0.0
         self.type = ""
@@ -165,7 +167,8 @@ class RfactorResults(ResultsJsonRepr):
 
         for element in et.find("RaceResults/Race/Stream"):
             element: etree._Element
-            self.entries.append(ResultStreamEntry(element))
+            if element.tag in ResultStreamEntry.SUPPORTED_TYPES:
+                self.entries.append(ResultStreamEntry(element))
 
     def _create_global_data(self):
         lead_times = dict()
