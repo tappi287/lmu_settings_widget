@@ -203,8 +203,7 @@
 </template>
 
 <script>
-import SettingsCard from "@/components/settings/SettingsCard";
-import {getEelJsonObject} from "@/main";
+import SettingsCard from "@/components/settings/SettingsCard.vue";
 
 export default {
   name: "GraphicsArea",

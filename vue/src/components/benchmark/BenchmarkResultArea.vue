@@ -86,8 +86,8 @@
 </template>
 
 <script>
-import GraphicsArea from "@/components/pages/GraphicsArea";
-import BenchChart from "@/components/benchmark/BenchChart";
+import GraphicsArea from "@/components/pages/GraphicsArea.vue";
+import BenchChart from "@/components/benchmark/BenchChart.vue";
 import {getEelJsonObject} from "@/main";
 
 export default {

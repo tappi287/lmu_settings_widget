@@ -15,11 +15,15 @@ module.exports = {
     "parser": "vue-eslint-parser",
 
     "parserOptions": {
-        "ecmaVersion": 2017,                       // set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax you want to use.
+        "ecmaVersion": 2022,                       // set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax you want to use.
                                                   // You can also set to 2015 (same as 6), 2016 (same as 7), or 2017 (same as 8) to use the year-based naming.
         "sourceType": "module",                 // set to "script" (default) or "module" if your code is in ECMAScript modules.
     },
 
+    env: {
+        node: true,
+        es2022: true,
+    },
 
     "globals": {
         // e.g. "angular": true

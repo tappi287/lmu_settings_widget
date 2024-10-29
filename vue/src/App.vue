@@ -78,7 +78,7 @@
 <script>
 import './assets/app.scss'
 import MainPage from "./components/MainPage.vue";
-import AppUpdater from "@/components/Updater";
+import AppUpdater from "@/components/Updater.vue";
 import RfLocation from "@/components/RfLocation.vue";
 import {createPopperLite as createPopper, flip, preventOverflow} from "@popperjs/core";
 import {getEelJsonObject} from "@/main";

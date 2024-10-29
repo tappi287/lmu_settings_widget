@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import SettingItem from "./SettingItem.vue"
-import RfactorContentCard from "@/components/presets/RfactorContentCard";
+import SettingItem from "@/components/settings/SettingItem.vue"
+import RfactorContentCard from "@/components/presets/RfactorContentCard.vue";
 /* import {getEelJsonObject} from "@/main"; */
 
 export default {

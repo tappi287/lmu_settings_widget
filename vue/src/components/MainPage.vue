@@ -3,9 +3,9 @@
     <b-navbar class="text-left pl-0 pr-0" type="dark">
       <b-navbar-brand href="#" @click="navActive=0" class="r-icon-brand position-relative"
                       v-b-popover.bottomleft.hover="'DashBoard'">
-        <b-img width="32px" height="32px" key="1" src="@/assets/lmw_logo.png"
+        <b-img width="32px" height="32px" key="1" :src="lmwLogoUrl"
                :class="navActive === 0 ? 'r-icon top' : 'r-icon top inv'"></b-img>
-        <b-img width="32px" height="32px" key="2" src="@/assets/lmw_logo_white.png"
+        <b-img width="32px" height="32px" key="2" :src="lmwLogoWhiteUrl"
                :class="navActive !== 0 ? 'r-icon bottom' : 'r-icon bottom inv'"></b-img>
       </b-navbar-brand>
       <b-nav>
@@ -216,21 +216,23 @@
 </template>
 
 <script>
-import DashBoard from "@/components/pages/DashBoard";
-import PresetUi from "@/components/presets/PresetUi";
-import PresetHandler from "@/components/presets/PresetHandler";
-import SettingsCard from "@/components/settings/SettingsCard";
-import AppWiki from "@/components/Wiki";
-import LaunchRfactorBtn from "@/components/LaunchRfactorBtn";
-import ReplayArea from "@/components/pages/ReplayArea";
-import AppLog from "@/components/Log";
+import DashBoard from "@/components/pages/DashBoard.vue";
+import PresetUi from "@/components/presets/PresetUi.vue";
+import PresetHandler from "@/components/presets/PresetHandler.vue";
+import SettingsCard from "@/components/settings/SettingsCard.vue";
+import AppWiki from "@/components/Wiki.vue";
+import LaunchRfactorBtn from "@/components/LaunchRfactorBtn.vue";
+import ReplayArea from "@/components/pages/ReplayArea.vue";
+import AppLog from "@/components/Log.vue";
 import {getEelJsonObject, sleep} from "@/main";
-import BenchMark from "@/components/benchmark/Benchmark";
-import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea";
-import ControlsPresetArea from "@/components/presets/ControlsPresetArea";
-import ControllerDeviceList from "@/components/ControllerDeviceList";
-import RfactorOverlay from "@/components/RfactorOverlay";
-import PreferencesPage from "@/components/pages/PreferencesPage";
+import BenchMark from "@/components/benchmark/Benchmark.vue";
+import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea.vue";
+import ControlsPresetArea from "@/components/presets/ControlsPresetArea.vue";
+import ControllerDeviceList from "@/components/ControllerDeviceList.vue";
+import RfactorOverlay from "@/components/RfactorOverlay.vue";
+import PreferencesPage from "@/components/pages/PreferencesPage.vue";
+import lmwLogoUrl from "@/assets/lmw_logo.png"
+import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
 
 export default {
   name: 'MainPage',
@@ -250,6 +252,8 @@ export default {
       refreshDashFavs: false,
       contentModal: false,
       preferences: undefined,
+      lmwLogoUrl: lmwLogoUrl,
+      lmwLogoWhiteUrl: lmwLogoWhiteUrl
     }
   },
   props: {rfactorVersion: String},

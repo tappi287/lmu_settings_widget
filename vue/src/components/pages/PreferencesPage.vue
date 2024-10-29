@@ -3,7 +3,7 @@
     <b-input-group class="pb-2" size="sm">
       <b-input-group-prepend>
         <div class="pl-0 pr-1 rpl-con position-relative bg-transparent">
-          <b-img width=".3rem" class="rpl-icon" src="@/assets/lmw_logo.png"></b-img>
+          <b-img width=".3rem" class="rpl-icon" :src="lmwLogoUrl"></b-img>
         </div>
         <!-- Title -->
         <b-input-group-text class="bg-transparent no-border title text-white pl-0">
@@ -54,6 +54,7 @@
 <script>
 import {getEelJsonObject} from "@/main";
 import RfLocation from "@/components/RfLocation.vue";
+import lmwLogoUrl from "@/assets/lmw_logo.png"
 
 export default {
   name: "PreferencesPage",
@@ -71,7 +72,8 @@ export default {
       appOptions: [
         {text: 'Enable Audio', value: 'audio'},
         {text: 'Prefer Edge Browser', value: 'edge_preferred'}
-      ]
+      ],
+      lmwLogoUrl: lmwLogoUrl
     }
   },
   methods: {

@@ -3,7 +3,7 @@
     <b-input-group size="sm">
       <b-input-group-prepend>
         <div class="pl-0 pr-1 rpl-con position-relative bg-transparent">
-          <b-img width=".3rem" class="rpl-icon" src="@/assets/lmw_logo.png"></b-img>
+          <b-img width=".3rem" class="rpl-icon" :src="logoUrl"></b-img>
         </div>
         <!-- Title -->
         <b-input-group-text class="bg-transparent no-border title text-white pl-0">
@@ -46,9 +46,10 @@
 </template>
 
 <script>
-
 import ReplayList from "@/components/widgets/ReplayList.vue";
 import ResultDisplay from "@/components/widgets/ResultDisplay.vue";
+import lmwLogoUrl from "@/assets/lmw_logo.png"
+
 export default {
   name: "ReplayArea",
   components: {ResultDisplay, ReplayList},
@@ -58,6 +59,7 @@ export default {
       replayPreset: '',
       watchEnabled: false,
       isBusy: false,
+      logoUrl: lmwLogoUrl
     }
   },
   props: { rfactorVersion: String, gfxHandler: Object },

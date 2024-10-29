@@ -1,7 +1,7 @@
 <template>
   <div v-cloak id="dashboard" class="position-relative mb-3 text-left">
     <div class="vue-flux-container">
-      <b-img class="img-title" id="img" src="@/assets/rfW_Poster.webp"></b-img>
+      <b-img class="img-title" id="img" :src="posterImg"></b-img>
     </div>
     <div id="i-overlay">
       <div id="img-gradient" class="low-round"></div>
@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import ServerBrowser from "@/components/pages/ServerBrowser"
-import PresetHandler from "@/components/presets/PresetHandler";
-import PreferencesPage from "@/components/pages/PreferencesPage";
+import ServerBrowser from "@/components/pages/ServerBrowser.vue"
+import PresetHandler from "@/components/presets/PresetHandler.vue";
+import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import { VueFlux, FluxCaption, FluxPreloader } from 'vue-flux';
 import {getEelJsonObject, chooseIndex, userScreenShotsUrl, getMaxWidth } from "@/main"
 import rfWPoster from "@/assets/rfW_Poster.webp"
