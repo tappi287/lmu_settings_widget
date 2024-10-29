@@ -10,27 +10,33 @@ from lmu.runasadmin import run_as_admin
 from lmu.utils import AppExceptionHook
 
 CLOSE_EVENT = gevent.event.Event()
+HEARTBEAT_EVENT = gevent.event.Event()
 
 
 def close_callback(page, sockets):
-    logging.info('Received eel close callback. Shutting down application. %s %s', page, sockets)
+    logging.info("Received eel close callback. Shutting down application. %s %s", page, sockets)
     CLOSE_EVENT.set()
 
 
 def request_close():
-    logging.info('Received close request.')
+    logging.info("Received close request.")
     CLOSE_EVENT.set()
-    if hasattr(eel, 'closeApp'):
+    if hasattr(eel, "closeApp"):
         eel.closeApp()(close_js_result)
 
 
 def close_js_result(result):
-    logging.info('JS close app result: %s', result)
+    logging.info("JS close app result: %s", result)
 
 
 @eel.expose
 def close_request():
     request_close()
+
+
+@eel.expose
+def heartbeat():
+    HEARTBEAT_EVENT.set()
 
 
 @eel.expose
@@ -131,5 +137,5 @@ def load_app_preferences():
 
 
 def expose_main_methods():
-    """ empty method we import to have the exposed methods registered """
+    """empty method we import to have the exposed methods registered"""
     pass

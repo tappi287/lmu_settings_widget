@@ -11,6 +11,7 @@ import gevent
 from lmu import eel_mod
 from lmu.app import expose_app_methods
 from lmu.app.app_main import CLOSE_EVENT, close_callback, restore_backup
+from lmu.app.event_loop import app_event_loop
 from lmu.app_settings import AppSettings
 from lmu.greenlets.gamecontroller import controller_greenlet, controller_event_loop
 from lmu.log import setup_logging
@@ -31,24 +32,24 @@ START_TIME = 0.0
 
 
 def in_restore_mode() -> bool:
-    """ Return True if App is started in Restore Mode """
-    if len(sys.argv) > 1 and sys.argv[1] == '-b':
-        logging.warning('Found restore mode argument. Beginning to restore rFactor 2 settings.')
+    """Return True if App is started in Restore Mode"""
+    if len(sys.argv) > 1 and sys.argv[1] == "-b":
+        logging.warning("Found restore mode argument. Beginning to restore rFactor 2 settings.")
         restore_backup()
-        logging.warning('\nFinished Restore Mode. Exiting application.')
+        logging.warning("\nFinished Restore Mode. Exiting application.")
         return True
     return False
 
 
 def prepare_app_start() -> bool:
-    """ Return True if npm_serve should be used """
+    """Return True if npm_serve should be used"""
     global START_TIME
     START_TIME = time.time()
-    logging.info('\n\n\n')
-    logging.info('#######################################################')
-    logging.info('################ Starting APP               ###########')
-    logging.info('#######################################################\n\n\n')
-    logging.info(f'Args: {sys.argv}')
+    logging.info("\n\n\n")
+    logging.info("#######################################################")
+    logging.info("################ Starting APP               ###########")
+    logging.info("#######################################################\n\n\n")
+    logging.info(f"Args: {sys.argv}")
 
     AppSettings.load()
     AppSettings.copy_default_presets()
@@ -68,7 +69,9 @@ def _main_app_loop():
     rg = gevent.spawn(rfactor_greenlet)
 
     # -- Run until window/tab closed
-    logging.debug('Entering Event Loop')
+    logging.debug("Entering Event Loop")
+    frontend_last_ping_time = time.time()
+
     while not CLOSE_EVENT.is_set():
         # Controller event loop
         controller_event_loop()
@@ -76,11 +79,13 @@ def _main_app_loop():
         rfactor_event_loop()
         # Capture exception events
         AppExceptionHook.exception_event_loop()
+        # App Event loop
+        app_event_loop()
 
         gevent.sleep(1.0)
 
     # -- Shutdown Greenlets
-    logging.debug('Shutting down Greenlets.')
+    logging.debug("Shutting down Greenlets.")
     gevent.joinall((cg, rg), timeout=15.0, raise_error=True)
 
 
@@ -90,16 +95,16 @@ def start_eel(npm_serve=True):
     if AppSettings.needs_admin and not run_as_admin():
         return
 
-    host = 'localhost'
-    page = 'index.html'
+    host = "localhost"
+    page = "index.html"
     port = 8124
 
     if npm_serve:
         # Dev env with npm run serve
-        page = {'port': 8080}
-        url_port = page.get('port')
+        page = {"port": 8080}
+        url_port = page.get("port")
 
-        eel.init(Path(get_current_modules_dir()).joinpath('vue/src').as_posix())
+        eel.init(Path(get_current_modules_dir()).joinpath("vue/src").as_posix())
         # Prepare eel function names cache
         eel_mod.prepare_eel_cache_js()
     else:
@@ -107,27 +112,39 @@ def start_eel(npm_serve=True):
         url_port = port
         # Use eel function name cache
         # eel.init(Path(get_current_modules_dir()).joinpath('web').as_posix())
-        eel.init(Path(get_current_modules_dir()).joinpath('web').as_posix(), [".jsc"])
+        eel.init(Path(get_current_modules_dir()).joinpath("web").as_posix(), [".jsc"])
 
     edge_cmd = f"{os.path.expandvars('%PROGRAMFILES(x86)%')}\\Microsoft\\Edge\\Application\\msedge.exe"
-    start_url = f'http://{host}:{url_port}'
+    start_url = f"http://{host}:{url_port}"
 
     try:
-        app_module_prefs = getattr(AppSettings, 'app_preferences', dict()).get('appModules', list())
-        if Path(edge_cmd).exists() and 'edge_preferred' in app_module_prefs:
-            eel.start(page, mode='custom', host=host, port=port, block=False,
-                      cmdline_args=[edge_cmd, '--profile-directory=Default', f'--app={start_url}'])
+        app_module_prefs = getattr(AppSettings, "app_preferences", dict()).get("appModules", list())
+        if Path(edge_cmd).exists() and "edge_preferred" in app_module_prefs:
+            eel.start(
+                page,
+                mode="custom",
+                host=host,
+                port=port,
+                block=False,
+                cmdline_args=[edge_cmd, "--profile-directory=Default", f"--app={start_url}"],
+            )
         else:
             eel.start(page, host=host, port=port, block=False, close_callback=close_callback)
     except EnvironmentError:
         # If Chrome isn't found, fallback to Microsoft Chromium Edge
         if Path(edge_cmd).exists():
-            logging.info('Falling back to Edge Browser')
-            eel.start(page, mode='custom', host=host, port=port, block=False,
-                      cmdline_args=[edge_cmd, '--profile-directory=Default', f'--app={start_url}'])
+            logging.info("Falling back to Edge Browser")
+            eel.start(
+                page,
+                mode="custom",
+                host=host,
+                port=port,
+                block=False,
+                cmdline_args=[edge_cmd, "--profile-directory=Default", f"--app={start_url}"],
+            )
         # Fallback to opening a regular browser window
         else:
-            logging.info('Falling back to default Web Browser')
+            logging.info("Falling back to default Web Browser")
             eel.start(page, mode=None, app_mode=False, host=host, port=port, block=False)
             # Open system default web browser
             gevent.spawn_later(1.0, webbrowser.open_new_tab, start_url)
@@ -136,13 +153,13 @@ def start_eel(npm_serve=True):
     _main_app_loop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if not in_restore_mode():
         start_eel(prepare_app_start())
 
     # -- Shutdown logging
-    logging.info('\n\n\n')
-    logging.info('#######################################################')
-    logging.info('################ APP SHUTDOWN               ###########')
-    logging.info('#######################################################\n\n\n')
+    logging.info("\n\n\n")
+    logging.info("#######################################################")
+    logging.info("################ APP SHUTDOWN               ###########")
+    logging.info("#######################################################\n\n\n")
     logging.shutdown()

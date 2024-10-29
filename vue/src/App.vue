@@ -89,6 +89,12 @@ async function appExceptionFunc (event) {
   window.dispatchEvent(excEvent)
 }
 // --- />
+// --- </ Prepare receiving App Heartbeats
+window.eel.expose(appHeartbeat, 'heartbeat')
+async function appHeartbeat (event) {
+  const heartbeatEvent = new CustomEvent('heartbeat-event', {detail: event})
+  window.dispatchEvent(heartbeatEvent)
+}
 // --- </ Prepare receiving play audio events
 window.eel.expose(playAudio, 'play_audio')
 async function playAudio (event) {
@@ -117,7 +123,8 @@ export default {
       dragActive: false,
       error: '',
       rfactorVersion: '',
-      rfactorPath: ''
+      rfactorPath: '',
+      appTimeoutId: null
     }
   },
   methods: {
@@ -192,6 +199,15 @@ export default {
         if (a !== undefined) { a.play() }
       }
     },
+    async receiveHeartbeat() {
+      this.$refs.main.setHeartbeat()
+      if (this.appTimeoutId !== null) { clearTimeout(this.appTimeoutId) }
+      await window.eel.heartbeat()
+      this.appTimeoutId = setTimeout(this.appTimedOut, 120000)
+    },
+    appTimedOut() {
+      this.error = "BackEnd Application could not be reached. Close this window and restart the application."
+    }
   },
   components: {
     AppUpdater,
@@ -212,11 +228,15 @@ export default {
   },
   async created() {
     window.addEventListener('app-exception-event', this.setException)
+    window.addEventListener('heartbeat-event', this.receiveHeartbeat)
     window.addEventListener('play-audio-event', this.externalPlayAudioEvent)
 
     await this.getRfVersion()
 
     this.$eventHub.$on('play-audio', this.playAudio)
+
+    // App Heartbeat
+    await this.receiveHeartbeat()
   },
   beforeDestroy() {
     window.removeEventListener('rfactor-live-event', this.$refs.main.updateRfactorLiveState)
@@ -227,6 +247,7 @@ export default {
     this.$eventHub.$off('play-audio')
     window.removeEventListener('app-exception-event', this.setException)
     window.removeEventListener('play-audio-event', this.externalPlayAudioEvent)
+    window.removeEventListener('heartbeat-event', this.receiveHeartbeat)
   }
 }
 

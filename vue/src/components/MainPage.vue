@@ -35,6 +35,9 @@
                         size="sm" placeholder="Search..."
                         class="search-bar mr-sm-2 text-white"/>
         </b-nav-form>
+        <b-nav-item id="heart-nav" right v-if="isDev">
+          <b-icon shift-v="-0.25" icon="circle-fill" class="heart-icon" :class="heartBeatClass"></b-icon>
+        </b-nav-item>
         <b-nav-item id="vr-nav" right @click="launchSteamVr" v-b-popover.auto.hover="'Launch SteamVR'">
           <div class="vr-nav-container">
             <div class="vr-nav-font"><b>VR</b></div>
@@ -253,7 +256,9 @@ export default {
       contentModal: false,
       preferences: undefined,
       lmwLogoUrl: lmwLogoUrl,
-      lmwLogoWhiteUrl: lmwLogoWhiteUrl
+      lmwLogoWhiteUrl: lmwLogoWhiteUrl,
+      isDev: import.meta.env.VITE_APP_FROZEN === "0",
+      heartBeatClass: '',
     }
   },
   props: {rfactorVersion: String},
@@ -439,6 +444,10 @@ export default {
       }
       this.$root.$emit('bv::hide::popover', 'restore-btn')
     },
+    setHeartbeat() {
+      this.heartBeatClass = 'heart-active'
+      setTimeout(() => { this.heartBeatClass = ""; }, 500)
+    }
   },
   computed: {
     navSearchEnabled() {
@@ -511,6 +520,19 @@ export default {
 
 #vr-nav a {
   padding-right: 0.275rem;
+}
+
+#heart-nav a {
+  padding-right: 0;
+}
+
+#heart-nav, .heart-icon {
+  transition: all 0.5s ease;
+  color: rgba(177, 177, 177, 0.2);
+}
+
+.heart-active {
+  color: rgba(15, 238, 104, 0.9);
 }
 
 #wiki-nav a {
