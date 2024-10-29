@@ -62,6 +62,7 @@ export default {
     },
     setBusy (busy) { this.$emit('set-busy', busy) },
     proceed () { this.showBackdrop = !this.showBackdrop },
+    minimize () { this.showBackdrop = true; },
     quitRfactor () {this.$emit('quit-rfactor') }
   }
 }

@@ -105,19 +105,41 @@ export default {
 
 <template>
   <div>
-    <b-button-group size="sm" class="text-center text-monospace text-bold">
-      <b-button @click="replayPlaybackCommand(0)" variant="rf-blue">|<</b-button>
-      <b-button @click="replayPlaybackCommand(2)" variant="rf-secondary"><<<</b-button>
-      <b-button @click="replayPlaybackCommand(3)" variant="rf-secondary"><<</b-button>
-      <b-button @click="replayPlaybackCommand(4)" variant="rf-secondary"><</b-button>
-      <b-button @click="replayPlaybackCommand(5)" variant="rf-secondary"><|</b-button>
-      <b-button @click="replayPlaybackCommand(6)" variant="rf-secondary">||</b-button>
-      <b-button @click="replayPlaybackCommand(7)" variant="rf-secondary">|></b-button>
-      <b-button @click="replayPlaybackCommand(8)" variant="rf-secondary">></b-button>
-      <b-button @click="replayPlaybackCommand(9)" variant="rf-secondary">>></b-button>
-      <b-button @click="replayPlaybackCommand(10)" variant="rf-secondary">>>></b-button>
-      <b-button @click="replayPlaybackCommand(1)" variant="rf-blue">>|</b-button>
-    </b-button-group>
+      <b-button-group title="Replay Controls" size="sm" class="text-center text-monospace text-bold">
+        <b-button @click="replayPlaybackCommand(0)" variant="rf-blue" title="Skip to Start">
+          |<
+        </b-button>
+        <b-button @click="replayPlaybackCommand(2)" variant="rf-secondary" title="Fast Reverse" >
+          <<<
+        </b-button>
+        <b-button @click="replayPlaybackCommand(3)" variant="rf-secondary" title="Reverse Scan">
+          <<
+        </b-button>
+        <b-button @click="replayPlaybackCommand(4)" variant="rf-secondary" title="Play Reverse">
+          <
+        </b-button>
+        <b-button @click="replayPlaybackCommand(5)" variant="rf-secondary" title="Reverse Slow-Mo">
+          <|
+        </b-button>
+        <b-button @click="replayPlaybackCommand(6)" variant="rf-secondary" title="Pause">
+          ||
+        </b-button>
+        <b-button @click="replayPlaybackCommand(7)" variant="rf-secondary" title="Slow-mo">
+          |>
+        </b-button>
+        <b-button @click="replayPlaybackCommand(8)" variant="rf-secondary" title="Play">
+          >
+        </b-button>
+        <b-button @click="replayPlaybackCommand(9)" variant="rf-secondary" title="Scan Forward">
+          >>
+        </b-button>
+        <b-button @click="replayPlaybackCommand(10)" variant="rf-secondary" title="Fast Forward">
+          >>>
+        </b-button>
+        <b-button @click="replayPlaybackCommand(1)" variant="rf-blue" title="Skip to End">
+          >|
+        </b-button>
+      </b-button-group>
     <b-tabs align="left" no-fade>
       <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
         <!-- RESULT -->
@@ -128,7 +150,8 @@ export default {
                  ref="resultTable"
         >
           <template #cell(name)="row">
-            <b-button size="sm" @click="row.toggleDetails" class="text-light m-0 mr-2 no-border no-bg">
+            <b-button size="sm" @click="row.toggleDetails" title="Show Laptimes"
+                      class="text-light m-0 mr-2 no-border no-bg">
               <b-icon :icon="row.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
                       variant="secondary" shift-v="1"/>
               {{ row.item.name }}
@@ -152,7 +175,7 @@ export default {
                  table-variant="dark" small borderless
                  class="server-list" thead-class="text-white">
           <template #cell(et)="row">
-            <b-link class="text-monospace" @click="gotoReplayTime(row.item.et)">
+            <b-link class="text-monospace" @click="gotoReplayTime(row.item.et)" title="Jump to time in Replay">
               {{ row.item.et }}
             </b-link>
           </template>
@@ -167,7 +190,7 @@ export default {
           </template>
           <template #cell(drivers)="row">
             <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
-                    @click="incidentFilter=d"
+                    @click="incidentFilter=d" title="Filter by this Driver"
                     class="mr-1 small" variant="secondary">
               {{ d }}
             </b-link>

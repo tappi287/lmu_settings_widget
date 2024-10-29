@@ -106,7 +106,7 @@
               <b-form-input title="Rename" size="sm" class="mb-2" v-model="newReplayName" @submit.prevent></b-form-input>
             </div>
             <div class="text-right">
-              <b-button @click="playReplay(replay.item); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
+              <b-button @click="playReplay(replay); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
                         size="sm" variant="rf-blue-light"
                         v-if="watchEnabled"
                         aria-label="Watch" class="mr-2">
@@ -194,10 +194,11 @@ export default {
       this.setBusy(false)
     },
     playReplay: async function (replay) {
-      const r = await getEelJsonObject(window.eel.play_replay(replay.name)())
+      const r = await getEelJsonObject(window.eel.play_replay(replay.item.name)())
       if (r.result) {
         this.makeToast(r.msg, 'success', 'Playing replay')
-        this.setBusy(true)
+        if (!replay.detailsShowing) { replay.toggleDetails(); }
+        this.$emit('replay-playing')
         this.$eventHub.$emit('play-audio', 'audioConfirm')
       }
       if (!r.result) { this.makeToast(r.msg, 'danger', 'Replay Play Error') }

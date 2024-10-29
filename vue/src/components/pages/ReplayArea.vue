@@ -39,7 +39,9 @@
       </div>
     </b-input-group>
 
-    <ReplayList :watch-enabled="watchEnabled" editing />
+    <ReplayList :watch-enabled="watchEnabled" editing
+                @replay-playing="$emit('replay-playing')"
+                @make-toast="makeToast" @set-busy="setBusy" />
   </div>
 </template>
 

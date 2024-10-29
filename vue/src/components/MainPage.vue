@@ -147,7 +147,9 @@
     </template>
 
     <!-- Replays -->
-    <ReplayArea ref="replays" v-if="navActive === 5" @make-toast="makeToast" @set-busy="setBusy"
+    <ReplayArea ref="replays" v-if="navActive === 5"
+                @make-toast="makeToast" @set-busy="setBusy"
+                @replay-playing="replayPlaying"
                 :rfactor-version="rfactorVersion" :gfx-handler="$refs.gfx"/>
 
     <!-- Wiki -->
@@ -191,7 +193,7 @@
       </b-row>
     </b-container>
 
-    <RfactorOverlay v-if="showRfOverlay" :live="live" :rf2-status="rf2Status"
+    <RfactorOverlay ref="rfactorOverlay" v-show="showRfOverlay" :live="live" :rf2-status="rf2Status"
                     :quit-busy="quitBusy" @quit-rfactor="quitRfactor"/>
 
     <!-- Restore Popover -->
@@ -244,6 +246,7 @@ export default {
       gfxReady: false,
       isBusy: false,
       quitBusy: false,
+      minimizeRfOverlay: false,
       refreshDashFavs: false,
       contentModal: false,
       preferences: undefined,
@@ -279,6 +282,10 @@ export default {
       if (this.live) {
         this.stopSlideShow();
         this.wasLive = true
+        if (this.minimizeRfOverlay) {
+          this.$refs.rfactorOverlay.minimize()
+          this.minimizeRfOverlay = false
+        }
       }
       if (!this.live && this.wasLive) {
         this.wasLive = false;
@@ -409,6 +416,10 @@ export default {
     },
     openSetupFolder: async function () {
       await window.eel.open_setup_folder()()
+    },
+    replayPlaying() {
+      console.log("Replay playing...")
+      this.minimizeRfOverlay = true
     },
     restoreSettings: async function () {
       const r = await getEelJsonObject(window.eel.restore_backup()())
