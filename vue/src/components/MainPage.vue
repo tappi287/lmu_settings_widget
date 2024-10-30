@@ -509,9 +509,9 @@ export default {
   position: absolute;
   color: black;
   z-index: 2;
-  font-size: 0.875rem;
-  left: 0.04rem;
-  top: 0.1rem;
+  font-size: 0.84rem;
+  left: 0.05rem;
+  top: 0.13rem;
 }
 
 .vr-nav-icon {

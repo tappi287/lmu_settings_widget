@@ -94,11 +94,11 @@ class ResultsDriverEntry(ResultsJsonRepr):
 
         if e is not None:
             self.name = get_text_from_element(e, "Name")
-            self.grid_position = int(get_text_from_element(e, "GridPos"))
-            self.position = int(get_text_from_element(e, "Position"))
-            self.class_grid_position = int(get_text_from_element(e, "ClassGridPos"))
-            self.class_position = int(get_text_from_element(e, "ClassPosition"))
-            self.car_class = get_text_from_element(e, "CarClass")
+            self.grid_position = int(get_text_from_element(e, "GridPos", "0"))
+            self.position = int(get_text_from_element(e, "Position", "0"))
+            self.class_grid_position = int(get_text_from_element(e, "ClassGridPos", "0"))
+            self.class_position = int(get_text_from_element(e, "ClassPosition", "0"))
+            self.car_class = get_text_from_element(e, "CarClass", "0")
             self.car_type = get_text_from_element(e, "CarType")
             self.car_number = int(get_text_from_element(e, "CarNumber", "0"))
             for e_lap in e.iterfind("Lap"):
@@ -165,8 +165,10 @@ class RfactorResults(ResultsJsonRepr):
             self.drivers.append(ResultsDriverEntry(element))
         self._create_global_data()
 
-        for element in et.find("RaceResults/Race/Stream"):
-            element: etree._Element
+        stream_element = et.find("RaceResults/Race/Stream")
+        stream_element = stream_element if stream_element is not None else []
+
+        for element in stream_element:
             if element.tag in ResultStreamEntry.SUPPORTED_TYPES:
                 self.entries.append(ResultStreamEntry(element))
 

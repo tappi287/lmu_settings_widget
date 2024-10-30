@@ -105,7 +105,7 @@ export default {
 
 <template>
   <div>
-      <b-button-group title="Replay Controls" size="sm" class="text-center text-monospace text-bold">
+      <b-button-group title="Replay Controls" size="sm" class="text-center text-monospace text-bold mb-4">
         <b-button @click="replayPlaybackCommand(0)" variant="rf-blue" title="Skip to Start">
           |<
         </b-button>
@@ -141,9 +141,10 @@ export default {
         </b-button>
       </b-button-group>
     <b-tabs align="left" no-fade>
-      <b-tab title="Result" title-link-class="btn-secondary pt-1 pb-1">
+      <b-tab title="Session Results" title-link-class="btn-secondary pt-1 pb-1">
         <!-- RESULT -->
         <b-table :items="raceResultItems" :fields="raceResultFields"
+                 details-td-class="result-td-details"
                  sort-by="position" no-sort-reset sort-icon-left
                  table-variant="dark" small borderless
                  class="server-list" thead-class="text-white"
@@ -206,6 +207,7 @@ export default {
 
 <style scoped>
 .text-purple {
-  color: #e400da;
+  color: #e327db;
 }
+.result-td-details { padding: 0; margin: 0; border: none; }
 </style>

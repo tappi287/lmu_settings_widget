@@ -66,73 +66,58 @@
       </b-input-group-append>
     </b-input-group>
 
-    <b-table :items="computedReplayList" :fields="replayFields" table-variant="dark" small borderless
-             primary-key="id" class="server-list" thead-class="text-white"
+    <b-table :items="computedReplayList" :fields="replayFields" table-variant="dark" small borderless primary-key="id"
+             class="server-list" thead-class="text-white" details-td-class="td-details p-4"
              ref="replayTable" sort-icon-left
              selectable selected-variant="primary"
              :select-mode="editing ? 'range' : 'single'"
              @row-selected="selectRows">
       <!-- Replay Type -->
       <template v-slot:cell(type)="replay">
-        <b-button size="sm" @click="toggleRowDetails(replay)" class="text-light m-0 mr-2 no-border no-bg"
-                  :disabled="replay.item.result_file === ''">
+        <b-button size="sm" @click="toggleRowDetails(replay)" class="text-light m-0 mr-2 no-border no-bg">
           <b-icon :icon="replay.detailsShowing ? 'caret-down-fill': 'caret-right-fill'"
                   variant="secondary" shift-v="1"/>
         </b-button>
         <span :class="'text-' + replayTypeText(replay.item).var">{{ replayTypeText(replay.item).text }}</span>
       </template>
+
       <!-- Name -->
       <template v-slot:cell(name)="replay">
-        <!-- Name Link -->
-        <template v-if="editing">
-          <b-link  :class="'replay-link text-' + replayTypeText(replay.item).var"
-                   :id="'replay-action-btn-' + replay.item.id + _uid"
-                   @click="setActionReplay(replay.item)">
-            <b-icon shift-v="-0.5" icon="play-circle-fill"></b-icon>
-            <span :class="replay.rowSelected ? 'ml-2' : 'ml-2 text-white'">{{ replay.item.name }}</span>
-          </b-link>
-
-          <!-- Play/Rename Popover -->
-          <b-popover :target="'replay-action-btn-' + replay.item.id + _uid" triggers="click">
-            <template #title>
-              {{ replay.item.name }}
-              <b-button @click="$root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
-                        size="sm" aria-label="Close" variant="secondary" class="float-right p-0">
-                <b-icon icon="x-lg"></b-icon>
-              </b-button>
-            </template>
-            <div>
-              <p>Rename or watch this replay.</p>
-              <b-form-input title="Rename" size="sm" class="mb-2" v-model="newReplayName" @submit.prevent></b-form-input>
-            </div>
-            <div class="text-right">
-              <b-button @click="playReplay(replay); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
-                        size="sm" variant="rf-blue-light"
-                        v-if="watchEnabled"
-                        aria-label="Watch" class="mr-2">
-                Watch
-              </b-button>
-              <b-button @click="renameReplay(replay.item); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
-                        size="sm" variant="rf-orange-light"
-                        aria-label="Rename" class="mr-2">
-                Rename
-              </b-button>
-              <b-button v-if="replay.item.result_file !== ''"
-                        @click="toggleRowDetails(replay); $root.$emit('bv::hide::popover', 'replay-action-btn-' + replay.item.id + _uid)"
-                        size="sm" variant="rf-secondary"
-                        aria-label="Show Results" class="mr-2">
-                Show Results
-              </b-button>
-            </div>
-          </b-popover>
-        </template>
-        <template v-else>
+        <b-link :class="'text-' + replayTypeText(replay.item).var" @click="toggleRowDetails(replay)">
           <b-icon shift-v="-0.5" icon="play-circle-fill" class="mr-2"></b-icon>
-          <span :class="'replay-link text-' + replayTypeText(replay.item).var">{{ replay.item.name }}</span>
-        </template>
+          <span>{{ replay.item.name }}</span>
+        </b-link>
       </template>
 
+      <!-- Edit Replay -->
       <template #row-details="replay">
+        <b-input-group size="sm" class="mb-4 table-bar">
+          <b-input-group-prepend>
+            <b-input-group-text class="rf-secondary border-0 low-round-left">
+              <b-icon icon="pencil-fill" aria-hidden="true"></b-icon>
+            </b-input-group-text>
+          </b-input-group-prepend>
+
+          <!-- Name Field -->
+          <b-form-input title="Rename" class="no-border" v-model="replay.item.renameName"
+                        @submit="renameReplay(replay.item)" />
+          <!-- Buttons -->
+          <b-input-group-append>
+            <b-button-group>
+              <b-button @click="renameReplay(replay.item)" size="sm" variant="rf-secondary" aria-label="Rename">
+                <b-icon icon="tag-fill" shift-v="-0.75"></b-icon>
+                Rename Replay File
+              </b-button>
+              <b-button @click="playReplay(replay)" size="sm" variant="rf-blue-light" v-if="watchEnabled"
+                        aria-label="Watch">
+                <b-icon icon="play-circle-fill" shift-v="-0.25"></b-icon>
+                Watch Replay
+              </b-button>
+            </b-button-group>
+          </b-input-group-append>
+        </b-input-group>
+
+        <!-- Results -->
         <ResultDisplay
             :result-file="replay.item.result_file"
             @make-toast="makeToast"
@@ -159,7 +144,6 @@ export default {
         { key: 'size', label: 'Size', sortable: true, class: 'text-right secondary-info' },
         { key: 'date', label: 'Last modified', sortable: true, class: 'text-right secondary-info' },
       ],
-      newReplayName: '',
       currentSelection: [],
       replayTextFilter: null,
       filterQ: false, filterR: false, filterP: false, filterH: false, filterW: false,
@@ -175,17 +159,21 @@ export default {
     toggleRowDetails(row) {
       row.toggleDetails()
     },
+    async setupReplayRows () {
+      for (let replay of this.replays) {
+        replay.renameName = replay.name
+      }
+    },
     getReplays: async function() {
       this.setBusy(true)
       const r = await getEelJsonObject(window.eel.get_replays()())
-      if (r.result) { this.replays = r.replays }
+      if (r.result) { this.replays = r.replays; await this.setupReplayRows(); }
       if (!r.result) { this.makeToast(r.msg, 'danger', 'Get Replays Error') }
       this.setBusy(false)
     },
-    setActionReplay(replay) { this.newReplayName = replay.name },
     renameReplay: async function(replay) {
       this.setBusy(true)
-      const r = await getEelJsonObject(window.eel.rename_replay(replay, this.newReplayName)())
+      const r = await getEelJsonObject(window.eel.rename_replay(replay, replay.renameName)())
       if (r.result) {
         this.makeToast(r.msg, 'success', 'Replay renamed to: ' + this.newReplayName)
         await this.getReplays()
@@ -197,7 +185,6 @@ export default {
       const r = await getEelJsonObject(window.eel.play_replay(replay.item.name)())
       if (r.result) {
         this.makeToast(r.msg, 'success', 'Playing replay')
-        if (!replay.detailsShowing) { replay.toggleDetails(); }
         this.$emit('replay-playing')
         this.$eventHub.$emit('play-audio', 'audioConfirm')
       }
@@ -282,5 +269,7 @@ export default {
 </script>
 
 <style scoped>
-.replay-link { cursor: alias; }
+.td-details {
+  cursor: default;
+}
 </style>

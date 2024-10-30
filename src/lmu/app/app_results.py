@@ -26,6 +26,7 @@ def _get_result_file_fn(file_name: str):
     try:
         race_result = RfactorResults(xml_file)
     except Exception as e:
+        logging.exception(e)
         return json.dumps({"result": False, "msg": str(e)})
 
     logging.info(f"Providing result data for {xml_file.name}")

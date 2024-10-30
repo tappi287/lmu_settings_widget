@@ -71,8 +71,9 @@ export default {
 <template>
   <b-table :items="driver.laps" :fields="driverFields"
            sort-by="num" no-sort-reset sort-icon-left
-           table-variant="dark" small borderless
-           class="server-list" thead-class="text-white">
+           class="p-4"
+           table-variant="dark" small borderless hover
+           thead-class="text-white">
     <template #cell(laptime_formatted)="row">
       <span :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
     </template>
