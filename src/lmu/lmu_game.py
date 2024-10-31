@@ -1,6 +1,7 @@
 import json
 import logging
 import subprocess
+import sys
 from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
@@ -15,11 +16,12 @@ from lmu.mods.vrtoolkit import VrToolKit
 
 
 class RfactorPlayer:
-    resolution_key = 'resolution_settings'
-    config_parser_args = {'inline_comment_prefixes': ('//', ),
-                          'comment_prefixes': ('#', ';', '//'),
-                          'default_section': 'COMPONENTS',
-                          }
+    resolution_key = "resolution_settings"
+    config_parser_args = {
+        "inline_comment_prefixes": ("//",),
+        "comment_prefixes": ("#", ";", "//"),
+        "default_section": "COMPONENTS",
+    }
     webui_session_settings = dict()
     webui_content_selection = dict()
 
@@ -36,24 +38,24 @@ class RfactorPlayer:
         self.ini_file = Path()
         self.ini_vr_file = Path()
         self.ini_first_line = str()
-        self.location = Path('../modules')
+        self.location = Path("../modules")
         self.version_file = Path()
-        self.version = ''
+        self.version = ""
 
         self.options = self.Options()
         self.controller_devices = dict()
 
         self.is_valid = False
-        self.error = ''
+        self.error = ""
 
         self.get_current_rfactor_settings(only_version)
 
     def get_current_rfactor_settings(self, only_version: bool = True):
-        """ Read all settings from the current Le Mans Ultimate installation """
+        """Read all settings from the current Le Mans Ultimate installation"""
         self._get_location()
 
         if not self._read_version():
-            self.error += 'Could not read Le Mans Ultimate version\n'
+            self.error += "Could not read Le Mans Ultimate version\n"
         if only_version:
             return
 
@@ -62,14 +64,14 @@ class RfactorPlayer:
             player_json = self.player_json_import_data
         else:
             # -- Read Player JSON
-            player_json = self.read_player_json_dict(self.player_file, encoding='utf-8')
+            player_json = self.read_player_json_dict(self.player_file, encoding="utf-8")
 
         # -- Get Options from Player JSON
         r = self._read_options_from_target(OptionsTarget.player_json, player_json)
         del player_json
 
         # -- Read Controller JSON
-        controller_json = self.read_player_json_dict(self.controller_file, encoding='cp1252')
+        controller_json = self.read_player_json_dict(self.controller_file, encoding="cp1252")
         self.read_controller_devices(controller_json)
         r = self._read_options_from_target(OptionsTarget.controller_json, controller_json) and r
         del controller_json
@@ -86,8 +88,7 @@ class RfactorPlayer:
         # -- Get Options from dx_config
         for preset_options in self._get_target_options(OptionsTarget.dx_config):
             if not self._get_options_from_dx_config(preset_options, config):
-                self.error += f'Could not read LMU CONFIG_DX11.ini for ' \
-                              f'{preset_options.__class__.__name__}\n'
+                self.error += f"Could not read LMU CONFIG_DX11.ini for " f"{preset_options.__class__.__name__}\n"
                 self.is_valid = False
                 return
 
@@ -96,7 +97,7 @@ class RfactorPlayer:
 
         result = vr_toolkit.read()
         if not result:
-            self.error += f'{vr_toolkit.error}\n'
+            self.error += f"{vr_toolkit.error}\n"
 
         self.is_valid = True
 
@@ -112,14 +113,13 @@ class RfactorPlayer:
     def _read_options_from_target(self, target: OptionsTarget, json_dict) -> bool:
         for preset_options in self._get_target_options(target):
             if not self._get_options_from_player_json(preset_options, json_dict) and preset_options.mandatory:
-                self.error += f'Could not read LMU settings for ' \
-                              f'{preset_options.__class__.__name__}\n'
+                self.error += f"Could not read LMU settings for " f"{preset_options.__class__.__name__}\n"
                 self.is_valid = False
                 return False
         return True
 
     def write_settings(self, preset: BasePreset) -> bool:
-        """ Writes all settings of a preset into the Le Mans Ultimate installation
+        """Writes all settings of a preset into the Le Mans Ultimate installation
 
         :param preset:
         :return:
@@ -136,21 +136,22 @@ class RfactorPlayer:
         self.update_webui_settings(preset, OptionsTarget.webui_content)
 
         # -- Update Player Json settings
-        player_json_dict = self.read_player_json_dict(self.player_file, encoding='utf-8')
+        player_json_dict = self.read_player_json_dict(self.player_file, encoding="utf-8")
         update_result = self._write_to_target(OptionsTarget.player_json, preset, player_json_dict)
 
         # -- Update Controller Json settings
-        controller_json_dict = self.read_player_json_dict(self.controller_file, encoding='cp1252')
+        controller_json_dict = self.read_player_json_dict(self.controller_file, encoding="cp1252")
         preset.additional_write_operations(controller_json=controller_json_dict)
-        update_result = self._write_to_target(
-            OptionsTarget.controller_json, preset, controller_json_dict) and update_result
+        update_result = (
+            self._write_to_target(OptionsTarget.controller_json, preset, controller_json_dict) and update_result
+        )
 
         if not update_result:
             return False
 
         # -- Write JSON files
-        r = self.write_json(player_json_dict, self.player_file, encoding='utf-8')
-        return r and self.write_json(controller_json_dict, self.controller_file, encoding='cp1252')
+        r = self.write_json(player_json_dict, self.player_file, encoding="utf-8")
+        return r and self.write_json(controller_json_dict, self.controller_file, encoding="cp1252")
 
     def update_webui_settings(self, preset, target):
         for preset_options in self._get_target_options(target, preset):
@@ -159,12 +160,12 @@ class RfactorPlayer:
             elif target == OptionsTarget.webui_content:
                 self.webui_content_selection = preset_options.to_webui_js()
 
-    def write_json(self, json_dict: dict, file: Path, encoding: str = 'UTF-8') -> bool:
+    def write_json(self, json_dict: dict, file: Path, encoding: str = "UTF-8") -> bool:
         try:
-            with open(file, 'w', encoding=encoding) as f:
+            with open(file, "w", encoding=encoding) as f:
                 json.dump(json_dict, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            self.error += f'Error while writing file! {e}\n'
+            self.error += f"Error while writing file! {e}\n"
             logging.fatal(self.error)
             return False
         return True
@@ -176,7 +177,7 @@ class RfactorPlayer:
         return True
 
     def _write_video_config(self, preset: BasePreset, vr_ini=False):
-        """ Update the Config_DX11.ini with supported Video Settings """
+        """Update the Config_DX11.ini with supported Video Settings"""
         settings_updated = False
         ini_config = self.read_dx_ini(vr_ini)
         ini_file = self.ini_vr_file if vr_ini else self.ini_file
@@ -184,47 +185,47 @@ class RfactorPlayer:
         for preset_options in self._get_target_options(OptionsTarget.dx_config, preset):
             for option in preset_options.options:
                 if option.key not in ini_config[ini_config.default_section]:
-                    self.error += f'Could not locate settings key: {option.key} in CONFIG_DX11.ini\n'
+                    self.error += f"Could not locate settings key: {option.key} in CONFIG_DX11.ini\n"
                     logging.error(self.error)
                     continue
                 if option.value is not None:
                     ini_config[ini_config.default_section][option.key] = str(option.value)
-                    logging.info('Updated Dx Setting: %s: %s', option.key, option.value)
+                    logging.info("Updated Dx Setting: %s: %s", option.key, option.value)
                     settings_updated = True
 
         if not settings_updated:
-            logging.info('Found no updated Video Settings. Skipping update of dx_config!')
+            logging.info("Found no updated Video Settings. Skipping update of dx_config!")
             return
 
         # -- Write Video Config.ini
         try:
             if ini_file.exists():
                 # - Write config
-                with open(ini_file, 'w') as f:
+                with open(ini_file, "w") as f:
                     ini_config.write(f, space_around_delimiters=False)
 
             # - Restore first ini comment line
-            with open(ini_file, 'r') as f:
+            with open(ini_file, "r") as f:
                 f_lines = f.readlines()
             f_lines = [self.ini_first_line] + f_lines
 
             # - Remove trailing new line
-            if f_lines[-1] == '\n':
+            if f_lines[-1] == "\n":
                 f_lines = f_lines[:-1]
             # - Remove trailing new line character
-            f_lines[-1] = f_lines[-1].rstrip('\n')
+            f_lines[-1] = f_lines[-1].rstrip("\n")
 
             # - Write modified config
-            with open(ini_file, 'w') as f:
+            with open(ini_file, "w") as f:
                 f.writelines(f_lines)
         except Exception as e:
-            self.error += f'Could not write CONFIG_DX11.ini file! {e}\n'
+            self.error += f"Could not write CONFIG_DX11.ini file! {e}\n"
             logging.error(self.error)
             return False
 
     def _update_player_json(self, player_json_dict, preset_options: BaseOptions):
         if preset_options.key not in player_json_dict:
-            self.error += f'Could not locate CATEGORY settings key: {preset_options.key} in <Settings>.JSON.\n'
+            self.error += f"Could not locate CATEGORY settings key: {preset_options.key} in <Settings>.JSON.\n"
             logging.error(self.error)
             return False
 
@@ -232,14 +233,14 @@ class RfactorPlayer:
             if option.key in preset_options.skip_keys:
                 continue
             if option.key not in player_json_dict[preset_options.key] and not option.create_in_json:
-                logging.warning('Skipping Setting: %s in <Settings>.JSON that could not be located!', option.key)
+                logging.warning("Skipping Setting: %s in <Settings>.JSON that could not be located!", option.key)
                 continue
             if option.value is None:
-                logging.debug('Skipping write of %s because value is None.', option.key)
+                logging.debug("Skipping write of %s because value is None.", option.key)
                 continue
 
             player_json_dict[preset_options.key][option.key] = option.value
-            logging.info('Updated Setting: %s: %s', option.key, option.value)
+            logging.info("Updated Setting: %s: %s", option.key, option.value)
 
             # -- Write duplicate keys e.g. GPRIX RaceTime + CURNT RaceTime
             duplicates_list = option.dupl or list()
@@ -247,16 +248,15 @@ class RfactorPlayer:
                 duplicates_list = [option.dupl]
             for key in duplicates_list:
                 player_json_dict[preset_options.key][key] = option.value
-                logging.info('Updated duplicated Setting: %s: %s', key, option.value)
+                logging.info("Updated duplicated Setting: %s: %s", key, option.value)
 
         return True
 
-    def write_mod(self, preset: BasePreset,
-                  mod_type: Union[Type[VrToolKit]]) -> bool:
-        if preset.preset_type != PresetType.graphics or mod_type not in (VrToolKit, ):
+    def write_mod(self, preset: BasePreset, mod_type: Union[Type[VrToolKit]]) -> bool:
+        if preset.preset_type != PresetType.graphics or mod_type not in (VrToolKit,):
             return True
         if not self._check_bin_dir():
-            self.error += 'Could not locate Le Mans Ultimate Bin directory.\n'
+            self.error += "Could not locate Le Mans Ultimate Bin directory.\n"
             return False
 
         target = None
@@ -312,7 +312,7 @@ class RfactorPlayer:
         if not file.exists() or not file.is_file():
             return
 
-        encoding_ls = ['utf-8', 'cp1252']
+        encoding_ls = ["utf-8", "cp1252"]
         if encoding:
             if encoding in encoding_ls:
                 encoding_ls.remove(encoding)
@@ -322,15 +322,15 @@ class RfactorPlayer:
             encoding = encoding_ls.pop()
             try:
                 try:
-                    with open(file, 'r', encoding=encoding) as f:
+                    with open(file, "r", encoding=encoding) as f:
                         return json.load(f)
                 except UnicodeDecodeError as e:
-                    logging.debug('Could not decode JSON data with encoding %s: %s', encoding, e)
+                    logging.debug("Could not decode JSON data with encoding %s: %s", encoding, e)
                     continue
             except Exception as e:
-                msg = f'Could not read {file.name} file! {e}'
+                msg = f"Could not read {file.name} file! {e}"
                 logging.fatal(msg)
-                self.error += f'{msg}\n'
+                self.error += f"{msg}\n"
 
     def read_controller_devices(self, controller_json: dict):
         if controller_json:
@@ -340,22 +340,22 @@ class RfactorPlayer:
         try:
             conf = self._create_ini_config_parser()
             ini_file = self.ini_vr_file if vr_ini else self.ini_file
-            with open(ini_file, 'r') as f:
+            with open(ini_file, "r") as f:
                 self.ini_first_line = f.readline()
                 conf.read_file(f)
                 return conf
         except Exception as e:
-            self.error += f'Could not read CONFIG_DX11.ini file! {e} {self.ini_file}\n'
+            self.error += f"Could not read CONFIG_DX11.ini file! {e} {self.ini_file}\n"
             logging.fatal(self.error)
 
     def _read_version(self) -> bool:
         if not self.version_file.exists() or not self.version_file.is_file():
             return False
         try:
-            with open(self.version_file, 'r') as f:
+            with open(self.version_file, "r") as f:
                 self.version = f.readline()
         except Exception as e:
-            logging.error('Error reading version file: %s', e)
+            logging.error("Error reading version file: %s", e)
             return False
 
         return True
@@ -369,7 +369,7 @@ class RfactorPlayer:
         RfactorLocation.get_location()
         # self.error += f'Le Mans Ultimate installation detected at {RfactorLocation.path}\n'
         if not RfactorLocation.is_valid:
-            self.error += 'Could not locate Le Mans Ultimate installation\n'
+            self.error += "Could not locate Le Mans Ultimate installation\n"
             return
 
         self.location = RfactorLocation.path
@@ -394,30 +394,42 @@ class RfactorPlayer:
         :return:
         """
         if not self._check_bin_dir():
-            self.error += 'Could not locate Le Mans Ultimate Bin directory.\n'
+            self.error += "Could not locate Le Mans Ultimate Bin directory.\n"
             return False
 
         # Solution for non-loading rF2 plugins in PyInstaller executable:
         #    ctypes.windll.kernel32.SetDllDirectoryA(None)
         # See https://github.com/pyinstaller/pyinstaller/wiki/Recipe-subprocess#windows-dll-loading-order
         executable = self.location / GAME_EXECUTABLE
-        cmd = [str(WindowsPath(executable))]
+        if method in (1, 3) and not executable.exists():
+            logging.error(f"Could not locate executable: {executable}")
+            return False
+        if sys.platform != "linux":
+            cmd = [str(WindowsPath(executable))]
+        else:
+            cmd = [executable.as_posix()]
 
         # -- Use Steam Launch as default
         #    so Workshop items are updated upon start
         if method in (0, 2):
-            steam_path = Path(SteamApps.find_steam_location()) / 'steam.exe'
-            cmd = [str(WindowsPath(steam_path)), '-applaunch', LMU_APPID]
+            steam_path = Path(SteamApps.find_steam_location()) / "steam.exe"
+            if not steam_path.exists():
+                logging.error(f"Could not locate executable: {steam_path}")
+                return False
+            if sys.platform != "linux":
+                cmd = [str(WindowsPath(steam_path)), "-applaunch", LMU_APPID]
+            else:
+                cmd = [steam_path.as_posix(), "-applaunch", LMU_APPID]
 
         # -- Add '+VR' Commandline Option
         if method in (2, 3):
-            cmd += ['+VR']
+            cmd += ["+VR"]
 
         if server_info:
-            ip, port = server_info.get('address', ('localhost',))[0], server_info.get('port', '64297')
-            p = server_info.get('password')
-            cmd += ['+multiplayer', f'+connect={":" if p else ""}{p}{"@" if p else ""}{ip}:{port}']
+            ip, port = server_info.get("address", ("localhost",))[0], server_info.get("port", "64297")
+            p = server_info.get("password")
+            cmd += ["+multiplayer", f'+connect={":" if p else ""}{p}{"@" if p else ""}{ip}:{port}']
 
-        logging.info('Launching %s', cmd)
+        logging.info("Launching %s", cmd)
         subprocess.Popen(cmd, cwd=self.location)
         return True
