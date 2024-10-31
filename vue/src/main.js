@@ -13,7 +13,9 @@ import "@fontsource/inter/300.css"
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
-// Vue.config.devtools = true
+if (import.meta.env.DEV) {
+    Vue.config.devtools = true
+}
 
 export const userScreenShotsUrl = 'https://raw.githubusercontent.com/tappi287/rf2_screenshots/master/data.json'
 

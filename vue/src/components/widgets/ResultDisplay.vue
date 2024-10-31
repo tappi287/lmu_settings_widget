@@ -26,6 +26,7 @@ export default {
           {key: 'text', label: 'Text', sortable: false, class: 'text-right'}
       ],
       incidentFilter: null,
+      incidentHideDoubles: true,
       resultData: {}
     }
   },
@@ -57,6 +58,12 @@ export default {
     },
     async replayPlaybackCommand(command) {
       await getEelJsonObject(window.eel.replay_playback_command(command)())
+    },
+    setDriverFilter(value) {
+      let hideIncidentDoubles = this.incidentHideDoubles
+      this.incidentHideDoubles = false
+      this.incidentFilter = value
+      this.incidentHideDoubles = hideIncidentDoubles
     }
   },
   computed: {
@@ -95,6 +102,25 @@ export default {
         )
       }
       return resultItems
+    },
+    incidentItems () {
+      if (this.resultData.entries === undefined) { return []; }
+      let incidentItems = []
+      let prevIncident = {}
+
+      for (const entry of this.resultData.entries) {
+        if (prevIncident?.drivers?.length === 2 && entry.drivers.length === 2 && this.incidentHideDoubles) {
+          if (entry.drivers.indexOf(prevIncident.drivers[0]) !== -1) {
+            if (entry.drivers.indexOf(prevIncident.drivers[1]) !== -1) {
+              continue
+            }
+          }
+        }
+
+        incidentItems.push(entry)
+        prevIncident = entry
+      }
+      return incidentItems
     }
   },
   mounted() {
@@ -141,6 +167,11 @@ export default {
         </b-button>
       </b-button-group>
     <b-tabs align="left" no-fade>
+      <template #tabs-end>
+        <li class="nav-item align-self-center xml-title">
+          <small>{{resultData?.file_name }}</small>
+        </li>
+      </template>
       <b-tab title="Session Results" title-link-class="btn-secondary pt-1 pb-1">
         <!-- RESULT -->
         <b-table :items="raceResultItems" :fields="raceResultFields"
@@ -148,7 +179,7 @@ export default {
                  sort-by="position" no-sort-reset sort-icon-left
                  table-variant="dark" small borderless
                  class="server-list" thead-class="text-white"
-                 ref="resultTable"
+                 ref="resultTable" :title="resultData?.file_name"
         >
           <template #cell(name)="row">
             <b-button size="sm" @click="row.toggleDetails" title="Show Laptimes"
@@ -169,7 +200,7 @@ export default {
       </b-tab>
       <!-- INCIDENTS -->
       <b-tab title="Incidents" title-link-class="btn-secondary pt-1 pb-1">
-        <b-table :items="resultData.entries"
+        <b-table :items="incidentItems"
                  :fields="incidentFields"
                  :filter="incidentFilter"
                  sort-by="et" no-sort-reset sort-icon-left
@@ -183,15 +214,18 @@ export default {
           <!-- A custom formatted header cell for field 'name' -->
           <template #head(drivers)="data">
             <span class="mr-1">{{ data.label }}</span>
+            <b-link @click="incidentHideDoubles=!incidentHideDoubles" class="float-right text-success">
+              {{ incidentHideDoubles ? 'Show' : 'Hide' }} collision doubles
+            </b-link>
             <template v-if="incidentFilter!==null">
-              <b-link @click="incidentFilter=null" class="float-right text-warning">
+              <b-link @click="setDriverFilter(null)" class="float-right text-warning mr-3">
                 Clear Filter
               </b-link>
             </template>
           </template>
           <template #cell(drivers)="row">
             <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
-                    @click="incidentFilter=d" title="Filter by this Driver"
+                    @click="setDriverFilter(d)" title="Filter by this Driver"
                     class="mr-1 small" variant="secondary">
               {{ d }}
             </b-link>
@@ -210,4 +244,6 @@ export default {
   color: #e327db;
 }
 .result-td-details { padding: 0; margin: 0; border: none; }
+
+.xml-title {margin-left: auto;}
 </style>

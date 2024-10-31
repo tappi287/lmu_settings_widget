@@ -148,12 +148,15 @@ class RfactorResults(ResultsJsonRepr):
         self.drivers = list()
         self.racelaps = int()
         self.racetime = int()
+        self.file_name = str()
 
         self._read_result_file(file)
 
     def _read_result_file(self, file: Path):
         if file is None or not file.exists():
             return
+
+        self.file_name = file.name
 
         with open(file, "r") as f:
             et: etree._ElementTree = etree.parse(f)

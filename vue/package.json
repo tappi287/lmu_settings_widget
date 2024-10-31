@@ -2,6 +2,7 @@
     "name": "LMU-Settings-Widget",
     "version": "0.5.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "serve-lmu": "vite",
         "build-lmu": "vite build"
@@ -21,27 +22,14 @@
         "webpack": "^5.68.0"
     },
     "devDependencies": {
+        "@eslint-community/eslint-utils": "^4.4.0",
         "@vitejs/plugin-vue2": "^2.3.1",
-        "vite": "^4.5.5",
         "eslint": "latest",
         "eslint-plugin-vue": "^9.29.0",
         "eslint-utils": "^3.0.0",
-        "@eslint-community/eslint-utils": "^4.4.0",
-        "sass": "^1.49.9"
-    },
-    "eslintConfig": {
-        "root": true,
-        "env": {
-            "node": true
-        },
-        "extends": [
-            "plugin:vue/essential",
-            "eslint:recommended"
-        ],
-        "parserOptions": {
-            "parser": "babel-eslint"
-        },
-        "rules": {}
+        "sass": "^1.49.9",
+        "vite": "^4.5.5",
+        "vite-plugin-vue-devtools": "^7.6.2"
     },
     "browserslist": [
         "> 1%",
