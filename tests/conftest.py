@@ -1,3 +1,4 @@
+import os
 import shutil
 from pathlib import Path
 
@@ -33,8 +34,29 @@ def test_data_output_dir() -> Path:
 @pytest.fixture
 def set_test_install_location(clean_test_install_dir, lmu_test_install_dir) -> Path:
     from lmu.lmu_location import RfactorLocation
+
     RfactorLocation.set_location(lmu_test_install_dir)
     return lmu_test_install_dir
+
+
+@pytest.fixture
+def set_install_and_replay_result_files(clean_test_install_dir, lmu_test_install_dir, test_data_output_dir):
+    from lmu import rf2replays
+    from lmu.lmu_location import RfactorLocation
+
+    RfactorLocation.set_location(lmu_test_install_dir)
+
+    replay_mtimes = list()
+    for p in rf2replays.get_replays_location().glob(f"*{rf2replays.REPLAY_FILE_SUFFIX}"):
+        replay_mtimes.append(p.stat().st_mtime)
+
+    for p in test_data_output_dir.joinpath("Le Mans Ultimate/UserData/Log/Results").glob("*.*"):
+        if not p.is_file():
+            continue
+        if not replay_mtimes:
+            break
+        new_mtime = replay_mtimes.pop()
+        os.utime(p, (p.stat().st_ctime, new_mtime))
 
 
 def _overwrite_settings_dir():

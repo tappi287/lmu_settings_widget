@@ -167,7 +167,7 @@
     "Clock presentation#":"false=12 hour clock, true=24 hour clock",
     "CrashRecovery":3,
     "CrashRecovery#":"0=none, 1=artificially keep cars on track, 2=flip cars upright, 3=both",
-    "Custom Replay Folder":"C:\\py\\lmu_settings_widget\\tests\\data\\input\\Le Mans Ultimate\\UserData\\Replays\\",
+    "Custom Replay Folder": "/home/stefan-tapper/PycharmProjects/lmu_settings_widget/tests/data/output/Le Mans Ultimate/UserData/Replays",
     "Custom Replay Folder#":"Specify a custom folder where to store the replays",
     "Damage Multiplier":100,
     "Damage Multiplier#":"100 should approximate real life",

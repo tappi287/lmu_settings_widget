@@ -8,7 +8,7 @@ def test_get_replay_folder(set_test_install_location):
     assert path == Path(r"C:\py\lmu_settings_widget\tests\data\input\Le Mans Ultimate\UserData\Replays")
 
 
-def test_get_replays(set_test_install_location):
+def test_get_replays(set_install_and_replay_result_files):
     replays = rf2replays.get_replays()
     replay_names = [r["name"] for r in replays]
 
