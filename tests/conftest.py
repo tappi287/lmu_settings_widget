@@ -42,7 +42,7 @@ def set_test_install_location(clean_test_install_dir, lmu_test_install_dir) -> P
 @pytest.fixture
 def set_install_and_replay_result_files(clean_test_install_dir, lmu_test_install_dir, test_data_output_dir):
     from lmu import rf2replays
-    from lmu.lmu_location import RfactorLocationad
+    from lmu.lmu_location import RfactorLocation
 
     RfactorLocation.set_location(lmu_test_install_dir)
 
