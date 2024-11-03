@@ -1,6 +1,5 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue2'
-import vueDevTools from 'vite-plugin-vue-devtools'
 
 import path from 'path'
 
@@ -9,7 +8,7 @@ export default defineConfig({
     server: {
         port: 8080
     }, // Vue Plugin
-    plugins: [vue(), vueDevTools()], // Path
+    plugins: [vue(), ], // Path
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
