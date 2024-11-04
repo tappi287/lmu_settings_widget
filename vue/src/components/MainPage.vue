@@ -23,7 +23,7 @@
         <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0">
           Replays
         </b-nav-item>
-        <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0" disabled>
+        <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0">
           Benchmark
         </b-nav-item>
       </b-nav>
@@ -69,6 +69,10 @@
     <!-- Controls Settings Handler -->
     <PresetHandler ref="con" @make-toast="makeToast" @error="setError" id-ref="con"
                    :preset-type="2" @set-busy="setBusy"/>
+
+    <!-- Session Settings Handler -->
+    <PresetHandler ref="ses" @make-toast="makeToast" @error="setError" id-ref="ses" ignore-deviations
+                   :preset-type="3" @set-busy="setBusy"/>
 
     <!-- Dashboard -->
     <keep-alive>
@@ -163,10 +167,8 @@
 
     <!-- Benchmark -->
     <template v-if="navActive === 9">
-      <b-overlay :show="$refs.ses.isBusy" variant="dark" rounded>
-        <BenchMark ref="Benchmark" @make-toast="makeToast" @set-busy="setBusy"
-                   :gfx-handler="$refs.gfx" :ses-handler="$refs.ses"/>
-      </b-overlay>
+      <BenchMark ref="Benchmark" @make-toast="makeToast" @set-busy="setBusy"
+                 :gfx-handler="$refs.gfx" :ses-handler="$refs.ses"/>
     </template>
 
     <!-- App Preferences -->

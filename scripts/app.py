@@ -1,5 +1,6 @@
 import logging
 import os
+import statistics
 import sys
 import time
 import webbrowser
@@ -29,6 +30,7 @@ expose_app_methods()
 setup_logging()
 
 START_TIME = 0.0
+SHOW_APP_RUNTIME_STATS = False
 
 
 def in_restore_mode() -> bool:
@@ -70,9 +72,13 @@ def _main_app_loop():
 
     # -- Run until window/tab closed
     logging.debug("Entering Event Loop")
-    frontend_last_ping_time = time.time()
+    run_times, timer_counter = list(), 0
 
     while not CLOSE_EVENT.is_set():
+        if SHOW_APP_RUNTIME_STATS:
+            start_time = time.perf_counter_ns()
+            timer_counter += 1
+
         # Controller event loop
         controller_event_loop()
         # Game Event Loop
@@ -82,7 +88,15 @@ def _main_app_loop():
         # App Event loop
         app_event_loop()
 
-        gevent.sleep(1.0)
+        gevent.sleep(AppSettings.TARGET_LOOP_WAIT_HALF)
+
+        if SHOW_APP_RUNTIME_STATS:
+            run_times.append(time.perf_counter_ns() - start_time)
+            run_times = run_times[-60:]
+
+            if not timer_counter % 20:
+                timer_counter = 0
+                logging.info(f"Median runtimes: {statistics.median(run_times) * 0.000001:.0f}ms")
 
     # -- Shutdown Greenlets
     logging.debug("Shutting down Greenlets.")

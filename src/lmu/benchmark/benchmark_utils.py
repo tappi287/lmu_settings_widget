@@ -85,7 +85,8 @@ def create_benchmark_commands(ai_key: str, fps_key: str, recording_timeout: int,
         # Timeout
         CommandQueue.append(Command(Command.timeout_command, data=2, timeout=10.0))
         # Ai Control
-        CommandQueue.append(Command(Command.press_key, data=ai_key, timeout=12.0))
+        # CommandQueue.append(Command(Command.press_key, data=ai_key, timeout=12.0))
+        CommandQueue.append(Command(Command.ai_take_control, timeout=10.0))
 
     # Recording Timeout
     CommandQueue.append(Command(Command.timeout_command, data=recording_timeout, timeout=12.0))
@@ -99,3 +100,13 @@ def create_benchmark_commands(ai_key: str, fps_key: str, recording_timeout: int,
     # Record Performance
     CommandQueue.append(Command(Command.press_shift_key, data='DIK_SPACE', timeout=10.0))
     """
+
+
+def create_quit_commands():
+    # Hit ESC
+    CommandQueue.append(Command(Command.press_key, data="DIK_ESCAPE"))
+    # Hit Alt+F4
+    CommandQueue.append(Command(Command.press_alt_key, data="DIK_F4"))
+
+    CommandQueue.append(Command(Command.to_race_menu, timeout=10.0))
+    CommandQueue.append(Command(Command.quit, timeout=5.0))

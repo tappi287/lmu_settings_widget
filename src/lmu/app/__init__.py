@@ -5,6 +5,8 @@ from .app_dashboard import expose_dashboard_methods
 from .app_rfconnect import expose_rfconnect_methods
 from .app_replay import expose_replay_methods
 from .app_results import expose_results_methods
+from .app_benchmark import expose_benchmark_methods
+from .app_content import expose_content_methods
 
 
 def expose_app_methods():
@@ -15,3 +17,5 @@ def expose_app_methods():
     expose_rfconnect_methods()
     expose_replay_methods()
     expose_results_methods()
+    expose_benchmark_methods()
+    expose_content_methods()

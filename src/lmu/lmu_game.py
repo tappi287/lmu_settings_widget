@@ -35,6 +35,7 @@ class RfactorPlayer:
         self.player_json_import_data = player_json_data
         self.player_file = Path()
         self.controller_file = Path()
+        self.keyboard_file = Path()
         self.ini_file = Path()
         self.ini_vr_file = Path()
         self.ini_first_line = str()
@@ -75,6 +76,11 @@ class RfactorPlayer:
         self.read_controller_devices(controller_json)
         r = self._read_options_from_target(OptionsTarget.controller_json, controller_json) and r
         del controller_json
+
+        # -- Read Keyboard JSON
+        keyboard_json = self.read_player_json_dict(self.keyboard_file, encoding="cp1252")
+        self._read_options_from_target(OptionsTarget.keyboard_json, keyboard_json)
+        del keyboard_json
 
         if not r:
             # -- Error reading either player or controller JSON
@@ -367,7 +373,6 @@ class RfactorPlayer:
 
     def _get_location(self):
         RfactorLocation.get_location()
-        # self.error += f'Le Mans Ultimate installation detected at {RfactorLocation.path}\n'
         if not RfactorLocation.is_valid:
             self.error += "Could not locate Le Mans Ultimate installation\n"
             return
@@ -375,6 +380,7 @@ class RfactorPlayer:
         self.location = RfactorLocation.path
         self.player_file = RfactorLocation.player_json
         self.controller_file = RfactorLocation.controller_json
+        self.keyboard_file = RfactorLocation.keyboard_json
         self.ini_file = RfactorLocation.dx_config
         self.ini_vr_file = RfactorLocation.dx_vr_config
         self.version_file = RfactorLocation.version_txt

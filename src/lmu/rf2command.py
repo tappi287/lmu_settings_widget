@@ -38,11 +38,14 @@ class Command:
     press_key = 8
     press_shift_key = 9
     press_ctrl_key = 10
-    timeout_command = 11
-    record_benchmark = 12
-    set_session_settings = 13
-    replay_playback = 14
-    replay_time = 15
+    press_alt_key = 11
+    timeout_command = 12
+    record_benchmark = 13
+    set_session_settings = 14
+    replay_playback = 15
+    replay_time = 16
+    ai_take_control = 17
+    to_race_menu = 18
 
     names = {
         0: "wait_for_state",
@@ -56,11 +59,14 @@ class Command:
         8: "press_key",
         9: "press_shift_key",
         10: "press_ctrl_key",
-        11: "timeout_command",
-        12: "record_benchmark",
-        13: "set_session_settings",
-        14: "replay_playback",
-        15: "replay_time",
+        11: "press_alt_key",
+        12: "timeout_command",
+        13: "record_benchmark",
+        14: "set_session_settings",
+        15: "replay_playback",
+        16: "replay_time",
+        17: "ai_take_control",
+        18: "to_race_menu",
     }
 
     default_timeout = 480.0  # Seconds
@@ -405,6 +411,17 @@ class Command:
             logging.error("Command press key + DIK_LCONTROL did not contain any Key Code.")
         self.finished = True
 
+    def press_alt_key_method(self):
+        if self.data:
+            RfactorStatusEvent.set(f"Sending key + left Alt: {self.data}")
+            logging.debug("Executing command press key + DIK_LMENU: %s", self.data)
+            PressKey("DIK_LMENU")
+            PressReleaseKey(self.data)
+            ReleaseKey("DIK_LMENU")
+        else:
+            logging.error("Command press key + DIK_LMENU did not contain any Key Code.")
+        self.finished = True
+
     def timeout_command_method(self):
         start = time.time()
         t = self.data
@@ -432,6 +449,18 @@ class Command:
             RfactorConnect.replay_time_command(self.data)
         else:
             logging.error("Command replay time did not contain any time argument.")
+        self.finished = True
+
+    def ai_take_control_method(self):
+        RfactorStatusEvent.set(f"Requesting AI Control for current vehicle.")
+        logging.debug("Requesting AI Control for current vehicle.")
+        RfactorConnect.post_request("/rest/sessions/ai/TakeDriverControl")
+        self.finished = True
+
+    def to_race_menu_method(self):
+        RfactorStatusEvent.set("Returning to race menu")
+        logging.debug("Executing command to return race menu")
+        RfactorConnect.post_request("/rest/garage/toRaceMenu")
         self.finished = True
 
 

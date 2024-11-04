@@ -10,6 +10,7 @@ _allowed_value_types = (bool, str, int, float)
 class OptionsTarget:
     player_json = 0
     controller_json = 1
+    keyboard_json = 2
     dx_config = 10
     reshade = 20
     webui_session = 30
@@ -19,14 +20,23 @@ class OptionsTarget:
 
 class Option(JsonRepr):
     # No need to save these internal attributes
-    skip_keys = ['dupl', 'hidden', 'create_in_json', 'difference', 'difference_value']
+    skip_keys = ["dupl", "hidden", "create_in_json", "difference", "difference_value"]
     # Entries we don't want to export or save
-    export_skip_keys = ['settings', 'hidden', 'ini_type', 'desc', 'name', 'exists_in_rf', 'create_in_json'
-                        'difference', 'difference_value', 'dupl']
+    export_skip_keys = [
+        "settings",
+        "hidden",
+        "ini_type",
+        "desc",
+        "name",
+        "exists_in_rf",
+        "create_in_json" "difference",
+        "difference_value",
+        "dupl",
+    ]
 
     def __init__(self):
-        self.key = 'Player JSON key'
-        self.name = 'Friendly Setting Name'
+        self.key = "Player JSON key"
+        self.name = "Friendly Setting Name"
 
         # Current value
         self.value: Union[_allowed_value_types] = None
@@ -44,7 +54,7 @@ class Option(JsonRepr):
         self.settings: tuple = tuple()
 
     def __eq__(self, other):
-        """ Report difference between options
+        """Report difference between options
 
         :param modules.settings_model.Option other:
         :return: True if self.value if differs
@@ -54,8 +64,9 @@ class Option(JsonRepr):
             return True
 
         if other.value != self.value or other.key != self.key:
-            logging.debug('Option %s %s differs from current setting %s %s',
-                          other.key, other.value, self.key, self.value)
+            logging.debug(
+                "Option %s %s differs from current setting %s %s", other.key, other.value, self.key, self.value
+            )
 
             # -- Report difference to FrontEnd
             self.difference = True
@@ -66,14 +77,14 @@ class Option(JsonRepr):
 
 class BaseOptions(JsonRepr):
     # Read only options we want to read but never write to rF/save or export eg. Driver Name
-    skip_keys = ['title', 'ignore_equal', 'mandatory', 'key']
+    skip_keys = ["title", "ignore_equal", "mandatory", "key"]
     # Key representing the category key in player_json
-    key = 'Base Options'
+    key = "Base Options"
     # Key representing the field name for Preset and RfactorPlayer classes
     # must be unique per class!
-    app_key = 'base_options'
+    app_key = "base_options"
     # Category Title to be displayed in front end
-    title = 'Base Settings'
+    title = "Base Settings"
     # Target to indicate RfactorPlayer where to write these options
     # eg. OptionsTarget.player_json
     target = None
@@ -94,19 +105,22 @@ class BaseOptions(JsonRepr):
         for key, detail_dict in options_dict.items():
             option = Option()
             option.key = key
-            option.name = detail_dict.get('name', 'Unknown')
-            option.settings = tuple(detail_dict.get('settings', list()))
-            option.value = detail_dict.get('value')
-            option.desc = detail_dict.get('desc')
-            option.hidden = detail_dict.get('hidden')
-            option.create_in_json = detail_dict.get('create_in_json', False)
-            option.ini_type = detail_dict.get('_type')
-            option.dupl = detail_dict.get('_dupl')
+            option.name = detail_dict.get("name", "Unknown")
+            option.settings = tuple(detail_dict.get("settings", list()))
+            option.value = detail_dict.get("value")
+            option.desc = detail_dict.get("desc")
+            option.hidden = detail_dict.get("hidden")
+            option.create_in_json = detail_dict.get("create_in_json", False)
+            option.ini_type = detail_dict.get("_type")
+            option.dupl = detail_dict.get("_dupl")
             self.options.append(option)
 
     def to_js(self, export: bool = False) -> dict:
-        return {'key': self.key, 'title': self.title,
-                'options': [option.to_js_object(export) for option in self.options]}
+        return {
+            "key": self.key,
+            "title": self.title,
+            "options": [option.to_js_object(export) for option in self.options],
+        }
 
     def to_webui_js(self) -> dict:
         webui_dict = dict()
@@ -122,12 +136,12 @@ class BaseOptions(JsonRepr):
 
     def from_js_dict(self, json_dict):
         for k, v in json_dict.items():
-            if k == 'options':
+            if k == "options":
                 # -- Read only values for Option objects that already exist
                 #    We assume the BaseOptions object has been initialized in it's
                 #    sub-classes with valid default settings.
                 for js_opt in v:
-                    _k, _v = js_opt.get('key'), js_opt.get('value')
+                    _k, _v = js_opt.get("key"), js_opt.get("value")
                     opt = self.get_option(_k)
                     if opt and _v is not None:
                         opt.value = _v
@@ -137,7 +151,7 @@ class BaseOptions(JsonRepr):
                 setattr(self, k, v)
 
     def __eq__(self, other):
-        """ Report difference between options
+        """Report difference between options
 
         :param modules.settings_model.BaseOptions other:
         :return: True if other options differ
@@ -146,7 +160,7 @@ class BaseOptions(JsonRepr):
             return True
 
         if other.key != self.key:
-            logging.info('Options key difference: %s != %s', other.key, self.key)
+            logging.info("Options key difference: %s != %s", other.key, self.key)
             return False
 
         # -- Compare every Option
@@ -170,10 +184,10 @@ class BaseOptions(JsonRepr):
 
 
 class DriverOptions(BaseOptions):
-    skip_keys = ['Player Name', 'Player Nick']
-    key = 'DRIVER'
-    app_key = 'driver_options'
-    title = 'Driver Settings'
+    skip_keys = ["Player Name", "Player Nick"]
+    key = "DRIVER"
+    app_key = "driver_options"
+    title = "Driver Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -184,9 +198,9 @@ class DriverOptions(BaseOptions):
 
 
 class GameOptions(BaseOptions):
-    key = 'Game Options'
-    app_key = 'game_options'
-    title = 'Game Settings'
+    key = "Game Options"
+    app_key = "game_options"
+    title = "Game Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -197,9 +211,9 @@ class GameOptions(BaseOptions):
 
 
 class MiscOptions(BaseOptions):
-    key = 'Miscellaneous'
-    app_key = 'misc_options'
-    title = 'Miscellaneous'
+    key = "Miscellaneous"
+    app_key = "misc_options"
+    title = "Miscellaneous"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -210,9 +224,9 @@ class MiscOptions(BaseOptions):
 
 
 class AppControllerAssignments(BaseOptions):
-    key = 'App_Controller_Assignments'
-    app_key = 'app_controller_assignments'
-    title = 'App Controller Assignments'
+    key = "App_Controller_Assignments"
+    app_key = "app_controller_assignments"
+    title = "App Controller Assignments"
     defaults = generic.app_controller_assignments
     target = OptionsTarget.app_settings
 
@@ -224,9 +238,9 @@ class AppControllerAssignments(BaseOptions):
 
 
 class GamepadMouseOptions(BaseOptions):
-    key = 'Controls'
-    app_key = 'gamepad_mouse_settings'
-    title = 'UI Gamepad Mouse Settings'
+    key = "Controls"
+    app_key = "gamepad_mouse_settings"
+    title = "UI Gamepad Mouse Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -237,9 +251,9 @@ class GamepadMouseOptions(BaseOptions):
 
 
 class FreelookOptions(BaseOptions):
-    key = 'General Controls'
-    app_key = 'freelook_settings'
-    title = 'Freelook Settings'
+    key = "General Controls"
+    app_key = "freelook_settings"
+    title = "Freelook Settings"
     target = OptionsTarget.controller_json
     mandatory = False
 
@@ -251,9 +265,9 @@ class FreelookOptions(BaseOptions):
 
 
 class GeneralSteeringOptions(BaseOptions):
-    key = 'General Controls'
-    app_key = 'general_steering_settings'
-    title = 'Steering Wheel Settings'
+    key = "General Controls"
+    app_key = "general_steering_settings"
+    title = "Steering Wheel Settings"
     target = OptionsTarget.controller_json
     mandatory = False
 
@@ -265,9 +279,9 @@ class GeneralSteeringOptions(BaseOptions):
 
 
 class GeneralControllerAssignmentOptions(BaseOptions):
-    key = 'Input'
-    app_key = 'general_controller_assignments'
-    title = 'Controller Assignments'
+    key = "Input"
+    app_key = "general_controller_assignments"
+    title = "Controller Assignments"
     target = OptionsTarget.controller_json
     mandatory = False
 
@@ -279,9 +293,9 @@ class GeneralControllerAssignmentOptions(BaseOptions):
 
 
 class GraphicOptions(BaseOptions):
-    key = 'Graphic Options'
-    app_key = 'graphic_options'
-    title = 'Display Settings'
+    key = "Graphic Options"
+    app_key = "graphic_options"
+    title = "Display Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -292,9 +306,9 @@ class GraphicOptions(BaseOptions):
 
 
 class GraphicViewOptions(BaseOptions):
-    key = 'Graphic Options'
-    app_key = 'graphic_view_options'
-    title = 'View Settings'
+    key = "Graphic Options"
+    app_key = "graphic_view_options"
+    title = "View Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -305,9 +319,9 @@ class GraphicViewOptions(BaseOptions):
 
 
 class VideoSettings(BaseOptions):
-    key = 'Video Settings'
-    app_key = 'video_settings'
-    title = 'Video Settings'
+    key = "Video Settings"
+    app_key = "video_settings"
+    title = "Video Settings"
     target = OptionsTarget.dx_config
 
     def __init__(self):
@@ -318,9 +332,9 @@ class VideoSettings(BaseOptions):
 
 
 class ReshadeSettings(BaseOptions):
-    key = 'reshade_settings'
-    app_key = 'reshade_settings'
-    title = 'VRToolkit + ReShade'
+    key = "reshade_settings"
+    app_key = "reshade_settings"
+    title = "VRToolkit + ReShade"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -336,9 +350,9 @@ class ReshadeSettings(BaseOptions):
 
 
 class ReshadeFasSettings(BaseOptions):
-    key = 'reshade_fas_settings'
-    app_key = 'reshade_fas_settings'
-    title = 'Filmic Anamorph Sharpen'
+    key = "reshade_fas_settings"
+    app_key = "reshade_fas_settings"
+    title = "Filmic Anamorph Sharpen"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -350,9 +364,9 @@ class ReshadeFasSettings(BaseOptions):
 
 
 class ReshadeCasSettings(BaseOptions):
-    key = 'reshade_cas_settings'
-    app_key = 'reshade_cas_settings'
-    title = 'AMD Fidelity FX (CAS)'
+    key = "reshade_cas_settings"
+    app_key = "reshade_cas_settings"
+    title = "AMD Fidelity FX (CAS)"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -364,9 +378,9 @@ class ReshadeCasSettings(BaseOptions):
 
 
 class ReshadeLutSettings(BaseOptions):
-    key = 'reshade_lut_settings'
-    app_key = 'reshade_lut_settings'
-    title = 'Look Up Table'
+    key = "reshade_lut_settings"
+    app_key = "reshade_lut_settings"
+    title = "Look Up Table"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -378,9 +392,9 @@ class ReshadeLutSettings(BaseOptions):
 
 
 class ReshadeCcSettings(BaseOptions):
-    key = 'reshade_cc_settings'
-    app_key = 'reshade_cc_settings'
-    title = 'Basic Color Correction'
+    key = "reshade_cc_settings"
+    app_key = "reshade_cc_settings"
+    title = "Basic Color Correction"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -392,9 +406,9 @@ class ReshadeCcSettings(BaseOptions):
 
 
 class ReshadeAaSettings(BaseOptions):
-    key = 'reshade_aa_settings'
-    app_key = 'reshade_aa_settings'
-    title = 'FXAA'
+    key = "reshade_aa_settings"
+    app_key = "reshade_aa_settings"
+    title = "FXAA"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -407,9 +421,9 @@ class ReshadeAaSettings(BaseOptions):
 
 class ReshadeClarityFxSettings(BaseOptions):
     # PreProcessor Definitions
-    key = 'reshade_clarity_fx_settings'
-    app_key = 'reshade_clarity_fx_settings'
-    title = 'ReShade Clarity2'
+    key = "reshade_clarity_fx_settings"
+    app_key = "reshade_clarity_fx_settings"
+    title = "ReShade Clarity2"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -422,9 +436,9 @@ class ReshadeClarityFxSettings(BaseOptions):
 
 class ReshadeClaritySettings(BaseOptions):
     # Options
-    key = 'reshade_clarity_settings'
-    app_key = 'reshade_clarity_settings'
-    title = 'Clarity Options'
+    key = "reshade_clarity_settings"
+    app_key = "reshade_clarity_settings"
+    title = "Clarity Options"
     target = OptionsTarget.reshade
     mandatory = False
 
@@ -436,9 +450,9 @@ class ReshadeClaritySettings(BaseOptions):
 
 
 class ResolutionSettings(BaseOptions):
-    key = 'Resolution Settings'
-    app_key = 'resolution_settings'
-    title = 'Resolution and Window Settings'
+    key = "Resolution Settings"
+    app_key = "resolution_settings"
+    title = "Resolution and Window Settings"
     target = OptionsTarget.dx_config
 
     def __init__(self):
@@ -449,9 +463,9 @@ class ResolutionSettings(BaseOptions):
 
 
 class AdvancedGraphicSettings(BaseOptions):
-    key = 'Graphic Options'
-    app_key = 'advanced_graphic_options'
-    title = 'Advanced Display Settings'
+    key = "Graphic Options"
+    app_key = "advanced_graphic_options"
+    title = "Advanced Display Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -462,10 +476,11 @@ class AdvancedGraphicSettings(BaseOptions):
 
 
 class AutoHeadlightSettings(BaseOptions):
-    """ rFactors build-in Auto-Headlight from >= v1124RC """
-    key = 'DRIVING AIDS'
-    app_key = 'auto_headlight_settings'
-    title = 'Auto Headlight rFactor Aid'
+    """rFactors build-in Auto-Headlight from >= v1124RC"""
+
+    key = "DRIVING AIDS"
+    app_key = "auto_headlight_settings"
+    title = "Auto Headlight rFactor Aid"
     target = OptionsTarget.player_json
     mandatory = False
 
@@ -477,9 +492,9 @@ class AutoHeadlightSettings(BaseOptions):
 
 
 class HeadlightSettings(BaseOptions):
-    key = 'headlight_settings'
-    app_key = 'headlight_settings'
-    title = 'Headlight Settings'
+    key = "headlight_settings"
+    app_key = "headlight_settings"
+    title = "Headlight Settings"
     target = OptionsTarget.app_settings
 
     def __init__(self):
@@ -490,9 +505,9 @@ class HeadlightSettings(BaseOptions):
 
 
 class HeadlightControllerJsonSettings(BaseOptions):
-    key = 'Input'
-    app_key = 'headlight_controller_json'
-    title = 'Headlight rFactor Control Mapping'
+    key = "Input"
+    app_key = "headlight_controller_json"
+    title = "Headlight rFactor Control Mapping"
     target = OptionsTarget.controller_json
     mandatory = False
 
@@ -504,9 +519,9 @@ class HeadlightControllerJsonSettings(BaseOptions):
 
 
 class BenchmarkSettings(BaseOptions):
-    key = 'benchmark_settings'
-    app_key = 'benchmark_settings'
-    title = 'Benchmark Settings'
+    key = "benchmark_settings"
+    app_key = "benchmark_settings"
+    title = "Benchmark Settings"
     target = OptionsTarget.app_settings
 
     def __init__(self):
@@ -517,11 +532,12 @@ class BenchmarkSettings(BaseOptions):
 
 
 class BenchmarkControllerJsonSettings(BaseOptions):
-    """ Helper object to locate AI Control and Show FPS keycodes """
-    key = 'Input'
-    app_key = 'benchmark_controller_json'
-    title = 'Benchmark rFactor Control Mapping'
-    target = OptionsTarget.controller_json
+    """Helper object to locate AI Control and Show FPS keycodes"""
+
+    key = "Input"
+    app_key = "benchmark_keyboard_json"
+    title = "Benchmark rFactor Control Mapping"
+    target = OptionsTarget.keyboard_json
     mandatory = False
 
     def __init__(self):
@@ -532,9 +548,9 @@ class BenchmarkControllerJsonSettings(BaseOptions):
 
 
 class SessionUiSettings(BaseOptions):
-    key = 'Session UI Options'
-    app_key = 'session_ui_settings'
-    title = 'Session Ui Settings'
+    key = "Session UI Options"
+    app_key = "session_ui_settings"
+    title = "Session Ui Settings"
     target = OptionsTarget.webui_session
     ignore_equal = True
 
@@ -546,9 +562,9 @@ class SessionUiSettings(BaseOptions):
 
 
 class ContentUiSettings(BaseOptions):
-    key = 'Content UI Options'
-    app_key = 'content_ui_settings'
-    title = 'Content Selection'
+    key = "Content UI Options"
+    app_key = "content_ui_settings"
+    title = "Content Selection"
     target = OptionsTarget.webui_content
 
     def __init__(self):
@@ -559,9 +575,9 @@ class ContentUiSettings(BaseOptions):
 
 
 class SessionGameSettings(BaseOptions):
-    key = 'Game Options'
-    app_key = 'session_game_settings'
-    title = 'Session Settings'
+    key = "Game Options"
+    app_key = "session_game_settings"
+    title = "Session Settings"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -572,9 +588,9 @@ class SessionGameSettings(BaseOptions):
 
 
 class SessionConditionSettings(BaseOptions):
-    key = 'Race Conditions'
-    app_key = 'session_condition_settings'
-    title = 'Race Conditions'
+    key = "Race Conditions"
+    app_key = "session_condition_settings"
+    title = "Race Conditions"
     target = OptionsTarget.player_json
 
     def __init__(self):
@@ -588,8 +604,8 @@ class SessionConditionSettings(BaseOptions):
 # Direct json Options not wrapped in BaseOptions #
 # ------------------------------------------------
 class HeadlightControllerAssignments(JsonRepr):
-    app_key = 'headlight_controller_assignments'
-    title = 'Headlight Controller Assignments'
+    app_key = "headlight_controller_assignments"
+    title = "Headlight Controller Assignments"
     defaults = headlights.controller_assignments
 
     def __init__(self):

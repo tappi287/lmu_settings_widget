@@ -1,76 +1,74 @@
 <template>
-  <div>
-    <b-card class="mt-2 setting-card text-center" header-class="m-0 p-2"
-            bg-variant="dark" text-variant="white" :id="groupId" :footer-class="compact ? 'd-none' : ''">
-      <template #header v-if="displayText">
-        <b-icon v-if="headerIcon" :icon="headerIcon"></b-icon>
-        <span :class="headerIcon ? 'ml-2' : ''">{{ displayText }}</span>
-      </template>
+  <b-card class="mt-2 setting-card text-center" header-class="m-0 p-2"
+          bg-variant="dark" text-variant="white" :id="groupId" :footer-class="compact ? 'd-none' : ''">
+    <template #header v-if="displayText">
+      <b-icon v-if="headerIcon" :icon="headerIcon"></b-icon>
+      <span :class="headerIcon ? 'ml-2' : ''">{{ displayText }}</span>
+    </template>
 
-      <slot name="content"></slot>
+    <slot name="content"></slot>
 
-      <!-- Content Selection-->
-      <template v-if="content.series.length > 0">
-        <div class="setting mr-3 mb-3" v-for="contentType in contentTypes" :key="contentType">
-          <b-input-group size="sm" class="setting-field">
-            <b-input-group-prepend>
-              <b-input-group-text class="info-field fixed-width-name" :id="nameId + contentType">
-                {{ contentType.charAt(0).toUpperCase() + contentType.slice(1) }}
-              </b-input-group-text>
-            </b-input-group-prepend>
-            <b-input-group-append>
-              <!-- Dropdown Menu -->
-              <b-dropdown :text="currentContentName[contentType]" class="setting-item fixed-width-setting no-border"
-                          :id="elemId + contentType" :disabled="frozen"
-                          :variant="currentContentName[contentType] === 'None' ? 'rf-blue' : 'rf-orange'">
-                <b-dropdown-item v-for="item in displayContent[contentType]" :key="item.id"
-                                 @click="selectItem(contentType, item)">
-                  {{ item.name }}
-                </b-dropdown-item>
-              </b-dropdown>
-            </b-input-group-append>
-          </b-input-group>
-        </div>
-      </template>
-      <template v-if="content.series.length === 0 && !frozen">
-        <div class="text-rf-orange">
-          <b>rF2 content is unknown. Use the refresh button to acquire rF2 content list.</b>
-        </div>
-      </template>
-      <template v-if="content.series.length === 0 && frozen">
-        <div v-for="contentType in contentTypes" :key="contentType"
-             class="setting mr-3 mb-3 input-group-text info-field fixed-width-name">
-          <template v-if="selected[contentType] !== null">
-            {{ contentType.charAt(0).toUpperCase() + contentType.slice(1) }}: {{ selected[contentType] }}
-          </template>
-        </div>
-      </template>
+    <!-- Content Selection-->
+    <template v-if="content.series.length > 0">
+      <div class="setting mr-3 mb-3" v-for="contentType in contentTypes" :key="contentType">
+        <b-input-group size="sm" class="setting-field">
+          <b-input-group-prepend>
+            <b-input-group-text class="info-field fixed-width-name" :id="nameId + contentType">
+              {{ contentType.charAt(0).toUpperCase() + contentType.slice(1) }}
+            </b-input-group-text>
+          </b-input-group-prepend>
+          <b-input-group-append>
+            <!-- Dropdown Menu -->
+            <b-dropdown :text="currentContentName[contentType]" class="setting-item fixed-width-setting no-border"
+                        :id="elemId + contentType" :disabled="frozen"
+                        :variant="currentContentName[contentType] === 'None' ? 'rf-blue' : 'rf-orange'">
+              <b-dropdown-item v-for="item in displayContent[contentType]" :key="item.id"
+                               @click="selectItem(contentType, item)">
+                {{ item.name }}
+              </b-dropdown-item>
+            </b-dropdown>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
+    </template>
+    <template v-if="content.series.length === 0 && !frozen">
+      <div class="text-rf-orange">
+        <b>rF2 content is unknown. Use the refresh button to acquire rF2 content list.</b>
+      </div>
+    </template>
+    <template v-if="content.series.length === 0 && frozen">
+      <div v-for="contentType in contentTypes" :key="contentType"
+           class="setting mr-3 mb-3 input-group-text info-field fixed-width-name">
+        <template v-if="selected[contentType] !== null">
+          {{ contentType.charAt(0).toUpperCase() + contentType.slice(1) }}: {{ selected[contentType] }}
+        </template>
+      </div>
+    </template>
 
-      <template #footer v-if="!compact">
-        <slot name="footer"></slot>
+    <template #footer v-if="!compact">
+      <slot name="footer"></slot>
 
-        <!-- Refresh Button -->
-        <div class="float-left">
-          <b-button variant="light" id="content-refresh-button" size="sm">
-            <b-icon icon="arrow-clockwise"></b-icon>
-          </b-button>
-        </div>
-      </template>
+      <!-- Refresh Button -->
+      <div class="float-left">
+        <b-button variant="light" id="content-refresh-button" size="sm">
+          <b-icon icon="arrow-clockwise"></b-icon>
+        </b-button>
+      </div>
+    </template>
 
-      <!-- Refresh Popover -->
-      <b-popover target="content-refresh-button" triggers="click">
-        <p>Do you want to <b>start Le Mans Ultimate</b> and refresh the list of available content?</p>
-        <p>The game will be quit once the list of content is acquired. This will take ~8 seconds.</p>
-        <div class="text-right">
-          <LaunchRfactorBtn @make-toast="makeToast" @launch="refreshContent" text="Refresh" />
-          <b-button @click="$root.$emit('bv::hide::popover', 'content-refresh-button')"
-                    size="sm" aria-label="Close" class="ml-1">
-            Close
-          </b-button>
-        </div>
-      </b-popover>
-    </b-card>
-  </div>
+    <!-- Refresh Popover -->
+    <b-popover target="content-refresh-button" triggers="click">
+      <p>Do you want to <b>start Le Mans Ultimate</b> and refresh the list of available content?</p>
+      <p>The game will be quit once the list of content is acquired. This will take ~8 seconds.</p>
+      <div class="text-right">
+        <LaunchRfactorBtn @make-toast="makeToast" @launch="refreshContent" text="Refresh" />
+        <b-button @click="$root.$emit('bv::hide::popover', 'content-refresh-button')"
+                  size="sm" aria-label="Close" class="ml-1">
+          Close
+        </b-button>
+      </div>
+    </b-popover>
+  </b-card>
 </template>
 
 <script>

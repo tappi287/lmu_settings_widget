@@ -102,6 +102,18 @@
     <ReplayList ref="replayList" @row-selected="selectReplay" @replays-ready="replayListReady" />
   </b-collapse>
 
+  <!-- Session Settings and Content Selection -->
+  <b-button block @click="setNav('content')" class="mt-2"
+            :variant="navModel.content ? 'rf-orange' : 'dark'">
+    <b-icon icon="receipt"></b-icon><span class="ml-2">Session Settings</span>
+  </b-button>
+  <b-collapse v-model="navModel.content" accordion="bench-accordion" role="tabpanel">
+    <div class="mt-2">
+      <SessionPresetArea fixed-width :ses-handler="sesHandler" :hide-apply-webui-settings="true"
+                         :search="search" @make-toast="makeToast" @set-busy="setBusy"/>
+    </div>
+  </b-collapse>
+
   <!-- Graphics Presets -->
   <b-button block @click="setNav('graphics')" class="mt-2"
             :variant="navModel.graphics ? 'rf-orange' : 'dark'">
@@ -130,6 +142,9 @@ import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea.vue";
 import ReplayList from "@/components/widgets/ReplayList.vue";
 import BenchmarkResultArea from "@/components/benchmark/BenchmarkResultArea.vue";
 import DevPresets from "@/components/benchmark/DevPresets.vue";
+import SettingsCard from "@/components/settings/SettingsCard.vue";
+import SessionArea from "@/components/SessionArea.vue";
+import SessionPresetArea from "@/components/presets/SessionPresetArea.vue";
 // --- </ Prepare receiving Benchmark Progress Events
 window.eel.expose(rfactorBenchmarkProgress, 'benchmark_progress')
 async function rfactorBenchmarkProgress (event) {
@@ -141,6 +156,9 @@ async function rfactorBenchmarkProgress (event) {
 export default {
   name: "BenchMark",
   components: {
+    SessionPresetArea,
+    SessionArea,
+    SettingsCard,
     DevPresets,
     BenchmarkResultArea,
     ReplayList,
