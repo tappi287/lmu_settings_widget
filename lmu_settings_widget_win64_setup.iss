@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LMU-Settings-Widget"
-#define MyAppVersion "0.5.0"
+#define MyAppVersion "0.6.0"
 #define MyAppPublisher "Stefan Tapper"
 #define MyAppURL "https://sim-site.netlify.app"
 #define MyAppExeName "LMU-Settings-Widget.exe"

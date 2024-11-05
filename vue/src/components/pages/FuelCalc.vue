@@ -153,7 +153,7 @@ export default {
           <label class="ml-2 m-0 p-0 align-middle" for="inline-form-custom-select-pref">Average lap time</label>
         </b-col>
         <b-col sm="8">
-          <b-form inline>
+          <b-form inline @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="15" number v-model="lapMinutes"/>
             :
@@ -174,8 +174,8 @@ export default {
           <span class="ml-2 align-middle">Average fuel consumption</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline>
-            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2"
+          <b-form inline @submit.prevent>
+            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2" @submit.prevent
                           number v-model="fuelConsumption" min="0.0" max="99.0" step="0.1"/>
             <span class="align-middle">l</span>
           </b-form>
@@ -189,7 +189,7 @@ export default {
           <span class="ml-2 align-middle">Race Duration</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline @change="raceDurationUpdate">
+          <b-form inline @change="raceDurationUpdate" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="999" number v-model="raceHours"/>
             h
@@ -203,7 +203,7 @@ export default {
       <b-row>
         <b-col sm="4" />
         <b-col sm="8">
-          <b-form inline @change="raceLapsUpdate">
+          <b-form inline @change="raceLapsUpdate" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="9999" number v-model="raceLaps"/>
             laps
@@ -218,8 +218,8 @@ export default {
           <span class="ml-2 align-middle">Out/in laps</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline>
-            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2"
+          <b-form inline @submit.prevent>
+            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2" @submit.prevent
                           number v-model="extraLaps" min="0" max="99"/>
           </b-form>
         </b-col>
