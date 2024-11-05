@@ -23,8 +23,13 @@
         <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0">
           Replays
         </b-nav-item>
-        <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0">
-          Benchmark
+        <template v-if="isDev">
+          <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0">
+            Benchmark
+          </b-nav-item>
+        </template>
+        <b-nav-item :active="navActive === 4" @click="navActive=4" link-classes="pl-0">
+          FuelCalc
         </b-nav-item>
       </b-nav>
 
@@ -153,6 +158,8 @@
       </b-overlay>
     </template>
 
+    <FuelCalc v-if="navActive===4"></FuelCalc>
+
     <!-- Replays -->
     <ReplayArea ref="replays" v-if="navActive === 5"
                 @make-toast="makeToast" @set-busy="setBusy"
@@ -238,6 +245,7 @@ import RfactorOverlay from "@/components/RfactorOverlay.vue";
 import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
+import FuelCalc from "@/components/pages/FuelCalc.vue";
 
 export default {
   name: 'MainPage',
@@ -473,6 +481,7 @@ export default {
     this.$eventHub.$off('navigate', this.navigate)
   },
   components: {
+    FuelCalc,
     PreferencesPage,
     RfactorOverlay,
     ControllerDeviceList,

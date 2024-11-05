@@ -57,6 +57,12 @@ export function chooseIndex(choices) {
     return Math.floor(Math.random() * choices.length);
 }
 
+export function divMod(y, x) {
+    const quotient = Math.floor(y / x);
+    const remainder = y % x;
+    return [quotient, remainder]
+}
+
 export var isValid = (function () {
     let rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |
     let rg2 = /^\./; // cannot start with dot (.)
@@ -69,8 +75,12 @@ export var isValid = (function () {
 window.eel.expose(updateProgress, 'server_progress')
 
 function updateProgress(newProgress, newMaxProgress) {
-    const progressEvent = new CustomEvent('update-progress',
-        {detail: {progress: newProgress, maxProgress: newMaxProgress}})
+    const progressEvent = new CustomEvent('update-progress', {
+        detail: {
+            progress: newProgress,
+            maxProgress: newMaxProgress
+        }
+    })
     window.dispatchEvent(progressEvent)
 }
 

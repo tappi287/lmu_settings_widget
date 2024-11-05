@@ -4,7 +4,7 @@
       <b-img class="img-title" id="img" :src="posterImg"></b-img>
     </div>
     <div id="i-overlay">
-      <div id="img-gradient" class="low-round"></div>
+      <!-- <div id="img-gradient" class="low-round"></div> -->
 
       <!-- Display over image slider -->
       <div class="p-3" id="top-menu">
