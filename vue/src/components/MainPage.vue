@@ -158,7 +158,7 @@
       </b-overlay>
     </template>
 
-    <FuelCalc v-if="navActive===4"></FuelCalc>
+    <FuelCalc v-if="navActive===4" @make-toast="makeToast"></FuelCalc>
 
     <!-- Replays -->
     <ReplayArea ref="replays" v-if="navActive === 5"

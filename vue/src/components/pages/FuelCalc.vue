@@ -1,20 +1,18 @@
 <script>
 import lmwLogoUrl from "@/assets/lmw_logo.png"
-import {divMod} from "@/main.js";
+import trackPresets from "@/fuelData.js"
+import {divMod, getEelJsonObject, isValid} from "@/main.js";
 
 export default {
   name: "FuelCalc",
   data: function () {
     return {
       resultPresets: [
-          12, 16, 24, 30, 80, 100, 120
+        12, 16, 24, 30, 80, 100, 120
       ],
-      trackPresets: [
-        {name: "Portimão GTE", consumption: 2.86, lapTime: 110.5},
-        {name: "Portimão LMP2", consumption: 2.45, lapTime: 96.15},
-        {name: "Portimão Hy", consumption: 2.99, lapTime: 88.123},
-        {name: "Imola GTE", consumption: 3.2, lapTime: 107.891}
-      ],
+      trackPresets: trackPresets,
+      newTrackPresetName: "",
+      newTrackPresetNameValidationHint: "",
       selectedPreset: 0,
       lapMinutes: 1,
       lapSeconds: 23,
@@ -26,9 +24,16 @@ export default {
       extraLaps: 1,
       logoUrl: lmwLogoUrl,
       isDev: import.meta.env.DEV,
+      saveTimerId: null
     }
   },
   methods: {
+    makeToast(message, category = 'secondary', title = 'Update', append = true, delay = 8000) {
+      this.$emit('make-toast', message, category, title, append, delay)
+    },
+    setBusy: function (busy) {
+      this.$emit('set-busy', busy)
+    },
     setLapTime(lapTime) {
       const _r1 = divMod(lapTime * 1000, 1000)
       let s = _r1[0]
@@ -47,6 +52,7 @@ export default {
       this.selectedPreset = parseInt(idx)
       this.setLapTime(this.trackPresets[idx].lapTime)
       this.fuelConsumption = this.trackPresets[idx].consumption
+      this.raceDurationUpdate()
     },
     raceLapsUpdate() {
       const duration = this.currentLapTime * this.raceLaps
@@ -72,9 +78,87 @@ export default {
           parseFloat(this.extraLaps)
       )
     },
-    paddedNum(num, padding, padString="0") {
+    paddedNum(num, padding, padString = "0") {
       return String(num).padStart(padding, padString)
-    }
+    },
+    async lapTimeUpdate() {
+      this.raceDurationUpdate()
+      await this.saveUserPresets()
+    },
+    async fuelConsumptionUpdate() {
+      console.log("Fuel calc update")
+      await this.saveUserPresets()
+    },
+    async loadUserPresets() {
+      const r = await getEelJsonObject(window.eel.get_fuel_calc_presets()())
+      if (r !== undefined && r.result) {
+        if (r.data.length > 0) {
+          this.trackPresets = r.data
+        }
+      }
+    },
+    async saveUserPresets() {
+      this.setBusy(true)
+      const r = await getEelJsonObject(window.eel.save_fuel_calc_presets(this.getUpdatedTrackPresets())())
+      if (r !== undefined && !r.result) {
+        this.makeToast("Error saving presets")
+      }
+      this.setBusy(false)
+    },
+    getUpdatedTrackPresets() {
+      let currenTrackPreset = this.currentTrackPreset
+      let modifiedIdx = -1
+      for (const idx in this.trackPresets) {
+        let p = this.trackPresets[idx]
+        if (p.name === currenTrackPreset.name) {
+          modifiedIdx = idx
+          currenTrackPreset.lapTime = this.currentLapTime
+          currenTrackPreset.consumption = this.fuelConsumption
+        }
+      }
+      if (modifiedIdx !== -1) {
+        this.trackPresets[modifiedIdx] = currenTrackPreset
+      }
+      return this.trackPresets
+    },
+    deleteCurrentPreset() {
+      if (this.trackPresets[this.selectedPreset] !== undefined) {
+        this.trackPresets.splice(this.selectedPreset, 1)
+      }
+      if (this.trackPresets.length === 0) {
+        this.trackPresets = trackPresets
+      }
+      this.selectTrackPreset(0)
+    },
+    createNewTrackPreset() {
+      if (this.newTrackPresetNameState !== true) { return; }
+      let newTrackPreset = {
+        name: this.newTrackPresetName, lapTime: this.currentLapTime, consumption: this.fuelConsumption
+      }
+      this.trackPresets.push(newTrackPreset)
+      this.trackPresets.sort((a, b) => {
+        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      })
+      this.saveUserPresets()
+
+      // Select the newly created preset
+      for (const idx in this.trackPresets) {
+        if (this.trackPresets[idx].name === newTrackPreset.name) {
+          this.selectTrackPreset(idx)
+          break
+        }
+      }
+    },
   },
   computed: {
     currentTrackPreset() {
@@ -107,10 +191,24 @@ export default {
       const estimatedLaps = fuelResult[1]
 
       return [fuelAmount, estimatedLaps]
+    },
+    newTrackPresetNameState () {
+      if (this.newTrackPresetName === '') {
+        return null
+      }
+      if (this.newTrackPresetName.length >= 20) {
+        this.newTrackPresetNameValidationHint = "Name must not be longer than 20 characters"
+        return false
+      }
+      const valid = isValid(this.newTrackPresetName)
+      if (!valid) { this.newTrackPresetNameValidationHint = "Name contains invalid characters"}
+      return valid
     }
   },
-  created() {
+  async created() {
     this.selectTrackPreset(0)
+    this.raceDurationUpdate()
+    await this.loadUserPresets()
   }
 }
 </script>
@@ -136,12 +234,32 @@ export default {
             <span class="ml-2 align-middle">Presets</span>
           </b-col>
           <b-col sm="8">
-            <b-dropdown size="sm" :text="currentTrackPreset.name">
-              <b-dropdown-item size="sm" v-for="(p, idx) in trackPresets" :key="idx"
-                               @click="selectTrackPreset(idx)">
-                {{ p.name }}
-              </b-dropdown-item>
-            </b-dropdown>
+            <b-input-group size="sm">
+              <b-input-group-prepend>
+                <b-dropdown size="sm" :text="currentTrackPreset.name">
+                  <b-dropdown-item size="sm" v-for="(p, idx) in trackPresets" :key="idx"
+                                   @click="selectTrackPreset(idx)">
+                    {{ p.name }}
+                  </b-dropdown-item>
+                </b-dropdown>
+              </b-input-group-prepend>
+
+              <b-input class="track-preset-input" :state="newTrackPresetNameState" id="track-preset-name"
+                       type="text" v-model="newTrackPresetName" placeholder="Enter new preset name..."/>
+              <b-popover target="track-preset-name" placement="top" triggers="manual"
+                         :show="newTrackPresetNameState===false">
+                {{ newTrackPresetNameValidationHint }}
+              </b-popover>
+
+              <b-input-group-append>
+                <b-button size="sm" @click="createNewTrackPreset">
+                  <b-icon icon="plus-circle"></b-icon>
+                </b-button>
+                <b-button size="sm" @click="deleteCurrentPreset">
+                  <b-icon icon="trash-fill"></b-icon>
+                </b-button>
+              </b-input-group-append>
+            </b-input-group>
           </b-col>
         </b-row>
       </template>
@@ -153,7 +271,7 @@ export default {
           <label class="ml-2 m-0 p-0 align-middle" for="inline-form-custom-select-pref">Average lap time</label>
         </b-col>
         <b-col sm="8">
-          <b-form inline @submit.prevent>
+          <b-form inline @change="lapTimeUpdate" debounce="1200" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="15" number v-model="lapMinutes"/>
             :
@@ -174,8 +292,8 @@ export default {
           <span class="ml-2 align-middle">Average fuel consumption</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline @submit.prevent>
-            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2" @submit.prevent
+          <b-form inline @change="fuelConsumptionUpdate" debounce="1200" @submit.prevent>
+            <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2"
                           number v-model="fuelConsumption" min="0.0" max="99.0" step="0.1"/>
             <span class="align-middle">l</span>
           </b-form>
@@ -201,7 +319,7 @@ export default {
         </b-col>
       </b-row>
       <b-row>
-        <b-col sm="4" />
+        <b-col sm="4"/>
         <b-col sm="8">
           <b-form inline @change="raceLapsUpdate" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
@@ -241,7 +359,7 @@ export default {
         <!-- Preset Results -->
         <b-row v-for="(r, idx) in resultPresets" :key="idx"
                class="text-muted">
-          <b-col sm="4" />
+          <b-col sm="4"/>
           <b-col sm="8" class="text-monospace text-left">
             <span class="mr-4">{{ paddedNum(r, 3) }} mins</span>
             <span class="mr-4">{{ paddedNum(presetCalc(r)[0], 3, " ") }} l</span>
@@ -260,5 +378,9 @@ export default {
 
 .lmu-con {
   margin-top: .1rem;
+}
+
+.track-preset-input {
+  max-width: 30%;
 }
 </style>

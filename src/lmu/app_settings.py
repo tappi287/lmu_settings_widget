@@ -52,6 +52,7 @@ class AppSettings(JsonRepr):
     apply_webui_settings = False
     controller_devices = dict()
     last_launch_method = None
+    fuel_calc_presets = list()
 
     # -----------------------------------
     # -- Won't be saved to file:
