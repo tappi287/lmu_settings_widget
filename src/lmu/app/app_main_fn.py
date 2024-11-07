@@ -8,6 +8,7 @@ from typing import Optional
 from ..app_settings import AppSettings
 from ..globals import DEFAULT_PRESET_NAME, RFACTOR_SETUPS, RFACTOR_MODMGR, get_log_file, get_log_dir, get_data_dir
 from ..lmu_game import RfactorPlayer
+from ..mods.vrtoolkit import VrToolKit
 from ..lmu_location import RfactorLocation
 from ..preset.preset import PresetType
 from ..preset.preset_base import load_preset
@@ -67,6 +68,11 @@ def restore_backup():
     default_preset_file = get_data_dir() / DEFAULT_PRESET_NAME
     default_preset = load_preset(default_preset_file, PresetType.graphics)
     rf.write_settings(default_preset)
+
+    try:
+        VrToolKit.remove_reshade_openxr_layer()
+    except Exception as e:
+        logging.error(f"Error removing ReShade OpenXR API layer: {e}")
 
     if not rf.is_valid:
         return json.dumps({"result": False, "msg": rf.error})

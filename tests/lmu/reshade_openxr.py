@@ -8,7 +8,7 @@ from lmu.utils import get_registry_values_as_dict
 
 
 def test_reshade_registry_setup():
-    vrtoolkit.VrToolKit.setup_reshade_openxr()
+    vrtoolkit.VrToolKit.setup_reshade_openxr_layer()
 
     key = registry.OpenKey(registry.HKEY_CURRENT_USER, vrtoolkit.VrToolKit.OPEN_XR_API_LAYER_REG_PATH)
     values = get_registry_values_as_dict(key)
@@ -18,4 +18,14 @@ def test_reshade_registry_setup():
 
 
 def test_update_reshade_openxr_apps_ini(set_test_install_location):
-    update_reshade_openxr_apps_ini(set_test_install_location / GAME_EXECUTABLE)
+    vrtoolkit.VrToolKit.update_reshade_openxr_apps_ini(set_test_install_location / GAME_EXECUTABLE)
+
+
+def test_remove_reshade_openxr_layer():
+    assert vrtoolkit.VrToolKit.remove_reshade_openxr_layer() is True
+    assert vrtoolkit.VrToolKit.is_openxr_layer_installed() == 0
+
+
+def test_deactivate_reshade_openxr_layer():
+    vrtoolkit.VrToolKit.setup_reshade_openxr_layer(enable=False)
+    assert vrtoolkit.VrToolKit.is_openxr_layer_installed() == -1

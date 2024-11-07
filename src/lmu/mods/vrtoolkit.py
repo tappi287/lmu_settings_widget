@@ -13,7 +13,7 @@ except ImportError:
     WINREG_AVAIL = False
 
 from lmu.utils import get_registry_values_as_dict
-from lmu.globals import get_data_dir
+from lmu.globals import get_data_dir, GAME_EXECUTABLE
 from lmu.preset.settings_model import BaseOptions, ReshadeClaritySettings
 from lmu.settingsdef import graphics
 
@@ -23,6 +23,7 @@ class VrToolKit:
     RESHADE_PRESET_DIR = "reshade-shaders/Presets/"
     RESHADE_TARGET_PRESET_NAME = "lmu_widget_preset.ini"
     RESHADE_INI_NAME = "ReShadeVR.ini"
+    RESHADE_VR_INI_NAME = "ReShadeVR.ini"
     RESHADE_OPENXR_LAYER_DIR = "reshade_openxr_layer"
     RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
     RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
@@ -127,7 +128,53 @@ class VrToolKit:
         return True
 
     @classmethod
-    def setup_reshade_openxr(cls, enable=True, game_executable: Path = None) -> bool:
+    def is_openxr_layer_installed(cls) -> int:
+        """Check if the ReShade OpenXR API Layer is set up.
+
+        :returns: 0 - if not installed, 1 - installed and active, -1 - installed but deactivated
+        """
+        if not WINREG_AVAIL:
+            logging.error(f"Windows registry not available, can not check OpenXR-API-Layer installation")
+            return 0
+
+        # -- Open OpenXR v1 API Layers registry key
+        try:
+            key = registry.OpenKey(registry.HKEY_CURRENT_USER, cls.OPEN_XR_API_LAYER_REG_PATH)
+            values = get_registry_values_as_dict(key)
+            if cls.reshade_openxr_json_path() in values:
+                value = values.get(cls.reshade_openxr_json_path())
+                if value.get("data") == 0:
+                    return 1
+                else:
+                    return -1
+        except OSError as e:
+            logging.error(f"Could not open or create registry key: {e}")
+            return 0
+
+    @classmethod
+    def remove_reshade_openxr_layer(cls) -> bool:
+        if not WINREG_AVAIL:
+            logging.error(f"Windows registry not available, skipping OpenXR-API-Layer setup")
+            return False
+
+        # -- Open OpenXR v1 API Layers registry key
+        layer_present = False
+        try:
+            key = registry.OpenKey(
+                registry.HKEY_CURRENT_USER, cls.OPEN_XR_API_LAYER_REG_PATH, access=registry.KEY_ALL_ACCESS
+            )
+            if cls.reshade_openxr_json_path() in get_registry_values_as_dict(key):
+                layer_present = True
+        except OSError as e:
+            logging.error(f"Could not read registry key: {e}")
+            return False
+
+        if layer_present:
+            registry.DeleteValue(key, cls.reshade_openxr_json_path())
+        return True
+
+    @classmethod
+    def setup_reshade_openxr_layer(cls, enable=True, game_executable: Path = None) -> bool:
         """Setup ReShade via it's OpenXR-API-Layer
             this will end up in HKEY_CURRENT_USER\SOFTWARE\Khronos\OpenXR\1\ApiLayers\Implicit
 
@@ -192,8 +239,8 @@ class VrToolKit:
             self.ini_settings[key] = setting.get("value")
             self.ini_default_settings[key] = setting.get("value")
 
-    def _update_options(self, update_from_disk=False, clarity_found=True) -> Tuple[bool, bool]:
-        use_reshade, use_clarity = False, False
+    def _update_options(self, update_from_disk=False, clarity_found=True) -> Tuple[bool, bool, bool]:
+        use_reshade, use_openxr, use_clarity = False, False, False
 
         # -- Iterate Preset options
         for preset_options in self.options:
@@ -208,6 +255,8 @@ class VrToolKit:
                 if not update_from_disk:
                     if option.key == "use_reshade":
                         use_reshade = option.value
+                    elif option.key == "use_openxr":
+                        use_openxr = option.value
                     elif option.key == "use_clarity":
                         use_clarity = option.value
                     elif option.key in self.preprocessor:
@@ -219,6 +268,9 @@ class VrToolKit:
                     if option.key == "use_reshade":
                         option.value = True
                         option.exists_in_rf = True
+                    if option.key == "use_openxr":
+                        option.value = self.is_openxr_layer_installed() == 1
+                        option.exists_in_rf = True
                     if option.key == "use_clarity":
                         option.value = clarity_found
                         option.exists_in_rf = True
@@ -229,11 +281,17 @@ class VrToolKit:
                         option.value = self.ini_settings[option.key]
                         option.exists_in_rf = True
 
-        return use_reshade, use_clarity
+        return use_reshade, use_clarity, use_openxr
 
-    def _work_thru_reshade_release_zip(self, use_reshade: bool, bin_dir: Path) -> list:
+    def _work_thru_reshade_release_zip(self, use_reshade: bool, use_openxr: bool, bin_dir: Path) -> list:
         reshade_zip = get_data_dir() / self.RESHADE_ZIP
         remove_dirs = list()
+
+        def _remove_reshade_dll(in_file: Path):
+            dll_file = Path(in_file.parent / self.dll_tgt[1])
+            if dll_file.is_file():
+                dll_file.unlink(missing_ok=True)
+                logging.info("Removing ReShade file %s from game bin dir.", dll_file)
 
         with ZipFile(reshade_zip, "r") as zip_obj:
             for zip_info in zip_obj.filelist:
@@ -241,6 +299,11 @@ class VrToolKit:
 
                 # -- Extract Zip member
                 if use_reshade:
+                    # -- Remove dll if OpenXR is in use
+                    if self.dll_tgt[0] == zip_info.filename and use_openxr:
+                        _remove_reshade_dll(file)
+                        continue
+
                     # -- Skip existing files
                     if file.exists():
                         continue
@@ -259,10 +322,7 @@ class VrToolKit:
                 # -- Remove files found in zip
                 else:
                     # - Remove renamed dll
-                    dll_file = Path(file.parent / self.dll_tgt[1])
-                    if dll_file.is_file():
-                        dll_file.unlink(missing_ok=True)
-                        logging.info("Removing ReShade file %s from rF2 bin dir.", dll_file)
+                    _remove_reshade_dll(file)
 
                     # - Remove files matching zip file
                     if file.is_file():
@@ -354,11 +414,11 @@ class VrToolKit:
         return True
 
     @staticmethod
-    def _update_reshade_ini(base_dir: Path):
+    def _update_reshade_ini(base_dir: Path, vr_ini=False):
         """update the global reshade preset ini to update preset path"""
         reshade_preset_dir_str = VrToolKit.RESHADE_PRESET_DIR.replace("/", "\\")
         reshade_preset_path = f".\\{reshade_preset_dir_str}{VrToolKit.RESHADE_TARGET_PRESET_NAME}"
-        reshade_ini = base_dir / VrToolKit.RESHADE_INI_NAME
+        reshade_ini = base_dir / VrToolKit.RESHADE_VR_INI_NAME if vr_ini else base_dir / VrToolKit.RESHADE_INI_NAME
 
         reshade_ini_lines, updated_ini_lines = list(), list()
 
@@ -380,7 +440,7 @@ class VrToolKit:
             f.writelines(updated_ini_lines)
 
     def write(self):
-        use_reshade, use_clarity = self._update_options()
+        use_reshade, use_clarity, use_openxr = self._update_options()
 
         bin_dir = self.location
         reshade_preset = bin_dir / self.RESHADE_PRESET_DIR / self.RESHADE_TARGET_PRESET_NAME
@@ -388,14 +448,14 @@ class VrToolKit:
 
         # -- Extract ReShade files
         logging.info("Applying ReShade settings: %s", use_reshade)
-        remove_dirs = self._work_thru_reshade_release_zip(use_reshade, bin_dir)
+        remove_dirs = self._work_thru_reshade_release_zip(use_reshade, use_openxr, bin_dir)
 
         # -- Remove ReShade directories and files
         if not use_reshade:
-            # -- Remove Cache
-            cache = bin_dir / "ReShade" / "Cache"
-            for f in cache.glob("*.*"):
-                f.unlink()
+            # -- Disable OpenXR API Layer
+            if use_openxr:
+                if self.is_openxr_layer_installed() == 1:
+                    self.setup_reshade_openxr_layer(enable=False)
 
             # -- Remove ReShade preset
             if reshade_preset.exists():
@@ -415,7 +475,13 @@ class VrToolKit:
             return reshade_removed
 
         # -- Update global ReShade.ini
+        self._update_reshade_ini(bin_dir, True)
         self._update_reshade_ini(bin_dir)
+
+        # -- Enable OpenXR API Layer
+        if use_openxr:
+            game_executable_path = bin_dir / GAME_EXECUTABLE
+            self.setup_reshade_openxr_layer(True, game_executable_path)
 
         # -- Prepare writing of ReShade Preset file
         return self._update_preset_ini(reshade_preset, use_clarity)

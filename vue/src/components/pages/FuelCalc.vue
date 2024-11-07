@@ -236,7 +236,7 @@ export default {
           <b-col sm="8">
             <b-input-group size="sm">
               <b-input-group-prepend>
-                <b-dropdown size="sm" :text="currentTrackPreset.name">
+                <b-dropdown size="sm" :text="currentTrackPreset.name" variant="rf-orange-light">
                   <b-dropdown-item size="sm" v-for="(p, idx) in trackPresets" :key="idx"
                                    @click="selectTrackPreset(idx)">
                     {{ p.name }}
@@ -252,10 +252,10 @@ export default {
               </b-popover>
 
               <b-input-group-append>
-                <b-button size="sm" @click="createNewTrackPreset">
+                <b-button size="sm" @click="createNewTrackPreset" variant="rf-secondary">
                   <b-icon icon="plus-circle"></b-icon>
                 </b-button>
-                <b-button size="sm" @click="deleteCurrentPreset">
+                <b-button size="sm" @click="deleteCurrentPreset" variant="danger">
                   <b-icon icon="trash-fill"></b-icon>
                 </b-button>
               </b-input-group-append>

@@ -240,6 +240,5 @@ def get_fuel_calc_presets():
 
 @capture_app_exceptions
 def save_fuel_calc_presets(track_presets):
-    logging.info(f"Saving: {track_presets}")
     AppSettings.fuel_calc_presets = track_presets
     return json.dumps({"result": AppSettings.save()})
