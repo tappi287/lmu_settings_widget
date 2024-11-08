@@ -5,7 +5,7 @@ import shutil
 from pathlib import Path
 
 from lmu.globals import get_settings_dir, get_data_dir
-from lmu.utils import get_registry_values_as_dict
+from lmu.utils import get_registry_values_as_dict, get_version_string
 
 try:
     from pathlib import WindowsPath
@@ -21,6 +21,21 @@ RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
 RESHADE_OPENXR_LAYER_DLL = "ReShade64.dll"
 RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
 OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
+OPENVR_API_DLL = "openvr_api.dll"
+
+
+def is_openvr_present(bin_dir: Path) -> bool:
+    """Check that the openvr_dll is signed by Valve. Otherwise, we assume this is not the original OpenVR API."""
+    dll_path = bin_dir / OPENVR_API_DLL
+    if not dll_path.is_file():
+        return False
+
+    try:
+        company = get_version_string(dll_path.as_posix(), "CompanyName")
+        if company.casefold() == "valve":
+            return True
+    except WindowsError:
+        return False
 
 
 def reshade_openxr_layer_dir() -> Path:

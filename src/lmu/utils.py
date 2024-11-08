@@ -9,6 +9,7 @@ import time
 from datetime import datetime
 from pathlib import Path, WindowsPath
 from typing import Tuple, Union, Optional, Any
+import ctypes
 
 import eel
 import gevent
@@ -441,3 +442,76 @@ def greenlet_sleep(seconds, close_event: gevent.event.Event = None):
         if close_event and close_event.is_set():
             break
         gevent.sleep(5.0)
+
+
+# returns the requested version information from the given file
+#
+# `what` is one of the predefined version information strings, such as
+# "FileVersion" or "CompanyName"
+#
+# `language` should be an 8-character string combining both the language and
+# codepage (such as "040904b0"); if None, the first language in the translation
+# table is used instead
+#
+def get_version_string(filename, what, language=None):
+    # VerQueryValue() returns an array of that for VarFileInfo\Translation
+    #
+    class LANGANDCODEPAGE(ctypes.Structure):
+        _fields_ = [("wLanguage", ctypes.c_uint16), ("wCodePage", ctypes.c_uint16)]
+
+    wstr_file = ctypes.wstring_at(filename)
+
+    # getting the size in bytes of the file version info buffer
+    size = ctypes.windll.version.GetFileVersionInfoSizeW(wstr_file, None)
+    if size == 0:
+        raise ctypes.WinError()
+
+    buffer = ctypes.create_string_buffer(size)
+
+    # getting the file version info data
+    if ctypes.windll.version.GetFileVersionInfoW(wstr_file, None, size, buffer) == 0:
+        raise ctypes.WinError()
+
+    # VerQueryValue() wants a pointer to a void* and DWORD; used both for
+    # getting the default language (if necessary) and getting the actual data
+    # below
+    value = ctypes.c_void_p(0)
+    value_size = ctypes.c_uint(0)
+
+    if language is None:
+        # file version information can contain much more than the version
+        # number (copyright, application name, etc.) and these are all
+        # translatable
+        #
+        # the following arbitrarily gets the first language and codepage from
+        # the list
+        ret = ctypes.windll.version.VerQueryValueW(
+            buffer, ctypes.wstring_at(r"\VarFileInfo\Translation"), ctypes.byref(value), ctypes.byref(value_size)
+        )
+
+        if ret == 0:
+            raise ctypes.WinError()
+
+        # value points to a byte inside buffer, value_size is the size in bytes
+        # of that particular section
+
+        # casting the void* to a LANGANDCODEPAGE*
+        lcp = ctypes.cast(value, ctypes.POINTER(LANGANDCODEPAGE))
+
+        # formatting language and codepage to something like "040904b0"
+        language = "{0:04x}{1:04x}".format(lcp.contents.wLanguage, lcp.contents.wCodePage)
+
+    # getting the actual data
+    res = ctypes.windll.version.VerQueryValueW(
+        buffer,
+        ctypes.wstring_at("\\StringFileInfo\\" + language + "\\" + what),
+        ctypes.byref(value),
+        ctypes.byref(value_size),
+    )
+
+    if res == 0:
+        raise ctypes.WinError()
+
+    # value points to a string of value_size characters, minus one for the
+    # terminating null
+    return ctypes.wstring_at(value.value, value_size.value - 1)

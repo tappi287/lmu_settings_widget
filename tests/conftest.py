@@ -27,6 +27,11 @@ def clean_test_install_dir() -> None:
 
 
 @pytest.fixture
+def test_data_input_dir() -> Path:
+    return test_data_input_path
+
+
+@pytest.fixture
 def test_data_output_dir() -> Path:
     return test_data_output_path
 
