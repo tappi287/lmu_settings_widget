@@ -234,6 +234,9 @@ class RfactorPlayer:
             return False
 
     def _update_player_json(self, player_json_dict, preset_options: BaseOptions):
+        if not player_json_dict:
+            return False
+
         if preset_options.key not in player_json_dict:
             self.error += f"Could not locate CATEGORY settings key: {preset_options.key} in <Settings>.JSON.\n"
             logging.error(self.error)

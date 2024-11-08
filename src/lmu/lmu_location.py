@@ -55,8 +55,8 @@ class RfactorLocation:
         version_txt = path / RFACTOR_VERSION_TXT
 
         logging.info(
-            f"Setting rF location: "
-            f"{path}"
+            f"Setting rF location:\n"
+            f"{path}\n"
             f"{player_json}\n"
             f"{controller_json}\n"
             f"{dx_config}\n"
