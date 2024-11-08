@@ -211,3 +211,12 @@ def save_app_preferences(app_preferences: dict):
 @capture_app_exceptions
 def load_app_preferences():
     return json.dumps({"result": True, "preferences": AppSettings.app_preferences})
+
+
+@capture_app_exceptions
+def is_original_openvr_present():
+    rf_loc = _get_rf_location("")
+    if rf_loc is None:
+        return json.dumps({"result": False})
+
+    return json.dumps({"result": openxr.is_openvr_present(Path(rf_loc))})

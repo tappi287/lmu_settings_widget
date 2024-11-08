@@ -7,6 +7,9 @@
                       :settings="contentSettings"
                       :header-icon="headerIcon"
                       @make-toast="makeToast" @set-busy="setBusy" @update-setting="updateSetting">
+    <template #header>
+      <slot name="header"></slot>
+    </template>
     <template #footer>
       <slot name="contentFooter"></slot>
     </template>
@@ -19,6 +22,7 @@
     <template #header>
         <b-icon v-if="headerIcon" :icon="headerIcon"></b-icon>
         <span :class="headerIcon ? 'ml-2' : ''">{{ preset[settingsKey].title }}</span>
+        <slot name="header"></slot>
     </template>
     <!-- Settings -->
     <template v-if="!viewMode">

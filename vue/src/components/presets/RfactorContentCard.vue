@@ -4,6 +4,7 @@
     <template #header v-if="displayText">
       <b-icon v-if="headerIcon" :icon="headerIcon"></b-icon>
       <span :class="headerIcon ? 'ml-2' : ''">{{ displayText }}</span>
+      <slot name="header"></slot>
     </template>
 
     <slot name="content"></slot>

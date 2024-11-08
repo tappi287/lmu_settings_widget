@@ -136,6 +136,11 @@ def load_app_preferences():
     return app_main_fn.load_app_preferences()
 
 
+@eel.expose
+def is_original_openvr_present():
+    return app_main_fn.is_original_openvr_present()
+
+
 def expose_main_methods():
     """empty method we import to have the exposed methods registered"""
     pass

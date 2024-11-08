@@ -94,6 +94,16 @@
                 @update-setting="updateSetting"
                 @set-busy="setBusy"
                 @make-toast="makeToast">
+    <template #header>
+      <b-alert class="mt-4 small" variant="info" :show="showOpenXrHint">
+        Detected non-original OpenVR binary [openvr_api.dll] in your installation.
+        If you use OpenComposite / OpenXR: make sure to set <b>Use OpenXR</b> to enabled!
+      </b-alert>
+      <b-alert class="mt-4 small" variant="warning" :show="showOpenVrHint">
+        Warning: detected native OpenVR in your installation. Injecting ReShade vie OpenXR will not work
+        for this game because it will not use OpenXR. Set <b>Use OpenXR</b> to disabled!
+      </b-alert>
+    </template>
     <template #footer v-if="!compact">
       <div style="font-size: small;">
         Visit
@@ -204,6 +214,7 @@
 
 <script>
 import SettingsCard from "@/components/settings/SettingsCard.vue";
+import {getEelJsonObject} from "@/main.js";
 
 export default {
   name: "GraphicsArea",
@@ -211,6 +222,7 @@ export default {
     return {
       showPerformance: true, showAllReshade: false,
       abortResolutionUpdate: false, showOpenVrSettings: true, showVideoSettings: true,
+      originalOpenVRPresent: false,
     }
   },
   props: {preset: Object, idx: Number, current_preset_idx: Number, view_mode: Number, search: String,
@@ -233,6 +245,12 @@ export default {
       })
       return result
     },
+    async checkOriginalOpenVRPresent () {
+      const r = await getEelJsonObject(window.eel.is_original_openvr_present()())
+      if (r.result !== undefined) {
+        this.originalOpenVRPresent = r.result
+      }
+    },
     reshadeSettingDisabled(setting) {
       if (setting.key === 'use_reshade') { return false }
       return !this.reshadeEnabled
@@ -249,6 +267,28 @@ export default {
     viewMode: function () {
       if (this.view_mode !== undefined) { return this.view_mode }
       return 0
+    },
+    showOpenVrHint: function () {
+      if (this.preset === undefined) { return false }
+
+      if (this.reshadeEnabled && this.originalOpenVRPresent) {
+        if (this._getSetSettingsOption('reshade_settings', 'use_openxr')) {
+          return true
+        }
+      }
+      return false
+    },
+    showOpenXrHint: function () {
+      if (this.preset === undefined) { return false }
+
+      if (this.reshadeEnabled) {
+        if (!this._getSetSettingsOption('reshade_settings', 'use_openxr')) {
+          if (!this.originalOpenVRPresent) {
+            return true
+          }
+        }
+      }
+      return false
     },
     reshadeEnabled: function () {
       if (this.preset === undefined) { return false }
@@ -287,6 +327,7 @@ export default {
   created() {
     // Show detailed VRToolKit settings if there are settings differences
     if (this.previousPresetName !== '') { this.showAllReshade = true }
+    this.checkOriginalOpenVRPresent()
   }
 }
 </script>
