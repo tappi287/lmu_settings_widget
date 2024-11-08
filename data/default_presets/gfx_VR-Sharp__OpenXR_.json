@@ -57,7 +57,7 @@
     ],
     "title": "Advanced Display Settings"
   },
-  "desc": "Apply additional AMD Fidelity FX Contrast Adaptive Sharpening via ReShade / VRToolkit",
+  "desc": "Apply additional AMD Fidelity FX Contrast Adaptive Sharpening via ReShade / VRToolkit via OpenXR API Layer",
   "graphic_options": {
     "key": "Graphic Options",
     "options": [
@@ -150,7 +150,7 @@
     ],
     "title": "View Settings"
   },
-  "name": "VR-Sharp",
+  "name": "VR-Sharp [OpenXR]",
   "preset_type": 0,
   "reshade_aa_settings": {
     "key": "reshade_aa_settings",
@@ -315,7 +315,7 @@
       },
       {
         "key": "use_openxr",
-        "value": false
+        "value": true
       },
       {
         "key": "VRT_SHARPENING_MODE",

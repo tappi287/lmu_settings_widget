@@ -1,6 +1,6 @@
 <script>
 import lmwLogoUrl from "@/assets/lmw_logo.png"
-import trackPresets from "@/fuelData.js"
+import defaultFuelCalcTrackPresets from "@/fuelData.js"
 import {divMod, getEelJsonObject, isValid} from "@/main.js";
 
 export default {
@@ -10,7 +10,7 @@ export default {
       resultPresets: [
         12, 16, 24, 30, 80, 100, 120
       ],
-      trackPresets: trackPresets,
+      trackPresets: JSON.parse(JSON.stringify(defaultFuelCalcTrackPresets)),
       newTrackPresetName: "",
       newTrackPresetNameValidationHint: "",
       selectedPreset: 0,
@@ -122,13 +122,14 @@ export default {
       return this.trackPresets
     },
     deleteCurrentPreset() {
-      if (this.trackPresets[this.selectedPreset] !== undefined) {
+      // Reset Presets to default if last preset deleted
+      if (this.trackPresets.length === 1) {
+        this.trackPresets = JSON.parse(JSON.stringify(defaultFuelCalcTrackPresets))
+      } else if (this.trackPresets[this.selectedPreset] !== undefined) {
         this.trackPresets.splice(this.selectedPreset, 1)
       }
-      if (this.trackPresets.length === 0) {
-        this.trackPresets = trackPresets
-      }
       this.selectTrackPreset(0)
+      this.saveUserPresets()
     },
     createNewTrackPreset() {
       if (this.newTrackPresetNameState !== true) { return; }

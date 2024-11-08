@@ -1,9 +1,10 @@
 """ Functionality to handle installation of the ReShade Open XR API Layer """
 
 import logging
+import shutil
 from pathlib import Path
 
-from lmu.globals import get_data_dir
+from lmu.globals import get_settings_dir, get_data_dir
 from lmu.utils import get_registry_values_as_dict
 
 try:
@@ -17,12 +18,32 @@ except ImportError:
 
 RESHADE_OPENXR_LAYER_DIR = "reshade_openxr_layer"
 RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
+RESHADE_OPENXR_LAYER_DLL = "ReShade64.dll"
 RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
 OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
 
 
 def reshade_openxr_layer_dir() -> Path:
-    return get_data_dir() / RESHADE_OPENXR_LAYER_DIR
+    """Check if the layer directory exists and otherwise create it.
+
+    :return: Returns the path to the ReShade OpenXR API Layer directory.
+    """
+    openxr_layer_dir = get_settings_dir() / RESHADE_OPENXR_LAYER_DIR
+
+    # -- Create folder
+    if not openxr_layer_dir.exists():
+        openxr_layer_dir.mkdir()
+
+    for file_name in (RESHADE_OPENXR_LAYER_JSON, RESHADE_OPENXR_LAYER_DLL, RESHADE_OPENXR_APPS_INI):
+        destination_file = openxr_layer_dir.joinpath(file_name)
+        if destination_file.exists():
+            continue
+
+        # -- Copy files from data if they do not exist
+        src_file = get_data_dir() / RESHADE_OPENXR_LAYER_DIR / file_name
+        shutil.copy(src_file, destination_file)
+
+    return openxr_layer_dir
 
 
 def reshade_openxr_json_path() -> str:
@@ -96,7 +117,7 @@ def is_openxr_layer_installed() -> int:
                 return -1
     except OSError as e:
         logging.error(f"Could not open or create registry key: {e}")
-        return 0
+    return 0
 
 
 def remove_reshade_openxr_layer() -> bool:
