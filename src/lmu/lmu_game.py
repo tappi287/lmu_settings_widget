@@ -186,6 +186,10 @@ class RfactorPlayer:
         """Update the Config_DX11.ini with supported Video Settings"""
         settings_updated = False
         ini_config = self.read_dx_ini(vr_ini)
+        if not ini_config:
+            logging.error(f"Could not read video settings ini file.")
+            return
+
         ini_file = self.ini_vr_file if vr_ini else self.ini_file
 
         for preset_options in self._get_target_options(OptionsTarget.dx_config, preset):
@@ -344,6 +348,7 @@ class RfactorPlayer:
 
     def read_dx_ini(self, vr_ini=False) -> Optional[ConfigParser]:
         try:
+            # TODO: check that file exists!
             conf = self._create_ini_config_parser()
             ini_file = self.ini_vr_file if vr_ini else self.ini_file
             with open(ini_file, "r") as f:
