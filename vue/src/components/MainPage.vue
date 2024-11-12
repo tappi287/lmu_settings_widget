@@ -40,25 +40,25 @@
                         size="sm" placeholder="Search..."
                         class="search-bar mr-sm-2 text-white"/>
         </b-nav-form>
-        <b-nav-item id="heart-nav" right v-if="isDev">
+        <b-nav-item id="heart-nav" right v-if="isDev" class="pr-1">
           <b-icon shift-v="-0.25" icon="circle-fill" class="heart-icon" :class="heartBeatClass"></b-icon>
         </b-nav-item>
         <b-nav-item id="vr-nav" right @click="launchSteamVr" v-b-popover.auto.hover="'Launch SteamVR'">
           <div class="vr-nav-container">
             <div class="vr-nav-font"><b>VR</b></div>
             <div class="vr-nav-icon">
-              <b-icon icon="square-fill"></b-icon>
+              <b-icon icon="square-fill" font-scale="1.5"></b-icon>
             </div>
           </div>
         </b-nav-item>
         <b-nav-item id="preferences-nav" right :active="navActive === 12" @click="navActive=12">
-          <b-iconstack>
+          <b-iconstack font-scale="1.5">
             <b-icon stacked icon="square-fill"></b-icon>
             <b-icon stacked icon="gear-fill" scale="0.75" class="gear-icon"></b-icon>
           </b-iconstack>
         </b-nav-item>
         <b-nav-item id="wiki-nav" right :active="navActive === 7" @click="navActive=7">
-          <b-icon icon="question-square-fill"></b-icon>
+          <b-icon icon="question-square-fill" font-scale="1.5"></b-icon>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -78,6 +78,10 @@
     <!-- Session Settings Handler -->
     <PresetHandler ref="ses" @make-toast="makeToast" @error="setError" id-ref="ses" ignore-deviations
                    :preset-type="3" @set-busy="setBusy"/>
+
+    <!-- Game Running Overlay -->
+    <RfactorOverlay ref="rfactorOverlay" v-show="showRfOverlay" :live="live" :rf2-status="rf2Status"
+                :quit-busy="quitBusy" @quit-rfactor="quitRfactor"/>
 
     <!-- Dashboard -->
     <keep-alive>
@@ -204,9 +208,6 @@
         </b-col>
       </b-row>
     </b-container>
-
-    <RfactorOverlay ref="rfactorOverlay" v-show="showRfOverlay" :live="live" :rf2-status="rf2Status"
-                    :quit-busy="quitBusy" @quit-rfactor="quitRfactor"/>
 
     <!-- Restore Popover -->
     <b-popover target="restore-btn" triggers="click">
@@ -520,17 +521,13 @@ export default {
   position: absolute;
   color: black;
   z-index: 2;
-  font-size: 0.84rem;
-  left: 0.05rem;
-  top: 0.13rem;
+  font-size: 1rem;
+  left: 0.065rem;
+  top: -0.05rem;
 }
 
 .vr-nav-icon {
   position: absolute;
-}
-
-#vr-nav a {
-  padding-right: 0.275rem;
 }
 
 #heart-nav a {
