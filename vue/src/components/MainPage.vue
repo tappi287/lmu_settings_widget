@@ -241,7 +241,7 @@ import {getEelJsonObject, sleep} from "@/main";
 import BenchMark from "@/components/benchmark/Benchmark.vue";
 import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea.vue";
 import ControlsPresetArea from "@/components/presets/ControlsPresetArea.vue";
-import ControllerDeviceList from "@/components/ControllerDeviceList.vue";
+import ControllerDeviceList from "@/components/widgets/ControllerDeviceList.vue";
 import RfactorOverlay from "@/components/RfactorOverlay.vue";
 import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"

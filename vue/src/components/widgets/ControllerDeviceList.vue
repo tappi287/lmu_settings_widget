@@ -4,12 +4,12 @@
             :bg-variant="darkVar" :text-variant="whiteVar">
       <template #header>
           <b-icon icon="controller"></b-icon>
-          <span :class="'ml-2'">Controller Devices</span>
+          <span :class="'ml-2'"
+                v-b-popover.auto.hover="'Click on the Checkboxes to select input devices here that need to be ' +
+                                        'connected when you start LMU. \n'+
+                                        'The app will warn you if a device is not connected while launching LMU.'"
+          >Controller Devices</span>
       </template>
-      <p class="small">
-        Click on the Checkboxes to select input devices here that need to be connected when you start LMU.
-        The app will warn you if a device is not connected while launching LMU.
-      </p>
       <b-list-group class="text-left no-border">
         <b-list-group-item class="bg-transparent p-0 m-2 no-border" v-for="(c, idx) in controller" :key="idx">
           <!-- Device Connected Indicator -->
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {getEelJsonObject} from "@/main";
+import {getEelJsonObject} from "@/main.js";
 
 // --- </ Prepare receiving controller device events
 window.eel.expose(controllerDeviceEventFunc, 'controller_device_event')
