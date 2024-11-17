@@ -8,7 +8,7 @@ from lmu.utils import create_file_safe_name
 
 REPLAY_FILE_SUFFIX = ".Vcr"
 RESULT_FILE_SUFFIX = ".xml"
-RESULT_TIME_THRESHOLD = 60.0  # 60s
+RESULT_TIME_THRESHOLD = 180.0  # 60s
 
 
 def get_replay_location_from_rfactor_player(rf: RfactorPlayer) -> Path | None:

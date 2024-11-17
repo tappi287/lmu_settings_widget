@@ -153,7 +153,7 @@ class RfactorResults(ResultsJsonRepr):
         self._read_result_file(file)
 
     def _read_result_file(self, file: Path):
-        if file is None or not file.exists():
+        if file is None or not file.is_file():
             return
 
         self.file_name = file.name
