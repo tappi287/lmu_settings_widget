@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lmu-settings-widget"
-version = "0.6.2"
+version = "0.6.3"
 description = ""
 authors = ["Stefan Tapper <tapper.stefan@gmail.com>"]
 readme = "README.md"
