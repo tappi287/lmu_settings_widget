@@ -54,14 +54,14 @@ export default {
       this.fuelConsumption = this.trackPresets[idx].consumption
       this.raceDurationUpdate()
     },
-    raceLapsUpdate() {
+    async raceLapsUpdate() {
       const duration = this.currentLapTime * this.raceLaps
       const _r = divMod(duration, 60)
       const _r2 = divMod(_r[0], 60)
       this.raceHours = _r2[0]
       this.raceMinutes = _r2[1]
     },
-    raceDurationUpdate() {
+    async raceDurationUpdate() {
       this.raceLaps = Math.ceil(this.currentRaceDuration / this.currentLapTime)
     },
     calculateFuel(lapTime, duration, fuel, extraLaps) {
@@ -82,7 +82,7 @@ export default {
       return String(num).padStart(padding, padString)
     },
     async lapTimeUpdate() {
-      this.raceDurationUpdate()
+      await this.raceDurationUpdate()
       await this.saveUserPresets()
     },
     async fuelConsumptionUpdate() {
@@ -93,33 +93,52 @@ export default {
       const r = await getEelJsonObject(window.eel.get_fuel_calc_presets()())
       if (r !== undefined && r.result) {
         if (r.data.length > 0) {
-          this.trackPresets = r.data
+          let trackPresetData = []
+
+          for (const i in r.data) {
+            const p = r.data[i]
+
+            // Read settings from data
+            if (p?.settings !== undefined) {
+              this.selectedPreset = p.settings.selectedPreset
+              this.raceHours = p.settings.raceHours
+              this.raceMinutes = p.settings.raceMinutes
+              this.extraLaps = p.settings.extraLaps
+            } else {
+              trackPresetData.push(p)
+            }
+          }
+          this.trackPresets = trackPresetData
         }
       }
     },
     async saveUserPresets() {
+      console.log("Saving fuel presets")
       this.setBusy(true)
-      const r = await getEelJsonObject(window.eel.save_fuel_calc_presets(this.getUpdatedTrackPresets())())
+      let presetData = this.getUpdatedTrackPresets()
+
+      // Store settings in preset data
+      presetData.push({
+        settings:
+            {
+              selectedPreset: this.selectedPreset,
+              raceHours: this.raceHours,
+              raceMinutes: this.raceMinutes,
+              extraLaps: this.extraLaps,
+            }
+      })
+
+      const r = await getEelJsonObject(window.eel.save_fuel_calc_presets(presetData)())
       if (r !== undefined && !r.result) {
         this.makeToast("Error saving presets")
       }
       this.setBusy(false)
     },
     getUpdatedTrackPresets() {
-      let currenTrackPreset = this.currentTrackPreset
-      let modifiedIdx = -1
-      for (const idx in this.trackPresets) {
-        let p = this.trackPresets[idx]
-        if (p.name === currenTrackPreset.name) {
-          modifiedIdx = idx
-          currenTrackPreset.lapTime = this.currentLapTime
-          currenTrackPreset.consumption = this.fuelConsumption
-        }
-      }
-      if (modifiedIdx !== -1) {
-        this.trackPresets[modifiedIdx] = currenTrackPreset
-      }
-      return this.trackPresets
+      this.trackPresets[this.selectedPreset].lapTime = this.currentLapTime
+      this.trackPresets[this.selectedPreset].consumption = this.fuelConsumption
+
+      return JSON.parse(JSON.stringify(this.trackPresets))
     },
     deleteCurrentPreset() {
       // Reset Presets to default if last preset deleted
@@ -132,7 +151,9 @@ export default {
       this.saveUserPresets()
     },
     createNewTrackPreset() {
-      if (this.newTrackPresetNameState !== true) { return; }
+      if (this.newTrackPresetNameState !== true) {
+        return;
+      }
       let newTrackPreset = {
         name: this.newTrackPresetName, lapTime: this.currentLapTime, consumption: this.fuelConsumption
       }
@@ -193,7 +214,7 @@ export default {
 
       return [fuelAmount, estimatedLaps]
     },
-    newTrackPresetNameState () {
+    newTrackPresetNameState() {
       if (this.newTrackPresetName === '') {
         return null
       }
@@ -202,14 +223,16 @@ export default {
         return false
       }
       const valid = isValid(this.newTrackPresetName)
-      if (!valid) { this.newTrackPresetNameValidationHint = "Name contains invalid characters"}
+      if (!valid) {
+        this.newTrackPresetNameValidationHint = "Name contains invalid characters"
+      }
       return valid
     }
   },
   async created() {
-    this.selectTrackPreset(0)
-    this.raceDurationUpdate()
     await this.loadUserPresets()
+    await this.raceDurationUpdate()
+    this.selectTrackPreset(this.selectedPreset)
   }
 }
 </script>
@@ -239,7 +262,7 @@ export default {
               <b-input-group-prepend>
                 <b-dropdown size="sm" :text="currentTrackPreset.name" variant="rf-orange-light">
                   <b-dropdown-item size="sm" v-for="(p, idx) in trackPresets" :key="idx"
-                                   @click="selectTrackPreset(idx)">
+                                   @click="selectTrackPreset(idx);saveUserPresets()">
                     {{ p.name }}
                   </b-dropdown-item>
                 </b-dropdown>
@@ -308,7 +331,7 @@ export default {
           <span class="ml-2 align-middle">Race Duration</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline @change="raceDurationUpdate" @submit.prevent>
+          <b-form inline @change="raceDurationUpdate();saveUserPresets()" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="999" number v-model="raceHours"/>
             h
@@ -322,7 +345,7 @@ export default {
       <b-row>
         <b-col sm="4"/>
         <b-col sm="8">
-          <b-form inline @change="raceLapsUpdate" @submit.prevent>
+          <b-form inline @change="raceLapsUpdate();saveUserPresets()" @submit.prevent>
             <b-form-input id="inline-form-custom-lap-minute" class="mr-sm-2" size="sm"
                           type="number" min="0" max="9999" number v-model="raceLaps"/>
             laps
@@ -337,7 +360,7 @@ export default {
           <span class="ml-2 align-middle">Out/in laps</span>
         </b-col>
         <b-col sm="8">
-          <b-form inline @submit.prevent>
+          <b-form inline @submit.prevent @change="saveUserPresets">
             <b-form-input id="inline-form-fuel-consume" type="number" size="sm" class="mr-sm-2" @submit.prevent
                           number v-model="extraLaps" min="0" max="99"/>
           </b-form>
