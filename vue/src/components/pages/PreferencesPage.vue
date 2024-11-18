@@ -53,7 +53,7 @@
 
 <script>
 import {getEelJsonObject} from "@/main";
-import RfLocation from "@/components/RfLocation.vue";
+import RfLocation from "@/components/widgets/RfLocation.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 
 export default {

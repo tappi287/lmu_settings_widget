@@ -74,7 +74,7 @@
 
 <script>
 import {getEelJsonObject, setFixedWidth, clearElementsWidthStyle} from "@/main";
-import LaunchRfactorBtn from "@/components/LaunchRfactorBtn.vue";
+import LaunchRfactorBtn from "@/components/widgets/LaunchRfactorBtn.vue";
 
 export default {
   name: "RfactorContentCard",

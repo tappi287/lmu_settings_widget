@@ -43,24 +43,25 @@
         <b-nav-item id="heart-nav" right v-if="isDev" class="pr-1">
           <b-icon shift-v="-0.25" icon="circle-fill" class="heart-icon" :class="heartBeatClass"></b-icon>
         </b-nav-item>
-        <b-nav-item id="vr-nav" right @click="launchSteamVr" v-b-popover.auto.hover="'Launch SteamVR'">
-          <div class="vr-nav-container">
-            <div class="vr-nav-font"><b>VR</b></div>
-            <div class="vr-nav-icon">
-              <b-icon icon="square-fill" font-scale="1.5"></b-icon>
-            </div>
-          </div>
-        </b-nav-item>
-        <b-nav-item id="preferences-nav" right :active="navActive === 12" @click="navActive=12">
-          <b-iconstack font-scale="1.5">
-            <b-icon stacked icon="square-fill"></b-icon>
-            <b-icon stacked icon="gear-fill" scale="0.75" class="gear-icon"></b-icon>
-          </b-iconstack>
-        </b-nav-item>
-        <b-nav-item id="wiki-nav" right :active="navActive === 7" @click="navActive=7">
-          <b-icon icon="question-square-fill" font-scale="1.5"></b-icon>
-        </b-nav-item>
       </b-navbar-nav>
+
+      <!-- Right aligned buttons -->
+      <div class="text-right" id="nav-right">
+        <b-button size="sm" variant="rf-secondary" class="ml-2"
+                  @click="launchSteamVr" v-b-popover.bottom.hover="'Launch SteamVR'">
+          <b>VR</b>
+        </b-button>
+        <b-button size="sm" variant="rf-secondary" class="ml-2"
+                  :class="navActive === 12 ? 'active' : ''" @click="navActive=12"
+                  v-b-popover.bottom.hover="'Application Preferences'">
+          <b-icon icon="gear-fill" class="gear-icon"></b-icon>
+        </b-button>
+        <b-button size="sm" class="ml-2" variant="rf-secondary"
+                  :class="navActive === 7 ? 'active' : ''" @click="navActive=7"
+                  v-b-popover.bottom.hover="'Wiki'">
+          <b-icon icon="question-lg"></b-icon>
+        </b-button>
+      </div>
     </b-navbar>
 
     <!-- Graphics Preset Handler -->
@@ -233,16 +234,16 @@ import DashBoard from "@/components/pages/DashBoard.vue";
 import PresetUi from "@/components/presets/PresetUi.vue";
 import PresetHandler from "@/components/presets/PresetHandler.vue";
 import SettingsCard from "@/components/settings/SettingsCard.vue";
-import AppWiki from "@/components/Wiki.vue";
-import LaunchRfactorBtn from "@/components/LaunchRfactorBtn.vue";
+import AppWiki from "@/components/pages/Wiki.vue";
+import LaunchRfactorBtn from "@/components/widgets/LaunchRfactorBtn.vue";
 import ReplayArea from "@/components/pages/ReplayArea.vue";
-import AppLog from "@/components/Log.vue";
+import AppLog from "@/components/widgets/Log.vue";
 import {getEelJsonObject, sleep} from "@/main";
 import BenchMark from "@/components/benchmark/Benchmark.vue";
 import GraphicsPresetArea from "@/components/presets/GraphicsPresetArea.vue";
 import ControlsPresetArea from "@/components/presets/ControlsPresetArea.vue";
 import ControllerDeviceList from "@/components/widgets/ControllerDeviceList.vue";
-import RfactorOverlay from "@/components/RfactorOverlay.vue";
+import RfactorOverlay from "@/components/widgets/RfactorOverlay.vue";
 import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
@@ -508,28 +509,6 @@ export default {
   margin: 0 auto 0 auto;
 }
 
-.nav {
-  margin-top: .175rem;
-}
-
-.vr-nav-container {
-  position: relative;
-  width: 1rem;
-}
-
-.vr-nav-font {
-  position: absolute;
-  color: black;
-  z-index: 2;
-  font-size: 1rem;
-  left: 0.065rem;
-  top: -0.05rem;
-}
-
-.vr-nav-icon {
-  position: absolute;
-}
-
 #heart-nav a {
   padding-right: 0;
 }
@@ -541,18 +520,6 @@ export default {
 
 .heart-active {
   color: rgba(15, 238, 104, 0.9);
-}
-
-#wiki-nav a {
-  padding-right: 0;
-}
-
-#preferences-nav a {
-  padding-right: 0;
-}
-
-.gear-icon {
-  color: rgba(0.1, 0.1, 0.1, 0.75);
 }
 
 .nav-link.active {
@@ -573,33 +540,5 @@ export default {
 
 .search-off {
   opacity: 0.3;
-}
-
-.r-icon {
-  transition: opacity .8s;
-}
-
-.r-icon-brand {
-  display: inline-block;
-  width: 1.725rem;
-  height: 2.5rem;
-}
-
-.r-icon.bottom {
-  position: relative;
-  vertical-align: baseline;
-}
-
-.r-icon.bottom.inv {
-  opacity: 0;
-}
-
-.r-icon.top {
-  position: absolute;
-  z-index: 2;
-}
-
-.r-icon.top.inv {
-  opacity: 0;
 }
 </style>

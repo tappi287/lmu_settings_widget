@@ -358,7 +358,7 @@
                   'ip', 'port', 'players')
  */
 import {getEelJsonObject, sleep} from "@/main";
-import LaunchRfactorBtn from "@/components/LaunchRfactorBtn.vue";
+import LaunchRfactorBtn from "@/components/widgets/LaunchRfactorBtn.vue";
 
 
 export default {

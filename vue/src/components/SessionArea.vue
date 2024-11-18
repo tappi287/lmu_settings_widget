@@ -51,7 +51,7 @@
 <script>
 import {getEelJsonObject} from "@/main";
 import SettingsCard from "@/components/settings/SettingsCard.vue";
-import LaunchRfactorBtn from "@/components/LaunchRfactorBtn.vue";
+import LaunchRfactorBtn from "@/components/widgets/LaunchRfactorBtn.vue";
 
 export default {
   name: "SessionArea",

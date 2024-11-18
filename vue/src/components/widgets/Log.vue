@@ -17,7 +17,7 @@
 
 <script>
 
-import {getEelJsonObject} from "@/main";
+import {getEelJsonObject} from "@/main.js";
 
 export default {
   name: "AppLog",

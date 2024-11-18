@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import {getEelJsonObject, sleep} from "@/main";
+import {getEelJsonObject, sleep} from "@/main.js";
 // --- </ Prepare receiving rfactor live events
 window.eel.expose(rfactorLiveFunc, 'rfactor_live')
 

@@ -77,9 +77,10 @@
 
 <script>
 import './assets/app.scss'
+import './assets/navbar.css'
 import MainPage from "./components/MainPage.vue";
-import AppUpdater from "@/components/Updater.vue";
-import RfLocation from "@/components/RfLocation.vue";
+import AppUpdater from "@/components/widgets/Updater.vue";
+import RfLocation from "@/components/widgets/RfLocation.vue";
 import {createPopperLite as createPopper, flip, preventOverflow} from "@popperjs/core";
 import {getEelJsonObject} from "@/main";
 // --- </ Prepare receiving App Exceptions
