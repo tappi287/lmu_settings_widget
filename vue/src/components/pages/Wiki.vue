@@ -37,33 +37,11 @@
       settings available in this widget(and only those!).</p>
       <i>This is handy if you import someone else's player.JSON and want to make sure you are not overwriting all your
       other settings like your Player Name and Nickname.</i>
-
-      <h6 class="mt-5">Server Browser</h6>
-      <p>The Server Browser uses Steam's API to query server information. The number of connected players and
-      names of the connected players does most likely not reflect the actual number of players.
-      The information should be similar to what you see when launching Steam>View>Server</p>
-
-      <h6 class="mt-5">LMU Notes</h6>
-      <p>Start LMU while a dedicated server is running on the same machine: Change the WebUI Port in player.json
-      to something different than the default value. Use this app to start LMU or create a shortcut to LMU.exe
-      and set the StartIn parameter to the Le Mans Ultimate root directory.</p>
-      <p></p>
-      <span>Start LMU from command line and join a password protected server: </span>
-      <pre class="text-muted">rFactor2.exe +multiplayer +connect=:Password@IP:Port</pre>
-      <p></p>
-      <span>Server XY won't let you join: Unable to install server mod. Take a look at your:</span>
-      <pre class="text-muted mb-0">Le Mans Ultimate\UserData\cmpReport.txt</pre>
-      <span>If you find messages like component XY missing: try to un- and resubscribe to that Item in the
-      Steam Workshop.</span>
-      <p></p>
-      <span>Your ModMgr.exe is not starting. The registry key for the packages and rFactor directory
-      is most likely out of date. Take a look at these Windows registry keys:</span>
-      <pre class="text-muted">HKEY_CURRENT_USER\\SOFTWARE\\Image Space Incorporated\\rFactor2 Mod Manager\\--guid--\\Packages Dir</pre>
     </b-card>
 
     <b-card class="mt-2 setting-card" bg-variant="dark" text-variant="white" footer-class="pt-0">
       <template #header>
-        <h6 class="mb-0 text-center"><span class="title">Credits</span></h6>
+        <h6 class="mb-0 text-center"><span class="title">Attributions</span></h6>
       </template>
       <b-list-group class="low-round">
         <b-list-group-item class="bg-dark text-white">
@@ -210,29 +188,26 @@
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
       </pre>
-      <h4 class="mt-5">pynvraw - Copyright (c) 2021 Vasily</h4>
+      <h4 class="mt-5">nvapi - Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.</h4>
       <pre class="text-muted">
         MIT License
+        Permission is hereby granted, free of charge, to any person obtaining a
+        copy of this software and associated documentation files (the "Software"),
+        to deal in the Software without restriction, including without limitation
+        the rights to use, copy, modify, merge, publish, distribute, sublicense,
+        and/or sell copies of the Software, and to permit persons to whom the
+        Software is furnished to do so, subject to the following conditions:
 
-        Copyright (c) 2021 Vasily
-
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-
-        The above copyright notice and this permission notice shall be included in all
-        copies or substantial portions of the Software.
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
 
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
         IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+        THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+        FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+        DEALINGS IN THE SOFTWARE.
       </pre>
     </b-card>
 
