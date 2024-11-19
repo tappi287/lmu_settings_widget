@@ -10,6 +10,10 @@ from .rf2connect import RfactorState, RfactorConnect
 from .rf2events import RfactorStatusEvent, RfactorLiveEvent, RfactorQuitEvent, RecordBenchmarkEvent
 from .utils import AppAudioFx
 
+"""
+    Le Mans Ultimate: localhost:6397/swagger/index.html
+"""
+
 
 class CommandUrls:
     series = "/rest/race/series"
@@ -29,7 +33,7 @@ class Command:
 
     wait_for_state = 0
     play_replay = 1
-    switch_fullscreen = 2
+    nav_action = 2
     quit = 3
     get_content = 4
     set_content = 5
@@ -50,7 +54,7 @@ class Command:
     names = {
         0: "wait_for_state",
         1: "play_replay",
-        2: "switch_fullscreen",
+        2: "nav_action",
         3: "quit",
         4: "get_content",
         5: "set_content",
@@ -173,10 +177,19 @@ class Command:
         self.finished = True
         return True
 
-    def switch_fullscreen_method(self):
-        RfactorStatusEvent.set(f"Switching rF2 Monitor to fullscreen mode.")
-        logging.debug("Switching rF Event Monitor to fullscreen.")
-        RfactorConnect.post_request("/navigation/action/NAV_TO_FULL_EVENT_MONITOR")
+    def nav_action_method(self):
+        if not isinstance(self.data, str):
+            logging.error(f"Navigation command needs a string argument")
+            return
+
+        # -- Log navigation target
+        nav_message = self.data[4:]
+        if nav_message.startswith("TO_"):
+            nav_message = nav_message[3:]
+        RfactorStatusEvent.set(f"Navigating to {nav_message}")
+        logging.debug(f"Executing nav action [{nav_message}] command: {self.data}")
+
+        RfactorConnect.post_request(f"/navigation/action/{self.data}")
         self.finished = True
 
     @staticmethod

@@ -13,6 +13,7 @@ from ..preset.presets_dir import get_user_presets_dir
 from ..preset.settings_model import VideoSettings
 from ..rf2command import CommandQueue, Command
 from ..rf2connect import RfactorState
+from ..rf2events import RfactorLiveEvent
 from ..utils import capture_app_exceptions
 
 
@@ -78,26 +79,31 @@ def apply_gfx_preset_with_name(rf: RfactorPlayer, preset_name: str) -> Optional[
         return selected_preset
 
 
+def _switch_replay_while_live(replay_name):
+    # 1. Wait for UI
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120.0))
+    # 2. Back to main menu
+    CommandQueue.append(Command(Command.nav_action, data="NAV_BACK_TO_MAIN_MENU", timeout=20.0))
+    # 3. Wait for UI
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=20.0))
+    # 4. Load Replay
+    CommandQueue.append(Command(Command.play_replay, replay_name, timeout=30.0))
+    return json.dumps({"result": True, "msg": f"Switching to replay: {replay_name}"})
+
+
 @capture_app_exceptions
 def play_replay(replay_name):
     if not replay_name:
         return json.dumps({"result": False, "msg": "No Replay name provided."})
 
+    # -- Switch replay while live
+    is_live = RfactorLiveEvent.get_nowait()
+    if is_live:
+        return _switch_replay_while_live(replay_name)
+
     rf = RfactorPlayer()
     if not rf.is_valid:
         return json.dumps({"result": False, "msg": rf.error})
-
-    # -- Check rF2 version > 1122
-    version = rf.version.replace("\n", "")
-    if not version >= "0.3":
-        logging.debug(f"rf Version: {rf.version}")
-        return json.dumps(
-            {
-                "result": False,
-                "msg": f"Watching replays with this App is not support with Le Mans Ultimate "
-                f"versions without the newUI. Your version: {version}",
-            }
-        )
 
     # -- Apply replay graphics preset
     replay_gfx_preset = apply_gfx_preset_with_name(rf, AppSettings.replay_preset)
@@ -126,7 +132,7 @@ def play_replay(replay_name):
     # 4. Wait UI Ready State
     CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=800.0))
     # 5. Switch FullScreen
-    # CommandQueue.append(Command(Command.switch_fullscreen, timeout=30.0))
+    # CommandQueue.append(Command(Command.nav_action, data="NAV_TO_FULL_EVENT_MONITOR", timeout=30.0))
 
     return json.dumps({"result": True, "msg": rf.error})
 

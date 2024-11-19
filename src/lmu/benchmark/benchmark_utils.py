@@ -78,7 +78,7 @@ def create_benchmark_commands(ai_key: str, fps_key: str, recording_timeout: int,
 
     if replay is not None:
         # 5. Switch FullScreen
-        CommandQueue.append(Command(Command.switch_fullscreen, timeout=30.0))
+        CommandQueue.append(Command(Command.nav_action, data="NAV_TO_FULL_EVENT_MONITOR", timeout=30.0))
     else:
         # Drive
         CommandQueue.append(Command(Command.drive, timeout=10.0))
