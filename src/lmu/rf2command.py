@@ -48,8 +48,9 @@ class Command:
     set_session_settings = 14
     replay_playback = 15
     replay_time = 16
-    ai_take_control = 17
-    to_race_menu = 18
+    replay_focus = 17
+    ai_take_control = 18
+    to_race_menu = 19
 
     names = {
         0: "wait_for_state",
@@ -69,8 +70,9 @@ class Command:
         14: "set_session_settings",
         15: "replay_playback",
         16: "replay_time",
-        17: "ai_take_control",
-        18: "to_race_menu",
+        17: "replay_focus",
+        18: "ai_take_control",
+        19: "to_race_menu",
     }
 
     default_timeout = 480.0  # Seconds
@@ -462,6 +464,29 @@ class Command:
             RfactorConnect.replay_time_command(self.data)
         else:
             logging.error("Command replay time did not contain any time argument.")
+        self.finished = True
+
+    def replay_focus_method(self):
+        response = RfactorConnect.get_request("/rest/watch/standings")
+        if not response:
+            self.finished = True
+            return
+
+        if response.status_code not in (200, 201, 202, 203, 204):
+            self.finished = True
+            return
+
+        slot_id = -1
+        for standings_entry in response.json():
+            if standings_entry.get("driverName") == self.data:
+                slot_id = standings_entry.get("slotID", -1)
+                break
+
+        if slot_id == -1:
+            self.finished = True
+            return
+
+        RfactorConnect.put_request(f"/rest/watch/focus/{slot_id}")
         self.finished = True
 
     def ai_take_control_method(self):

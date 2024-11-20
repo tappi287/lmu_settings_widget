@@ -1,5 +1,5 @@
 <script>
-import {getEelJsonObject} from "@/main";
+import {getEelJsonObject, sleep} from "@/main";
 import ResultDriver from "@/components/widgets/ResultDriver.vue";
 
 export default {
@@ -53,8 +53,21 @@ export default {
       if (entry.fastest_lap_formatted === entry.purple_lap_formatted) { return "text-purple" }
       return ""
     },
-    async gotoReplayTime(time) {
+    async jumpToIncident(drivers, time) {
+      // Play
+      await this.replayPlaybackCommand(4)
+      // Focus driver while in normal playback Speed so camera swings to focused vehicle in time
+      await getEelJsonObject(window.eel.focus_driver(drivers[0])())
+      // Goto Time
       await getEelJsonObject(window.eel.replay_time_command(time)())
+      // Give camera some time to swing to vehicle
+      await sleep(1200)
+      // Slow-mo
+      await this.replayPlaybackCommand(7)
+
+      // Back to realtime after 2 seconds
+      await sleep(2000)
+      await this.replayPlaybackCommand(8)
     },
     async replayPlaybackCommand(command) {
       await getEelJsonObject(window.eel.replay_playback_command(command)())
@@ -207,7 +220,8 @@ export default {
                  table-variant="dark" small borderless
                  class="server-list" thead-class="text-white">
           <template #cell(et)="row">
-            <b-link class="text-monospace" @click="gotoReplayTime(row.item.et)" title="Jump to time in Replay">
+            <b-link class="text-monospace" @click="jumpToIncident(row.item.drivers, row.item.et)"
+                    title="Jump to incident in current Replay">
               {{ row.item.et }}
             </b-link>
           </template>
@@ -226,7 +240,7 @@ export default {
           <template #cell(drivers)="row">
             <b-link v-for="(d, idx) in row.item.drivers" :key="idx"
                     @click="setDriverFilter(d)" title="Filter by this Driver"
-                    class="mr-1 small" variant="secondary">
+                    class="mr-1 small" :class="d === incidentFilter ? 'text-warning' : ''">
               {{ d }}
             </b-link>
           </template>

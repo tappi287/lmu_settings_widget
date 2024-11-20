@@ -69,6 +69,14 @@ def rename_replay(replay: dict, new_name: str):
     return json.dumps({"result": False, "msg": f"Error renaming replay."})
 
 
+@capture_app_exceptions
+def focus_driver(driver_name: str):
+    if not driver_name:
+        return json.dumps({"result": False, "msg": f"No driver name provided."})
+    CommandQueue.append(Command(Command.replay_focus, data=driver_name, timeout=10.0))
+    return json.dumps({"result": True, "msg": f"Switching to driver {driver_name}"})
+
+
 def apply_gfx_preset_with_name(rf: RfactorPlayer, preset_name: str) -> Optional[GraphicsPreset]:
     _, selected_preset = load_presets_from_dir(
         get_user_presets_dir(), PresetType.graphics, selected_preset_name=preset_name

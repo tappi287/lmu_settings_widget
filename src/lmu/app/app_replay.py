@@ -34,6 +34,11 @@ def rename_replay(replay: dict, new_name: str):
 
 
 @eel.expose
+def focus_driver(driver_name: str):
+    return app_replay_fn.focus_driver(driver_name)
+
+
+@eel.expose
 def play_replay(replay_name):
     return lmu.app.app_replay_fn.play_replay(replay_name)
 

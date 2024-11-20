@@ -1,4 +1,5 @@
 """ Connect to rFactor 2 Ui via it's rest api """
+
 import logging
 
 import eel
@@ -29,7 +30,7 @@ def _rfactor_greenlet_loop():
 
     # -- Report wait for processes shut down
     if RfactorConnect.state == RfactorState.waiting_for_process:
-        RfactorStatusEvent.set('Waiting for shut down of rFactor 2 processes.')
+        RfactorStatusEvent.set("Waiting for shut down of rFactor 2 processes.")
 
     # -- Update rFactor Live State
     if RfactorConnect.state != RfactorState.unavailable and not RfactorLiveEvent.was_live:
@@ -48,7 +49,7 @@ def _rfactor_greenlet_loop():
 
 @capture_app_exceptions
 def rfactor_greenlet():
-    logging.info('rFactor Greenlet started.')
+    logging.info("rFactor Greenlet started.")
     RfactorConnect.start_request_thread()
     rfb = RfactorBenchmark()
 
@@ -59,18 +60,18 @@ def rfactor_greenlet():
         rfb.event_loop()
 
         if CLOSE_EVENT.is_set():
-            logging.info('rFactor Greenlet received CLOSE event.')
+            logging.info("rFactor Greenlet received CLOSE event.")
             break
 
-        gevent.sleep(RfactorConnect.active_timeout)
+        gevent.sleep(RfactorConnect.active_timeout * 0.25)
 
     RfactorConnect.stop_request_thread()
-    logging.info('rFactor Greenlet exiting')
+    logging.info("rFactor Greenlet exiting")
 
 
 @capture_app_exceptions
 def rfactor_event_loop():
-    """ Will be run in main eel greenlet to be able to post events to JS frontend """
+    """Will be run in main eel greenlet to be able to post events to JS frontend"""
     if RfactorLiveEvent.event.is_set():
         is_live = RfactorLiveEvent.get_nowait()
         # -- Update rFactor live state to front end
