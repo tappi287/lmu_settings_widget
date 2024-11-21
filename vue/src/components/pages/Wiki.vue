@@ -50,7 +50,7 @@
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
           <b-link class="text-rf-orange" target="_blank" href="https://github.com/ChrisKnott/Eel">Eel</b-link>
-          <span> - A little Python library for making simple Electron-like HTML/JS GUI apps</span>
+          <span> - Python library for making simple Electron-like HTML/JS GUI apps</span>
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
           <b-link class="text-rf-orange" target="_blank" href="https://github.com/TonyWhitley/rF2_serverNotify">
@@ -65,19 +65,6 @@
           <span> - interesting source of information to handle various rF specific file types.</span>
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
-          <b-link class="text-rf-orange" target="_blank" href="https://forum.studio-397.com/index.php?threads/community-screenshots-thread-unedited-screens-only.40609/">
-            Studio 397 Screenshot Thread
-          </b-link>
-          <span> - most of the dashboard shots are taken from there, every author is credited and no images
-          are distributed with this app.</span>
-        </b-list-group-item>
-        <b-list-group-item class="bg-dark text-white">
-          <b-link target="_blank" href="https://github.com/andybluenoes" class="text-rf-orange">
-            andybluenoes
-          </b-link>
-          <span> - providing feedback and settings research</span>
-        </b-list-group-item>
-        <b-list-group-item class="bg-dark text-white">
           <b-link target="_blank" href="https://reshade.me" class="text-rf-orange">
             ReShade
           </b-link>
@@ -90,28 +77,10 @@
           <span> - Copyright (c) 2021, Alexandre Miguel Maia. All rights reserved.</span>
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
-          <b-link target="_blank" href="https://github.com/CXWorld/CapFrameX/releases/latest" class="text-rf-orange">
-            CapFrameX
-          </b-link>
-          <span> - use this to further analyse benchmark capture data!</span>
-        </b-list-group-item>
-        <b-list-group-item class="bg-dark text-white">
           <b-link target="_blank" href="https://github.com/GameTechDev/PresentMon" class="text-rf-orange">
             PresentMon
           </b-link>
           <span> - PresentMon is a tool to capture and analyze ETW events related to swap chain presentation on Windows.</span>
-        </b-list-group-item>
-        <b-list-group-item class="bg-dark text-white">
-          <b-link target="_blank" href="https://github.com/fholger/openvr_fsr#modified-openvr-dll-with-amd-fidelityfx-superresolution--nvidia-image-scaling" class="text-rf-orange">
-            OpenVR FSR
-          </b-link>
-          <span> - Add Image Upscaling via AMD FidelityFX SuperResolution or NVIDIA Image Scaling to SteamVR games.</span>
-        </b-list-group-item>
-        <b-list-group-item class="bg-dark text-white">
-          <b-link target="_blank" href="https://github.com/fholger/openvr_foveated#fixed-foveated-rendering-mod-for-steamvr-games" class="text-rf-orange">
-            OpenVR Foveated
-          </b-link>
-          <span> - Fixed Foveated Rendering for SteamVR games.</span>
         </b-list-group-item>
       </b-list-group>
       <h4 class="mt-5">ReShade - Copyright 2014 Patrick Mours. All rights reserved.</h4>
