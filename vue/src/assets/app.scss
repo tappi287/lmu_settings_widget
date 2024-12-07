@@ -255,3 +255,8 @@ $settings-padding: 0.25rem 0.75rem 0.25rem 0.75rem;
 .btn-group > .btn:not(:first-child), .btn-group > .btn-group:not(:first-child) {
   margin-left: 0 !important;
 }
+
+/* Remove -always- showing Pointer Cursor in Table Details */
+.table.b-table.b-table-selectable:not(.b-table-selectable-no-click) > tbody > tr {
+  cursor: default;
+}
