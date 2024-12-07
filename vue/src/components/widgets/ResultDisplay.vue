@@ -1,5 +1,5 @@
 <script>
-import {getEelJsonObject, sleep} from "@/main";
+import {divMod, getEelJsonObject, paddedNum, sleep, toLapTimeFormatted} from "@/main";
 import ResultDriver from "@/components/widgets/ResultDriver.vue";
 
 export default {
@@ -90,23 +90,6 @@ export default {
         // Use delta for non-leading cars
         if (driver.class_position !== 1) {
           item.finish_time_formatted = driver.finish_delta_formatted
-        }
-        // Fastest sectors
-        let s1_sectors = []
-        let s2_sectors = []
-        let s3_sectors = []
-        item.s1_fastest = ""
-        item.s2_fastest = ""
-        item.s3_fastest = ""
-        for (const lap of driver.laps) {
-          if (lap.s1 !== "-:--.---") { s1_sectors.push(lap.s1); }
-          if (lap.s2 !== "-:--.---") { s2_sectors.push(lap.s2); }
-          if (lap.s3 !== "-:--.---") { s3_sectors.push(lap.s3); }
-        }
-        if (s1_sectors.length > 0 && s2_sectors.length > 0 && s3_sectors.length > 0) {
-          item.s1_fastest = s1_sectors.sort()[0]
-          item.s2_fastest = s2_sectors.sort()[0]
-          item.s3_fastest = s3_sectors.sort()[0]
         }
 
         // Add to results

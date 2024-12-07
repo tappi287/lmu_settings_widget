@@ -63,6 +63,20 @@ export function divMod(y, x) {
     return [quotient, remainder]
 }
 
+export function paddedNum(num, padding, padString = "0") {
+  return String(num).padStart(padding, padString)
+}
+
+export function toLapTimeFormatted(value) {
+      const r = divMod(value * 1000, 1000)
+      let seconds = r[0]
+      const milliseconds = r[1]
+      const r2 = divMod(seconds, 60)
+      seconds = r2[1]
+      const minutes = r2[0]
+      return `${minutes}:${paddedNum(seconds, 2)}.${paddedNum(milliseconds, 3)}`
+}
+
 export var isValid = (function () {
     let rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |
     let rg2 = /^\./; // cannot start with dot (.)

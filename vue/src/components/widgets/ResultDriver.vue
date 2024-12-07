@@ -46,11 +46,11 @@ export default {
     },
     isFastestSector(sectorTime, sectorNum) {
       if (sectorNum === 1) {
-        return sectorTime === this.driver.s1_fastest
+        return sectorTime === this.driver.s1_fastest_formatted
       } else if (sectorNum === 2) {
-        return sectorTime === this.driver.s2_fastest
+        return sectorTime === this.driver.s2_fastest_formatted
       } else if (sectorNum === 3) {
-        return sectorTime === this.driver.s3_fastest
+        return sectorTime === this.driver.s3_fastest_formatted
       }
       return false
     },
@@ -69,27 +69,35 @@ export default {
 </script>
 
 <template>
-  <b-table :items="driver.laps" :fields="driverFields"
-           sort-by="num" no-sort-reset sort-icon-left
-           class="p-4"
-           table-variant="dark" small borderless hover
-           thead-class="text-white">
-    <template #cell(laptime_formatted)="row">
-      <span :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
-    </template>
-    <template #cell(s1)="row">
-      <span :class="getSectorClass(row.item.s1, 1)">{{ row.item.s1 }}</span>
-    </template>
-    <template #cell(s2)="row">
-      <span :class="getSectorClass(row.item.s2, 2)">{{ row.item.s2 }}</span>
-    </template>
-    <template #cell(s3)="row">
-      <span :class="getSectorClass(row.item.s3, 3)">{{ row.item.s3 }}</span>
-    </template>
-    <template #cell(pit)="row">
-      {{ row.item.pit ? 'In Pit' : '-' }}
-    </template>
-  </b-table>
+  <div>
+    <b-table :items="driver.laps" :fields="driverFields"
+             sort-by="num" no-sort-reset sort-icon-left
+             class="p-4"
+             table-variant="dark" small borderless hover
+             thead-class="text-white">
+      <template #cell(laptime_formatted)="row">
+        <span :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
+      </template>
+      <template #cell(s1)="row">
+        <span :class="getSectorClass(row.item.s1, 1)">{{ row.item.s1 }}</span>
+      </template>
+      <template #cell(s2)="row">
+        <span :class="getSectorClass(row.item.s2, 2)">{{ row.item.s2 }}</span>
+      </template>
+      <template #cell(s3)="row">
+        <span :class="getSectorClass(row.item.s3, 3)">{{ row.item.s3 }}</span>
+      </template>
+      <template #cell(pit)="row">
+        {{ row.item.pit ? 'In Pit' : '-' }}
+      </template>
+    </b-table>
+
+    <!-- Possible Best -->
+    <div class="text-left p-0 m-0">
+      Possible Best: <span class="text-rf-orange">{{ driver.possible_best_formatted }}</span>
+    </div>
+
+  </div>
 </template>
 
 <style scoped>

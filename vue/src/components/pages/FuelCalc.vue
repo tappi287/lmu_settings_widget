@@ -1,7 +1,7 @@
 <script>
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 import defaultFuelCalcTrackPresets from "@/fuelData.js"
-import {divMod, getEelJsonObject, isValid} from "@/main.js";
+import {divMod, getEelJsonObject, isValid, paddedNum} from "@/main.js";
 
 export default {
   name: "FuelCalc",
@@ -79,7 +79,7 @@ export default {
       )
     },
     paddedNum(num, padding, padString = "0") {
-      return String(num).padStart(padding, padString)
+      return paddedNum(num, padding, padString)
     },
     async lapTimeUpdate() {
       await this.raceDurationUpdate()

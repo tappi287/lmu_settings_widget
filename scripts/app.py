@@ -32,6 +32,8 @@ setup_logging()
 START_TIME = 0.0
 SHOW_APP_RUNTIME_STATS = False
 
+# TODO: display purple sector as icons
+
 
 def in_restore_mode() -> bool:
     """Return True if App is started in Restore Mode"""

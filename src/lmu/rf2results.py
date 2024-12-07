@@ -44,6 +44,9 @@ class ResultsLapEntry(ResultsJsonRepr):
         self.s1 = str()
         self.s2 = str()
         self.s3 = str()
+        self.s1_f = 0.0
+        self.s2_f = 0.0
+        self.s3_f = 0.0
         self.topspeed = float()
         self.pit = bool()
         self.fcompound = str()
@@ -53,10 +56,13 @@ class ResultsLapEntry(ResultsJsonRepr):
 
         if e is not None:
             self.num, self.p = int(e.get("num", 0)), int(e.get("p", 0))
+            self.s1_f = float(e.get("s1", 0.0))
+            self.s2_f = float(e.get("s2", 0.0))
+            self.s3_f = float(e.get("s3", 0.0))
             self.s1, self.s2, self.s3 = (
-                to_lap_time_string(float(e.get("s1", 0.0))),
-                to_lap_time_string(float(e.get("s2", 0.0))),
-                to_lap_time_string(float(e.get("s3", 0.0))),
+                to_lap_time_string(self.s1_f),
+                to_lap_time_string(self.s2_f),
+                to_lap_time_string(self.s3_f),
             )
             self.topspeed = float(e.get("topspeed", 0.0))
             self.pit = bool(e.get("pit", 0))
@@ -101,8 +107,26 @@ class ResultsDriverEntry(ResultsJsonRepr):
             self.car_class = get_text_from_element(e, "CarClass", "0")
             self.car_type = get_text_from_element(e, "CarType")
             self.car_number = int(get_text_from_element(e, "CarNumber", "0"))
+            fastest_s1, fastest_s2, fastest_s3 = 0.0, 0.0, 0.0
             for e_lap in e.iterfind("Lap"):
-                self.laps.append(ResultsLapEntry(e_lap))
+                result_lap = ResultsLapEntry(e_lap)
+                self.laps.append(result_lap)
+                fastest_s1 = float(min(fastest_s1 or result_lap.s1_f, result_lap.s1_f))
+                fastest_s2 = float(min(fastest_s2 or result_lap.s2_f, result_lap.s2_f))
+                fastest_s3 = float(min(fastest_s3 or result_lap.s3_f, result_lap.s3_f))
+            self.s1_fastest = fastest_s1
+            self.s1_fastest_formatted = to_lap_time_string(self.s1_fastest)
+            self.s2_fastest = fastest_s2
+            self.s2_fastest_formatted = to_lap_time_string(self.s2_fastest)
+            self.s3_fastest = fastest_s3
+            self.s3_fastest_formatted = to_lap_time_string(self.s3_fastest)
+
+            self.possible_best = 0.0
+            self.possible_best_formatted = ""
+            if fastest_s1 and fastest_s2 and fastest_s3:
+                self.possible_best = fastest_s1 + fastest_s2 + fastest_s3
+                self.possible_best_formatted = to_lap_time_string(self.possible_best)
+
             f_laps = sorted([l.laptime for l in self.laps if l.laptime > 0.0])
             if f_laps:
                 self.fastest_lap = f_laps[0]
