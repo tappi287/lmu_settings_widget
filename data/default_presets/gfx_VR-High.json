@@ -63,7 +63,7 @@
     "options": [
       {
         "key": "Track Detail",
-        "value": 0
+        "value": 1
       },
       {
         "key": "Player Detail",
@@ -87,7 +87,7 @@
       },
       {
         "key": "Shadows",
-        "value": 2
+        "value": 3
       },
       {
         "key": "Shadow Blur",
@@ -103,11 +103,11 @@
       },
       {
         "key": "Road Reflections",
-        "value": 2
+        "value": 1
       },
       {
         "key": "Environment Reflections",
-        "value": 2
+        "value": 1
       },
       {
         "key": "Motion blur",
@@ -115,7 +115,7 @@
       },
       {
         "key": "Max Visible Vehicles",
-        "value": 8
+        "value": 12
       }
     ],
     "title": "Display Settings"
@@ -311,6 +311,10 @@
     "options": [
       {
         "key": "use_reshade",
+        "value": false
+      },
+      {
+        "key": "use_openxr",
         "value": false
       },
       {

@@ -100,7 +100,8 @@
 
           <!-- Name Field -->
           <b-form-input title="Rename" class="no-border" v-model="replay.item.renameName"
-                        @submit="renameReplay(replay.item)" />
+                        @keydown.enter="renameReplay(replay.item)" />
+
           <!-- Buttons -->
           <b-input-group-append>
             <b-button-group>

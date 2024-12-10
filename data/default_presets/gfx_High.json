@@ -8,7 +8,7 @@
       },
       {
         "key": "Texture Sharpening",
-        "value": 4
+        "value": 5
       },
       {
         "key": "Heat FX Fade Speed",
@@ -87,7 +87,7 @@
       },
       {
         "key": "Shadows",
-        "value": 3
+        "value": 4
       },
       {
         "key": "Shadow Blur",
@@ -111,7 +111,7 @@
       },
       {
         "key": "Motion blur",
-        "value": 2
+        "value": 1
       },
       {
         "key": "Max Visible Vehicles",
@@ -314,6 +314,10 @@
         "value": false
       },
       {
+        "key": "use_openxr",
+        "value": false
+      },
+      {
         "key": "VRT_SHARPENING_MODE",
         "value": 2
       },
@@ -361,7 +365,7 @@
       },
       {
         "key": "MSAA",
-        "value": 4
+        "value": 8
       },
       {
         "key": "EPostProcessingSettings",
