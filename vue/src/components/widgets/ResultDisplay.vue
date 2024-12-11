@@ -49,6 +49,9 @@ export default {
       }
       this.setBusy(false)
     },
+    getLapDots(entry) {
+      return [entry.purple_s1 !== "", entry.purple_s2 !== "", entry.purple_s3 !== ""]
+    },
     isPurpleLap(entry) {
       if (entry.fastest_lap_formatted === entry.purple_lap_formatted) { return "text-purple" }
       return ""
@@ -186,6 +189,11 @@ export default {
             </b-button>
           </template>
           <template #cell(fastest_lap_formatted)="row">
+            <span class="mr-3 text-left">
+              <b-icon v-for="(isPurple, idx) in getLapDots(row.item)" :key="idx" icon="circle-fill"
+                      scale="0.5" class="lap-dot"
+                      :class="isPurple ? 'text-purple' : 'text-dot-secondary'"></b-icon>
+            </span>
             <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
           </template>
           <!-- LAP TIMES -->
@@ -239,6 +247,13 @@ export default {
 <style scoped>
 .text-purple {
   color: #e327db;
+}
+.text-dot-secondary {
+  color: #838383;
+  opacity: 0.2
+}
+.lap-dot {
+  margin-left: -0.25rem;
 }
 .result-td-details { padding: 0; margin: 0; border: none; }
 
