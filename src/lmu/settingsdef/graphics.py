@@ -701,6 +701,16 @@ reshade_lut = {
         "settings": (
             {"value": '"lut.png"', "name": "No Correction [Default]"},
             {
+                "value": '"lmu_ToneUpDay.png"',
+                "name": "LMU Tone Up Day",
+                "desc": "LUT trying to accommodate for the relative low exposure in v0.4",
+            },
+            {
+                "value": '"lmu_DayTone.png"',
+                "name": "LMU Day",
+                "desc": "Increase exposure for v0.4 and tone-map highlights",
+            },
+            {
                 "value": '"rF2_nonPBRmodDay1.png"',
                 "name": "Non PBR Mod 1",
                 "desc": "LUT trying to restore some highlights from super bright specular road "

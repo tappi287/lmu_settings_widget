@@ -34,6 +34,8 @@ class VrToolKit:
         ("rF2_nonPBRmodDay1.png", "reshade-shaders/Textures"),
         ("rF2_nonPBRmodDay2.png", "reshade-shaders/Textures"),
         ("rF2_ToneDownDay.png", "reshade-shaders/Textures"),
+        ("lmu_ToneUpDay.png", "reshade-shaders/Textures"),
+        ("lmu_DayTone.png", "reshade-shaders/Textures"),
         ("lut_ams.png", "reshade-shaders/Textures"),
         ("lut_gtr2.png", "reshade-shaders/Textures"),
         ("lut_rbr.png", "reshade-shaders/Textures"),

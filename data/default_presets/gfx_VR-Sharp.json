@@ -40,7 +40,7 @@
       },
       {
         "key": "Sun Occlusion",
-        "value": true
+        "value": false
       },
       {
         "key": "Max Framerate",
@@ -293,15 +293,15 @@
     "options": [
       {
         "key": "LUT_AmountChroma",
-        "value": 0.6
+        "value": 1
       },
       {
         "key": "LUT_AmountLuma",
-        "value": 0.6
+        "value": 0.4
       },
       {
         "key": "LUT_TextureName",
-        "value": "\"rF2_ToneDownDay.png\""
+        "value": "\"lmu_DayTone.png\""
       }
     ],
     "title": "Look Up Table"
@@ -327,7 +327,7 @@
       },
       {
         "key": "VRT_COLOR_CORRECTION_MODE",
-        "value": 0
+        "value": 1
       },
       {
         "key": "VRT_DITHERING",
