@@ -94,9 +94,11 @@ class ResultsDriverEntry(ResultsJsonRepr):
         self.finish_delta_laps = int()
         self.finish_delta_laps_formatted = str()
         self.purple_lap_formatted = str()
-        self.purple_s1 = str()
-        self.purple_s2 = str()
-        self.purple_s3 = str()
+        self.purple_s1, self.purple_s2, self.purple_s3 = str(), str(), str()
+        self.s1_fastest, self.s2_fastest, self.s3_fastest = 0.0, 0.0, 0.0
+        self.s1_fastest_formatted = str()
+        self.s2_fastest_formatted = str()
+        self.s3_fastest_formatted = str()
 
         if e is not None:
             self.name = get_text_from_element(e, "Name")
@@ -111,9 +113,13 @@ class ResultsDriverEntry(ResultsJsonRepr):
             for e_lap in e.iterfind("Lap"):
                 result_lap = ResultsLapEntry(e_lap)
                 self.laps.append(result_lap)
-                fastest_s1 = float(min(fastest_s1 or result_lap.s1_f, result_lap.s1_f))
-                fastest_s2 = float(min(fastest_s2 or result_lap.s2_f, result_lap.s2_f))
-                fastest_s3 = float(min(fastest_s3 or result_lap.s3_f, result_lap.s3_f))
+                if result_lap.s1_f:
+                    fastest_s1 = min(fastest_s1 or result_lap.s1_f, result_lap.s1_f)
+                if result_lap.s2_f:
+                    fastest_s2 = min(fastest_s2 or result_lap.s2_f, result_lap.s2_f)
+                if result_lap.s3_f:
+                    fastest_s3 = min(fastest_s3 or result_lap.s3_f, result_lap.s3_f)
+
             self.s1_fastest = fastest_s1
             self.s1_fastest_formatted = to_lap_time_string(self.s1_fastest)
             self.s2_fastest = fastest_s2
