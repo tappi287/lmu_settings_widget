@@ -17,8 +17,10 @@ export default {
         {key: 'class_position', label: 'P', class: 'text-left'},
         {key: 'car_number', label: '#', class: 'text-right'},
         {key: 'car_type', label: 'Car', class: 'text-right'},
+        {key: 'pace', label: 'Pace', class: 'text-right secondary-info'},
+        {key: 'consistency', label: 'Con', class: 'text-right secondary-info'},
         {key: 'finish_delta_laps_formatted', label: '', class: 'text-right secondary-info'},
-        {key: 'finish_time_formatted', label: 'Time', class: 'text-right secondary-info'},
+        {key: 'finish_time_formatted', label: 'Time', class: 'text-right'},
       ],
       incidentFields: [
           {key: 'et', label: 'Time', sortable: true, class: 'text-left'},
@@ -180,6 +182,7 @@ export default {
                  class="server-list" thead-class="text-white"
                  ref="resultTable" :title="resultData?.file_name"
         >
+          <!-- Name -->
           <template #cell(name)="row">
             <b-button size="sm" @click="row.toggleDetails" title="Show Laptimes"
                       class="text-light m-0 mr-2 no-border no-bg">
@@ -188,6 +191,7 @@ export default {
               {{ row.item.name }}
             </b-button>
           </template>
+          <!-- Fastest Lap -->
           <template #cell(fastest_lap_formatted)="row">
             <span class="mr-3 text-left">
               <b-icon v-for="(isPurple, idx) in getLapDots(row.item)" :key="idx" icon="circle-fill"
@@ -196,6 +200,25 @@ export default {
             </span>
             <span :class="isPurpleLap(row.item)">{{ row.item.fastest_lap_formatted }}</span>
           </template>
+          <!-- Consistency -->
+          <template #head(consistency)="headRow">
+            <span title="Consistency">Con</span>
+          </template>
+          <template #cell(consistency)="row">
+            <span title="Exaggerated lap time consistency, invalid laps are penalized"
+                  class="text-monospace small">
+              {{ row.item.consistency }}
+            </span>
+          </template>
+
+          <!-- Race Pace -->
+          <template #head(pace)="headRow">
+            <span title="Race Pace relative to leader">Pace</span>
+          </template>
+          <template #cell(pace)="row">
+            <span title="Race Pace relative to leader" class="text-monospace small">{{ row.item.pace }}</span>
+          </template>
+
           <!-- LAP TIMES -->
           <template #row-details="detail">
             <ResultDriver :driver="detail.item" />

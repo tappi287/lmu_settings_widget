@@ -55,9 +55,14 @@ export default {
       return false
     },
     getLapClass(entry) {
-      if (this.isPurpleLap(entry)) { return "text-purple"}
+      if (!entry.valid) { return "text-warning" }
+      if (this.isPurpleLap(entry)) { return "text-purple" }
       if (this.isFastestLap(entry)) { return "text-success" }
       return ""
+    },
+    getLapTitle(entry) {
+      if (!entry.valid) { return "Invalid Lap! Displayed time is estimated and not precise." }
+      return null
     },
     getSectorClass(sectorTime, sectorNum) {
       if (this.isPurpleSector(sectorTime, sectorNum)) { return "text-purple" }
@@ -76,7 +81,7 @@ export default {
              table-variant="dark" small borderless hover
              thead-class="text-white">
       <template #cell(laptime_formatted)="row">
-        <span :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
+        <span :title="getLapTitle(row.item)" :class="getLapClass(row.item)">{{ row.item.laptime_formatted }}</span>
       </template>
       <template #cell(s1)="row">
         <span :class="getSectorClass(row.item.s1, 1)">{{ row.item.s1 }}</span>

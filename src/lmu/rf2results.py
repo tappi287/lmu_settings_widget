@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+import statistics
 
 from lxml import etree
 
@@ -41,6 +42,7 @@ class ResultsLapEntry(ResultsJsonRepr):
     def __init__(self, e: etree._Element):
         self.num = int()
         self.p = int()
+        self.et = float()
         self.s1 = str()
         self.s2 = str()
         self.s3 = str()
@@ -53,9 +55,13 @@ class ResultsLapEntry(ResultsJsonRepr):
         self.rcompound = str()
         self.laptime = float()
         self.laptime_formatted = str()
+        self.valid = False
 
         if e is not None:
             self.num, self.p = int(e.get("num", 0)), int(e.get("p", 0))
+            self.et = 0.0
+            if e.get("et", str()).replace(".", "").isnumeric():
+                self.et = float(e.get("et", 0.0))
             self.s1_f = float(e.get("s1", 0.0))
             self.s2_f = float(e.get("s2", 0.0))
             self.s3_f = float(e.get("s3", 0.0))
@@ -70,6 +76,7 @@ class ResultsLapEntry(ResultsJsonRepr):
             self.rcompound = e.get("rcompound", "")
             if e.text.replace(".", "").isnumeric():
                 self.laptime = float(e.text)
+                self.valid = True
                 self.laptime_formatted = to_lap_time_string(self.laptime)
 
 
@@ -99,6 +106,10 @@ class ResultsDriverEntry(ResultsJsonRepr):
         self.s1_fastest_formatted = str()
         self.s2_fastest_formatted = str()
         self.s3_fastest_formatted = str()
+        self.possible_best = 0.0
+        self.possible_best_formatted = str()
+        self.pace = str()
+        self.consistency = str()
 
         if e is not None:
             self.name = get_text_from_element(e, "Name")
@@ -110,15 +121,27 @@ class ResultsDriverEntry(ResultsJsonRepr):
             self.car_type = get_text_from_element(e, "CarType")
             self.car_number = int(get_text_from_element(e, "CarNumber", "0"))
             fastest_s1, fastest_s2, fastest_s3 = 0.0, 0.0, 0.0
+
             for e_lap in e.iterfind("Lap"):
                 result_lap = ResultsLapEntry(e_lap)
-                self.laps.append(result_lap)
                 if result_lap.s1_f:
                     fastest_s1 = min(fastest_s1 or result_lap.s1_f, result_lap.s1_f)
                 if result_lap.s2_f:
                     fastest_s2 = min(fastest_s2 or result_lap.s2_f, result_lap.s2_f)
                 if result_lap.s3_f:
                     fastest_s3 = min(fastest_s3 or result_lap.s3_f, result_lap.s3_f)
+
+                self.laps.append(result_lap)
+
+            # Estimate lap times for invalid laps
+            for idx, lap in enumerate(self.laps):
+                if idx + 1 == len(self.laps):
+                    continue
+
+                next_lap_et = self.laps[idx + 1].et
+                if not lap.valid and lap.et:
+                    lap.laptime = next_lap_et - lap.et
+                    lap.laptime_formatted = to_lap_time_string(lap.laptime)
 
             self.s1_fastest = fastest_s1
             self.s1_fastest_formatted = to_lap_time_string(self.s1_fastest)
@@ -225,13 +248,14 @@ class RfactorResults(ResultsJsonRepr):
 
         for driver in self.drivers:
             lead_time, lead_laps = lead_times.get(driver.car_class, (None, None))
-            if not lead_time:
-                continue
-            driver.finish_delta = max(0.0, driver.finish_time - lead_time)
-            driver.finish_delta_formatted = to_lap_time_string(driver.finish_delta)
-            driver.finish_delta_laps = max(0, lead_laps - driver.race_laps)
-            if driver.finish_delta_laps:
-                driver.finish_delta_laps_formatted = f"+{driver.finish_delta_laps}L"
+
+            # Finish Time and +Laps
+            if lead_time:
+                driver.finish_delta = max(0.0, driver.finish_time - lead_time)
+                driver.finish_delta_formatted = to_lap_time_string(driver.finish_delta)
+                driver.finish_delta_laps = max(0, lead_laps - driver.race_laps)
+                if driver.finish_delta_laps:
+                    driver.finish_delta_laps_formatted = f"+{driver.finish_delta_laps}L"
 
             # Set Purple laps and sectors
             for lap in driver.laps:
@@ -243,3 +267,18 @@ class RfactorResults(ResultsJsonRepr):
                     driver.purple_s2 = purple_s2
                 if lap.s3 == purple_s3:
                     driver.purple_s3 = purple_s3
+
+            # Pace
+            if driver.finish_time:
+                pace = lead_time * 100 / max(0.1, driver.finish_time)
+                driver.pace = f"{pace:.2f}%"
+
+            # Consistency
+            lap_times = [lap.laptime for lap in driver.laps[1:] if not lap.pit and lap.laptime]
+            # Penalty of 0.5% per invalid lap
+            num_invalid_laps = len([lap for lap in driver.laps if not lap.valid])
+
+            if len(lap_times) > 2:
+                lap_time_variance = statistics.pvariance(lap_times, driver.possible_best or None)
+                consistency_value = (1.0 - (lap_time_variance * 0.01)) * (100 - (num_invalid_laps * 0.5))
+                driver.consistency = f"{max(0.0, consistency_value):.2f}%"
