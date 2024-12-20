@@ -9,7 +9,7 @@
       <!-- Display over image slider -->
       <div class="p-3" id="top-menu">
         <b-icon icon="house-fill" class="mr-1 float-left no-pointer"></b-icon>
-        <h6 class="title int-font mb-0">Hello {{ userName }}</h6>
+        <h6 class="title int-font mb-0">Hello {{ isDev ? 'Developer' : userName }}</h6>
 
         <!-- Shortcuts Play with Preset v-if="gfxPresetsReady" -->
         <div class="text-center mb-5" id="gfx-presets">
@@ -83,6 +83,7 @@ export default {
       vfImages: [],
       vfTransitions: [ 'fade', 'slide', 'swipe', 'fade' ],
       vfCaptions: [],
+      isDev: import.meta.env.DEV,
       posterImg: rfWPoster
     }
   },

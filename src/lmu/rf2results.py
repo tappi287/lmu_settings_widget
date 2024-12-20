@@ -274,9 +274,21 @@ class RfactorResults(ResultsJsonRepr):
                 driver.pace = f"{pace:.2f}%"
 
             # Consistency
-            lap_times = [lap.laptime for lap in driver.laps[1:] if not lap.pit and lap.laptime]
-            # Penalty of 0.5% per invalid lap
-            num_invalid_laps = len([lap for lap in driver.laps if not lap.valid])
+            lap_times, num_invalid_laps, is_out_lap = list(), int(), True
+            for lap in driver.laps:
+                # Ignore first lap
+                if is_out_lap:
+                    is_out_lap = False
+                    continue
+                # Ignore pit in and pit out laps
+                if lap.pit:
+                    is_out_lap = True
+                    continue
+                if lap.laptime:
+                    lap_times.append(lap.laptime)
+                # Penalty of 0.5% per invalid lap
+                if not lap.valid:
+                    num_invalid_laps += 1
 
             if len(lap_times) > 2:
                 lap_time_variance = statistics.pvariance(lap_times, driver.possible_best or None)

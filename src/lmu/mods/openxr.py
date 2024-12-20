@@ -111,8 +111,37 @@ def update_reshade_openxr_apps_ini(game_executable: Path) -> bool:
     return True
 
 
+def get_openxr_layer_registry_values(base_key=None) -> dict:
+    if base_key is None:
+        base_key = registry.HKEY_CURRENT_USER
+
+    try:
+        key = registry.OpenKey(base_key, OPEN_XR_API_LAYER_REG_PATH)
+        return get_registry_values_as_dict(key)
+    except OSError as e:
+        logging.error(f"Could not open registry key: {e}")
+
+    return dict()
+
+
+def is_original_reshade_openxr_layer_installed() -> bool:
+    """Check if the original ReShade OpenXR layer is installed."""
+    if not WINREG_AVAIL:
+        logging.error(f"Windows registry not available, can not check OpenXR-API-Layer installation")
+        return False
+
+    for base_key in [registry.HKEY_LOCAL_MACHINE, registry.HKEY_CURRENT_CONFIG, None]:
+        values = get_openxr_layer_registry_values(base_key)
+
+        for value in values:
+            if RESHADE_OPENXR_LAYER_JSON in value and value != reshade_openxr_json_path():
+                return True
+
+    return False
+
+
 def is_openxr_layer_installed() -> int:
-    """Check if the ReShade OpenXR API Layer is set up.
+    """Check if our custom ReShade OpenXR API Layer is set up.
 
     :returns: 0 - if not installed, 1 - installed and active, -1 - installed but deactivated
     """
@@ -121,17 +150,14 @@ def is_openxr_layer_installed() -> int:
         return 0
 
     # -- Open OpenXR v1 API Layers registry key
-    try:
-        key = registry.OpenKey(registry.HKEY_CURRENT_USER, OPEN_XR_API_LAYER_REG_PATH)
-        values = get_registry_values_as_dict(key)
-        if reshade_openxr_json_path() in values:
-            value = values.get(reshade_openxr_json_path())
-            if value.get("data") == 0:
-                return 1
-            else:
-                return -1
-    except OSError as e:
-        logging.error(f"Could not open or create registry key: {e}")
+    values = get_openxr_layer_registry_values()
+    if reshade_openxr_json_path() in values:
+        value = values.get(reshade_openxr_json_path())
+        if value.get("data") == 0:
+            return 1
+        else:
+            return -1
+
     return 0
 
 

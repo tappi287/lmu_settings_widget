@@ -12,13 +12,13 @@ export default {
         // {key: "expandRow", label: "", sortable: false, class: 'text-left'},
         {key: 'position', label: 'P', sortable: true, class: 'text-left'},
         {key: 'name', label: 'Name', class: 'text-left'},
-        {key: 'fastest_lap_formatted', label: 'Best Lap', sortable: true, class: 'text-right'},
+        {key: 'fastest_lap_formatted', label: 'Best Lap', sortable: true, class: 'text-left'},
         {key: 'car_class', label: 'Class', class: 'text-right'},
         {key: 'class_position', label: 'P', class: 'text-left'},
         {key: 'car_number', label: '#', class: 'text-right'},
         {key: 'car_type', label: 'Car', class: 'text-right'},
         {key: 'pace', label: 'Pace', class: 'text-right secondary-info'},
-        {key: 'consistency', label: 'Con', class: 'text-right secondary-info'},
+        {key: 'consistency', label: 'Con', sortable: true, class: 'text-right secondary-info'},
         {key: 'finish_delta_laps_formatted', label: '', class: 'text-right secondary-info'},
         {key: 'finish_time_formatted', label: 'Time', class: 'text-right'},
       ],
@@ -183,6 +183,9 @@ export default {
                  ref="resultTable" :title="resultData?.file_name"
         >
           <!-- Name -->
+          <template #head(name)="headRow">
+            <span class="pl-2"><b-icon icon="person-fill" /> {{ headRow.label }}</span>
+          </template>
           <template #cell(name)="row">
             <b-button size="sm" @click="row.toggleDetails" title="Show Laptimes"
                       class="text-light m-0 mr-2 no-border no-bg">
