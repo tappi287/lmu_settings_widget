@@ -1,0 +1,50 @@
+{
+    "module": {
+        "data": "C:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\Le Mans Ultimate.exe",
+        "type": 1
+    },
+    "first_run2": {
+        "data": 2,
+        "type": 4
+    },
+    "overlay": {
+        "data": 0,
+        "type": 4
+    },
+    "vrs": {
+        "data": 1,
+        "type": 4
+    },
+    "vrs_quality": {
+        "data": 0,
+        "type": 4
+    },
+    "vrs_pattern": {
+        "data": 2,
+        "type": 4
+    },
+    "turbo": {
+        "data": 0,
+        "type": 4
+    },
+    "scaling_type": {
+        "data": 0,
+        "type": 4
+    },
+    "post_process": {
+        "data": 0,
+        "type": 4
+    },
+    "post_sunglasses": {
+        "data": 0,
+        "type": 4
+    },
+    "bypass": {
+        "data": 0,
+        "type": 4
+    },
+    "frame_throttle": {
+        "data": 120,
+        "type": 4
+    }
+}
