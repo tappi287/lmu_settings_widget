@@ -200,6 +200,11 @@ class Command:
         AppSettings.save()
 
     def get_content_method(self):
+        # -- Not supported in LMU for now
+        self.finished = True
+        return
+
+        # -- Set Series/Cars/Tracks
         logging.debug("Executing command get available rF Series/Cars/Tracks content.")
         RfactorStatusEvent.set("Getting available content via WebUI")
 
@@ -240,6 +245,10 @@ class Command:
         AppSettings.save(save_content=True)
 
     def set_content_method(self):
+        # -- Not supported in LMU for now
+        self.finished = True
+        return
+
         # -- Set Series/Cars/Tracks
         logging.debug("Executing command set rF Series/Cars/Tracks content.")
         RfactorStatusEvent.set("Setting content via WebUI")
