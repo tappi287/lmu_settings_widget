@@ -451,8 +451,8 @@ reshade_settings = {
         "name": "Use OpenXR",
         "value": False,
         "desc": "Weather to inject ReShade via it's OpenXR API Layer or it's DLL hook. "
-        "If you run native OpenVR(Valve Index, HTC Vive etc.) leave disabled. If you use "
-        "Quest/HP Reverb with OpenXR Toolkit or Open Composite set to enabled. ",
+        "If you run in Desktop-Mode leave disabled. If you use "
+        "Virtual-Reality / OpenXR set to enabled.",
         "settings": (
             {"value": False, "name": "Disabled"},
             {"value": True, "name": "Enabled"},

@@ -19,7 +19,7 @@ from lmu.settingsdef import graphics
 
 
 class VrToolKit:
-    RESHADE_ZIP = "VRToolkitReshadeUniversal_1.0.2_plus_Clarity.zip"
+    RESHADE_ZIP = "VRToolkitReshadeUniversal_1.0.4_plus_Clarity.zip"
     RESHADE_PRESET_DIR = "reshade-shaders/Presets/"
     RESHADE_TARGET_PRESET_NAME = "lmu_widget_preset.ini"
     RESHADE_INI_NAME = "ReShade.ini"

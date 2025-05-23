@@ -95,10 +95,10 @@
                 @set-busy="setBusy"
                 @make-toast="makeToast">
     <template #header>
-      <b-alert class="mt-4 small" variant="info" :show="showOpenXrHint">
-        Detected non-original OpenVR binary [openvr_api.dll] in your installation.
-        If you use OpenComposite / OpenXR: make sure to set <b>Use OpenXR</b> to enabled!
-      </b-alert>
+      <div class="small mt-2">
+        If you use Virtual-Reality / OpenXR: make sure to set <b>Use OpenXR</b> to enabled!
+        ReShade for Desktop works with <b>Use OpenXR</b> set to <i>Disabled</i>.
+      </div>
       <b-alert class="mt-4 small" variant="warning" :show="showOpenVrHint">
         Warning: detected native OpenVR in your installation. Injecting ReShade vie OpenXR will not work
         for this game because it will not use OpenXR. Set <b>Use OpenXR</b> to disabled!

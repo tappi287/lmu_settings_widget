@@ -315,7 +315,7 @@
       },
       {
         "key": "use_openxr",
-        "value": false
+        "value": true
       },
       {
         "key": "VRT_SHARPENING_MODE",
