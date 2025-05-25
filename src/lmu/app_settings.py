@@ -62,6 +62,7 @@ class AppSettings(JsonRepr):
         "replay_playing",
         "present_mon_bin",
         "present_mon_result_dir",
+        "reshade_version",
         "content_selected",
         "content_keys",
         "content_urls",
@@ -73,6 +74,8 @@ class AppSettings(JsonRepr):
 
     present_mon_bin: Path = get_present_mon_bin()
     present_mon_result_dir: Path = get_user_presets_dir() / "benchmark_results"
+
+    reshade_version = "6.4.1.1965"
 
     first_load_complete = False
     replay_playing = False
@@ -152,7 +155,7 @@ class AppSettings(JsonRepr):
         return result
 
     @staticmethod
-    def restore_backup(rf: RfactorPlayer):
+    def restore_backup(rf: "RfactorPlayer"):
         result = False
         files = (rf.player_file, rf.controller_file, rf.ini_file, rf.ini_vr_file)
         has_permission_error = False
@@ -331,7 +334,7 @@ class AppSettings(JsonRepr):
         return True
 
     @classmethod
-    def update_webui_settings(cls, rf: RfactorPlayer):
+    def update_webui_settings(cls, rf: "RfactorPlayer"):
         # -- Update WebUi Session Settings for next run
         if rf.webui_session_settings:
             cls.session_selection = rf.webui_session_settings

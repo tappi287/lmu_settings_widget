@@ -24,9 +24,6 @@ class VrToolKit:
     RESHADE_TARGET_PRESET_NAME = "lmu_widget_preset.ini"
     RESHADE_INI_NAME = "ReShade.ini"
     RESHADE_VR_INI_NAME = "ReShadeVR.ini"
-    RESHADE_OPENXR_LAYER_DIR = "reshade_openxr_layer"
-    RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
-    RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
     OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
 
     dll_tgt = ("ReShade64.dll", "dxgi.dll")

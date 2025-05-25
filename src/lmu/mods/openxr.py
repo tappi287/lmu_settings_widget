@@ -1,8 +1,9 @@
-""" Functionality to handle installation of the ReShade Open XR API Layer """
+"""Functionality to handle installation of the ReShade Open XR API Layer"""
 
 import logging
 import shutil
 from pathlib import Path
+from typing import Iterator
 
 from lmu.globals import get_settings_dir, get_data_dir
 from lmu.utils import get_registry_values_as_dict, get_version_string
@@ -16,12 +17,66 @@ except ImportError:
     registry, WindowsPath = None, Path
     WINREG_AVAIL = False
 
-RESHADE_OPENXR_LAYER_DIR = "reshade_openxr_layer"
-RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
-RESHADE_OPENXR_LAYER_DLL = "ReShade64.dll"
-RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
 OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
 OPENVR_API_DLL = "openvr_api.dll"
+
+
+class ReshadeOpenXRLayerPath:
+    RESHADE_OPENXR_LAYER_DIR = "reshade_openxr_layer"
+
+    RESHADE_OPENXR_LAYER_JSON = "ReShade64_XR.json"
+    RESHADE_OPENXR_LAYER_DLL = "ReShade64.dll"
+    RESHADE_OPENXR_APPS_INI = "ReShadeApps.ini"
+    RESHADE_OPENXR_LAYER_FILE_NAMES = (RESHADE_OPENXR_LAYER_JSON, RESHADE_OPENXR_LAYER_DLL, RESHADE_OPENXR_APPS_INI)
+
+    @staticmethod
+    def reshade_openxr_layer_dir_path() -> Path:
+        return get_settings_dir() / ReshadeOpenXRLayerPath.RESHADE_OPENXR_LAYER_DIR
+
+    @classmethod
+    def reshade_openxr_layer_dir(cls) -> Path:
+        """Check if the layer directory exists and otherwise create it.
+
+        :return: Returns the path to the ReShade OpenXR API Layer directory.
+        """
+        openxr_layer_dir = cls.reshade_openxr_layer_dir_path()
+
+        # -- Create folder
+        if not openxr_layer_dir.exists():
+            openxr_layer_dir.mkdir()
+
+        for file_name in ReshadeOpenXRLayerPath.get_file_names():
+            destination_file = openxr_layer_dir.joinpath(file_name)
+            if destination_file.exists():
+                continue
+
+            # -- Copy files from data if they do not exist
+            src_file = get_data_dir() / ReshadeOpenXRLayerPath.RESHADE_OPENXR_LAYER_DIR / file_name
+            shutil.copy(src_file, destination_file)
+
+        return openxr_layer_dir
+
+    @classmethod
+    def reshade_openxr_json_path(cls) -> str:
+        return str(WindowsPath(cls.reshade_openxr_layer_dir() / cls.RESHADE_OPENXR_LAYER_JSON))
+
+    @classmethod
+    def reshade_openxr_apps_ini_path(cls) -> str:
+        return str(WindowsPath(cls.reshade_openxr_layer_dir() / cls.RESHADE_OPENXR_APPS_INI))
+
+    @classmethod
+    def reshade_openxr_dll_path(cls) -> str:
+        return str(WindowsPath(cls.reshade_openxr_layer_dir() / cls.RESHADE_OPENXR_LAYER_DLL))
+
+    @classmethod
+    def get_files(cls) -> Iterator[Path]:
+        for f in (cls.reshade_openxr_json_path(), cls.reshade_openxr_apps_ini_path(), cls.reshade_openxr_dll_path()):
+            yield Path(f)
+
+    @classmethod
+    def get_file_names(cls) -> Iterator[str]:
+        for file_name in cls.RESHADE_OPENXR_LAYER_FILE_NAMES:
+            yield file_name
 
 
 def is_openvr_present(bin_dir: Path) -> bool:
@@ -38,39 +93,8 @@ def is_openvr_present(bin_dir: Path) -> bool:
         return False
 
 
-def reshade_openxr_layer_dir() -> Path:
-    """Check if the layer directory exists and otherwise create it.
-
-    :return: Returns the path to the ReShade OpenXR API Layer directory.
-    """
-    openxr_layer_dir = get_settings_dir() / RESHADE_OPENXR_LAYER_DIR
-
-    # -- Create folder
-    if not openxr_layer_dir.exists():
-        openxr_layer_dir.mkdir()
-
-    for file_name in (RESHADE_OPENXR_LAYER_JSON, RESHADE_OPENXR_LAYER_DLL, RESHADE_OPENXR_APPS_INI):
-        destination_file = openxr_layer_dir.joinpath(file_name)
-        if destination_file.exists():
-            continue
-
-        # -- Copy files from data if they do not exist
-        src_file = get_data_dir() / RESHADE_OPENXR_LAYER_DIR / file_name
-        shutil.copy(src_file, destination_file)
-
-    return openxr_layer_dir
-
-
-def reshade_openxr_json_path() -> str:
-    return str(WindowsPath(reshade_openxr_layer_dir() / RESHADE_OPENXR_LAYER_JSON))
-
-
-def reshade_openxr_apps_ini_path() -> str:
-    return str(WindowsPath(reshade_openxr_layer_dir() / RESHADE_OPENXR_APPS_INI))
-
-
 def update_reshade_openxr_apps_ini(game_executable: Path) -> bool:
-    reshade_apps_ini_path = Path(reshade_openxr_apps_ini_path())
+    reshade_apps_ini_path = Path(ReshadeOpenXRLayerPath.reshade_openxr_apps_ini_path())
     if not reshade_apps_ini_path.exists():
         logging.error(f"Could not locate ReShade OpenXR Apps INI file: {reshade_apps_ini_path}")
         return False
@@ -134,7 +158,10 @@ def is_original_reshade_openxr_layer_installed() -> bool:
         values = get_openxr_layer_registry_values(base_key)
 
         for value in values:
-            if RESHADE_OPENXR_LAYER_JSON in value and value != reshade_openxr_json_path():
+            if (
+                ReshadeOpenXRLayerPath.RESHADE_OPENXR_LAYER_JSON in value
+                and value != ReshadeOpenXRLayerPath.reshade_openxr_json_path()
+            ):
                 return True
 
     return False
@@ -151,14 +178,28 @@ def is_openxr_layer_installed() -> int:
 
     # -- Open OpenXR v1 API Layers registry key
     values = get_openxr_layer_registry_values()
-    if reshade_openxr_json_path() in values:
-        value = values.get(reshade_openxr_json_path())
+    if ReshadeOpenXRLayerPath.reshade_openxr_json_path() in values:
+        value = values.get(ReshadeOpenXRLayerPath.reshade_openxr_json_path())
         if value.get("data") == 0:
             return 1
         else:
             return -1
 
     return 0
+
+
+def remove_reshade_openxr_layer_files() -> bool:
+    openxr_layer_dir = ReshadeOpenXRLayerPath.reshade_openxr_layer_dir_path()
+    if not openxr_layer_dir.exists():
+        return True
+
+    try:
+        shutil.rmtree(openxr_layer_dir)
+        return True
+    except Exception as e:
+        logging.error(f"Error removing ReShade OpenXR Layer Files: {e}")
+
+    return False
 
 
 def remove_reshade_openxr_layer() -> bool:
@@ -170,14 +211,14 @@ def remove_reshade_openxr_layer() -> bool:
     layer_present = False
     try:
         key = registry.OpenKey(registry.HKEY_CURRENT_USER, OPEN_XR_API_LAYER_REG_PATH, access=registry.KEY_ALL_ACCESS)
-        if reshade_openxr_json_path() in get_registry_values_as_dict(key):
+        if ReshadeOpenXRLayerPath.reshade_openxr_json_path() in get_registry_values_as_dict(key):
             layer_present = True
     except OSError as e:
         logging.error(f"Could not read registry key: {e}")
         return False
 
     if layer_present:
-        registry.DeleteValue(key, reshade_openxr_json_path())
+        registry.DeleteValue(key, ReshadeOpenXRLayerPath.reshade_openxr_json_path())
     return True
 
 
@@ -193,6 +234,12 @@ def setup_reshade_openxr_layer(enable=True, game_executable: Path = None) -> boo
         logging.error(f"Windows registry not available, skipping OpenXR-API-Layer setup")
         return False
 
+    # -- Check version of the installed layer and remove if outdated
+    from lmu.app_settings import AppSettings
+
+    if get_openxr_layer_reshade_version() < AppSettings.reshade_version:
+        remove_reshade_openxr_layer_files()
+
     # -- Update ReShade Apps INI
     if game_executable is not None:
         update_reshade_openxr_apps_ini(game_executable)
@@ -205,7 +252,7 @@ def setup_reshade_openxr_layer(enable=True, game_executable: Path = None) -> boo
         return False
 
     # -- Get the path to reshade openxr dir which is equal to the name of the value
-    reshade_path_value = reshade_openxr_json_path()
+    reshade_path_value = ReshadeOpenXRLayerPath.reshade_openxr_json_path()
 
     # -- Get existing values
     existing_values = get_registry_values_as_dict(key)
@@ -227,3 +274,14 @@ def setup_reshade_openxr_layer(enable=True, game_executable: Path = None) -> boo
         return False
 
     return True
+
+
+def get_openxr_layer_reshade_version() -> str:
+    """Get version of ReShade in OpenXR API Layer"""
+    dll_path = ReshadeOpenXRLayerPath.reshade_openxr_dll_path()
+    try:
+        version = get_version_string(dll_path, "FileVersion")
+        return version
+    except WindowsError:
+        pass
+    return ""
