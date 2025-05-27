@@ -1,38 +1,48 @@
-[tool.poetry]
+[project]
 name = "lmu-settings-widget"
 version = "0.7.3"
 description = ""
-authors = ["Stefan Tapper <tapper.stefan@gmail.com>"]
+authors = [
+  { name = "Stefan Tapper", email = "tapper.stefan@gmail.com" },
+]
 readme = "README.md"
-packages = [{include = "lmu", from = "src"}]
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "eel>=0.18.1, <0.19.0",
+  "bottle==0.13.3",
+  "appdirs>=1.4.4, <2.0.0",
+  "pygame==2.4.0",
+  "psutil==6.1.0",
+  "gevent-websocket==0.10.1",
+  "gevent>=24.10.2, <25.0.0",
+  "lxml==5.4.0",
+  "pyinstaller==6.13.0",
+  "mypy-extensions==1.1.0",
+  "iniconfig==2.1.0",
+  "black==25.1.0",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11,<3.12"
-eel = "^0.18.1"
-bottle = "==0.13.3"
-appdirs = "^1.4.4"
-# PyGame 2.5.2 (SDL 2.28.3, Python 3.11.0) will not detect Joysticks with only axis (eg. Pedals) likely related
-# to a bug in SDL https://github.com/pygame/pygame/issues/2932
-# 2.4.0 (SDL 2.26.4, Python 3.11.0) works
-pygame = "==2.4.0"
-psutil = "6.1.0"
-gevent-websocket = "==0.10.1"
-gevent = "^24.10.2"
-lxml="==5.4.0"
-pyinstaller = "==6.13.0"
-mypy-extensions = "==1.1.0"
-iniconfig = "==2.1.0"
-black = "==25.1.0"
-
-
-[tool.poetry.group.dev.dependencies]
-pyinstaller = "^6.9.0"
-pyinstaller-hooks-contrib = ">=2024.7"
-pywin32-ctypes = ">=0.2.0"
-pytest = "^8.3.3"
-black = "*"
-
+[project.optional-dependencies]
+dev = [
+  "pyinstaller>=6.9.0, <7.0.0",
+  "pyinstaller-hooks-contrib>=2024.7",
+  "pywin32-ctypes>=0.2.0",
+  "pytest>=8.3.3, <9.0.0",
+  "black",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lmu"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+   "/src",
+   "/tests",
+   "/pyproject.toml",
+   "/README.md",
+   "/LICENSE.txt", # Beispiel
+]
