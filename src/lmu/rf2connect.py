@@ -295,9 +295,9 @@ class RfactorConnect:
         """
         if cls.state != RfactorState.ready:
             return False
-        r = cls.post_request("/rest/replay/playbackcommand", json=command)
+        r = cls.put_request("/rest/watch/replayCommand", json=command)
         if r.status_code not in (200, 204):
-            logging.debug(f"Request to Replay Playbackcommand #{command} failed.")
+            logging.debug(f"Request to Replay ReplayCommand #{command} failed.")
             return False
         return True
 
@@ -321,7 +321,7 @@ class RfactorConnect:
         if cls.state != RfactorState.ready:
             return False
 
-        r = cls.post_request("/rest/start/quitGame")
+        r = cls.post_request("/navigation/action/NAV_EXIT")
 
         return True if r and r.status_code in (200, 201, 202, 203, 204) else False
 
