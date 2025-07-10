@@ -210,7 +210,7 @@ class GraphicsPreset(BasePreset):
             if not len(option.settings) or option.settings[0].get("display", "") != "floatdecimal":
                 continue
             rf_option = rf_vr_options.get_option(option.key)
-            rf_option.value = round(rf_option.value, 2)
+            rf_option.value = round(float(rf_option.value), 2)
 
     def additional_export_operations(self):
         # Reset Resolution Settings

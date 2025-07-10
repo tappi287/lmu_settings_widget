@@ -116,7 +116,6 @@ export default {
     },
     spinnerDebouncedUpdate: function () {
       this.spinnerTimeout = null
-      if (this.rangeDisp === 'floatdecimal') { this.rangeValue = this.rangeValue.toFixed(2) }
       this.$emit('setting-changed', this.setting, this.rangeValue)
     },
     spinnerDisplay: function (value) {
