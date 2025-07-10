@@ -116,6 +116,10 @@
       {
         "key": "Max Visible Vehicles",
         "value": 12
+      },
+      {
+        "key": "Screen Space Ambient Occlusion",
+        "value": true
       }
     ],
     "title": "Display Settings"
@@ -361,7 +365,7 @@
     "options": [
       {
         "key": "Launch",
-        "value": 2
+        "value": 3
       },
       {
         "key": "MSAA",
@@ -377,5 +381,39 @@
       }
     ],
     "title": "Video Settings"
+  },
+  "vr_graphics_options": {
+    "key": "Graphic Options",
+    "options": [
+      {
+        "key": "VR HUD Scale",
+        "value": 0.50
+      },
+      {
+        "key": "VR Menu Scale",
+        "value": 0.50
+      },
+      {
+        "key": "VR IPD Scale",
+        "value": 1
+      },
+      {
+        "key": "VR HUD Depth",
+        "value": 0.5
+      },
+      {
+        "key": "VR Menu Depth",
+        "value": 0.5
+      },
+      {
+        "key": "VR Projection Mode",
+        "value": 0
+      },
+      {
+        "key": "VR Enable Hidden Area Mask",
+        "value": true
+      }
+    ],
+    "title": "VR Settings"
   }
 }
