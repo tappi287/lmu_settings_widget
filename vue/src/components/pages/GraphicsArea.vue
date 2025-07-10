@@ -58,6 +58,19 @@
     </template>
   </SettingsCard>
 
+  <!-- VR Graphics Settings -->
+  <SettingsCard :preset="preset" :idx="idx" settings-key="vr_graphics_options"
+                :fixed-width="fixedWidth" :frozen="frozen" :compact="compact"
+                :current_preset_idx="current_preset_idx"
+                :previous-preset-name="previousPresetName"
+                :show-performance="showPerformance"
+                :view_mode="viewMode"
+                :search="search" header-icon="headset-vr"
+                @update-setting="updateSetting"
+                @set-busy="setBusy"
+                @make-toast="makeToast">
+  </SettingsCard>
+
   <!-- View Settings -->
   <SettingsCard :preset="preset" :idx="idx" settings-key="graphic_view_options"
                 :fixed-width="fixedWidth" :frozen="frozen" :compact="compact"

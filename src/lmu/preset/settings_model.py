@@ -306,6 +306,19 @@ class GraphicOptions(BaseOptions):
         self.read_from_python_dict(graphics.adjustable_graphics_settings)
 
 
+class VrGraphicOptions(BaseOptions):
+    key = "Graphic Options"
+    app_key = "vr_graphics_options"
+    title = "VR Settings"
+    target = OptionsTarget.player_json
+
+    def __init__(self):
+        super(VrGraphicOptions, self).__init__()
+
+        # -- Read Default options
+        self.read_from_python_dict(graphics.vr_graphics_settings)
+
+
 class GraphicViewOptions(BaseOptions):
     key = "Graphic Options"
     app_key = "graphic_view_options"

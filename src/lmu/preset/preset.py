@@ -165,6 +165,7 @@ class GraphicsPreset(BasePreset):
     preset_type: int = PresetType.graphics
     option_class_keys = {
         settings_model.GraphicOptions.app_key,
+        settings_model.VrGraphicOptions.app_key,
         settings_model.GraphicViewOptions.app_key,
         settings_model.AdvancedGraphicSettings.app_key,
         settings_model.VideoSettings.app_key,

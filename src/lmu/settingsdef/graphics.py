@@ -131,6 +131,18 @@ adjustable_graphics_settings = {
         "value": 12,
         "settings": ({"settingType": "range", "min": 5, "max": 105, "step": 1, "desc": "LMU default setting: 12"},),
     },
+    "Screen Space Ambient Occlusion": {
+        "name": "Ambient Occlusion",
+        "value": True,
+        "settings": (
+            {"value": False, "name": "Disabled"},
+            {
+                "value": True,
+                "name": "Enabled [Default]",
+                "desc": "Enable Screen Space Ambient Occlusion",
+            },
+        ),
+    },
 }
 view_settings = {
     "Stabilize Horizon": {
@@ -216,6 +228,106 @@ view_settings = {
         ),
     },
 }
+vr_graphics_settings = {
+    "VR HUD Scale": {
+        "name": "HUD Scale",
+        "value": 1.0,
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.1,
+                "max": 2.0,
+                "step": 0.01,
+                "display": "floatpercent",
+                "desc": "Scale of the VR UI HUD screen",
+            },
+        ),
+    },
+    "VR Menu Scale": {
+        "name": "Menu Scale",
+        "value": 1.0,
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.1,
+                "max": 2.0,
+                "step": 0.01,
+                "display": "floatpercent",
+                "desc": "Scale of menus in VR",
+            },
+        ),
+    },
+    "VR IPD Scale": {
+        "name": "World Scale",
+        "value": 1.0,
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.5,
+                "max": 2.0,
+                "step": 0.01,
+                "display": "floatpercent",
+                "desc": "VR IPD Scale: Adjusts IPD distance between eyes. 1.0 = default IPD distance, as reported by the HMD, below 1.0 = reduce, above 1.0 = increase",
+            },
+        ),
+    },
+    "VR HUD Depth": {
+        "name": "HUD Depth",
+        "value": 0.5,
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.01,
+                "display": "float",
+                "desc": "Depth of the VR UI HUD screen",
+            },
+        ),
+    },
+    "VR Menu Depth": {
+        "name": "Menu Depth",
+        "value": 0.5,
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.01,
+                "max": 1.0,
+                "step": 0.01,
+                "display": "float",
+                "desc": "Depth of menus in VR",
+            },
+        ),
+    },
+    "VR Projection Mode": {
+        "name": "Projection Mode",
+        "value": 0,
+        "settings": (
+            {
+                "value": 0,
+                "name": "Default",
+            },
+            {
+                "value": 1,
+                "name": "Not in-plane Displays",
+                "desc": "VR Projection Mode: 0 = default, 1 = not in-plane displays HMDs",
+            },
+        ),
+    },
+    "VR Enable Hidden Area Mask": {
+        "name": "Hidden Area Mask",
+        "value": True,
+        "settings": (
+            {"value": False, "name": "Disabled"},
+            {
+                "value": True,
+                "name": "Enabled [Default]",
+                "desc": "Enable VR hidden area mask, may improve VR performance.",
+            },
+        ),
+    },
+}
+
 advanced_settings = {
     "Transparency AA": {
         "name": "Transparency AA",
