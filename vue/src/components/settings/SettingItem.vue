@@ -116,9 +116,11 @@ export default {
     },
     spinnerDebouncedUpdate: function () {
       this.spinnerTimeout = null
+      if (this.rangeDisp === 'floatdecimal') { this.rangeValue = this.rangeValue.toFixed(2) }
       this.$emit('setting-changed', this.setting, this.rangeValue)
     },
     spinnerDisplay: function (value) {
+      if (this.rangeDisp === 'floatdecimal') { return String(value.toFixed(2)) }
       if (this.rangeDisp === 'floatpercent') { return String(Math.round(value * 100)) + '%' }
       if (this.rangeDisp === 'time') { return minutesToDaytime(value) }
       if (this.rangeDisp === 'position') { if (value === 0) { return 'Random' } }
