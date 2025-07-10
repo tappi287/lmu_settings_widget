@@ -65,3 +65,13 @@ def test_read_current_controller_preset_no_controller_json(set_test_install_loca
         current_preset.update(rf)
 
     assert rf.write_settings(current_preset) is False
+
+
+def test_read_current_gfx_preset(set_test_install_location):
+    rf = RfactorPlayer()
+
+    _break_install_dir([rf.player_file])
+    current_preset = PRESET_TYPES.get(GraphicsPreset.preset_type)()
+
+    if rf.is_valid:
+        current_preset.update(rf)

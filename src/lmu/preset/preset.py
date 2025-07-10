@@ -43,9 +43,11 @@ class BasePreset:
         """Update current preset from the actual Le Mans Ultimate settings on disk
 
         :param preset_name: Create a preset name [preset_name] [PlayerJson Nickname]
-        :param modules.rfactor.RfactorPlayer rf:
+        :param lmu.lmu_game.RfactorPlayer rf:
         :return:
         """
+        self.additional_update_operations(rf)
+
         # Update Graphic Options, Video Settings etc. from rF object
         for key, options in self.iterate_options():
             if options.target == settings_model.OptionsTarget.webui_session:
@@ -76,6 +78,14 @@ class BasePreset:
 
     def save_unique_file(self) -> bool:
         return self.export(self.find_unique_preset_name())
+
+    def additional_update_operations(self, rf):
+        """Overwrite method before we update from the actual Le Mans Ultimate settings on disk
+
+        :param lmu.lmu_game.RfactorPlayer rf:
+        :return:
+        """
+        pass
 
     def additional_save_operations(self):
         """Should be overwritten in sub classes"""
@@ -184,6 +194,23 @@ class GraphicsPreset(BasePreset):
     def __init__(self, name: str = None, desc: str = None):
         """Presets for graphical preferences"""
         super(GraphicsPreset, self).__init__(name, desc)
+
+    def additional_update_operations(self, rf):
+        """Round read-out VR Settings values because the float values get fancy decimals assigned from the game
+
+        :param lmu.lmu_game.RfactorPlayer rf:
+        """
+        # -- Get VR Settings from game
+        vr_options_key = settings_model.VrGraphicOptions.app_key
+        vr_options = getattr(self, vr_options_key)
+        rf_vr_options = getattr(rf.options, vr_options_key)
+
+        # -- Apply rounded VR Settings to game-settings-instance so we do not detect a change
+        for option in vr_options.options:
+            if not len(option.settings) or option.settings[0].get("display", "") != "floatdecimal":
+                continue
+            rf_option = rf_vr_options.get_option(option.key)
+            rf_option.value = round(rf_option.value, 2)
 
     def additional_export_operations(self):
         # Reset Resolution Settings
