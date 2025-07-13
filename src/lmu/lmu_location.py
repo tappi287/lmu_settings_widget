@@ -13,6 +13,8 @@ from lmu.globals import (
 )
 from lmu.valve.steam_utils import SteamApps
 
+LOC_REPORTED = False
+
 
 class RfactorLocation:
     path: Optional[Path] = None
@@ -54,15 +56,18 @@ class RfactorLocation:
         dx_vr_config = path / RFACTOR_DXVRCONFIG
         version_txt = path / RFACTOR_VERSION_TXT
 
-        logging.info(
-            f"Setting rF location:\n"
-            f"{path}\n"
-            f"{player_json}\n"
-            f"{controller_json}\n"
-            f"{dx_config}\n"
-            f"{dx_vr_config}\n"
-            f"{version_txt}"
-        )
+        global LOC_REPORTED
+        if not LOC_REPORTED:
+            logging.info(
+                f"Setting rF location:\n"
+                f"{path}\n"
+                f"{player_json}\n"
+                f"{controller_json}\n"
+                f"{dx_config}\n"
+                f"{dx_vr_config}\n"
+                f"{version_txt}"
+            )
+            LOC_REPORTED = True
 
         if player_json.exists() and (dx_config.exists() or dx_vr_config.exists()):
             cls.is_valid = True

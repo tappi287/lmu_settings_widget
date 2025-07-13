@@ -1,7 +1,7 @@
 import logging
 import shutil
 from pathlib import Path
-from typing import Iterator, Tuple
+from typing import Iterator, Tuple, Generator
 from zipfile import ZipFile
 
 try:
@@ -31,6 +31,7 @@ class VrToolKit:
         ("rF2_nonPBRmodDay1.png", "reshade-shaders/Textures"),
         ("rF2_nonPBRmodDay2.png", "reshade-shaders/Textures"),
         ("rF2_ToneDownDay.png", "reshade-shaders/Textures"),
+        ("Super_ToneDownDay.png", "reshade-shaders/Textures"),
         ("lmu_ToneUpDay.png", "reshade-shaders/Textures"),
         ("lmu_DayTone.png", "reshade-shaders/Textures"),
         ("lut_ams.png", "reshade-shaders/Textures"),
@@ -71,6 +72,32 @@ class VrToolKit:
         self.clarity_ini_keys = set()
 
         self._read_setting_defaults()
+
+    def validate_extra_files(self, install_missing: bool = True) -> bool:
+        results = list()
+
+        for src_file, tgt_file in self._get_extra_files():
+            if not tgt_file.exists():
+                try:
+                    if install_missing:
+                        shutil.copyfile(src_file, tgt_file)
+                        logging.info(f"Copied missing ReShade extra file: {src_file.name} to {tgt_file}")
+                        results.append(True)
+                    else:
+                        results.append(False)
+                except Exception as e:
+                    results.append(False)
+                    logging.error("Could not copy extra file %s: %s", src_file.name, e)
+            else:
+                results.append(True)
+
+        return all(results) if results else False
+
+    def _get_extra_files(self) -> Generator[Tuple[Path, Path], None, None]:
+        for file_name, file_target_dir in self.extra_files:
+            src_file = get_data_dir() / file_name
+            target_file = self.location / file_target_dir / file_name
+            yield src_file, target_file
 
     def _read_setting_defaults(self):
         settings_dict = dict()
@@ -119,12 +146,15 @@ class VrToolKit:
                     if option.key == "use_reshade":
                         option.value = True
                         option.exists_in_rf = True
+                        use_reshade = True
                     if option.key == "use_openxr":
                         option.value = openxr.is_openxr_layer_installed() == 1
                         option.exists_in_rf = True
+                        use_openxr = True
                     if option.key == "use_clarity":
                         option.value = clarity_found
                         option.exists_in_rf = True
+                        use_clarity = True
                     elif option.key in self.preprocessor:
                         option.value = self.preprocessor[option.key]
                         option.exists_in_rf = True
@@ -184,10 +214,7 @@ class VrToolKit:
                             remove_dirs.append(file)
 
         # -- Copy/Remove extra files
-        for file_name, file_target_dir in self.extra_files:
-            src_file = get_data_dir() / file_name
-            target_file = bin_dir / file_target_dir / file_name
-
+        for src_file, target_file in self._get_extra_files():
             try:
                 # -- Copy file
                 if use_reshade:
@@ -196,7 +223,7 @@ class VrToolKit:
                 else:
                     target_file.unlink(missing_ok=True)
             except Exception as e:
-                logging.error("Could not process extra file %s: %s", file_name, e)
+                logging.error("Could not process extra file %s: %s", src_file.name, e)
 
         return remove_dirs
 
@@ -383,12 +410,20 @@ class VrToolKit:
                             self.ini_settings[k] = value
 
             # -- Update RfactorPlayer VRToolkit Settings
-            self._update_options(update_from_disk=True, clarity_found=clarity_found)
+            use_reshade, use_openxr, use_clarity = self._update_options(
+                update_from_disk=True, clarity_found=clarity_found
+            )
         except Exception as e:
             msg = f"Error reading Reshade Preset Ini file: {e}"
             logging.exception(msg, exc_info=e)
             self.error = msg
             return False
+
+        # -- Validate
+        if use_reshade:
+            logging.info(f"Validating ReShade install")
+            self.validate_extra_files(install_missing=True)
+
         return True
 
     def read(self) -> bool:

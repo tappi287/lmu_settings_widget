@@ -823,6 +823,12 @@ reshade_lut = {
                 "desc": "Increase exposure for v0.4 and tone-map highlights",
             },
             {
+                "value": '"Super_ToneDownDay.png"',
+                "name": "Super Tone Down Day",
+                "desc": "LUT trying to restore some highlights from super bright specular road "
+                "reflections at daylight. Desaturated Reds for Pimax Crystal Super Panel.",
+            },
+            {
                 "value": '"rF2_nonPBRmodDay1.png"',
                 "name": "Non PBR Mod 1",
                 "desc": "LUT trying to restore some highlights from super bright specular road "

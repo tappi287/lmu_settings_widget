@@ -1,4 +1,5 @@
 import logging
+from enum import Enum
 from typing import Union, List, Optional
 
 from ..settingsdef import graphics, generic, controls, headlights
@@ -7,7 +8,7 @@ from ..utils import JsonRepr
 _allowed_value_types = (bool, str, int, float)
 
 
-class OptionsTarget:
+class OptionsTarget(Enum):
     player_json = 0
     controller_json = 1
     keyboard_json = 2
