@@ -1,4 +1,5 @@
 import enum
+import hashlib
 import logging
 import math
 import os
@@ -442,6 +443,14 @@ def greenlet_sleep(seconds, close_event: gevent.event.Event = None):
         if close_event and close_event.is_set():
             break
         gevent.sleep(5.0)
+
+
+def get_file_hash(file):
+    md5 = hashlib.md5()
+    with open(file, "rb") as f:
+        buf = f.read()
+        md5.update(buf)
+    return md5.hexdigest()
 
 
 # returns the requested version information from the given file

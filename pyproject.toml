@@ -1,6 +1,6 @@
 [project]
 name = "lmu-settings-widget"
-version = "0.8.0"
+version = "0.8.1"
 description = ""
 authors = [
   { name = "Stefan Tapper", email = "tapper.stefan@gmail.com" },
