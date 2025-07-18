@@ -200,10 +200,10 @@ def create_shortcut(executable_path: Path, working_directory: Path, shortcut_loc
     """Create a Windows .lnk ShortCut file with powershell
 
     $Shell = New-Object -ComObject ("WScript.Shell")
-    $ShortCut = $Shell.CreateShortcut($env:USERPROFILE + "\Desktop\Your Shortcut.lnk")
+    $ShortCut = $Shell.CreateShortcut($env:USERPROFILE + "\\Desktop\\Your Shortcut.lnk")
     $ShortCut.TargetPath="yourexecutable.exe"
     $ShortCut.Arguments="-arguementsifrequired"
-    $ShortCut.WorkingDirectory = "c:\your\executable\folder\path";
+    $ShortCut.WorkingDirectory = "c:\\your\\executable\\folder\\path";
     $ShortCut.WindowStyle = 1;
     $ShortCut.Hotkey = "CTRL+SHIFT+F";
     $ShortCut.IconLocation = "yourexecutable.exe, 0";
@@ -235,16 +235,6 @@ def start_lnk_from_powershell(shortcut: Path):
 
 
 # https://github.com/pyinstaller/pyinstaller/wiki/Recipe-subprocess
-# Create a set of arguments which make a ``subprocess.Popen`` (and
-# variants) call work with or without Pyinstaller, ``--noconsole`` or
-# not, on Windows and Linux. Typical use::
-#
-#   subprocess.call(['program_to_run', 'arg_1'], **subprocess_args())
-#
-# When calling ``check_output``::
-#
-#   subprocess.check_output(['program_to_run', 'arg_1'],
-#                           **subprocess_args(False))
 def subprocess_args(include_stdout=True, cwd=None):
     # The following is true only on Windows.
     if hasattr(sp, "STARTUPINFO"):
@@ -260,16 +250,6 @@ def subprocess_args(include_stdout=True, cwd=None):
         si = None
         env = None
 
-    # ``subprocess.check_output`` doesn't allow specifying ``stdout``::
-    #
-    #   Traceback (most recent call last):
-    #     File "test_subprocess.py", line 58, in <module>
-    #       **subprocess_args(stdout=None))
-    #     File "C:\Python27\lib\subprocess.py", line 567, in check_output
-    #       raise ValueError('stdout argument not allowed, it will be overridden.')
-    #   ValueError: stdout argument not allowed, it will be overridden.
-    #
-    # So, add it only if it's needed.
     if include_stdout:
         ret = {"stdout": sp.PIPE}
     else:

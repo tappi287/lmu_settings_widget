@@ -1,21 +1,18 @@
 import json
 import os
-from pathlib import Path
-from typing import Union
-
-from subprocess import Popen
-from lmu import eel_mod
-from lmu.globals import UPDATE_INSTALL_FILE, UPDATE_VERSION_FILE, get_version, get_current_modules_dir
-from distutils.dir_util import copy_tree
-
 import shutil
 import winreg
+from pathlib import Path
+from subprocess import Popen
+from typing import Union
+
+from lmu import eel_mod
+from lmu.globals import UPDATE_INSTALL_FILE, UPDATE_VERSION_FILE, get_version, get_current_modules_dir
+from scripts.patch_sdl_pygame import patch_sdl_lib_pygame
 
 os.chdir(get_current_modules_dir())
 
 VERSION = get_version()
-# TODO: write version to vue package.json
-EXTERNAL_APP_DIRS = []
 
 SPEC_FILE = "app.spec"
 ISS_FILE = "lmu_settings_widget_win64_setup.iss"
@@ -168,7 +165,7 @@ def create_portable_archive():
     archive_root_dir = Path(DIST_DIR) / "portable"
 
     portable_dist_dir.mkdir(parents=True)
-    copy_tree(dist_exe_dir.as_posix(), portable_dist_dir.as_posix())
+    shutil.copytree(dist_exe_dir, portable_dist_dir)
 
     old_archive = Path(DIST_DIR) / f"{PORTABLE_ZIP_NAME}.zip"
     old_archive.unlink(missing_ok=True)
@@ -199,6 +196,7 @@ def main(process: int = 0):
     if process in (0, 1, 2):
         run_npm_build()
         copy_eel_cache_file()
+        patch_sdl_lib_pygame()
 
         # Build with PyInstaller
         result = run_pyinstaller(SPEC_FILE)
@@ -209,12 +207,6 @@ def main(process: int = 0):
 
         # Copy/Add external applications
         dist_dir = Path(DIST_DIR) / Path(DIST_EXE_DIR)
-
-        for src_dir in EXTERNAL_APP_DIRS:
-            print("Adding external application from dir: ", src_dir.as_posix())
-            result = copy_tree(src_dir.absolute().as_posix(), dist_dir.absolute().as_posix(), update=1)
-            if result:
-                print("Added app folder: ", src_dir.name)
 
         remove_dist_info_dirs()
 
@@ -240,10 +232,9 @@ def main(process: int = 0):
         create_portable_archive()
 
         rm_dir = Path(DIST_DIR) / Path(DIST_EXE_DIR)
-        for dist_dir in [rm_dir, *EXTERNAL_APP_DIRS]:
-            if dist_dir.exists():
-                print("Removing executable folder:", dist_dir)
-                shutil.rmtree(dist_dir)
+        if rm_dir.exists():
+            print("Removing executable folder:", rm_dir)
+            shutil.rmtree(rm_dir)
 
         print("\nBuild completed!")
 

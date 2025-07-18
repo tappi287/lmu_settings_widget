@@ -6,12 +6,12 @@ authors = [
   { name = "Stefan Tapper", email = "tapper.stefan@gmail.com" },
 ]
 readme = "README.md"
-requires-python = ">=3.11,<3.12"
+requires-python = ">=3.13,<3.14"
 dependencies = [
   "eel==0.18.2",
   "bottle==0.13.4",
   "appdirs>=1.4.4, <2.0.0",
-  "pygame==2.4.0",
+  "pygame==2.6.1",
   "psutil==7.0.0",
   "gevent-websocket==0.10.1",
   "gevent==25.5.1",
