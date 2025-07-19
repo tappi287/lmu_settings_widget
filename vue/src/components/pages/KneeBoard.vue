@@ -1,15 +1,28 @@
 <template>
   <div class="knee-board-container">
-    <h2>KneeBoard</h2>
+    <b-input-group size="sm">
+      <b-input-group-prepend>
+        <!-- Title -->
+        <b-input-group-text class="bg-transparent no-border title text-white pl-0">
+          KneeBoard
+        </b-input-group-text>
+      </b-input-group-prepend>
+    </b-input-group>
     <div class="knee-board-content">
       <div class="info-panel">
-        <b-card title="Renninfo" class="mb-3">
+        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+                bg-variant="dark" text-variant="white">
+          <template #header>
+            <b-icon icon="tv"></b-icon>
+            <span class="ml-2">Race Info</span>
+            <slot name="header"></slot>
+          </template>
           <b-row>
-            <b-col md="6">
+            <b-col>
               <p><strong>Strecke:</strong> {{ trackName }}</p>
               <p><strong>Runden:</strong> {{ currentLap }} / {{ totalLaps }}</p>
             </b-col>
-            <b-col md="6">
+            <b-col>
               <p><strong>Position:</strong> {{ position }}</p>
               <p><strong>Beste Rundenzeit:</strong> {{ bestLapTime }}</p>
             </b-col>
@@ -18,20 +31,55 @@
       </div>
 
       <div class="notes-panel">
-        <b-card title="Notizen" class="mb-3">
-          <b-form-textarea
-            v-model="notes"
-            placeholder="Notizen hier eingeben..."
-            rows="4"
-            max-rows="8"
-          ></b-form-textarea>
+        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+                bg-variant="dark" text-variant="white">
+          <template #header>
+            <b-icon icon="map"></b-icon>
+            <span class="ml-2">Info</span>
+            <slot name="header"></slot>
+          </template>
+          <div class="placeholder">
+            <p class="text-center text-muted">Information</p>
+          </div>
         </b-card>
       </div>
 
       <div class="map-panel">
-        <b-card title="Streckenkarte">
-          <div class="track-map-placeholder">
+        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+                bg-variant="dark" text-variant="white">
+          <template #header>
+            <b-icon icon="map"></b-icon>
+            <span class="ml-2">Streckenkarte</span>
+            <slot name="header"></slot>
+          </template>
+          <div class="placeholder">
             <p class="text-center text-muted">Streckenkarte wird hier angezeigt</p>
+          </div>
+        </b-card>
+      </div>
+      <div class="hardware-panel">
+        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+                bg-variant="dark" text-variant="white">
+          <template #header>
+            <b-icon icon="pie-chart-fill"></b-icon>
+            <span class="ml-2">System</span>
+            <slot name="header"></slot>
+          </template>
+          <div class="placeholder">
+            <p class="text-center text-muted">Hardware Info</p>
+          </div>
+        </b-card>
+      </div>
+      <div class="bottom-panel">
+        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-right"
+                bg-variant="dark" text-variant="white">
+          <template #header>
+            <span class="mr-2">Info</span>
+            <b-icon icon="pie-chart-fill"></b-icon>
+            <slot name="header"></slot>
+          </template>
+          <div class="placeholder">
+            <p class="text-center text-muted">Hardware Info</p>
           </div>
         </b-card>
       </div>
@@ -40,10 +88,14 @@
 </template>
 
 <script>
+import lmwLogoUrl from "@/assets/lmw_logo.png";
+
 export default {
   name: 'KneeBoard',
+  props: {live: Boolean},
   data() {
     return {
+      logoUrl: lmwLogoUrl,
       trackName: 'Unbekannt',
       currentLap: 0,
       totalLaps: 0,
@@ -98,9 +150,18 @@ export default {
   grid-row: 2;
 }
 
-.track-map-placeholder {
-  height: 200px;
-  background-color: #e9ecef;
+.hardware-panel {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.bottom-panel {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.placeholder {
+  height: 27vh;
   display: flex;
   align-items: center;
   justify-content: center;
