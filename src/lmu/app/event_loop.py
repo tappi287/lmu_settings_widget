@@ -51,7 +51,7 @@ def app_event_loop():
             CLOSE_EVENT.set()
 
     # -- Hardware Info
-    if AppSettings.show_hardware_info:
+    if AppSettings.SHOW_HW_INFO:
         # -- Init Hardware Info Utility
         if AppEventLoopGlobals.HW_INFO is None:
             AppEventLoopGlobals.HW_INFO = CHardwareInfo(True, True, False, True, True)

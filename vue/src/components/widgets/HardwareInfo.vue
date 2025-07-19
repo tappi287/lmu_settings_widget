@@ -33,7 +33,7 @@
       </b-progress>
 
       <div class="info-label">
-        GPU Temp: {{ gpu.gpu_temperature }}°C | GPU Auslastung: {{ gpu.gpu_utilization }}%
+        GPU Temp: {{ gpu.gpu_temperature }}°C | GPU Load: {{ gpu.gpu_utilization }}%
       </div>
     </div>
 
@@ -150,6 +150,7 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 80px;
 }
 
 .core-label {
@@ -159,7 +160,7 @@ export default {
 
 .core-bar-container {
   width: 100%;
-  height: 80px;
+  height: 80%;
   background-color: #2c2c2c;
   border-radius: 3px;
   position: relative;
@@ -170,7 +171,7 @@ export default {
   bottom: 0;
   width: 100%;
   border-radius: 2px;
-  transition: height 0.3s ease, background-color 0.3s ease;
+  transition: height 0.6s ease, background-color 0.6s ease;
 }
 
 .core-value {

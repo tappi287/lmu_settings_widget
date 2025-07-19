@@ -23,9 +23,9 @@
       <b-checkbox-group :options="appOptions" v-model="appModules" @change="save" />
 
       <b-card-text class="mt-3">
-        Weather to play audio feedback when using certain actions within the app.<br />
-        You can prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app.
-        Changes apply after an app restart.
+        <b>[Enable Audio]</b> Weather to play audio feedback when using certain actions within the app.<br />
+        <b>[Prefer Edge Browser]</b> Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.<br />
+        <b>[Hardware Statistics]</b> Weather to collect hardware stats like CPU/GPU Load and display it on the Kneeboard.<br />
       </b-card-text>
     </b-card>
 
@@ -71,7 +71,8 @@ export default {
       appModules: ['audio', 'edge_preferred'],
       appOptions: [
         {text: 'Enable Audio', value: 'audio'},
-        {text: 'Prefer Edge Browser', value: 'edge_preferred'}
+        {text: 'Prefer Edge Browser', value: 'edge_preferred'},
+        {text: 'Hardware Statistics', value: 'show_hardware_info'},
       ],
       lmwLogoUrl: lmwLogoUrl
     }

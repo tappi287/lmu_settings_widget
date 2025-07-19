@@ -472,7 +472,7 @@ export default {
       return this.searchActive.indexOf(this.navActive) !== -1;
     },
     showRfOverlay() {
-      return this.live || this.isBusy || this.quitBusy;
+      return (this.live || this.isBusy || this.quitBusy) && (this.navActive !== 6);
     }
   },
   created() {

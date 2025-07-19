@@ -23,10 +23,10 @@ class AppSettings(JsonRepr):
     TARGET_LOOP_WAIT = TARGET_LOOP_DURATION_MS * 0.001
     TARGET_LOOP_WAIT_HALF = TARGET_LOOP_WAIT * 0.5
     HARDWARE_UPDATE_INTERVAL = 3.5
+    SHOW_HW_INFO = False
 
     backup_created = False
     needs_admin = False
-    show_hardware_info = True
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
     app_preferences = {"appModules": ["audio", "edge_preferred"]}
@@ -73,6 +73,7 @@ class AppSettings(JsonRepr):
         "TARGET_LOOP_WAIT",
         "TARGET_LOOP_WAIT_HALF",
         "HARDWARE_UPDATE_INTERVAL",
+        "SHOW_HW_INFO",
     ]
 
     present_mon_bin: Path = get_present_mon_bin()
@@ -95,6 +96,12 @@ class AppSettings(JsonRepr):
         self.backup_created = AppSettings.backup_created
         self.selected_presets = AppSettings.selected_presets
         self.user_presets_dir = AppSettings.user_presets_dir
+
+    @classmethod
+    def update_app_preferences(cls):
+        cls.SHOW_HW_INFO = False
+        if "show_hardware_info" in cls.app_preferences.get("appModules", []):
+            cls.SHOW_HW_INFO = True
 
     @classmethod
     def set_app_target_loop_runtime(cls, value: int):
@@ -257,6 +264,10 @@ class AppSettings(JsonRepr):
         if cls.content and not cls.content_saved:
             cls.save_content()
 
+        # -- Update Preferences
+        cls.update_app_preferences()
+
+        # -- File Path
         file = cls._get_settings_content_file() if save_content else cls._get_settings_file()
 
         try:

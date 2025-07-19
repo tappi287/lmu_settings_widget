@@ -30,12 +30,12 @@
         </b-card>
       </div>
 
-      <div class="notes-panel h-panel-half">
+      <div class="notes-panel h-panel-half d-none">
         <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
-            <b-icon icon="map"></b-icon>
-            <span class="ml-2">Info</span>
+            <b-icon icon="display"></b-icon>
+            <span class="ml-2">FPS Info</span>
             <slot name="header"></slot>
           </template>
           <div class="placeholder">
@@ -44,7 +44,7 @@
         </b-card>
       </div>
 
-      <div class="map-panel h-panel-half">
+      <div class="map-panel h-panel-half d-none">
         <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
@@ -57,12 +57,13 @@
           </div>
         </b-card>
       </div>
+
       <div class="bottom-panel h-panel">
         <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="pie-chart-fill"></b-icon>
-            <span class="ml-2">Info</span>
+            <span class="ml-2">Strategy</span>
             <slot name="header"></slot>
           </template>
           <div class="placeholder">
@@ -126,8 +127,9 @@ export default {
       if (r.result) { this.hardwareInfo = r.data }
     },
     startHardwareMonitoring() {
+      this.fetchHardwareInfo()
       this.hardwareUpdateInterval = setInterval(() => {
-        this.fetchHardwareInfo();
+        this.fetchHardwareInfo()
       }, 2500); // Alle 2,5 Sekunden aktualisieren
     },
     stopHardwareMonitoring() {
