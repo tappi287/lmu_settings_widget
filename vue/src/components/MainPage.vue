@@ -23,6 +23,7 @@
         <b-nav-item :active="navActive === 5" @click="navActive=5" link-classes="pl-0">
           Replays
         </b-nav-item>
+
         <template v-if="isDev">
           <b-nav-item :active="navActive === 9" @click="navActive=9" link-classes="pl-0">
             Benchmark
@@ -30,6 +31,9 @@
         </template>
         <b-nav-item :active="navActive === 4" @click="navActive=4" link-classes="pl-0">
           FuelCalc
+        </b-nav-item>
+        <b-nav-item :active="navActive === 6" @click="navActive=6" link-classes="pl-0">
+          KneeBoard
         </b-nav-item>
       </b-nav>
 
@@ -171,6 +175,8 @@
                 @replay-playing="replayPlaying"
                 :rfactor-version="rfactorVersion" :gfx-handler="$refs.gfx"/>
 
+    <KneeBoard ref="kneeboard" v-if="navActive === 6"></KneeBoard>
+
     <!-- Wiki -->
     <AppWiki v-if="navActive === 7" @nav="navigate"/>
 
@@ -189,7 +195,7 @@
     </keep-alive>
 
     <!-- rFactor Actions -->
-    <b-container fluid class="mt-3 p-0">
+    <b-container fluid class="mt-3 p-0" :class="navActive===6 ? 'd-none' : ''">
       <b-row cols="2" class="m-0">
         <b-col class="text-left p-0">
           <LaunchRfactorBtn display-live choose-content @make-toast="makeToast" @launch="rfactorLaunched"
@@ -248,6 +254,7 @@ import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
 import FuelCalc from "@/components/pages/FuelCalc.vue";
+import KneeBoard from "@/components/pages/KneeBoard.vue";
 
 export default {
   name: 'MainPage',
@@ -269,11 +276,10 @@ export default {
       preferences: undefined,
       lmwLogoUrl: lmwLogoUrl,
       lmwLogoWhiteUrl: lmwLogoWhiteUrl,
-      isDev: import.meta.env.VITE_APP_FROZEN === "0",
       heartBeatClass: '',
     }
   },
-  props: {rfactorVersion: String},
+  props: {rfactorVersion: String, isDev: Boolean},
   methods: {
     makeToast(message, category = 'secondary', title = 'Update', append = true, delay = 8000, noAutoHide = false) {
       this.$bvToast.toast(message, {
@@ -483,6 +489,7 @@ export default {
     this.$eventHub.$off('navigate', this.navigate)
   },
   components: {
+    KneeBoard,
     FuelCalc,
     PreferencesPage,
     RfactorOverlay,

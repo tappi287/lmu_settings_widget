@@ -5,7 +5,7 @@
       <b-overlay :show="dragActive" variant="white" :no-center="true" opacity="0.9" :fixed="true">
 
         <!-- Main component -->
-        <MainPage v-on:error="setError" ref="main" :rfactor-version="rfactorVersion"/>
+        <MainPage v-on:error="setError" ref="main" :rfactor-version="rfactorVersion" :is-dev="isDev" />
 
         <!-- Drag Overlay Content-->
         <template #overlay>
@@ -125,7 +125,8 @@ export default {
       error: '',
       rfactorVersion: '',
       rfactorPath: '',
-      appTimeoutId: null
+      appTimeoutId: null,
+      isDev: import.meta.env.VITE_APP_FROZEN === "0"
     }
   },
   methods: {
@@ -222,7 +223,9 @@ export default {
     dropZone.addEventListener('dragleave', this.handleDragLeave, false)
     dropZone.addEventListener('drop', this.handleFileDrop, false)
 
-    window.addEventListener('beforeunload', this.requestClose)
+    if (!this.isDev) {
+      window.addEventListener('beforeunload', this.requestClose)
+    }
 
     window.addEventListener('rfactor-live-event', this.$refs.main.updateRfactorLiveState)
     window.addEventListener('rfactor-status-event', this.$refs.main.updateRfactorStatus)
