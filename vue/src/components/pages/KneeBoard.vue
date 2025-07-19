@@ -30,8 +30,8 @@
         </b-card>
       </div>
 
-      <div class="notes-panel">
-        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+      <div class="notes-panel h-panel-half">
+        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="map"></b-icon>
@@ -44,8 +44,8 @@
         </b-card>
       </div>
 
-      <div class="map-panel">
-        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+      <div class="map-panel h-panel-half">
+        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="map"></b-icon>
@@ -57,30 +57,28 @@
           </div>
         </b-card>
       </div>
-      <div class="hardware-panel">
-        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+      <div class="bottom-panel h-panel">
+        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="pie-chart-fill"></b-icon>
-            <span class="ml-2">System</span>
+            <span class="ml-2">Info</span>
             <slot name="header"></slot>
           </template>
           <div class="placeholder">
-            <p class="text-center text-muted">Hardware Info</p>
+            <p class="text-center text-muted">Fuel Info</p>
           </div>
         </b-card>
       </div>
-      <div class="bottom-panel">
-        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-right"
+      <div class="hardware-panel h-panel">
+        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-right"
                 bg-variant="dark" text-variant="white">
           <template #header>
-            <span class="mr-2">Info</span>
+            <span class="mr-2">System</span>
             <b-icon icon="pie-chart-fill"></b-icon>
             <slot name="header"></slot>
           </template>
-          <div class="placeholder">
-            <p class="text-center text-muted">Hardware Info</p>
-          </div>
+          <HardwareInfo :hardware-info="hardwareInfo" />
         </b-card>
       </div>
     </div>
@@ -88,10 +86,13 @@
 </template>
 
 <script>
+import {getEelJsonObject} from "@/main";
 import lmwLogoUrl from "@/assets/lmw_logo.png";
+import HardwareInfo from "@/components/widgets/HardwareInfo.vue";
 
 export default {
   name: 'KneeBoard',
+  components: { HardwareInfo },
   props: {live: Boolean},
   data() {
     return {
@@ -102,22 +103,45 @@ export default {
       position: 0,
       bestLapTime: '--:--:---',
       notes: '',
+      hardwareInfo: {
+        cpu_utilization: Array(28).fill(0),
+        device_type: 'cuda',
+        gpus: [{
+          gpu_temperature: 0,
+          gpu_utilization: 0,
+          vram_total: 0,
+          vram_used: 0,
+          vram_used_percent: 0
+        }],
+        ram_total: 0,
+        ram_used: 0,
+        ram_used_percent: 0
+      },
+      hardwareUpdateInterval: null,
     };
   },
   methods: {
-    updateRaceInfo(data) {
-      if (data) {
-        this.trackName = data.trackName || this.trackName;
-        this.currentLap = data.currentLap || this.currentLap;
-        this.totalLaps = data.totalLaps || this.totalLaps;
-        this.position = data.position || this.position;
-        this.bestLapTime = data.bestLapTime || this.bestLapTime;
-      }
+    async fetchHardwareInfo() {
+      const r = await getEelJsonObject(window.eel.get_hardware_status()())
+      if (r.result) { this.hardwareInfo = r.data }
     },
-    saveNotes() {
-      // Hier Code zum Speichern der Notizen implementieren
-      console.log('Notizen gespeichert:', this.notes);
+    startHardwareMonitoring() {
+      this.hardwareUpdateInterval = setInterval(() => {
+        this.fetchHardwareInfo();
+      }, 2500); // Alle 2,5 Sekunden aktualisieren
+    },
+    stopHardwareMonitoring() {
+      if (this.hardwareUpdateInterval) {
+        clearInterval(this.hardwareUpdateInterval);
+        this.hardwareUpdateInterval = null;
+      }
     }
+  },
+  mounted() {
+    this.startHardwareMonitoring();
+  },
+  beforeDestroy() {
+    this.stopHardwareMonitoring();
   }
 };
 </script>
@@ -135,6 +159,18 @@ export default {
   gap: 15px;
 }
 
+.panel-card {
+  height: 100%;
+}
+
+.h-panel {
+  height: 50.55vh;
+}
+
+.h-panel-half {
+  height: calc(33.55vh * 0.5);
+}
+
 .info-panel {
   grid-column: 1 / 3;
   grid-row: 1;
@@ -150,18 +186,17 @@ export default {
   grid-row: 2;
 }
 
-.hardware-panel {
+.bottom-panel {
   grid-column: 1;
   grid-row: 3;
 }
 
-.bottom-panel {
+.hardware-panel {
   grid-column: 2;
   grid-row: 3;
 }
 
 .placeholder {
-  height: 27vh;
   display: flex;
   align-items: center;
   justify-content: center;

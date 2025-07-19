@@ -22,9 +22,11 @@ class AppSettings(JsonRepr):
     TARGET_LOOP_DURATION_MS = 64
     TARGET_LOOP_WAIT = TARGET_LOOP_DURATION_MS * 0.001
     TARGET_LOOP_WAIT_HALF = TARGET_LOOP_WAIT * 0.5
+    HARDWARE_UPDATE_INTERVAL = 3.5
 
     backup_created = False
     needs_admin = False
+    show_hardware_info = True
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
     app_preferences = {"appModules": ["audio", "edge_preferred"]}
@@ -70,6 +72,7 @@ class AppSettings(JsonRepr):
         "content_saved",
         "TARGET_LOOP_WAIT",
         "TARGET_LOOP_WAIT_HALF",
+        "HARDWARE_UPDATE_INTERVAL",
     ]
 
     present_mon_bin: Path = get_present_mon_bin()

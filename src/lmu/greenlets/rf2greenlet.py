@@ -1,4 +1,4 @@
-""" Connect to rFactor 2 Ui via it's rest api """
+"""Connect to rFactor 2 Ui via it's rest api"""
 
 import logging
 
@@ -6,7 +6,6 @@ import eel
 import gevent
 
 from lmu.app.app_main import CLOSE_EVENT
-from lmu.app_settings import AppSettings
 from lmu.benchmark import RfactorBenchmark
 from lmu.rf2command import Command, CommandQueue
 from lmu.rf2connect import RfactorState, RfactorConnect

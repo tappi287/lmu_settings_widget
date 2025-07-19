@@ -14,6 +14,7 @@ from ..preset.preset import PresetType
 from ..preset.preset_base import load_preset
 from ..rf2command import CommandQueue, Command
 from ..rf2connect import RfactorState
+from ..rf2events import HardwareStatusEvent
 from ..utils import capture_app_exceptions
 from ..valve.steam_utils import SteamApps
 
@@ -220,3 +221,11 @@ def is_original_openvr_present():
         return json.dumps({"result": False})
 
     return json.dumps({"result": openxr.is_openvr_present(Path(rf_loc))})
+
+
+@capture_app_exceptions
+def get_hardware_status():
+    hardware_stats = HardwareStatusEvent.get_nowait()
+    if hardware_stats is None:
+        return json.dumps({"result": False})
+    return json.dumps({"result": True, "data": hardware_stats})

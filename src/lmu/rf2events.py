@@ -9,7 +9,7 @@ from .rf2connect import RfactorState, RfactorConnect
 class RfactorBaseEvent:
     @classmethod
     def get_nowait(cls) -> Optional[gevent.event.AsyncResult]:
-        if hasattr(cls, 'result'):
+        if hasattr(cls, "result"):
             try:
                 return cls.result.get_nowait()
             except gevent.Timeout:
@@ -17,13 +17,14 @@ class RfactorBaseEvent:
 
     @classmethod
     def reset(cls):
-        if hasattr(cls, 'event') and hasattr(cls, 'result'):
+        if hasattr(cls, "event") and hasattr(cls, "result"):
             cls.event.clear()
             cls.result = gevent.event.AsyncResult()
 
 
 class RfactorLiveEvent(RfactorBaseEvent):
-    """ Communicate a rfactor live/running event from the rfactor greenlet to the frontend """
+    """Communicate a rfactor live/running event from the rfactor greenlet to the frontend"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
     was_live = False
@@ -49,7 +50,8 @@ class RfactorLiveEvent(RfactorBaseEvent):
 
 
 class RfactorQuitEvent(RfactorBaseEvent):
-    """ Communicate a rfactor quit request event from the frontend to the rfactor greenlet """
+    """Communicate a rfactor quit request event from the frontend to the rfactor greenlet"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
     quit_result = gevent.event.AsyncResult()
@@ -63,7 +65,8 @@ class RfactorQuitEvent(RfactorBaseEvent):
 
 
 class RfactorStatusEvent(RfactorBaseEvent):
-    """ post status updates to the FrontEnd """
+    """post status updates to the FrontEnd"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
     empty = True
@@ -79,7 +82,8 @@ class RfactorStatusEvent(RfactorBaseEvent):
 
 
 class RfactorYouTubeEvent(RfactorBaseEvent):
-    """ post status updates to the FrontEnd """
+    """post status updates to the FrontEnd"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
     is_active = False
@@ -91,7 +95,8 @@ class RfactorYouTubeEvent(RfactorBaseEvent):
 
 
 class RfactorYouTubeSetUsernameEvent(RfactorBaseEvent):
-    """ post status updates to the FrontEnd """
+    """post status updates to the FrontEnd"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
 
@@ -102,7 +107,8 @@ class RfactorYouTubeSetUsernameEvent(RfactorBaseEvent):
 
 
 class RfactorYouTubeErrorEvent(RfactorBaseEvent):
-    """ post status updates to the FrontEnd """
+    """post status updates to the FrontEnd"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
 
@@ -113,7 +119,8 @@ class RfactorYouTubeErrorEvent(RfactorBaseEvent):
 
 
 class RfactorYouTubeLiveEvent(RfactorBaseEvent):
-    """ post status updates to the FrontEnd """
+    """post status updates to the FrontEnd"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
 
@@ -124,7 +131,8 @@ class RfactorYouTubeLiveEvent(RfactorBaseEvent):
 
 
 class ReplayPlayEvent(RfactorBaseEvent):
-    """ Communicate a replay play request to rfactor event loop """
+    """Communicate a replay play request to rfactor event loop"""
+
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
     is_playing_replay = False
@@ -156,6 +164,16 @@ class RecordBenchmarkEvent(RfactorBaseEvent):
 
 
 class BenchmarkProgressEvent(RfactorBaseEvent):
+    event = gevent.event.Event()
+    result = gevent.event.AsyncResult()
+
+    @classmethod
+    def set(cls, value):
+        cls.result.set(value)
+        cls.event.set()
+
+
+class HardwareStatusEvent(RfactorBaseEvent):
     event = gevent.event.Event()
     result = gevent.event.AsyncResult()
 

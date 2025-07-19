@@ -141,6 +141,11 @@ def is_original_openvr_present():
     return app_main_fn.is_original_openvr_present()
 
 
+@eel.expose
+def get_hardware_status():
+    return app_main_fn.get_hardware_status()
+
+
 def expose_main_methods():
     """empty method we import to have the exposed methods registered"""
     pass
