@@ -164,8 +164,8 @@ def create_portable_archive():
     portable_dist_dir = Path(DIST_DIR) / "portable" / PORTABLE_ZIP_NAME
     archive_root_dir = Path(DIST_DIR) / "portable"
 
-    portable_dist_dir.mkdir(parents=True)
-    shutil.copytree(dist_exe_dir, portable_dist_dir)
+    portable_dist_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(dist_exe_dir, portable_dist_dir, dirs_exist_ok=True)
 
     old_archive = Path(DIST_DIR) / f"{PORTABLE_ZIP_NAME}.zip"
     old_archive.unlink(missing_ok=True)

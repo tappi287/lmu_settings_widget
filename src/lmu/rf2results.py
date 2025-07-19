@@ -182,15 +182,15 @@ class ResultStreamEntry(ResultsJsonRepr):
 
     def read_details(self):
         if self.type == "Incident":
-            vehicle_match = re.search("with\sanother\svehicle\s", self.text)
-            start_match = re.search("\(\d{1,3}\)", self.text)
+            vehicle_match = re.search(r"with\sanother\svehicle\s", self.text)
+            start_match = re.search(r"\(\d{1,3}\)", self.text)
 
             if start_match:
                 self.drivers.append(self.text[: start_match.start()])
 
             if vehicle_match:
                 remaining_str = self.text[vehicle_match.end() :]
-                dm = re.search("\(\d{1,3}\)", remaining_str)
+                dm = re.search(r"\(\d{1,3}\)", remaining_str)
                 if dm:
                     self.drivers.append(remaining_str[: dm.start()])
 

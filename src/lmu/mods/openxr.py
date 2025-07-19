@@ -224,7 +224,7 @@ def remove_reshade_openxr_layer() -> bool:
 
 def setup_reshade_openxr_layer(enable=True, game_executable: Path = None) -> bool:
     """Setup ReShade via it's OpenXR-API-Layer
-        this will end up in HKEY_CURRENT_USER\SOFTWARE\Khronos\OpenXR\1\ApiLayers\Implicit
+        this will end up in HKEY_CURRENT_USER\\SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit
 
         https://registry.khronos.org/OpenXR/specs/1.0/loader.html#windows-manifest-registry-usage
 
