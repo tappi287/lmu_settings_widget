@@ -66,9 +66,7 @@
             <span class="ml-2">Strategy</span>
             <slot name="header"></slot>
           </template>
-          <div class="placeholder">
-            <p class="text-center text-muted">Fuel Info</p>
-          </div>
+          <PerformanceMonitor />
         </b-card>
       </div>
       <div class="hardware-panel h-panel">
@@ -90,10 +88,11 @@
 import {getEelJsonObject} from "@/main";
 import lmwLogoUrl from "@/assets/lmw_logo.png";
 import HardwareInfo from "@/components/widgets/HardwareInfo.vue";
+import PerformanceMonitor from "@/components/pages/PerformanceMonitor.vue";
 
 export default {
   name: 'KneeBoard',
-  components: { HardwareInfo },
+  components: {PerformanceMonitor, HardwareInfo },
   props: {live: Boolean},
   data() {
     return {

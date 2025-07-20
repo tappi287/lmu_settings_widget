@@ -5,10 +5,6 @@ from ctypes import c_void_p, c_uint32, byref, c_double, c_uint64, Structure
 
 from lmu.globals import get_present_mon_service_loader
 
-# Annahme: Die PresentMon SDK-Dateien befinden sich im Standardverzeichnis
-# Passen Sie den Pfad an, falls er abweicht.
-DLL_PATH = str(get_present_mon_service_loader())
-
 # Metrik-Konstanten aus PresentMonAPI.h
 PM_METRIC_APPLICATION = 0
 PM_METRIC_CPU_FRAME_TIME = 8
@@ -117,7 +113,7 @@ class PresentMon:
         self.metrics = MetricData()
 
         try:
-            self.pm_dll = ctypes.WinDLL(DLL_PATH)
+            self.pm_dll = ctypes.WinDLL(str(get_present_mon_service_loader()))
             self._define_api_functions()
             logging.info("PresentMonAPI2Loader.dll erfolgreich geladen.")
         except (OSError, AttributeError) as e:

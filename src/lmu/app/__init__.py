@@ -7,6 +7,7 @@ from .app_replay import expose_replay_methods
 from .app_results import expose_results_methods
 from .app_benchmark import expose_benchmark_methods
 from .app_content import expose_content_methods
+from .performance_api import expose_performance_api_methods
 
 
 def expose_app_methods():
@@ -19,3 +20,4 @@ def expose_app_methods():
     expose_results_methods()
     expose_benchmark_methods()
     expose_content_methods()
+    expose_performance_api_methods()
