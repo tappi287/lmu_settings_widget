@@ -45,7 +45,9 @@ export default {
   },
   mounted() {
     // Verbindung zum Backend herstellen und Performance-Monitoring starten
-    this.startPerformanceMonitor();
+    this.updateInterval = setInterval(() => {
+      this.fetchPerformanceData();
+    }, 500);
   },
   beforeDestroy() {
     // Timer stoppen
@@ -76,25 +78,6 @@ export default {
         }
       });
     },
-
-    // Performance-Monitor starten
-    startPerformanceMonitor() {
-      // Zuerst den Monitor initialisieren (PID = null für automatische Erkennung)
-      window.eel.init_performance_monitor(null)((success) => {
-        if (success) {
-          console.log('Performance-Monitor erfolgreich initialisiert');
-          // Regelmäßiges Abrufen der Daten starten
-          this.updateInterval = setInterval(() => {
-            this.fetchPerformanceData();
-          }, 1000);
-        } else {
-          console.error('Fehler bei der Initialisierung des Performance-Monitors');
-          // Fallback auf Simulation für Tests oder Entwicklung
-          this.startDataSimulation();
-        }
-      });
-    },
-
     // Für Entwicklungs- und Testzwecke
     startDataSimulation() {
       console.log('Verwende simulierte Performance-Daten');

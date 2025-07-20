@@ -9,6 +9,7 @@ import psutil
 
 from lmu import requests
 from lmu.directInputKeySend import PressReleaseKey
+from lmu.globals import GAME_EXECUTABLE
 from lmu.rf2sharedmem.sharedMemoryAPI import SimInfoAPI
 from lmu.lmu_game import RfactorPlayer
 from lmu.utils import rfactor_process_with_id_exists
@@ -138,6 +139,9 @@ class RfactorConnect:
     enable_shared_mem_check = None
     rf2_pid = None
 
+    # -- Performance monitoring
+    present_mon = None
+
     _timestamp = 0
 
     @staticmethod
@@ -153,14 +157,22 @@ class RfactorConnect:
         return f"http://{cls.host}:{cls.web_ui_port}"
 
     @classmethod
+    def get_pid(cls) -> int:
+        for proc in psutil.process_iter(["pid", "name"]):
+            if proc.info["name"].lower().startswith(GAME_EXECUTABLE.lower()):
+                cls.rf2_pid = proc.info["pid"]
+                logging.info("Found Game Executable Process ID: %s", cls.rf2_pid)
+                return cls.rf2_pid
+        logging.error("Could not find Game Executable Process ID: %s", cls.rf2_pid)
+        return -1
+
+    @classmethod
     def _rf2_processes_detected(cls) -> bool:
         if rfactor_process_with_id_exists(cls.rf2_pid):
             return True
 
-        for pid in psutil.pids():
-            if rfactor_process_with_id_exists(pid):
-                cls.rf2_pid = pid
-                return True
+        if cls.get_pid() >= 0:
+            return True
         return False
 
     @classmethod

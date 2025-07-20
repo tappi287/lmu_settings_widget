@@ -181,3 +181,15 @@ class HardwareStatusEvent(RfactorBaseEvent):
     def set(cls, value):
         cls.result.set(value)
         cls.event.set()
+
+
+class PerformanceMetricsEvent(RfactorBaseEvent):
+    """Performance-Metriken vom PresentMon"""
+
+    event = gevent.event.Event()
+    result = gevent.event.AsyncResult()
+
+    @classmethod
+    def set(cls, value):
+        cls.result.set(value)
+        cls.event.set()

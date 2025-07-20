@@ -9,7 +9,14 @@ from lmu.app.app_main import CLOSE_EVENT
 from lmu.benchmark import RfactorBenchmark
 from lmu.rf2command import Command, CommandQueue
 from lmu.rf2connect import RfactorState, RfactorConnect
-from lmu.rf2events import RfactorLiveEvent, RfactorQuitEvent, RfactorStatusEvent, BenchmarkProgressEvent
+from lmu.rf2events import (
+    RfactorLiveEvent,
+    RfactorQuitEvent,
+    RfactorStatusEvent,
+    BenchmarkProgressEvent,
+    PerformanceMetricsEvent,
+)
+from lmu.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
 
@@ -20,6 +27,25 @@ def _rfactor_greenlet_loop():
         CommandQueue.append(Command(Command.quit, timeout=10.0))
         # -- Reset Quit Event
         RfactorQuitEvent.reset()
+
+    if RfactorLiveEvent.was_live and RfactorConnect.rf2_pid:
+        # Initialisiere PresentMon wenn noch nicht vorhanden
+        if RfactorConnect.present_mon is None:
+            try:
+                RfactorConnect.present_mon = PresentMon()
+                RfactorConnect.present_mon.start(RfactorConnect.rf2_pid)
+                logging.info(f"PresentMon für PID {RfactorConnect.rf2_pid} gestartet")
+            except Exception as e:
+                logging.error(f"Fehler beim Starten von PresentMon: {e}")
+
+        # Aktualisiere Metriken und setze sie im AsyncResult
+        if RfactorConnect.present_mon:
+            try:
+                metrics = RfactorConnect.present_mon.get_metrics()
+                if metrics:
+                    PerformanceMetricsEvent.set(metrics)
+            except Exception as e:
+                logging.error(f"Fehler beim Abrufen der Performance-Metriken: {e}")
 
     # -- If we were live before, re-apply previous graphics preset
     if RfactorLiveEvent.changed_from_live():
@@ -39,6 +65,20 @@ def _rfactor_greenlet_loop():
     elif RfactorConnect.state == RfactorState.unavailable:
         # -- Report state change to frontend
         RfactorLiveEvent.set(False)
+
+        # -- Stoppe PresentMon wenn rFactor beendet wurde
+        if RfactorConnect.present_mon:
+            try:
+                RfactorConnect.present_mon.stop()
+                RfactorConnect.present_mon = None
+                logging.info("PresentMon stopped, Game no longer running.")
+            except Exception as e:
+                logging.error(f"Error stopping PresentMon: {e}")
+
+    # -- Rfactor Live
+    if RfactorLiveEvent.get_nowait():
+        if not RfactorConnect.rf2_pid:
+            RfactorConnect.get_pid()
 
     # ---------------------------
     # -- COMMAND QUEUE
@@ -63,6 +103,15 @@ def rfactor_greenlet():
             break
 
         gevent.sleep(RfactorConnect.active_timeout * 0.25)
+
+    # PresentMon stoppen, falls noch aktiv
+    if RfactorConnect.present_mon:
+        try:
+            RfactorConnect.present_mon.stop()
+            RfactorConnect.present_mon = None
+            logging.info("PresentMon beim Beenden des Greenlets gestoppt")
+        except Exception as e:
+            logging.error(f"Fehler beim Stoppen von PresentMon: {e}")
 
     RfactorConnect.stop_request_thread()
     logging.info("rFactor Greenlet exiting")

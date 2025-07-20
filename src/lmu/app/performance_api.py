@@ -3,10 +3,8 @@ from typing import Optional
 
 import eel
 import logging
-from lmu.present_mon_wrapper import PresentMon, MetricData
-
-# Singleton-Instanz des PresentMonWrapper
-PRESENT_MON: Optional[PresentMon] = None
+from lmu.present_mon_wrapper import MetricData
+from lmu.rf2events import PerformanceMetricsEvent
 
 
 def expose_performance_api_methods():
@@ -15,69 +13,17 @@ def expose_performance_api_methods():
 
 
 @eel.expose
-def init_performance_monitor(pid=None):
-    """
-    Initialisiert den Performance-Monitor für eine bestimmte Prozess-ID.
-
-    Args:
-        pid (int, optional): Die Prozess-ID der zu überwachenden Anwendung. Falls None, wird
-                            die aktive Anwendung automatisch erkannt.
-
-    Returns:
-        bool: True, wenn die Initialisierung erfolgreich war, sonst False
-    """
-    global PRESENT_MON
-
-    try:
-        # Bestehende Instanz beenden, falls vorhanden
-        if PRESENT_MON is not None:
-            PRESENT_MON.stop()
-
-        # Neue Instanz erstellen und starten
-        PRESENT_MON = PresentMon()
-        success = PRESENT_MON.start(pid)
-
-        return success
-    except Exception as e:
-        logging.error(f"Fehler bei der Initialisierung des Performance-Monitors: {e}")
-        return False
-
-
-@eel.expose
-def stop_performance_monitor():
-    """
-    Stoppt den Performance-Monitor.
-
-    Returns:
-        bool: True, wenn das Stoppen erfolgreich war, sonst False
-    """
-    global PRESENT_MON
-
-    try:
-        if PRESENT_MON is not None:
-            PRESENT_MON.stop()
-            PRESENT_MON = None
-        return True
-    except Exception as e:
-        logging.error(f"Fehler beim Stoppen des Performance-Monitors: {e}")
-        return False
-
-
-@eel.expose
 def get_performance_metrics():
     """
-    Ruft die aktuellen Performance-Metriken ab.
+    Ruft die aktuellen Performance-Metriken aus dem AsyncResult ab.
 
     Returns:
         str: JSON-String mit den Performance-Metriken oder leerer String bei Fehler
     """
-    global PRESENT_MON
-
     try:
-        if PRESENT_MON is None:
-            return json.dumps({})
+        # Nicht-blockierender Abruf der Metriken
+        metrics: Optional[MetricData] = PerformanceMetricsEvent.get_nowait()
 
-        metrics = PRESENT_MON.get_metrics()
         if metrics is None:
             return json.dumps({})
 
