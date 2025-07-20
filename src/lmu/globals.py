@@ -103,6 +103,12 @@ def get_present_mon_bin() -> Path:
     return present_mon_exe
 
 
+def get_present_mon_service_loader() -> Path:
+    bin_dir = Path(get_current_modules_dir()) / "bin"
+    present_mon_service_loader = bin_dir / "PresentMonAPI2Loader.dll"
+    return present_mon_service_loader
+
+
 def _get_user_doc_dir() -> Path:
     docs_dir = Path.home() / "Documents"
     if not docs_dir or not docs_dir.exists():

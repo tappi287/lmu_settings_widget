@@ -2,12 +2,16 @@ import json
 import logging
 import subprocess
 import sys
+import time
 from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
 
+import gevent
+
 from lmu.globals import LMU_APPID, GAME_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
+from lmu.present_mon_wrapper import PresentMon
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
 from lmu.preset.settings_model_base import OPTION_CLASSES
@@ -447,3 +451,49 @@ class RfactorPlayer:
         logging.info("Launching %s", cmd)
         subprocess.Popen(cmd, cwd=self.location)
         return True
+
+    def run_rfactor_with_present_mon(self, method: int = 0, server_info: Optional[dict] = None):
+        """Start game binary and watch with present mon."""
+        if not self._check_bin_dir():
+            self.error += "Could not locate Le Mans Ultimate Bin directory.\n"
+            return False
+
+        executable = self.location / GAME_EXECUTABLE
+        # Build command
+        cmd = [str(WindowsPath(executable))]
+        # VR settings from WebUI
+        # -- Add '+VR' Commandline Option
+        if method in (2, 3):
+            cmd += ["+VR"]
+
+        # Run process
+        process = None
+        monitor = None
+        try:
+            process = subprocess.Popen(cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS)
+            logging.info(f"rFactor 2 process started with PID: {process.pid}")
+
+            # Start PresentMon monitoring
+            try:
+                monitor = PresentMon()
+                monitor.start(process.pid)
+            except Exception as e:
+                logging.error(f"Could not start PresentMon: {e}")
+                monitor = None
+
+            while process.poll() is None:
+                if monitor:
+                    monitor.poll()
+                # Use gevent.sleep as the main app loop uses it
+                # gevent.sleep(0.5)
+                time.sleep(0.5)
+
+        except FileNotFoundError:
+            logging.error(f"Game executable not found.")
+        except Exception as e:
+            logging.error(f"An error occurred: {e}")
+        finally:
+            if monitor:
+                monitor.stop()
+            if process:
+                logging.info("Game process finished.")
