@@ -3,19 +3,26 @@
     <!-- Haupt-Metriken im Fokus -->
     <div class="main-metrics-section">
       <div class="metrics-container">
-        <div class="metric-box cpu-metric">
+        <div class="metric-row cpu-metric">
           <div class="metric-title">CPU</div>
           <div class="metric-value">{{ performanceData.cpu_frame_time_avg.toFixed(2) }} ms</div>
         </div>
-        <div class="metric-box gpu-metric">
+        <div class="metric-row gpu-metric">
           <div class="metric-title">GPU</div>
           <div class="metric-value">{{ performanceData.gpu_time_avg.toFixed(2) }} ms</div>
         </div>
       </div>
 
-      <!-- Performance Graph -->
-      <div class="performance-graph-container">
-        <canvas ref="performanceChart"></canvas>
+      <!-- Performance Graphs -->
+      <div class="performance-graphs-container">
+        <div class="chart-container">
+          <div class="chart-title">CPU</div>
+          <canvas ref="cpuPerformanceChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <div class="chart-title">GPU</div>
+          <canvas ref="gpuPerformanceChart"></canvas>
+        </div>
       </div>
     </div>
 
@@ -24,34 +31,32 @@
       <div class="metrics-grid">
         <!-- FPS Metriken -->
         <div class="metric-group">
-          <h4>FPS</h4>
           <div class="metric-row">
-            <span class="metric-label">Average:</span>
+            <span class="metric-label">FPS Average:</span>
             <span class="metric-value">{{ performanceData.fps_avg.toFixed(1) }}</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">90. Percentil:</span>
+            <span class="metric-label">FPS 90. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_90.toFixed(1) }}</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">95. Percentil:</span>
+            <span class="metric-label">FPS 95. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_95.toFixed(1) }}</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">99. Percentil:</span>
+            <span class="metric-label">FPS 99. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_99.toFixed(1) }}</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">Min/Max:</span>
+            <span class="metric-label">FPS Min/Max:</span>
             <span class="metric-value">{{ performanceData.fps_min.toFixed(1) }} / {{ performanceData.fps_max.toFixed(1) }}</span>
           </div>
         </div>
 
         <!-- Frametime & Performance -->
         <div class="metric-group">
-          <h4>Frame Performance</h4>
           <div class="metric-row">
-            <span class="metric-label">Frame Zeit:</span>
+            <span class="metric-label">FrameTime:</span>
             <span class="metric-value">{{ performanceData.frame_duration_avg.toFixed(2) }} ms</span>
           </div>
           <div class="metric-row">
@@ -65,35 +70,33 @@
         </div>
 
         <!-- Latenz -->
-        <div class="metric-group d-none">
-          <h4>Latenz</h4>
+        <div class="metric-group">
           <div class="metric-row">
-            <span class="metric-label">Display:</span>
+            <span class="metric-label">Display Latency:</span>
             <span class="metric-value">{{ performanceData.display_latency_avg.toFixed(2) }} ms</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">Display Dauer:</span>
+            <span class="metric-label">Display Duration:</span>
             <span class="metric-value">{{ performanceData.display_duration_avg.toFixed(2) }} ms</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">Input:</span>
+            <span class="metric-label">Input Latency:</span>
             <span class="metric-value">{{ performanceData.input_latency_avg.toFixed(2) }} ms</span>
           </div>
         </div>
 
         <!-- Hardware -->
-        <div class="metric-group d-none">
-          <h4>Hardware</h4>
+        <div class="metric-group">
           <div class="metric-row">
-            <span class="metric-label">GPU Leistung:</span>
+            <span class="metric-label">GPU Power:</span>
             <span class="metric-value">{{ performanceData.gpu_power_avg.toFixed(1) }}W</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">CPU Auslastung:</span>
+            <span class="metric-label">CPU Load:</span>
             <span class="metric-value">{{ performanceData.cpu_utilization.toFixed(1) }}%</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">CPU Frequenz:</span>
+            <span class="metric-label">CPU Frequency:</span>
             <span class="metric-value">{{ formatCpuFrequency() }}</span>
           </div>
         </div>
@@ -143,7 +146,8 @@ export default {
   },
   data() {
     return {
-      chart: null,
+      cpuChart: null,
+      gpuChart: null,
       cpuTimes: Array(60).fill(0),
       gpuTimes: Array(60).fill(0),
       timeLabels: Array(60).fill('')
@@ -160,8 +164,11 @@ export default {
     }, 1000); // Alle Sekunde aktualisieren
   },
   beforeDestroy() {
-    if (this.chart) {
-      this.chart.destroy();
+    if (this.cpuChart) {
+      this.cpuChart.destroy();
+    }
+    if (this.gpuChart) {
+      this.gpuChart.destroy();
     }
     if (this.updateTimer) {
       clearInterval(this.updateTimer);
@@ -169,82 +176,96 @@ export default {
   },
   methods: {
     initChart() {
-      const ctx = this.$refs.performanceChart.getContext('2d');
+      const cpuCtx = this.$refs.cpuPerformanceChart.getContext('2d');
+      const gpuCtx = this.$refs.gpuPerformanceChart.getContext('2d');
 
-      this.chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: this.timeLabels,
-          datasets: [
-            {
-              label: 'CPU (ms)',
-              data: this.cpuTimes,
-              borderColor: '#728bb0', // Hellblau für CPU
-              backgroundColor: 'rgba(114, 139, 176, 0.2)',
-              borderWidth: 2,
-              tension: 0.3,
-              pointRadius: 0
-            },
-            {
-              label: 'GPU (ms)',
-              data: this.gpuTimes,
-              borderColor: '#f86045', // Orange für GPU
-              backgroundColor: 'rgba(248, 96, 69, 0.2)',
-              borderWidth: 2,
-              tension: 0.3,
-              pointRadius: 0
-            }
-          ]
+      // Gemeinsame Chart-Optionen
+      const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 0 // Deaktiviere Animationen für bessere Performance
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: {
-            duration: 0 // Deaktiviere Animationen für bessere Performance
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Time'
-              },
-              grid: {
-                color: 'rgba(255, 255, 255, 0.1)'
-              }
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: false
             },
-            x: {
-              display: false, // x-Achse ausblenden für aufgeräumteres Design
-              grid: {
-                display: false
-              }
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
             }
           },
-          plugins: {
-            zoom: {
-              zoom: {
-                wheel: {
-                  enabled: true
-                },
-                pinch: {
-                  enabled: true
-                },
-                mode: 'y'
-              },
-              pan: {
-                enabled: true,
-                mode: 'y'
-              }
-            },
-            legend: {
-              enabled: false,
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false
+          x: {
+            display: false, // x-Achse ausblenden für aufgeräumteres Design
+            grid: {
+              display: false
             }
           }
-        }
+        },
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true
+              },
+              pinch: {
+                enabled: true
+              },
+              mode: 'y'
+            },
+            pan: {
+              enabled: true,
+              mode: 'y'
+            }
+          },
+          legend: {
+            display: false
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        barPercentage: 1.0,
+        categoryPercentage: 1.0,
+        borderSkipped: false
+      };
+
+      // CPU Chart
+      this.cpuChart = new Chart(cpuCtx, {
+        type: 'bar',
+        data: {
+          labels: this.timeLabels,
+          datasets: [{
+            label: 'CPU (ms)',
+            data: this.cpuTimes,
+            backgroundColor: (context) => {
+              const value = context.dataset.data[context.dataIndex];
+              return value <= 11.1 ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
+            },
+            borderWidth: 0
+          }]
+        },
+        options: commonOptions
+      });
+
+      // GPU Chart
+      this.gpuChart = new Chart(gpuCtx, {
+        type: 'bar',
+        data: {
+          labels: this.timeLabels,
+          datasets: [{
+            label: 'GPU (ms)',
+            data: this.gpuTimes,
+            backgroundColor: (context) => {
+              const value = context.dataset.data[context.dataIndex];
+              return value <= 11.1 ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
+            },
+            borderWidth: 0
+          }]
+        },
+        options: commonOptions
       });
     },
     updateChartData() {
@@ -266,8 +287,9 @@ export default {
       this.timeLabels.shift();
       this.timeLabels.push(timeString);
 
-      // Chart aktualisieren
-      this.chart.update('none'); // 'none' für beste Performance
+      // Charts aktualisieren
+      this.cpuChart.update('none'); // 'none' für beste Performance
+      this.gpuChart.update('none');
     },
     formatCpuFrequency() {
       if (this.performanceData.cpu_frequency <= 0.0) {
@@ -299,7 +321,6 @@ export default {
 .main-metrics-section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .metrics-container {
@@ -309,49 +330,45 @@ export default {
   margin-bottom: 0.5rem;
 }
 
+.cpu-metric, .gpu-metric {
+  width: 50%;
+}
+
 .metric-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
-  border-radius: 8px;
-  min-width: 140px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.cpu-metric {
-  background-color: rgba(114, 139, 176, 0.2);
-  border: 1px solid #728bb0;
-}
-
-.gpu-metric {
-  background-color: rgba(248, 96, 69, 0.2);
-  border: 1px solid #f86045;
 }
 
 .metric-title {
-  position: absolute;
-  top: 0.25rem;
-  left: 0.15rem;
   font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 0.3rem;
-  text-orientation: mixed;
-  writing-mode: vertical-lr;
 }
 
 .metric-value {
   font-size: 1.5rem;
   font-weight: bold;
-  align-self: end;
 }
 
-.performance-graph-container {
-  height: 150px;
+.performance-graphs-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
   width: 100%;
+}
+
+.chart-container {
+  height: 100px;
+  width: 48%;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  position: relative;
+}
+
+.chart-title {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 0.9rem;
+  color: #aaa;
+  z-index: 1;
 }
 
 .detailed-metrics-section {
@@ -382,6 +399,7 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
+  align-items: center;
 }
 
 .metric-label {
@@ -395,7 +413,6 @@ export default {
 @media (max-width: 768px) {
   .metrics-container {
     flex-direction: column;
-    gap: 1rem;
     align-items: center;
   }
 
@@ -406,6 +423,14 @@ export default {
 
   .metrics-grid {
     grid-template-columns: 1fr;
+  }
+
+  .performance-graphs-container {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    width: 100%;
   }
 }
 </style>

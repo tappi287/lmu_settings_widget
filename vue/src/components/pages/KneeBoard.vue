@@ -63,7 +63,7 @@
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="pie-chart-fill"></b-icon>
-            <span class="ml-2">Strategy</span>
+            <span class="ml-2">Performance</span>
             <slot name="header"></slot>
           </template>
           <PerformanceMonitor />
@@ -202,5 +202,9 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  /* need a breakpoint for the grid here */
 }
 </style>
