@@ -7,11 +7,8 @@ from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
 
-import gevent
-
 from lmu.globals import LMU_APPID, GAME_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
-from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
 from lmu.preset.settings_model_base import OPTION_CLASSES
@@ -457,6 +454,7 @@ class RfactorPlayer:
         if not self._check_bin_dir():
             self.error += "Could not locate Le Mans Ultimate Bin directory.\n"
             return False
+        from lmu.benchmark.present_mon_wrapper import PresentMon
 
         executable = self.location / GAME_EXECUTABLE
         # Build command
