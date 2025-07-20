@@ -3,9 +3,11 @@
     <!-- CPU Utilization -->
     <div class="system-info-section">
       <div class="info-label">CPU Utilization</div>
+      
+      <!-- Top 8 CPU Cores -->
       <div class="cpu-grid">
-        <div v-for="(usage, index) in filteredCpuUtilization" :key="'cpu-' + index" class="cpu-core">
-          <div class="core-label">{{ cpuOriginalIndices[index] }}</div>
+        <div v-for="(usage, index) in topCpuCores" :key="'cpu-' + index" class="cpu-core">
+          <div class="core-label">CPU {{ cpuOriginalIndices[index] }}</div>
           <div class="core-bar-container">
             <div class="core-bar" :style="getCpuBarStyle(usage)"></div>
           </div>
@@ -25,19 +27,26 @@
     <!-- GPU Information (for each GPU) -->
     <div v-for="(gpu, index) in hardwareInfo.gpus" :key="'gpu-' + index" class="system-info-section">
       <div class="info-label">
-        GPU {{ index + 1 }}: {{ formatMemory(gpu.vram_used) }} / {{ formatMemory(gpu.vram_total) }} 
-        ({{ Math.round(gpu.vram_used_percent) }}%)
+        GPU {{ index + 1 }} Load
       </div>
       <b-progress height="20px" class="mb-3">
-        <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.vram_used_percent" :max="100" />
+        <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.gpu_utilization" :max="100">
+          {{ gpu.gpu_utilization }}%
+        </b-progress-bar>
+      </b-progress>
+      <div class="info-label">
+        GPU {{ index + 1 }}: {{ formatMemory(gpu.vram_used) }} / {{ formatMemory(gpu.vram_total) }}
+      </div>
+      <b-progress height="20px" class="mb-3">
+        <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.vram_used_percent" :max="100">
+          {{ Math.round(gpu.vram_used_percent) }}%
+        </b-progress-bar>
       </b-progress>
 
       <div class="info-label">
         GPU Temp: {{ gpu.gpu_temperature }}°C | GPU Load: {{ gpu.gpu_utilization }}%
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -64,33 +73,27 @@ export default {
     }
   },
   computed: {
-    filteredCpuUtilization() {
-      // Filtere CPU-Kerne mit Auslastung < 0.25 heraus, behalte aber die Indizes bei
-      const activeCores = [];
+    topCpuCores() {
       this.cpuOriginalIndices = [];
-
-      this.hardwareInfo.cpu_utilization.forEach((usage, index) => {
-        if (usage >= 0.25) {
-          activeCores.push(usage);
-          this.cpuOriginalIndices.push(index);
-        }
+      
+      // Erstelle ein Array mit Paaren [index, usage]
+      const cpuPairs = this.hardwareInfo.cpu_utilization.map((usage, index) => [index, usage]);
+      
+      // Sortiere nach Auslastung (absteigend)
+      cpuPairs.sort((a, b) => b[1] - a[1]);
+      
+      // Nehme die Top 8 oder weniger, wenn nicht genug vorhanden
+      const topCount = Math.min(8, cpuPairs.length);
+      const topPairs = cpuPairs.slice(0, topCount);
+      
+      // Speichere die ursprünglichen Indizes und gib die Nutzungswerte zurück
+      const usageValues = [];
+      topPairs.forEach(pair => {
+        this.cpuOriginalIndices.push(pair[0]);
+        usageValues.push(pair[1]);
       });
-
-      // Wenn keine aktiven Kerne gefunden wurden, zeige die 4 mit der höchsten Auslastung
-      if (activeCores.length === 0) {
-        const sortedIndices = [...this.hardwareInfo.cpu_utilization.keys()]
-          .sort((a, b) => this.hardwareInfo.cpu_utilization[b] - this.hardwareInfo.cpu_utilization[a])
-          .slice(0, 4);
-
-        sortedIndices.sort((a, b) => a - b); // Sortiere nach Kern-Nummer
-
-        sortedIndices.forEach(index => {
-          activeCores.push(this.hardwareInfo.cpu_utilization[index]);
-          this.cpuOriginalIndices.push(index);
-        });
-      }
-
-      return activeCores;
+      
+      return usageValues;
     }
   },
   data() {
@@ -135,6 +138,10 @@ export default {
 .info-label {
   margin-bottom: 5px;
   font-size: 0.9rem;
+}
+
+.overall-cpu-section {
+  margin-bottom: 10px;
 }
 
 .cpu-grid {
