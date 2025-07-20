@@ -4,10 +4,12 @@ import struct
 from ctypes import c_void_p, c_uint32, byref, c_double, c_uint64, Structure
 
 from lmu.globals import get_present_mon_service_loader
+from lmu.utils import JsonRepr
 
 # Metrik-Konstanten aus PresentMonAPI.h
 PM_METRIC_APPLICATION = 0
 PM_METRIC_CPU_FRAME_TIME = 8
+PM_METRIC_CPU_BUSY = 9
 PM_METRIC_CPU_WAIT = 10
 PM_METRIC_DISPLAYED_FPS = 11
 PM_METRIC_PRESENTED_FPS = 12
@@ -52,7 +54,7 @@ class PM_QUERY_ELEMENT(Structure):
     ]
 
 
-class MetricData:
+class MetricData(JsonRepr):
     """
     Speichert alle erfassten PresentMon-Metriken.
     """
@@ -72,6 +74,7 @@ class MetricData:
         self.gpu_time_avg = 0.0
         self.gpu_busy_avg = 0.0
         self.cpu_frame_time_avg = 0.0
+        self.cpu_busy_avg = 0.0
 
         # Latenz
         self.display_latency_avg = 0.0
@@ -152,13 +155,14 @@ class PresentMon:
         self.pm_dll.pmFreeDynamicQuery.argtypes = [c_void_p]
         self.pm_dll.pmFreeDynamicQuery.restype = c_uint32
 
-    def start(self, process_id: int, window_size_ms: float = 500.0):
+    def start(self, process_id: int, window_size_ms: float = 2000.0, metric_offset: float = 1000.0):
         """
         Startet eine Überwachungssitzung für eine gegebene Prozess-ID.
 
         Args:
-            process_id: Die zu überwachende Prozess-ID
-            window_size_ms: Zeitfenster für die Metriken (in Millisekunden)
+            process_id: Process ID
+            window_size_ms: Window size used for metrics calculation eg. 99% percentile
+            metric_offset: Offset from top for frame data
         """
         if not self.pm_dll:
             return
@@ -186,6 +190,7 @@ class PresentMon:
             (PM_METRIC_PRESENTED_FPS, PM_STAT_MIN),  # fps_min
             # Frametimes und Performance
             (PM_METRIC_CPU_FRAME_TIME, PM_STAT_AVG),  # frame_duration_avg
+            (PM_METRIC_CPU_BUSY, PM_STAT_AVG),  # frame_pacing_stall_avg
             (PM_METRIC_CPU_WAIT, PM_STAT_AVG),  # frame_pacing_stall_avg
             (PM_METRIC_GPU_TIME, PM_STAT_AVG),  # gpu_time_avg
             (PM_METRIC_GPU_BUSY, PM_STAT_AVG),  # gpu_busy_avg
@@ -212,12 +217,7 @@ class PresentMon:
 
         # Abfrage registrieren
         status = self.pm_dll.pmRegisterDynamicQuery(
-            self.session,
-            byref(self.query),
-            elements,
-            num_elements,
-            window_size_ms,  # Zeitfenster in ms
-            0.0,  # Kein Offset
+            self.session, byref(self.query), elements, num_elements, window_size_ms, metric_offset
         )
 
         if status != PM_STATUS_SUCCESS:
@@ -264,8 +264,13 @@ class PresentMon:
                 offset += 8
 
                 # Frametimes und Performance (4 doubles)
+                # PM_METRIC_CPU_FRAME_TIME
                 self.metrics.frame_duration_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # PM_METRIC_CPU_BUSY
+                self.metrics.cpu_busy_avg = struct.unpack_from("d", data_buffer, offset)[0]
+                offset += 8
+                # PM_METRIC_CPU_WAIT
                 self.metrics.frame_pacing_stall_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
                 self.metrics.gpu_time_avg = struct.unpack_from("d", data_buffer, offset)[0]
@@ -285,25 +290,17 @@ class PresentMon:
                 self.metrics.gpu_power_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
 
-                # CPU-Metriken (3 doubles)
+                # CPU-Metriken (2 doubles)
                 self.metrics.cpu_utilization = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
                 # CPU-Frequenz kommt in MHz, umrechnen in GHz und begrenzen auf sinnvolle Werte
                 cpu_freq_raw = struct.unpack_from("d", data_buffer, offset)[0]
                 # Überprüfen und konvertieren, falls nötig
-                if cpu_freq_raw > 10000:  # Wenn Wert in Hz statt MHz
-                    self.metrics.cpu_frequency = cpu_freq_raw / 1000000.0  # Hz zu GHz
-                elif cpu_freq_raw > 100:  # Wenn Wert in MHz
-                    self.metrics.cpu_frequency = cpu_freq_raw / 1000.0  # MHz zu GHz
-                else:  # Bereits in GHz oder bereits korrigiert
-                    self.metrics.cpu_frequency = cpu_freq_raw
-                # Plausibilitätsprüfung
-                if self.metrics.cpu_frequency > 6.0:  # Heutiger max. realistischer Wert
-                    self.metrics.cpu_frequency = 0.0  # Ungültiger Wert, auf 0 setzen
+                self.metrics.cpu_frequency = cpu_freq_raw
                 offset += 8
 
                 # CPU Frame Time für Abwärtskompatibilität (redundant, bereits in frame_duration_avg)
-                self.metrics.cpu_frame_time_avg = self.metrics.frame_duration_avg
+                self.metrics.cpu_frame_time_avg = self.metrics.cpu_busy_avg
 
                 # Detailliertes Debug-Log bei Bedarf
                 # logging.info(str(self.metrics))

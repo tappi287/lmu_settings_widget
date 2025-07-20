@@ -11,7 +11,7 @@ import gevent
 
 from lmu.globals import LMU_APPID, GAME_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
-from lmu.present_mon_wrapper import PresentMon
+from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
 from lmu.preset.settings_model_base import OPTION_CLASSES

@@ -16,7 +16,7 @@ from lmu.rf2events import (
     BenchmarkProgressEvent,
     PerformanceMetricsEvent,
 )
-from lmu.present_mon_wrapper import PresentMon
+from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
 

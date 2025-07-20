@@ -9,7 +9,7 @@
         </div>
         <div class="metric-row gpu-metric">
           <div class="metric-title">GPU</div>
-          <div class="metric-value">{{ performanceData.gpu_time_avg.toFixed(2) }} ms</div>
+          <div class="metric-value">{{ performanceData.gpu_busy_avg.toFixed(2) }} ms</div>
         </div>
       </div>
 
@@ -271,7 +271,7 @@ export default {
     updateChartData() {
       // Werte aus den props übernehmen
       const cpuTime = this.performanceData.cpu_frame_time_avg;
-      const gpuTime = this.performanceData.gpu_time_avg;
+      const gpuTime = this.performanceData.gpu_busy_avg;
 
       // Aktuelles Datum und Uhrzeit für das Label
       const now = new Date();
