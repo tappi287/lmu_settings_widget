@@ -3,11 +3,19 @@
   height: 91.65vh;
 }
 
+.knee-board-inner-container {
+  position: relative;
+}
+
 .knee-board-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   gap: 15px;
+}
+
+.knee-board-content-fade {
+  opacity: 0.05;
 }
 
 .panel-card {
