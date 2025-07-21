@@ -33,7 +33,7 @@
             <span class="metric-label">FPS Average:</span>
             <span class="metric-value">{{ performanceData.fps_avg.toFixed(1) }}</span>
           </div>
-          <div class="metric-row">
+          <div class="metric-row d-none metric-row">
             <span class="metric-label">FPS 90. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_90.toFixed(1) }}</span>
           </div>

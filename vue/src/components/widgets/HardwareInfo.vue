@@ -19,7 +19,7 @@
     <!-- RAM Information -->
     <div class="system-info-section">
       <div class="info-label">RAM: {{ formatMemory(hardwareInfo.ram_used) }} / {{ formatMemory(hardwareInfo.ram_total) }} ({{ Math.round(hardwareInfo.ram_used_percent) }}%)</div>
-      <b-progress height="20px" class="mb-3">
+      <b-progress height="20px" class="mb-3 rounded">
         <b-progress-bar :variant="getMemoryVariant(hardwareInfo.ram_used_percent)" :value="hardwareInfo.ram_used_percent" :max="100" />
       </b-progress>
     </div>
@@ -29,7 +29,7 @@
       <div class="info-label">
         GPU {{ index + 1 }} Load
       </div>
-      <b-progress height="20px" class="mb-3">
+      <b-progress height="20px" class="mb-3 rounded">
         <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.gpu_utilization" :max="100">
           {{ gpu.gpu_utilization }}%
         </b-progress-bar>
@@ -37,7 +37,7 @@
       <div class="info-label">
         GPU {{ index + 1 }}: {{ formatMemory(gpu.vram_used) }} / {{ formatMemory(gpu.vram_total) }}
       </div>
-      <b-progress height="20px" class="mb-3">
+      <b-progress height="20px" class="mb-3 rounded">
         <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.vram_used_percent" :max="100">
           {{ Math.round(gpu.vram_used_percent) }}%
         </b-progress-bar>
@@ -185,5 +185,9 @@ export default {
   font-size: 0.7rem;
   color: #ccc;
   margin-top: 2px;
+}
+
+.progress {
+  background: rgba(174, 193, 211, 0.2);
 }
 </style>

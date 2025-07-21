@@ -13,7 +13,7 @@ name: "KneeBoardHelp"
           <h3 class="float-left mr-1">
             <b-icon icon="clipboard" class="mr-2"></b-icon>KneeBoard
           </h3>
-          <b-button variant="transparent" @click="$emit('close')" class=" text-white float-right">
+          <b-button variant="transparent" @click="$emit('close')" class="pr-0 pt-0 text-white float-right">
             <b-icon icon="x-circle-fill"></b-icon>
           </b-button>
       </template>
