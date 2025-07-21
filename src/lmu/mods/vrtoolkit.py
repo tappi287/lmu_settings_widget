@@ -25,6 +25,7 @@ class VrToolKit:
     RESHADE_INI_NAME = "ReShade.ini"
     RESHADE_VR_INI_NAME = "ReShadeVR.ini"
     OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
+    RESHADE_INI_ADDON_SYNC_LINE = "SyncEffectRuntimes=1"
 
     dll_tgt = ("ReShade64.dll", "dxgi.dll")
     extra_files = [
@@ -311,6 +312,12 @@ class VrToolKit:
             #    settings updates not being applied on start up
             if line.startswith("NoReloadOnInitForNonVR"):
                 line = "NoReloadOnInitForNonVR=0\n"
+            # -- Make sure VR and Desktop Runtimes are in sync
+            if line.startswith("[ADDON]"):
+                updated_ini_lines.append(line)
+                updated_ini_lines.append(VrToolKit.RESHADE_INI_ADDON_SYNC_LINE)
+                continue
+
             updated_ini_lines.append(line)
 
         # -- Write updated ReShade.ini
