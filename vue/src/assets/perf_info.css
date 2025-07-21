@@ -1,0 +1,132 @@
+/* Performance Info Appearance */
+.performance-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+}
+
+.main-metrics-section, .metric-settings-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.metrics-container, .performance-graphs-container, .metrics-grid {
+  gap: 1.5rem;
+}
+
+.metrics-container, .detailed-metrics-section {
+  margin-bottom: 0.5rem;
+}
+
+.metrics-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-metrics-section .metric-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.performance-graphs-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.chart-container {
+  height: 6rem;
+  width: 48%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.metric-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metric-group h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.3rem;
+}
+
+.metric-box {
+  display: flex;
+}
+
+.cpu-metric, .gpu-metric {
+  width: 50%;
+}
+
+.metric-title {
+  font-size: 1rem;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  align-items: center;
+}
+
+.metric-setting {
+  width: 50%;
+}
+
+.metric-setting-item {
+  display: inline-flex;
+  width: 100%;
+}
+
+.metric-label {
+  color: #aaa;
+}
+
+.metric-setting .setting-field { width: 100%; }
+.metric-setting .input-group-prepend, .metric-setting .input-group-append {
+  width: 50%;
+}
+.metric-setting .input-group-text, .metric-setting .setting-item {
+  width: 100%;
+}
+.metric-setting button {
+  width: 100%;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .metrics-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .metric-box {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .performance-graphs-container {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    width: 100%;
+  }
+}

@@ -155,7 +155,7 @@ class PresentMon:
         self.pm_dll.pmFreeDynamicQuery.argtypes = [c_void_p]
         self.pm_dll.pmFreeDynamicQuery.restype = c_uint32
 
-    def start(self, process_id: int, window_size_ms: float = 2000.0, metric_offset: float = 1000.0):
+    def start(self, process_id: int, window_size_ms: float = 1000.0, metric_offset: float = 500.0):
         """
         Startet eine Überwachungssitzung für eine gegebene Prozess-ID.
 

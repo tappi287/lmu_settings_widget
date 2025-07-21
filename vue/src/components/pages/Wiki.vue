@@ -53,6 +53,10 @@
           <span> - Python library for making simple Electron-like HTML/JS GUI apps</span>
         </b-list-group-item>
         <b-list-group-item class="bg-dark text-white">
+          <b-link class="text-rf-orange" target="_blank" href="https://github.com/guillaume-mueller/Eel/commit/3e7e41e8b6a7bf57685a8abf38c11aa77edaa390">Eel Memory Leak Fix</b-link>
+          <span> - thanks to Guillaume Müller</span>
+        </b-list-group-item>
+        <b-list-group-item class="bg-dark text-white">
           <b-link class="text-rf-orange" target="_blank" href="https://github.com/TonyWhitley/rF2_serverNotify">
             rF2_serverNotify
           </b-link>

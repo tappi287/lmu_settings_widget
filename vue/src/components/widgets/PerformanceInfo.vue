@@ -4,7 +4,7 @@
     <div class="main-metrics-section">
       <div class="metrics-container">
         <div class="metric-row cpu-metric">
-          <div class="metric-title">CPU</div>
+          <div class="metric-title">Overall</div>
           <div class="metric-value">{{ performanceData.cpu_frame_time_avg.toFixed(2) }} ms</div>
         </div>
         <div class="metric-row gpu-metric">
@@ -16,11 +16,9 @@
       <!-- Performance Graphs -->
       <div class="performance-graphs-container">
         <div class="chart-container">
-          <div class="chart-title">CPU</div>
           <canvas ref="cpuPerformanceChart"></canvas>
         </div>
         <div class="chart-container">
-          <div class="chart-title">GPU</div>
           <canvas ref="gpuPerformanceChart"></canvas>
         </div>
       </div>
@@ -39,7 +37,7 @@
             <span class="metric-label">FPS 90. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_90.toFixed(1) }}</span>
           </div>
-          <div class="metric-row">
+          <div class="metric-row d-none">
             <span class="metric-label">FPS 95. Percentil:</span>
             <span class="metric-value">{{ performanceData.fps_95.toFixed(1) }}</span>
           </div>
@@ -102,15 +100,27 @@
         </div>
       </div>
     </div>
+
+    <div class="metric-settings-section">
+      <div class="metrics-container">
+        <div class="metric-row metric-setting">
+          <SettingItem class="w-100" :setting="targetFpsSetting" @setting-changed="updateTargetFps" variant="rf-secondary"></SettingItem>
+        </div>
+        <div class="metric-row metric-setting d-none">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Chart from 'chart.js/auto';
 import 'chartjs-plugin-zoom';
+import SettingItem from "@/components/settings/SettingItem.vue";
 
 export default {
   name: 'PerformanceInfo',
+  components: {SettingItem},
   props: {
     performanceData: {
       type: Object,
@@ -150,7 +160,21 @@ export default {
       gpuChart: null,
       cpuTimes: Array(60).fill(0),
       gpuTimes: Array(60).fill(0),
-      timeLabels: Array(60).fill('')
+      timeLabels: Array(60).fill(''),
+      targetFps: 90,
+      targetFrameTime: 11.11,
+      targetFpsSetting: {
+        name: "Target FPS",
+        key: "targetFps",
+        desc: "Frame times below this value will appear orange",
+        value: 90,
+        settings: [
+            {value: 72, name: "72 Hz"},
+            {value: 90, name: "90 Hz"},
+            {value: 120, name: "120 Hz"},
+            {value: 144, name: "144 Hz"}
+        ]
+    },
     };
   },
   mounted() {
@@ -175,6 +199,10 @@ export default {
     }
   },
   methods: {
+    destroyCharts() {
+      if (this.cpuChart) {this.cpuChart.destroy();}
+      if (this.gpuChart) {this.gpuChart.destroy();}
+    },
     initChart() {
       const cpuCtx = this.$refs.cpuPerformanceChart.getContext('2d');
       const gpuCtx = this.$refs.gpuPerformanceChart.getContext('2d');
@@ -225,6 +253,11 @@ export default {
           tooltip: {
             mode: 'index',
             intersect: false
+          },
+          title: {
+            display: false,
+            align: 'center',
+            text: "Title",
           }
         },
         barPercentage: 1.0,
@@ -242,7 +275,7 @@ export default {
             data: this.cpuTimes,
             backgroundColor: (context) => {
               const value = context.dataset.data[context.dataIndex];
-              return value <= 11.1 ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
+              return value <= this.targetFrameTime ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
             },
             borderWidth: 0
           }]
@@ -260,7 +293,7 @@ export default {
             data: this.gpuTimes,
             backgroundColor: (context) => {
               const value = context.dataset.data[context.dataIndex];
-              return value <= 11.1 ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
+              return value <= this.targetFrameTime ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
             },
             borderWidth: 0
           }]
@@ -296,6 +329,13 @@ export default {
         return "Nicht verfügbar";
       }
       return `${this.performanceData.cpu_frequency.toFixed(2)} GHz`;
+    },
+    updateTargetFps(setting, value) {
+      this.targetFrameTime = Number(Number(1000 / value).toFixed(2))
+      this.targetFps = value
+      console.log(`Set target fps: ${value} Frame time: ${this.targetFrameTime}`);
+      this.destroyCharts()
+      this.initChart()
     }
   },
   watch: {
@@ -310,127 +350,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.performance-info-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-}
-
-.main-metrics-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.metrics-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.cpu-metric, .gpu-metric {
-  width: 50%;
-}
-
-.metric-box {
-  display: flex;
-}
-
-.metric-title {
-  font-size: 1rem;
-}
-
-.metric-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.performance-graphs-container {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-}
-
-.chart-container {
-  height: 100px;
-  width: 48%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  position: relative;
-}
-
-.chart-title {
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  font-size: 0.9rem;
-  color: #aaa;
-  z-index: 1;
-}
-
-.detailed-metrics-section {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.metric-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.metric-group h4 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #ccc;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.3rem;
-}
-
-.metric-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  align-items: center;
-}
-
-.metric-label {
-  color: #aaa;
-}
-
-.detailed-metrics-section .metric-value {
-  font-size: 0.8rem;
-}
-
-@media (max-width: 768px) {
-  .metrics-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .metric-box {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .performance-graphs-container {
-    flex-direction: column;
-  }
-
-  .chart-container {
-    width: 100%;
-  }
-}
+<style src="../../assets/perf_info.css">
 </style>

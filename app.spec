@@ -28,7 +28,7 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        (eel_js, "eel"),
+        # ("data/patched_eel_v0182.js", "eel/eel.js"),
         ("web", "web"),
         ("build/version.txt", "."),
         ("bin/PresentMonAPI2Loader.dll", "bin"),

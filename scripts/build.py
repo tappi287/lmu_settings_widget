@@ -7,7 +7,7 @@ from subprocess import Popen
 from typing import Union
 
 from lmu import eel_mod
-from lmu.globals import UPDATE_INSTALL_FILE, UPDATE_VERSION_FILE, get_version, get_current_modules_dir
+from lmu.globals import UPDATE_INSTALL_FILE, UPDATE_VERSION_FILE, get_version, get_current_modules_dir, get_data_dir
 from scripts.patch_sdl_pygame import patch_sdl_lib_pygame
 
 os.chdir(get_current_modules_dir())
@@ -149,6 +149,15 @@ def copy_eel_cache_file():
         shutil.copy(eel_mod.eel_cache_js_file(), web_dir / "assets")
 
 
+def copy_eel_js_patched(target_dir: Path):
+    """Patch eel.js memory leak thanks to
+    https://github.com/guillaume-mueller/Eel/commit/3e7e41e8b6a7bf57685a8abf38c11aa77edaa390
+    """
+    eel_js_file = get_data_dir().joinpath("patched_eel_v0182.js")
+    target_dir.mkdir(exist_ok=True)
+    shutil.copy(eel_js_file, target_dir / "eel.js")
+
+
 def run_pyinstaller(spec_file: str):
     args = ["pyinstaller", "--noconfirm", spec_file]
     p = Popen(args=args)
@@ -207,6 +216,7 @@ def main(process: int = 0):
 
         # Copy/Add external applications
         dist_dir = Path(DIST_DIR) / Path(DIST_EXE_DIR)
+        copy_eel_js_patched(dist_dir.joinpath("_internal/eel"))
 
         remove_dist_info_dirs()
 

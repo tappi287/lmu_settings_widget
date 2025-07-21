@@ -10,54 +10,48 @@
     </b-input-group>
     <div class="knee-board-content">
       <div class="info-panel">
-        <b-card class="mt-2 setting-card" header-class="m-0 p-2 text-left"
+        <b-card class="mt-2 setting-card h-100" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
           <template #header>
             <b-icon icon="tv"></b-icon>
-            <span class="ml-2">Race Info</span>
+            <span class="ml-2">Pit Strategy [Placeholder]</span>
             <slot name="header"></slot>
           </template>
-          <b-row>
+          <b-row class="text-left" align-v="center">
             <b-col>
-              <p><strong>Strecke:</strong> {{ trackName }}</p>
-              <p><strong>Runden:</strong> {{ currentLap }} / {{ totalLaps }}</p>
+              Fuel
             </b-col>
             <b-col>
-              <p><strong>Position:</strong> {{ position }}</p>
-              <p><strong>Beste Rundenzeit:</strong> {{ bestLapTime }}</p>
+              <b-progress>
+                <b-progress-bar value="97">
+                  <span>97%</span>
+                </b-progress-bar>
+              </b-progress>
+            </b-col>
+            <b-col>
+              Fuel per Lap Average
+            </b-col>
+            <b-col>
+              <b>2.94%</b>
+            </b-col>
+            <div class="w-100"></div>
+            <b-col>
+              Pit in Lap
+            </b-col>
+            <b-col>
+              16
+            </b-col>
+            <b-col>
+              Time until Empty
+            </b-col>
+            <b-col>
+              02:12:23
             </b-col>
           </b-row>
         </b-card>
       </div>
 
-      <div class="notes-panel h-panel-half d-none">
-        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
-                bg-variant="dark" text-variant="white">
-          <template #header>
-            <b-icon icon="display"></b-icon>
-            <span class="ml-2">FPS Info</span>
-            <slot name="header"></slot>
-          </template>
-          <div class="placeholder">
-            <p class="text-center text-muted">Information</p>
-          </div>
-        </b-card>
-      </div>
-
-      <div class="map-panel h-panel-half d-none">
-        <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
-                bg-variant="dark" text-variant="white">
-          <template #header>
-            <b-icon icon="map"></b-icon>
-            <span class="ml-2">Streckenkarte</span>
-            <slot name="header"></slot>
-          </template>
-          <div class="placeholder">
-            <p class="text-center text-muted">Streckenkarte wird hier angezeigt</p>
-          </div>
-        </b-card>
-      </div>
-
+      <!-- Performance Monitor -->
       <div class="bottom-panel h-panel">
         <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                 bg-variant="dark" text-variant="white">
@@ -69,6 +63,8 @@
           <PerformanceMonitor />
         </b-card>
       </div>
+
+      <!-- Hardware Monitor -->
       <div class="hardware-panel h-panel">
         <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-right"
                 bg-variant="dark" text-variant="white">
@@ -147,64 +143,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.knee-board-container {
-  border-radius: 8px;
-  height: 91.65vh;
-}
+<style src="../../assets/kneeboard.css">
 
-.knee-board-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 15px;
-}
-
-.panel-card {
-  height: 100%;
-}
-
-.h-panel {
-  height: 50.55vh;
-}
-
-.h-panel-half {
-  height: calc(33.55vh * 0.5);
-}
-
-.info-panel {
-  grid-column: 1 / 3;
-  grid-row: 1;
-}
-
-.notes-panel {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.map-panel {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.bottom-panel {
-  grid-column: 1;
-  grid-row: 3;
-}
-
-.hardware-panel {
-  grid-column: 2;
-  grid-row: 3;
-}
-
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-}
-
-@media (max-width: 768px) {
-  /* need a breakpoint for the grid here */
-}
 </style>

@@ -1,0 +1,61 @@
+.knee-board-container {
+  border-radius: 8px;
+  height: 91.65vh;
+}
+
+.knee-board-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px;
+}
+
+.panel-card {
+  height: 100%;
+}
+
+.h-panel {
+  height: 50.55vh;
+}
+
+.h-panel-half {
+  height: calc(33.55vh * 0.5);
+}
+
+.info-panel {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  height: 13.5vh;
+  opacity: .5;
+}
+
+.notes-panel {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.map-panel {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.bottom-panel {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.hardware-panel {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  /* need a breakpoint for the grid here */
+}

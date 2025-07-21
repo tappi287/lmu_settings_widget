@@ -47,22 +47,13 @@ export default {
     // Verbindung zum Backend herstellen und Performance-Monitoring starten
     this.updateInterval = setInterval(() => {
       this.fetchPerformanceData();
-    }, 500);
+    }, 1000);
   },
   beforeDestroy() {
     // Timer stoppen
     if (this.updateInterval) {
       clearInterval(this.updateInterval);
     }
-
-    // Performance-Monitor stoppen
-    window.eel.stop_performance_monitor()((success) => {
-      if (success) {
-        console.log('Performance-Monitor erfolgreich gestoppt');
-      } else {
-        console.error('Fehler beim Stoppen des Performance-Monitors');
-      }
-    });
   },
   methods: {
     // Daten vom Backend abrufen
