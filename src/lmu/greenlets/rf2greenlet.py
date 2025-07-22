@@ -16,6 +16,7 @@ from lmu.rf2events import (
     BenchmarkProgressEvent,
     EnableMetricsEvent,
     PerformanceMetricsEvent,
+    PresentMonVersionEvent,
 )
 from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
@@ -37,34 +38,50 @@ def _rfactor_greenlet_loop():
     if EnableMetricsEvent.event.is_set():
         metrics_enabled = EnableMetricsEvent.get_nowait()
         ENABLE_METRICS = metrics_enabled if metrics_enabled is not None else False
+        if not ENABLE_METRICS:
+            PerformanceMetricsEvent.set(None)
+    # -- Setup PresentMon or report unavailable via Event
+    if RfactorConnect.present_mon is None:
+        RfactorConnect.present_mon = PresentMon()
+        try:
+            PresentMonVersionEvent.set(RfactorConnect.present_mon.get_api_version())
+        except Exception as e:
+            logging.error(f"Error getting PresentMon API Version: {e}")
+            PresentMonVersionEvent.set(None)
 
+    # -- While we are live
     if RfactorLiveEvent.was_live and RfactorConnect.rf2_pid:
         # Initialisiere PresentMon wenn noch nicht vorhanden
-        if RfactorConnect.present_mon is None and ENABLE_METRICS:
+        if ENABLE_METRICS and not RfactorConnect.present_mon.is_tracking_process:
             try:
-                RfactorConnect.present_mon = PresentMon()
                 RfactorConnect.present_mon.start(RfactorConnect.rf2_pid)
-                logging.info(f"PresentMon für PID {RfactorConnect.rf2_pid} gestartet")
+                logging.info(f"PresentMon for PID {RfactorConnect.rf2_pid} started")
             except Exception as e:
-                logging.error(f"Fehler beim Starten von PresentMon: {e}")
+                logging.error(f"Error starting PresentMon Query: {e}")
 
-        # Aktualisiere Metriken und setze sie im AsyncResult
-        if RfactorConnect.present_mon:
-            if ENABLE_METRICS:
-                try:
-                    metrics = RfactorConnect.present_mon.get_metrics()
-                    if metrics:
-                        PerformanceMetricsEvent.set(metrics)
-                except Exception as e:
-                    logging.error(f"Fehler beim Abrufen der Performance-Metriken: {e}")
-            else:
-                RfactorConnect.present_mon.stop()
+        # Get PresentMon Metrics and store in AsyncResult
+        if ENABLE_METRICS and RfactorConnect.present_mon.is_tracking_process:
+            try:
+                metrics = RfactorConnect.present_mon.get_metrics()
+                if metrics:
+                    PerformanceMetricsEvent.set(metrics)
+            except Exception as e:
+                logging.error(f"Error getting Performance-Metrics: {e}")
+        # Stop PresentMon Session if Metrics disabled
+        if not ENABLE_METRICS and RfactorConnect.present_mon.is_tracking_process:
+            RfactorConnect.present_mon.stop()
 
-    # -- If we were live before, re-apply previous graphics preset
+    # -- If we were live before
     if RfactorLiveEvent.changed_from_live():
-        # -- Moved to a FrontEnd call so Presets refresh
-        #    and Preset restore will not happen in parallel in different greenlets
-        pass
+        # -- Report state change to frontend
+        RfactorLiveEvent.set(False)
+        # -- Stoppe PresentMon wenn rFactor beendet wurde
+        if RfactorConnect.present_mon:
+            try:
+                RfactorConnect.present_mon.stop()
+                logging.info("PresentMon stopped, Game no longer running.")
+            except Exception as e:
+                logging.error(f"Error stopping PresentMon: {e}")
 
     # -- Report wait for processes shut down
     if RfactorConnect.state == RfactorState.waiting_for_process:
@@ -75,18 +92,6 @@ def _rfactor_greenlet_loop():
         # -- Report state change to frontend
         RfactorLiveEvent.set(True)
         RfactorConnect.set_to_active_timeout()
-    elif RfactorConnect.state == RfactorState.unavailable:
-        # -- Report state change to frontend
-        RfactorLiveEvent.set(False)
-
-        # -- Stoppe PresentMon wenn rFactor beendet wurde
-        if RfactorConnect.present_mon:
-            try:
-                RfactorConnect.present_mon.stop()
-                RfactorConnect.present_mon = None
-                logging.info("PresentMon stopped, Game no longer running.")
-            except Exception as e:
-                logging.error(f"Error stopping PresentMon: {e}")
 
     # -- Rfactor Live
     if RfactorLiveEvent.get_nowait():

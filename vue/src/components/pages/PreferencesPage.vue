@@ -92,7 +92,7 @@ export default {
       appModules: ['audio', 'edge_preferred'],
       appAutostart: [],
       appAutostartOptions: [
-          {text: 'OpenKneeBoard', value: 'kneeboard'},
+          {text: 'OpenKneeboard', value: 'kneeboard'},
       ],
       appOptions: [
         {text: 'Enable Audio', value: 'audio'},

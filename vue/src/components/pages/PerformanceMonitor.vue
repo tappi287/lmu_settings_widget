@@ -63,6 +63,7 @@ export default {
           const parsedData = JSON.parse(data);
           if (Object.keys(parsedData).length > 0) {
             this.performanceData = parsedData;
+            this.performanceData.cpu_frequency = parsedData.cpu_frequency / 27.5;
           }
         } catch (error) {
           console.error('Fehler beim Parsen der Performance-Daten:', error);

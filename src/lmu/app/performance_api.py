@@ -4,7 +4,7 @@ from typing import Optional
 import eel
 import logging
 from lmu.benchmark.present_mon_wrapper import MetricData
-from lmu.rf2events import PerformanceMetricsEvent, HardwareStatusEvent
+from lmu.rf2events import PerformanceMetricsEvent, HardwareStatusEvent, PresentMonVersionEvent
 
 from lmu.utils import capture_app_exceptions
 
@@ -54,3 +54,12 @@ def _get_hardware_status():
 @eel.expose
 def get_hardware_status():
     return _get_hardware_status()
+
+
+@capture_app_exceptions
+def get_present_mon_api_version():
+    result = PresentMonVersionEvent.get_nowait()
+    if result is not None:
+        version = f"{result[0]}.{result[1]}.{result[2]}"
+
+    return json.dumps({"result": True if result else False, "data": version})

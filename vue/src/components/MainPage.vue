@@ -308,6 +308,7 @@ export default {
       this.live = event.detail
       if (this.live) {
         this.stopSlideShow();
+        this.navigate(6)
         this.wasLive = true
         if (this.minimizeRfOverlay) {
           this.$refs.rfactorOverlay.minimize()

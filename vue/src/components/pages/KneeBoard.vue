@@ -168,6 +168,7 @@ export default {
   async mounted() {
     this.startHardwareMonitoring();
     await this.getOpenKneeBoardLocation();
+    this.showHelp = !this.live
     if (this.openKneeboardInstalled) { this.showHelp = false }
   },
   beforeDestroy() {

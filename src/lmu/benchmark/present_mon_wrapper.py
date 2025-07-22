@@ -2,6 +2,7 @@ import ctypes
 import logging
 import struct
 from ctypes import c_void_p, c_uint32, byref, c_double, c_uint64, Structure
+from typing import Tuple, Optional
 
 from lmu.globals import get_present_mon_service_loader
 from lmu.utils import JsonRepr
@@ -51,6 +52,17 @@ class PM_QUERY_ELEMENT(Structure):
         ("arrayIndex", c_uint32),
         ("dataOffset", c_uint64),
         ("dataSize", c_uint64),
+    ]
+
+
+class PM_VERSION(Structure):
+    _fields_ = [
+        ("major", c_uint32),
+        ("minor", c_uint32),
+        ("patch", c_uint32),
+        ("tag", ctypes.c_char * 22),
+        ("hash", ctypes.c_char * 8),
+        ("config", ctypes.c_char * 4),
     ]
 
 
@@ -154,6 +166,17 @@ class PresentMon:
 
         self.pm_dll.pmFreeDynamicQuery.argtypes = [c_void_p]
         self.pm_dll.pmFreeDynamicQuery.restype = c_uint32
+
+        self.pm_dll.pmGetApiVersion.argtypes = [
+            ctypes.POINTER(PM_VERSION),
+        ]
+        self.pm_dll.pmGetApiVersion.restype = c_uint32
+
+    @property
+    def is_tracking_process(self) -> bool:
+        if not self.session or not self.query:
+            return False
+        return True
 
     def start(self, process_id: int, window_size_ms: float = 1000.0, metric_offset: float = 500.0):
         """
@@ -340,3 +363,29 @@ class PresentMon:
             MetricData: Die aktuellen Performance-Metriken oder None bei Fehler
         """
         return self.poll()
+
+    def get_api_version(self) -> Optional[Tuple[int, int, int]]:
+        """
+        Ruft die Version der PresentMon-API ab.
+
+        Returns:
+            Ein Tupel (major, minor, patch) oder None bei einem Fehler.
+        """
+        if not self.pm_dll:
+            logging.error("PresentMonAPI2Loader.dll ist nicht geladen.")
+            return None
+
+        version_struct = PM_VERSION()
+        status = self.pm_dll.pmGetApiVersion(byref(version_struct))
+
+        if status == PM_STATUS_SUCCESS:
+            logging.info(
+                f"PresentMon API Version: "
+                f"{version_struct.major}."
+                f"{version_struct.minor}."
+                f"{version_struct.patch}"
+            )
+            return version_struct.major, version_struct.minor, version_struct.patch
+        else:
+            logging.error(f"pmGetApiVersion fehlgeschlagen mit Status: {status}")
+            return None

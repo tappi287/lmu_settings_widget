@@ -203,3 +203,13 @@ class PerformanceMetricsEvent(RfactorBaseEvent):
     def set(cls, value):
         cls.result.set(value)
         cls.event.set()
+
+
+class PresentMonVersionEvent(RfactorBaseEvent):
+    event = gevent.event.Event()
+    result = gevent.event.AsyncResult()
+
+    @classmethod
+    def set(cls, value):
+        cls.result.set(value)
+        cls.event.set()
