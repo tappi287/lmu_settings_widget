@@ -29,7 +29,7 @@ class AppSettings(JsonRepr):
     needs_admin = False
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
-    app_preferences = {"appModules": ["audio", "edge_preferred"]}
+    app_preferences = {"appModules": ["audio", "edge_preferred"], "autostart": []}
 
     rf_overwrite_location = ""
 

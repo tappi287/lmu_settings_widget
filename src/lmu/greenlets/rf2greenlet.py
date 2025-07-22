@@ -14,13 +14,18 @@ from lmu.rf2events import (
     RfactorQuitEvent,
     RfactorStatusEvent,
     BenchmarkProgressEvent,
+    EnableMetricsEvent,
     PerformanceMetricsEvent,
 )
 from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
+ENABLE_METRICS = False
+
 
 def _rfactor_greenlet_loop():
+    global ENABLE_METRICS
+
     # -- Receive Quit rFactor Event from FrontEnd
     if RfactorQuitEvent.event.is_set():
         CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=10.0))
@@ -28,9 +33,14 @@ def _rfactor_greenlet_loop():
         # -- Reset Quit Event
         RfactorQuitEvent.reset()
 
+    # -- Receive Metrics enabled/disabled updates
+    if EnableMetricsEvent.event.is_set():
+        metrics_enabled = EnableMetricsEvent.get_nowait()
+        ENABLE_METRICS = metrics_enabled if metrics_enabled is not None else False
+
     if RfactorLiveEvent.was_live and RfactorConnect.rf2_pid:
         # Initialisiere PresentMon wenn noch nicht vorhanden
-        if RfactorConnect.present_mon is None:
+        if RfactorConnect.present_mon is None and ENABLE_METRICS:
             try:
                 RfactorConnect.present_mon = PresentMon()
                 RfactorConnect.present_mon.start(RfactorConnect.rf2_pid)
@@ -40,12 +50,15 @@ def _rfactor_greenlet_loop():
 
         # Aktualisiere Metriken und setze sie im AsyncResult
         if RfactorConnect.present_mon:
-            try:
-                metrics = RfactorConnect.present_mon.get_metrics()
-                if metrics:
-                    PerformanceMetricsEvent.set(metrics)
-            except Exception as e:
-                logging.error(f"Fehler beim Abrufen der Performance-Metriken: {e}")
+            if ENABLE_METRICS:
+                try:
+                    metrics = RfactorConnect.present_mon.get_metrics()
+                    if metrics:
+                        PerformanceMetricsEvent.set(metrics)
+                except Exception as e:
+                    logging.error(f"Fehler beim Abrufen der Performance-Metriken: {e}")
+            else:
+                RfactorConnect.present_mon.stop()
 
     # -- If we were live before, re-apply previous graphics preset
     if RfactorLiveEvent.changed_from_live():

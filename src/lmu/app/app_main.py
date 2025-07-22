@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 import eel
 import gevent.event
@@ -72,21 +71,6 @@ def restore_backup():
 
 
 @eel.expose
-def get_last_launch_method():
-    return app_main_fn.get_last_launch_method()
-
-
-@eel.expose
-def run_rfactor(server_info: Optional[dict] = None, method: Optional[int] = 0):
-    return app_main_fn.run_rfactor(server_info, method)
-
-
-@eel.expose
-def run_steamvr():
-    return app_main_fn.run_steamvr()
-
-
-@eel.expose
 def get_rf_version():
     return app_main_fn.get_rf_version()
 
@@ -139,11 +123,6 @@ def load_app_preferences():
 @eel.expose
 def is_original_openvr_present():
     return app_main_fn.is_original_openvr_present()
-
-
-@eel.expose
-def get_hardware_status():
-    return app_main_fn.get_hardware_status()
 
 
 def expose_main_methods():

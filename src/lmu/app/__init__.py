@@ -1,4 +1,5 @@
 from .app_main import expose_main_methods
+from .app_launch import expose_launch_methods
 from .app_presets import expose_preset_methods
 from .app_controller import expose_controller_methods
 from .app_dashboard import expose_dashboard_methods
@@ -12,6 +13,7 @@ from .performance_api import expose_performance_api_methods
 
 def expose_app_methods():
     expose_main_methods()
+    expose_launch_methods()
     expose_preset_methods()
     expose_controller_methods()
     expose_dashboard_methods()

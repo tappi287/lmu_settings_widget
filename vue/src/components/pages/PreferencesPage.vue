@@ -23,9 +23,30 @@
       <b-checkbox-group :options="appOptions" v-model="appModules" @change="save" />
 
       <b-card-text class="mt-3">
-        <b>[Enable Audio]</b> Weather to play audio feedback when using certain actions within the app.<br />
-        <b>[Prefer Edge Browser]</b> Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.<br />
-        <b>[Hardware Statistics]</b> Weather to collect hardware stats like CPU/GPU Load and display it on the Kneeboard.<br />
+        <b-row>
+          <b-col cols="3"><b>[Enable Audio]</b></b-col>
+          <b-col>Weather to play audio feedback when using certain actions within the app.</b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="3"><b>[Prefer Edge Browser]</b></b-col>
+          <b-col>Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.</b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="3"><b>[Performance Metrics]</b></b-col>
+          <b-col> Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.</b-col>
+        </b-row>
+      </b-card-text>
+    </b-card>
+
+    <b-card class="setting-card mb-2" bg-variant="dark" text-variant="white" footer-class="pt-0">
+      <template #header>
+        <h6 class="mb-0 text-center"><span class="title">Autostart</span></h6>
+      </template>
+
+      <b-checkbox-group :options="appAutostartOptions" v-model="appAutostart" @change="save" />
+
+      <b-card-text class="mt-3">
+        Which applications to automatically launch along with the game. This detects already running applications.
       </b-card-text>
     </b-card>
 
@@ -69,10 +90,14 @@ export default {
           {text: 'Show Controller Devices', value: 'cont'}
       ],
       appModules: ['audio', 'edge_preferred'],
+      appAutostart: [],
+      appAutostartOptions: [
+          {text: 'OpenKneeBoard', value: 'kneeboard'},
+      ],
       appOptions: [
         {text: 'Enable Audio', value: 'audio'},
         {text: 'Prefer Edge Browser', value: 'edge_preferred'},
-        {text: 'Hardware Statistics', value: 'show_hardware_info'},
+        {text: 'Performance Monitoring', value: 'show_hardware_info'},
       ],
       lmwLogoUrl: lmwLogoUrl
     }
@@ -82,6 +107,7 @@ export default {
       let appPref = {}
       appPref['dashboardModules'] = this.dashboardModules
       appPref['appModules'] = this.appModules
+      appPref['autostart'] = this.appAutostart
 
       await getEelJsonObject(window.eel.save_app_preferences(appPref)())
     },
@@ -94,6 +120,9 @@ export default {
         }
         if ('appModules' in appPref) {
           this.appModules = appPref['appModules']
+        }
+        if ('autostart' in appPref) {
+          this.appAutostart = appPref['autostart']
         }
       }
     }

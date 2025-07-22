@@ -4,7 +4,9 @@ from typing import Optional
 import eel
 import logging
 from lmu.benchmark.present_mon_wrapper import MetricData
-from lmu.rf2events import PerformanceMetricsEvent
+from lmu.rf2events import PerformanceMetricsEvent, HardwareStatusEvent
+
+from lmu.utils import capture_app_exceptions
 
 
 def expose_performance_api_methods():
@@ -12,8 +14,8 @@ def expose_performance_api_methods():
     pass
 
 
-@eel.expose
-def get_performance_metrics():
+@capture_app_exceptions
+def _get_performance_metrics():
     """
     Ruft die aktuellen Performance-Metriken aus dem AsyncResult ab.
 
@@ -34,3 +36,21 @@ def get_performance_metrics():
     except Exception as e:
         logging.error(f"Fehler beim Abrufen der Performance-Metriken: {e}")
         return json.dumps({})
+
+
+@eel.expose
+def get_performance_metrics():
+    return _get_performance_metrics()
+
+
+@capture_app_exceptions
+def _get_hardware_status():
+    hardware_stats = HardwareStatusEvent.get_nowait()
+    if hardware_stats is None:
+        return json.dumps({"result": False})
+    return json.dumps({"result": True, "data": hardware_stats})
+
+
+@eel.expose
+def get_hardware_status():
+    return _get_hardware_status()

@@ -140,12 +140,17 @@ export default {
       },
       hardwareUpdateInterval: null,
       showHelp: true,
+      openKneeboardInstalled: false
     };
   },
   methods: {
     async fetchHardwareInfo() {
       const r = await getEelJsonObject(window.eel.get_hardware_status()())
       if (r.result) { this.hardwareInfo = r.data }
+    },
+    async getOpenKneeBoardLocation() {
+      const r = await getEelJsonObject(window.eel.get_open_kneeboard_location()())
+      if (r.result) { this.openKneeboardInstalled = true }
     },
     startHardwareMonitoring() {
       this.fetchHardwareInfo()
@@ -160,8 +165,10 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     this.startHardwareMonitoring();
+    await this.getOpenKneeBoardLocation();
+    if (this.openKneeboardInstalled) { this.showHelp = false }
   },
   beforeDestroy() {
     this.stopHardwareMonitoring();
