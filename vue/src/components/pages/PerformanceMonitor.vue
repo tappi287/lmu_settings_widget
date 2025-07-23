@@ -1,5 +1,25 @@
 <template>
-  <PerformanceInfo :performanceData="performanceData" :descriptions="performanceDataDescriptions" />
+  <div>
+    <PerformanceInfo
+        :class="presentMonAvailable ? '': 'knee-board-content-fade'"
+        :performanceData="performanceData" :descriptions="performanceDataDescriptions"
+    />
+
+    <!-- Enable Metrics Overlay -->
+    <b-overlay no-wrap :show="!presentMonAvailable" variant="transparent">
+      <template v-slot:overlay>
+        <b-card class="rounded" header-class="m-0 p-2" bg-variant="dark" text-variant="white">
+          <template #header>
+            <h5 class="mb-0">PresentMon Service is not available</h5>
+          </template>
+          <b-card-text class="text-white-50">
+            Performance metrics can not be captured. Look at the Help page on how to install PresentMon Service.<br />
+            <b-link @click="$emit('show-help')">Show Help...</b-link>
+          </b-card-text>
+        </b-card>
+      </template>
+    </b-overlay>
+  </div>
 </template>
 
 <script>
@@ -54,10 +74,14 @@ export default {
         cpu_utilization: 0.0,
         cpu_frequency: 0.0
       },
-      updateInterval: null
+      updateInterval: null,
+      presentMonAvailable: false,
+      presentMonAPIServiceVersion: ''
     };
   },
   mounted() {
+    // Check if PresentMon is available
+    this.getPresentMonAPIServiceVersion()
     // Verbindung zum Backend herstellen und Performance-Monitoring starten
     this.updateInterval = setInterval(() => {
       this.fetchPerformanceData();
@@ -70,6 +94,21 @@ export default {
     }
   },
   methods: {
+    // Get PresentMonService API version
+    getPresentMonAPIServiceVersion() {
+      this.presentMonAvailable = false;
+      window.eel.get_present_mon_api_version()((data) => {
+        try {
+          const r = JSON.parse(data);
+          if (r.result !== undefined && r.result) {
+            this.presentMonAvailable = true;
+            this.presentMonAPIServiceVersion = r.data
+          }
+        } catch (error) {
+          console.error('Fehler beim Parsen der Performance-Daten:', error);
+        }
+      });
+    },
     // Daten vom Backend abrufen
     fetchPerformanceData() {
       window.eel.get_performance_metrics()((data) => {

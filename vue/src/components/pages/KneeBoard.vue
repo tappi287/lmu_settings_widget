@@ -39,7 +39,7 @@
               <span class="ml-2">Performance</span>
               <slot name="header"></slot>
             </template>
-            <PerformanceMonitor />
+            <PerformanceMonitor @show-help="showHelp=true" />
           </b-card>
         </div>
 
@@ -62,7 +62,7 @@
       <!-- Enable Metrics Overlay -->
       <b-overlay no-wrap :show="!metricsEnabled && !showHelp" variant="transparent">
         <template v-slot:overlay>
-          <b-card class="rounded" bg-variant="dark" text-variant="white">
+          <b-card class="rounded k-overlay" bg-variant="dark" text-variant="white">
             <b-checkbox switch @change="switchMetrics">Enable Metrics</b-checkbox>
             <b-card-text class="mt-4">
               Enable performance metric capturing with the PresentMon service.<br />
@@ -72,7 +72,7 @@
         </template>
       </b-overlay>
     </div>
-    <b-overlay class="kneeboard-help" no-wrap :show="showHelp" variant="transparent" blur="1px">
+    <b-overlay class="kneeboard-help k-overlay" no-wrap :show="showHelp" variant="transparent" blur="1px">
       <template v-slot:overlay>
         <KneeBoardHelp @close="showHelp=false"></KneeBoardHelp>
       </template>

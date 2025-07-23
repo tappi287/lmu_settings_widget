@@ -6,7 +6,8 @@
 .kneeboard-help > div:nth-child(2) {
   width: 80%;
 }
-.knee-board-container .card {
+
+.k-overlay {
   backdrop-filter: blur(5px) brightness(1.4);
 }
 

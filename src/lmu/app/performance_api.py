@@ -57,9 +57,15 @@ def get_hardware_status():
 
 
 @capture_app_exceptions
-def get_present_mon_api_version():
+def _get_present_mon_api_version():
     result = PresentMonVersionEvent.get_nowait()
+    version = None
     if result is not None:
         version = f"{result[0]}.{result[1]}.{result[2]}"
 
     return json.dumps({"result": True if result else False, "data": version})
+
+
+@eel.expose
+def get_present_mon_api_version():
+    return _get_present_mon_api_version()

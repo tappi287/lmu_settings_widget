@@ -54,14 +54,23 @@ name: "KneeBoardHelp"
         <!-- Desc -->
         <b-row>
           <b-col><span>This will capture this Webbrowser window. You can put this window into fullscreen mode with F11.</span></b-col>
-          <b-col><span>This will install the PresentMon Service which is used to capture performance metrics.</span></b-col>
+          <b-col>
+            <span>This will install the PresentMon Service which is used to capture performance metrics.
+            <b>You do not need</b> to start the Intel PresentMon Overlay Application.
+              Installing the PresentMon package should have installed and started the PresentMon windows service.
+            </span>
+          </b-col>
         </b-row>
 
         <!-- App Settings -->
         <b-row class="mt-4">
           <b-col>
-            <h4>App Settings</h4>
-            <span>Navigate to <b-link>Preferences Page</b-link> and enable Hardware Metrics.</span>
+            <h4>Preferences</h4>
+            <span>
+              Navigate to the <b-icon icon="gear-fill" /> Preferences Page to disable or enable Hardware and
+              Performance metric capturing. The performance impact of capturing should not be noticeable at all.
+              But of course you can decide to switch it off completely in the application preferences.
+            </span>
           </b-col>
         </b-row>
       </b-card-text>
