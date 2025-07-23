@@ -24,7 +24,7 @@
     </b-input-group>
 
     <div class="knee-board-inner-container">
-      <div class="knee-board-content" :class="showHelp ? 'knee-board-content-fade' : ''">
+      <div class="knee-board-content" :class="showHelp || !metricsEnabled ? 'knee-board-content-fade' : ''">
         <!-- Placeholder PitStrategy -->
         <div class="info-panel d-none">
           <PitStrategy />
@@ -57,8 +57,22 @@
         </div>
       </div>
 
-      <!-- Help Overlay -->
-      <b-overlay :show="showHelp" no-wrap variant="transparent" blur="1px" size="xl">
+      <!-- Spacer -->
+      <div style="height: 30vh;"></div>
+
+      <!-- Enable Metrics Overlay -->
+      <b-overlay no-wrap :show="!metricsEnabled" variant="transparent">
+        <template v-slot:overlay>
+          <b-card bg-variant="dark" text-variant="white">
+            <b-checkbox switch @change="switchMetrics">Enable Metrics</b-checkbox>
+            <b-card-text>
+              Enable performance metric capturing with PresentMon service.
+            </b-card-text>
+          </b-card>
+        </template>
+      </b-overlay>
+
+      <b-overlay :show="showHelp" no-wrap variant="transparent" blur="1px">
         <template v-slot:overlay>
           <KneeBoardHelp @close="showHelp=false"></KneeBoardHelp>
         </template>
@@ -74,20 +88,15 @@ import HardwareInfo from "@/components/widgets/HardwareInfo.vue";
 import PerformanceMonitor from "@/components/pages/PerformanceMonitor.vue";
 import KneeBoardHelp from "@/components/pages/KneeBoardHelp.vue";
 import PitStrategy from "@/components/widgets/PitStrategy.vue";
+import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 
 export default {
   name: 'KneeBoard',
   components: {KneeBoardHelp, PerformanceMonitor, HardwareInfo, PitStrategy },
-  props: {live: Boolean},
+  props: {live: Boolean, prefs: PreferencesPage},
   data() {
     return {
       logoUrl: lmwLogoUrl,
-      trackName: 'Unbekannt',
-      currentLap: 0,
-      totalLaps: 0,
-      position: 0,
-      bestLapTime: '--:--:---',
-      notes: '',
       hardwareInfo: {
         cpu_utilization: Array(28).fill(0),
         device_type: 'cuda',
@@ -104,7 +113,8 @@ export default {
       },
       hardwareUpdateInterval: null,
       showHelp: true,
-      openKneeboardInstalled: false
+      openKneeboardInstalled: false,
+      metricsEnabled: false
     };
   },
   methods: {
@@ -115,6 +125,23 @@ export default {
     async getOpenKneeBoardLocation() {
       const r = await getEelJsonObject(window.eel.get_open_kneeboard_location()())
       if (r.result) { this.openKneeboardInstalled = true }
+    },
+    async switchMetrics(enableMetrics) {
+      if (this.prefs !== undefined) {
+        if (enableMetrics) {
+          if (this.prefs.appModules.indexOf("show_hardware_info") === -1) {
+            this.prefs.appModules.push("show_hardware_info");
+            await this.prefs.save()
+          }
+        } else {
+          const index = this.prefs.appModules.indexOf("show_hardware_info");
+          if (index !== -1) {
+            this.prefs.appModules.splice(index, 1);
+            await this.prefs.save()
+          }
+        }
+        this.metricsEnabled = enableMetrics
+      }
     },
     startHardwareMonitoring() {
       this.fetchHardwareInfo()
@@ -134,6 +161,9 @@ export default {
     await this.getOpenKneeBoardLocation();
     this.showHelp = !this.live
     if (this.openKneeboardInstalled) { this.showHelp = false }
+    if (this.prefs !== undefined) {
+      this.metricsEnabled = this.prefs.appModules.indexOf("show_hardware_info") !== -1
+    }
   },
   beforeDestroy() {
     this.stopHardwareMonitoring();

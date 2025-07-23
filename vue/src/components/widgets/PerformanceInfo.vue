@@ -93,7 +93,7 @@
             <span class="metric-label">CPU Load:</span>
             <span class="metric-value">{{ performanceData.cpu_utilization.toFixed(1) }}%</span>
           </div>
-          <div class="metric-row">
+          <div class="metric-row d-none">
             <span class="metric-label">CPU Frequency:</span>
             <span class="metric-value">{{ formatCpuFrequency() }}</span>
           </div>

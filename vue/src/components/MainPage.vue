@@ -175,7 +175,7 @@
                 @replay-playing="replayPlaying"
                 :rfactor-version="rfactorVersion" :gfx-handler="$refs.gfx"/>
 
-    <KneeBoard ref="kneeboard" v-if="navActive === 6" :live="live"></KneeBoard>
+    <KneeBoard ref="kneeboard" :prefs="$refs.preferences" v-if="navActive === 6" :live="live" />
 
     <!-- Wiki -->
     <AppWiki v-if="navActive === 7" @nav="navigate"/>
