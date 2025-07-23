@@ -163,7 +163,7 @@ class RfactorConnect:
                 cls.rf2_pid = proc.info["pid"]
                 logging.info("Found Game Executable Process ID: %s", cls.rf2_pid)
                 return cls.rf2_pid
-        logging.error("Could not find Game Executable Process ID: %s", cls.rf2_pid)
+        logging.info("Could not find Game Executable with Process ID: %s", cls.rf2_pid)
         return -1
 
     @classmethod
