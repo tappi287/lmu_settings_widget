@@ -6,6 +6,7 @@ from ..settingsdef import graphics, generic, controls, headlights
 from ..utils import JsonRepr
 
 _allowed_value_types = (bool, str, int, float)
+FLOAT_SETTING_NDIGITS = 3
 
 
 class OptionsTarget(Enum):
@@ -65,9 +66,22 @@ class Option(JsonRepr):
         if self.value is None or other.value is None or self.hidden:
             return True
 
-        if other.value != self.value or other.key != self.key:
+        other_value, self_value = other.value, self.value
+
+        # -- Handle Float values
+        if isinstance(self.value, float) and isinstance(other.value, float):
+            self_value = round(self.value, FLOAT_SETTING_NDIGITS)
+            other_value = round(other.value, FLOAT_SETTING_NDIGITS)
+
+        if other_value != self_value or other.key != self.key:
             logging.debug(
-                "Option %s %s differs from current setting %s %s", other.key, other.value, self.key, self.value
+                "Option %s %s differs from current setting %s %s. [Compared %s vs %s]",
+                other.key,
+                other.value,
+                self.key,
+                self.value,
+                other_value,
+                self_value,
             )
 
             # -- Report difference to FrontEnd
