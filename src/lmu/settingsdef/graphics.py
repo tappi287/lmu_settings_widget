@@ -415,14 +415,13 @@ advanced_settings = {
     },
     "Screenshot Format": {
         "name": "Screenshot Format",
-        "value": 0,
+        "value": 1,
         "settings": (
             {"value": 0, "name": "default (jpg)"},
             {"value": 1, "name": "bmp"},
             {"value": 2, "name": "jpg"},
             {"value": 3, "name": "png"},
-            {"value": 4, "name": "dds"},
-            {"value": 5, "name": "clipboard"},
+            {"value": 4, "name": "dds"}
         ),
     },
     "Sun Occlusion": {
