@@ -1,69 +1,12 @@
 import ctypes
 import logging
 import struct
-from ctypes import c_void_p, c_uint32, byref, c_double, c_uint64, Structure
+from ctypes import c_void_p, c_uint32, byref, c_double, c_uint64
 from typing import Tuple, Optional
 
 from lmu.globals import get_present_mon_service_loader
 from lmu.utils import JsonRepr
-
-# Metrik-Konstanten aus PresentMonAPI.h
-PM_METRIC_APPLICATION = 0
-PM_METRIC_CPU_FRAME_TIME = 8
-PM_METRIC_CPU_BUSY = 9
-PM_METRIC_CPU_WAIT = 10
-PM_METRIC_DISPLAYED_FPS = 11
-PM_METRIC_PRESENTED_FPS = 12
-PM_METRIC_GPU_TIME = 13
-PM_METRIC_GPU_BUSY = 14
-PM_METRIC_DISPLAY_LATENCY = 24
-PM_METRIC_CLICK_TO_PHOTON_LATENCY = 25
-PM_METRIC_GPU_POWER = 27
-PM_METRIC_GPU_UTILIZATION = 32
-PM_METRIC_CPU_UTILIZATION = 58
-PM_METRIC_CPU_FREQUENCY = 62
-PM_METRIC_CPU_CORE_UTILITY = 63
-PM_METRIC_DISPLAYED_TIME = 17
-
-# Stat-Konstanten aus PresentMonAPI.h
-PM_STAT_NONE = 0
-PM_STAT_AVG = 1
-PM_STAT_PERCENTILE_99 = 2
-PM_STAT_PERCENTILE_95 = 3
-PM_STAT_PERCENTILE_90 = 4
-PM_STAT_MAX = 8
-PM_STAT_MIN = 9
-PM_STAT_MID_POINT = 10
-PM_STAT_NON_ZERO_AVG = 15
-
-# Status-Konstanten aus PresentMonAPI.h
-PM_STATUS_SUCCESS = 0
-
-
-class PM_QUERY_ELEMENT(Structure):
-    """
-    Spiegelt die PM_QUERY_ELEMENT-Struktur aus PresentMonAPI.h wider.
-    """
-
-    _fields_ = [
-        ("metric", c_uint32),
-        ("stat", c_uint32),
-        ("deviceId", c_uint32),
-        ("arrayIndex", c_uint32),
-        ("dataOffset", c_uint64),
-        ("dataSize", c_uint64),
-    ]
-
-
-class PM_VERSION(Structure):
-    _fields_ = [
-        ("major", c_uint32),
-        ("minor", c_uint32),
-        ("patch", c_uint32),
-        ("tag", ctypes.c_char * 22),
-        ("hash", ctypes.c_char * 8),
-        ("config", ctypes.c_char * 4),
-    ]
+from lmu.benchmark import present_mon_const as const
 
 
 class MetricData(JsonRepr):
@@ -74,7 +17,7 @@ class MetricData(JsonRepr):
     def __init__(self):
         # FPS Metriken
         self.fps_avg = 0.0
-        self.fps_90 = 0.0
+        self.fps_01 = 0.0
         self.fps_95 = 0.0
         self.fps_99 = 0.0
         self.fps_max = 0.0
@@ -107,7 +50,7 @@ class MetricData(JsonRepr):
 
     def __str__(self):
         return f"""Metriken:
-        FPS: {self.fps_avg:.2f} (90%: {self.fps_90:.2f}, 95%: {self.fps_95:.2f}, 99%: {self.fps_99:.2f})
+        FPS: {self.fps_avg:.2f} (01%: {self.fps_01:.2f}, 95%: {self.fps_95:.2f}, 99%: {self.fps_99:.2f})
         Frame-Zeit: {self.frame_duration_avg:.2f} ms (CPU: {self.cpu_frame_time_avg:.2f} ms, GPU: {self.gpu_time_avg:.2f} ms)
         Stall: {self.frame_pacing_stall_avg:.2f} ms, GPU Busy: {self.gpu_busy_avg:.2f}%
         Display-Latenz: {self.display_latency_avg:.2f} ms, Input-Latenz: {self.input_latency_avg:.2f} ms
@@ -149,7 +92,7 @@ class PresentMon:
         self.pm_dll.pmRegisterDynamicQuery.argtypes = [
             c_void_p,
             ctypes.POINTER(c_void_p),
-            ctypes.POINTER(PM_QUERY_ELEMENT),
+            ctypes.POINTER(const.PM_QUERY_ELEMENT),
             c_uint64,
             c_double,
             c_double,
@@ -168,7 +111,7 @@ class PresentMon:
         self.pm_dll.pmFreeDynamicQuery.restype = c_uint32
 
         self.pm_dll.pmGetApiVersion.argtypes = [
-            ctypes.POINTER(PM_VERSION),
+            ctypes.POINTER(const.PM_VERSION),
         ]
         self.pm_dll.pmGetApiVersion.restype = c_uint32
 
@@ -178,7 +121,7 @@ class PresentMon:
             return False
         return True
 
-    def start(self, process_id: int, window_size_ms: float = 1000.0, metric_offset: float = 500.0):
+    def start(self, process_id: int, window_size_ms: float = 1000.0, metric_offset: float = 500.0) -> bool:
         """
         Startet eine Überwachungssitzung für eine gegebene Prozess-ID.
 
@@ -186,50 +129,52 @@ class PresentMon:
             process_id: Process ID
             window_size_ms: Window size used for metrics calculation eg. 99% percentile
             metric_offset: Offset from top for frame data
+        Returns:
+            True if tracking process was started, False otherwise
         """
         if not self.pm_dll:
-            return
+            return False
 
         self.pid = process_id
         status = self.pm_dll.pmOpenSession(byref(self.session))
-        if status != PM_STATUS_SUCCESS:
+        if status != const.PM_STATUS_SUCCESS:
             logging.error(f"pmOpenSession fehlgeschlagen mit Status: {status}")
-            return
+            return False
 
         status = self.pm_dll.pmStartTrackingProcess(self.session, self.pid)
-        if status != PM_STATUS_SUCCESS:
+        if status != const.PM_STATUS_SUCCESS:
             logging.error(f"pmStartTrackingProcess fehlgeschlagen mit Status: {status}")
             self.pm_dll.pmCloseSession(self.session)
-            return
+            return False
 
         # Erstellen einer Liste von Query-Elementen für alle gewünschten Metriken
         metric_configs = [
             # FPS Metriken
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_AVG),  # fps_avg
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_PERCENTILE_90),  # fps_90
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_PERCENTILE_95),  # fps_95
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_PERCENTILE_99),  # fps_99
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_MAX),  # fps_max
-            (PM_METRIC_PRESENTED_FPS, PM_STAT_MIN),  # fps_min
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_AVG),  # fps_avg
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_PERCENTILE_01),  # fps_90
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_PERCENTILE_95),  # fps_95
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_PERCENTILE_99),  # fps_99
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_MAX),  # fps_max
+            (const.PM_METRIC_PRESENTED_FPS, const.PM_STAT_MIN),  # fps_min
             # Frametimes und Performance
-            (PM_METRIC_CPU_FRAME_TIME, PM_STAT_AVG),  # frame_duration_avg
-            (PM_METRIC_CPU_BUSY, PM_STAT_AVG),  # frame_pacing_stall_avg
-            (PM_METRIC_CPU_WAIT, PM_STAT_AVG),  # frame_pacing_stall_avg
-            (PM_METRIC_GPU_TIME, PM_STAT_AVG),  # gpu_time_avg
-            (PM_METRIC_GPU_BUSY, PM_STAT_AVG),  # gpu_busy_avg
+            (const.PM_METRIC_CPU_FRAME_TIME, const.PM_STAT_AVG),  # frame_duration_avg
+            (const.PM_METRIC_CPU_BUSY, const.PM_STAT_AVG),  # frame_pacing_stall_avg
+            (const.PM_METRIC_CPU_WAIT, const.PM_STAT_AVG),  # frame_pacing_stall_avg
+            (const.PM_METRIC_GPU_TIME, const.PM_STAT_AVG),  # gpu_time_avg
+            (const.PM_METRIC_GPU_BUSY, const.PM_STAT_AVG),  # gpu_busy_avg
             # Latenz
-            (PM_METRIC_DISPLAY_LATENCY, PM_STAT_AVG),  # display_latency_avg
-            (PM_METRIC_DISPLAYED_TIME, PM_STAT_AVG),  # display_duration_avg
-            (PM_METRIC_CLICK_TO_PHOTON_LATENCY, PM_STAT_NON_ZERO_AVG),  # input_latency_avg
+            (const.PM_METRIC_DISPLAY_LATENCY, const.PM_STAT_AVG),  # display_latency_avg
+            (const.PM_METRIC_DISPLAYED_TIME, const.PM_STAT_AVG),  # display_duration_avg
+            (const.PM_METRIC_CLICK_TO_PHOTON_LATENCY, const.PM_STAT_NON_ZERO_AVG),  # input_latency_avg
             # Hardware-Metriken
-            (PM_METRIC_GPU_POWER, PM_STAT_AVG),  # gpu_power_avg
+            (const.PM_METRIC_GPU_POWER, const.PM_STAT_AVG),  # gpu_power_avg
             # CPU-Metriken
-            (PM_METRIC_CPU_UTILIZATION, PM_STAT_AVG),  # cpu_utilization
-            (PM_METRIC_CPU_FREQUENCY, PM_STAT_AVG),  # cpu_frequency
+            (const.PM_METRIC_CPU_UTILIZATION, const.PM_STAT_AVG),  # cpu_utilization
+            (const.PM_METRIC_CPU_FREQUENCY, const.PM_STAT_AVG),  # cpu_frequency
         ]
 
         num_elements = len(metric_configs)
-        elements = (PM_QUERY_ELEMENT * num_elements)()
+        elements = (const.PM_QUERY_ELEMENT * num_elements)()
 
         # Elemente konfigurieren
         for i, (metric, stat) in enumerate(metric_configs):
@@ -243,12 +188,13 @@ class PresentMon:
             self.session, byref(self.query), elements, num_elements, window_size_ms, metric_offset
         )
 
-        if status != PM_STATUS_SUCCESS:
+        if status != const.PM_STATUS_SUCCESS:
             logging.error(f"pmRegisterDynamicQuery fehlgeschlagen mit Status: {status}")
             self.pm_dll.pmCloseSession(self.session)
-            return
+            return False
 
         logging.info(f"PresentMon-Überwachung für PID {self.pid} mit {num_elements} Metriken gestartet.")
+        return True
 
     def poll(self):
         """
@@ -261,13 +207,13 @@ class PresentMon:
             return None
 
         # 19 Metriken * 8 Bytes pro double + zusätzlich Platz für Strings
-        blob_size = 1024  # Großzügiger Puffer für alle Daten inkl. Strings
+        blob_size = 256  # Großzügiger Puffer für alle Daten inkl. Strings
         data_buffer = (ctypes.c_uint8 * blob_size)()
         blobs_written = c_uint32(1)
 
         status = self.pm_dll.pmPollDynamicQuery(self.query, self.pid, data_buffer, byref(blobs_written))
 
-        if status == PM_STATUS_SUCCESS and blobs_written.value > 0:
+        if status == const.PM_STATUS_SUCCESS and blobs_written.value > 0:
             # Alle double-Werte (numerische Metriken) extrahieren
             # Die Reihenfolge muss mit der in start() definierten Reihenfolge übereinstimmen
             try:
@@ -275,7 +221,7 @@ class PresentMon:
                 # FPS Metriken (6 doubles)
                 self.metrics.fps_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
-                self.metrics.fps_90 = struct.unpack_from("d", data_buffer, offset)[0]
+                self.metrics.fps_01 = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
                 self.metrics.fps_95 = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
@@ -287,25 +233,30 @@ class PresentMon:
                 offset += 8
 
                 # Frametimes und Performance (4 doubles)
-                # PM_METRIC_CPU_FRAME_TIME
+                # const.PM_METRIC_CPU_FRAME_TIME
                 self.metrics.frame_duration_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
-                # PM_METRIC_CPU_BUSY
+                # const.PM_METRIC_CPU_BUSY
                 self.metrics.cpu_busy_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
-                # PM_METRIC_CPU_WAIT
+                # const.PM_METRIC_CPU_WAIT
                 self.metrics.frame_pacing_stall_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # const.PM_METRIC_GPU_TIME
                 self.metrics.gpu_time_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # const.PM_METRIC_GPU_BUSY
                 self.metrics.gpu_busy_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
 
                 # Latenz (3 doubles)
+                # const.PM_METRIC_DISPLAY_LATENCY
                 self.metrics.display_latency_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # const.PM_METRIC_DISPLAYED_TIME
                 self.metrics.display_duration_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # const.PM_METRIC_CLICK_TO_PHOTON_LATENCY
                 self.metrics.input_latency_avg = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
 
@@ -314,8 +265,10 @@ class PresentMon:
                 offset += 8
 
                 # CPU-Metriken (2 doubles)
+                # const.PM_METRIC_CPU_UTILIZATION
                 self.metrics.cpu_utilization = struct.unpack_from("d", data_buffer, offset)[0]
                 offset += 8
+                # const.PM_METRIC_CPU_FREQUENCY
                 # CPU-Frequenz kommt in MHz, umrechnen in GHz und begrenzen auf sinnvolle Werte
                 cpu_freq_raw = struct.unpack_from("d", data_buffer, offset)[0]
                 # Überprüfen und konvertieren, falls nötig
@@ -324,16 +277,12 @@ class PresentMon:
 
                 # CPU Frame Time für Abwärtskompatibilität (redundant, bereits in frame_duration_avg)
                 self.metrics.cpu_frame_time_avg = self.metrics.cpu_busy_avg
-
-                # Detailliertes Debug-Log bei Bedarf
-                # logging.info(str(self.metrics))
                 return self.metrics
-
             except Exception as e:
                 logging.error(f"Fehler beim Parsen der Metrikdaten: {e}")
                 return None
 
-        elif status != PM_STATUS_SUCCESS:
+        elif status != const.PM_STATUS_SUCCESS:
             logging.error(f"pmPollDynamicQuery ist mit Status fehlgeschlagen: {status}")
             return None
 
@@ -375,10 +324,10 @@ class PresentMon:
             logging.error("PresentMonAPI2Loader.dll ist nicht geladen.")
             return None
 
-        version_struct = PM_VERSION()
+        version_struct = const.PM_VERSION()
         status = self.pm_dll.pmGetApiVersion(byref(version_struct))
 
-        if status == PM_STATUS_SUCCESS:
+        if status == const.PM_STATUS_SUCCESS:
             logging.info(
                 f"PresentMon API Version: "
                 f"{version_struct.major}."
