@@ -25,77 +25,23 @@
     </div>
 
     <!-- Detaillierte Metriken -->
-    <div class="detailed-metrics-section">
+    <div class="detailed-metrics-section mt-2">
       <div class="metrics-grid">
-        <!-- FPS Metriken -->
-        <div class="metric-group">
-          <div class="metric-row">
-            <span class="metric-label">FPS Average:</span>
-            <span class="metric-value">{{ performanceData.fps_avg.toFixed(1) }}</span>
-          </div>
-          <div class="metric-row d-none metric-row">
-            <span class="metric-label">FPS 90. Percentil:</span>
-            <span class="metric-value">{{ performanceData.fps_90.toFixed(1) }}</span>
-          </div>
-          <div class="metric-row d-none">
-            <span class="metric-label">FPS 95. Percentil:</span>
-            <span class="metric-value">{{ performanceData.fps_95.toFixed(1) }}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">FPS 99. Percentil:</span>
-            <span class="metric-value">{{ performanceData.fps_99.toFixed(1) }}</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">FPS Min/Max:</span>
-            <span class="metric-value">{{ performanceData.fps_min.toFixed(1) }} / {{ performanceData.fps_max.toFixed(1) }}</span>
-          </div>
-        </div>
-
-        <!-- Frametime & Performance -->
-        <div class="metric-group">
-          <div class="metric-row">
-            <span class="metric-label">FrameTime:</span>
-            <span class="metric-value">{{ performanceData.frame_duration_avg.toFixed(2) }} ms</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Stall:</span>
-            <span class="metric-value">{{ performanceData.frame_pacing_stall_avg.toFixed(2) }} ms</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">GPU Busy:</span>
-            <span class="metric-value">{{ performanceData.gpu_busy_avg.toFixed(1) }}%</span>
-          </div>
-        </div>
-
-        <!-- Latenz -->
-        <div class="metric-group">
-          <div class="metric-row">
-            <span class="metric-label">Display Latency:</span>
-            <span class="metric-value">{{ performanceData.display_latency_avg.toFixed(2) }} ms</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Display Duration:</span>
-            <span class="metric-value">{{ performanceData.display_duration_avg.toFixed(2) }} ms</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Input Latency:</span>
-            <span class="metric-value">{{ performanceData.input_latency_avg.toFixed(2) }} ms</span>
-          </div>
-        </div>
-
-        <!-- Hardware -->
-        <div class="metric-group">
-          <div class="metric-row">
-            <span class="metric-label">GPU Power:</span>
-            <span class="metric-value">{{ performanceData.gpu_power_avg.toFixed(1) }}W</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">CPU Load:</span>
-            <span class="metric-value">{{ performanceData.cpu_utilization.toFixed(1) }}%</span>
-          </div>
-          <div class="metric-row d-none">
-            <span class="metric-label">CPU Frequency:</span>
-            <span class="metric-value">{{ formatCpuFrequency() }}</span>
+        <div v-for="grp in groups" class="metric-group">
+          <div v-for="m in grp" class="metric-row" v-if="performanceData[m.key] !== undefined">
+            <span class="metric-label">
+              <!-- Label -->
+              {{ m.name }}
+              <!-- Description Tooltip -->
+              <b-icon v-if="descriptions[m.key] !== undefined"
+                      icon="info-square" class="ml-2 k-icon" shift-v="0.5"
+                      v-b-popover.hover.auto="descriptions[m.key]">
+              </b-icon>
+            </span>
+            <span class="metric-value">
+              {{ performanceData[m.key].toFixed(m.nDigits) }}
+              <template v-if="m.unit !== undefined">{{ m.unit }}</template>
+            </span>
           </div>
         </div>
       </div>
@@ -122,6 +68,7 @@ export default {
   name: 'PerformanceInfo',
   components: {SettingItem},
   props: {
+    descriptions: Object,
     performanceData: {
       type: Object,
       default: () => ({
@@ -156,6 +103,28 @@ export default {
   },
   data() {
     return {
+      groups: [
+        [
+          {name: 'FPS Average', key: 'fps_avg', nDigits: 1},
+          {name: 'FPS 1st Percentile', key: 'fps_01', nDigits: 1},
+          {name: 'FPS 99. Percentile', key: 'fps_99', nDigits: 1},
+          {name: 'FPS Maximum', key: 'fps_max', nDigits: 1},
+        ],
+        [
+          {name: 'GPU Busy', key: 'gpu_busy_avg', unit: '%', nDigits: 1},
+          {name: 'GPU Power', key: 'gpu_power_avg', unit: "W", nDigits: 1},
+          {name: 'Stall', key: 'frame_pacing_stall_avg', unit: 'ms', nDigits: 1},
+        ],
+        [
+          {name: 'CPU Load', key: 'cpu_utilization', unit: '%'},
+          {name: 'CPU Frequency', key: 'cpu_frequency', unit: 'GHz'},
+        ],
+        [
+          {name: 'Display Latency', key: 'display_latency_avg', unit: 'ms', nDigits: 2},
+          // {name: 'Display Duration', key: 'display_duration_avg', unit: 'ms', nDigits: 2},
+          {name: 'Input Latency', key: 'input_latency_avg', unit: 'ms', nDigits: 2},
+        ]
+      ],
       cpuChart: null,
       gpuChart: null,
       cpuTimes: Array(60).fill(0),
@@ -275,7 +244,7 @@ export default {
             data: this.cpuTimes,
             backgroundColor: (context) => {
               const value = context.dataset.data[context.dataIndex];
-              return value <= this.targetFrameTime ? '#4CAF50' : '#FF9800'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
+              return value <= this.targetFrameTime ? '#28a745' : '#a76828'; // Grün wenn <= 11.1ms (90Hz), sonst Orange
             },
             borderWidth: 0
           }]

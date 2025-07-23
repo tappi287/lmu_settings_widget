@@ -1,5 +1,5 @@
 <template>
-  <PerformanceInfo :performanceData="performanceData" />
+  <PerformanceInfo :performanceData="performanceData" :descriptions="performanceDataDescriptions" />
 </template>
 
 <script>
@@ -12,9 +12,23 @@ export default {
   },
   data() {
     return {
+      performanceDataDescriptions: {
+        display_latency_avg: "How long it took from the start of this frame until the frame was displayed on the screen.",
+        fps_avg: "The rate at which the application is calling Present().",
+        fps_99: "99th Percentile: Value below which 99% of the observations within 1s window fall.",
+        fps_01: "1st Percentile: Value below which 1% of the observations within 1s window fall.",
+        frame_pacing_stall_avg: "How long the CPU spent waiting before starting the next frame.",
+        display_duration_avg: "How long the frame was displayed on the screen, or 'NA' if the frame was not displayed.",
+        input_latency_avg: "How long it took from the earliest mouse click that contributed to this frame until this frame was displayed.",
+        cpu_utilization: "Amount of CPU processing capacity being used.",
+        cpu_frequency: "Clock speed of the CPU.",
+        gpu_power_avg: "Power consumed by the graphics processing unit.",
+        gpu_busy_avg: "How long the GPU was actively working on this frame (i.e., the time during which at least one GPU engine is executing work from the target process).",
+      },
       performanceData: {
         // FPS Metriken
         fps_avg: 0.0,
+        fps_01: 0.0,
         fps_90: 0.0,
         fps_95: 0.0,
         fps_99: 0.0,
@@ -63,7 +77,6 @@ export default {
           const parsedData = JSON.parse(data);
           if (Object.keys(parsedData).length > 0) {
             this.performanceData = parsedData;
-            this.performanceData.cpu_frequency = parsedData.cpu_frequency / 27.5;
           }
         } catch (error) {
           console.error('Fehler beim Parsen der Performance-Daten:', error);
@@ -77,6 +90,7 @@ export default {
         // Simulierte Daten
         this.performanceData = {
           fps_avg: 60 + (Math.random() * 20 - 10),
+          fps_01: 20 + (Math.random() * 10 - 5),
           fps_90: 55 + (Math.random() * 10 - 5),
           fps_95: 50 + (Math.random() * 10 - 5),
           fps_99: 45 + (Math.random() * 10 - 5),

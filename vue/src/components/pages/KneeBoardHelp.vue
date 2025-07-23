@@ -7,7 +7,7 @@ name: "KneeBoardHelp"
 </script>
 
 <template>
-  <b-container class="text-left">
+  <b-container class="text-left" fluid>
     <b-card class="mt-2 p-2 setting-card rounded" header-class="m-0 p-2" bg-variant="dark" text-variant="white">
       <template #header>
           <h3 class="float-left mr-1">
@@ -27,8 +27,15 @@ name: "KneeBoardHelp"
       <!-- Actions -->
       <b-card-text>
         <b-row class="mt-5">
+          <b-col><h4>OpenKneeboard</h4></b-col>
+          <b-col><h4>PresentMon</h4></b-col>
+        </b-row>
+        <b-row>
+          <b-col><p>Capture and display this window in Virtual Reality.</p></b-col>
+          <b-col><p>Measure frame time and GPU rendertimes to determine if you're System or GPU bound in certain scenarios.</p></b-col>
+        </b-row>
+        <b-row>
           <b-col>
-            <h4>OpenKneeboard</h4>
             <ol>
               <li>Install <b-link target="_blank" href="https://go.openkneeboard.com/download">OpenKneeboard</b-link></li>
               <li>Go to <b class="text-white-50">Settings > Tabs > Add a Tab > Window Capture</b></li>
@@ -38,7 +45,6 @@ name: "KneeBoardHelp"
             </ol>
           </b-col>
           <b-col>
-            <h4>PresentMon</h4>
             <ol>
               <li>Install <b-link target="_blank" href="https://game.intel.com/us/intel-presentmon/">Intel® PresentMon</b-link></li>
               <li>Reboot or make sure PresentMonService is running as a Windows Service</li>

@@ -17,42 +17,39 @@
 
     <b-card class="setting-card mb-2" bg-variant="dark" text-variant="white" footer-class="pt-0">
       <template #header>
-        <h6 class="mb-0 text-center"><span class="title">General</span></h6>
+        <h5 class="mb-0"><span class="title">General</span></h5>
       </template>
 
+      <b-row v-for="option in appOptions" no-gutters>
+        <b-form-checkbox
+          v-model="appModules"
+          :key="option.value"
+          :value="option.value"
+          @change="save"
+        >
+          <b-col cols="4"><b>{{ option.text }}</b></b-col>
+          <b-col class="text-white-50">{{ option.description }}</b-col>
+        </b-form-checkbox>
+      </b-row>
+      <!--
       <b-checkbox-group :options="appOptions" v-model="appModules" @change="save" />
-
-      <b-card-text class="mt-3">
-        <b-row>
-          <b-col cols="3"><b>[Enable Audio]</b></b-col>
-          <b-col>Weather to play audio feedback when using certain actions within the app.</b-col>
-        </b-row>
-        <b-row>
-          <b-col cols="3"><b>[Prefer Edge Browser]</b></b-col>
-          <b-col>Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.</b-col>
-        </b-row>
-        <b-row>
-          <b-col cols="3"><b>[Performance Metrics]</b></b-col>
-          <b-col> Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.</b-col>
-        </b-row>
-      </b-card-text>
+      -->
     </b-card>
 
     <b-card class="setting-card mb-2" bg-variant="dark" text-variant="white" footer-class="pt-0">
       <template #header>
-        <h6 class="mb-0 text-center"><span class="title">Autostart</span></h6>
+        <h5 class="mb-0"><span class="title">Autostart</span></h5>
       </template>
-
-      <b-checkbox-group :options="appAutostartOptions" v-model="appAutostart" @change="save" />
-
-      <b-card-text class="mt-3">
+      <b-card-text>
         Which applications to automatically launch along with the game. This detects already running applications.
       </b-card-text>
+
+      <b-checkbox-group :options="appAutostartOptions" v-model="appAutostart" @change="save" />
     </b-card>
 
     <b-card class="setting-card mb-2" bg-variant="dark" text-variant="white" footer-class="pt-0">
       <template #header>
-        <h6 class="mb-0 text-center"><span class="title">Dashboard</span></h6>
+        <h5 class="mb-0"><span class="title">Dashboard</span></h5>
       </template>
 
       <b-checkbox-group :options="dashboardOptions" v-model="dashboardModules" @change="save" />
@@ -95,9 +92,9 @@ export default {
           {text: 'OpenKneeboard', value: 'kneeboard'},
       ],
       appOptions: [
-        {text: 'Enable Audio', value: 'audio'},
-        {text: 'Prefer Edge Browser', value: 'edge_preferred'},
-        {text: 'Performance Monitoring', value: 'show_hardware_info'},
+        {text: 'Enable Audio', value: 'audio', description: 'Weather to play audio feedback when using certain actions within the app.'},
+        {text: 'Prefer Edge Browser', value: 'edge_preferred', description: 'Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.'},
+        {text: 'Performance Monitoring', value: 'show_hardware_info', description: 'Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.'},
       ],
       lmwLogoUrl: lmwLogoUrl
     }

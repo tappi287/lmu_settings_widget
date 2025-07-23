@@ -57,27 +57,26 @@
         </div>
       </div>
 
-      <!-- Spacer -->
-      <div style="height: 30vh;"></div>
+      <!-- Spacer <div style="height: 30vh;"></div> -->
 
       <!-- Enable Metrics Overlay -->
-      <b-overlay no-wrap :show="!metricsEnabled" variant="transparent">
+      <b-overlay no-wrap :show="!metricsEnabled && !showHelp" variant="transparent">
         <template v-slot:overlay>
-          <b-card bg-variant="dark" text-variant="white">
+          <b-card class="rounded" bg-variant="dark" text-variant="white">
             <b-checkbox switch @change="switchMetrics">Enable Metrics</b-checkbox>
-            <b-card-text>
-              Enable performance metric capturing with PresentMon service.
+            <b-card-text class="mt-4">
+              Enable performance metric capturing with the PresentMon service.<br />
+              <b-link @click="showHelp = true">More Info...</b-link>
             </b-card-text>
           </b-card>
         </template>
       </b-overlay>
-
-      <b-overlay :show="showHelp" no-wrap variant="transparent" blur="1px">
-        <template v-slot:overlay>
-          <KneeBoardHelp @close="showHelp=false"></KneeBoardHelp>
-        </template>
-      </b-overlay>
     </div>
+    <b-overlay class="kneeboard-help" no-wrap :show="showHelp" variant="transparent" blur="1px">
+      <template v-slot:overlay>
+        <KneeBoardHelp @close="showHelp=false"></KneeBoardHelp>
+      </template>
+    </b-overlay>
   </div>
 </template>
 

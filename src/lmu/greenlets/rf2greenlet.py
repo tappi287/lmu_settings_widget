@@ -22,20 +22,27 @@ from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
 ENABLE_METRICS = False
+PRESENT_MON_RETRIES = 0
+MAX_PRESENT_MON_RETRIES = 5
 
 
 def _while_rfactor_is_live():
     """Task's while rFactor is live and running"""
+    global PRESENT_MON_RETRIES
     if not RfactorConnect.rf2_pid:
+        PRESENT_MON_RETRIES = 0
         RfactorConnect.get_pid()
 
     # -- init PresentMon
     if ENABLE_METRICS and not RfactorConnect.present_mon.is_tracking_process:
-        try:
-            RfactorConnect.present_mon.start(RfactorConnect.rf2_pid)
-            logging.info(f"PresentMon for PID {RfactorConnect.rf2_pid} started")
-        except Exception as e:
-            logging.error(f"Error starting PresentMon Query: {e}")
+        if RfactorConnect.rf2_pid is not None and PRESENT_MON_RETRIES < MAX_PRESENT_MON_RETRIES:
+            try:
+                if not RfactorConnect.present_mon.start(RfactorConnect.rf2_pid):
+                    PRESENT_MON_RETRIES += 1
+                    RfactorConnect.present_mon.stop()
+                logging.info(f"PresentMon for PID {RfactorConnect.rf2_pid} started")
+            except Exception as e:
+                logging.error(f"Error starting PresentMon Query: {e}")
 
     # -- Get PresentMon Metrics and store in AsyncResult
     if ENABLE_METRICS and RfactorConnect.present_mon.is_tracking_process:
@@ -99,7 +106,7 @@ def _rfactor_greenlet_loop():
     _check_and_setup_performance_metrics()
 
     # -- While we are live
-    if RfactorLiveEvent.was_live and RfactorConnect.rf2_pid:
+    if RfactorLiveEvent.was_live:
         _while_rfactor_is_live()
 
     # -- If we were live before

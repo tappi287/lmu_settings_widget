@@ -95,6 +95,10 @@
   color: #aaa;
 }
 
+.k-icon {
+  vertical-align: -0.251em !important;
+}
+
 .metric-setting .setting-field { width: 100%; }
 .metric-setting .input-group-prepend, .metric-setting .input-group-append {
   width: 50%;
