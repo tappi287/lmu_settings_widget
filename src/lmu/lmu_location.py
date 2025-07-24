@@ -14,6 +14,7 @@ from lmu.globals import (
 from lmu.valve.steam_utils import SteamApps
 
 LOC_REPORTED = False
+STEAM_APPS = SteamApps()
 
 
 class RfactorLocation:
@@ -83,12 +84,13 @@ class RfactorLocation:
 
     @classmethod
     def get_location(cls):
+        global STEAM_APPS
+
         # -- Path maybe already set by overwrite location
         if cls.path is None or not cls.path.exists():
             try:
-                s = SteamApps()
-                s.read_steam_library()
-                path = s.find_game_location(cls._app_id)
+                STEAM_APPS.read_steam_library()
+                path = STEAM_APPS.find_game_location(cls._app_id)
             except Exception as e:
                 logging.error("Error getting Le Mans Ultimate location from Steam: %s", e)
                 return

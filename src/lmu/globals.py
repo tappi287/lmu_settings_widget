@@ -1,12 +1,11 @@
-import os
 import logging
+import os
 import sys
 import tomllib
 from pathlib import Path
 from typing import Union
 
 from appdirs import user_data_dir, user_log_dir
-
 
 APP_NAME = "lmu_settings_widget"
 SETTINGS_DIR_NAME = "lmu_settings_widget"
@@ -44,6 +43,36 @@ KNOWN_APPS = {
         "installdir": "Le Mans Ultimate",
         "executable": "Le Mans Ultimate.exe",
         "exe_sub_path": "",
+    },
+    "crew_chief": {
+        "name": "CrewChief v4",
+        "installdir": "",
+        "executable": "CrewChiefV4.exe",
+        "exe_sub_path": "",
+        "simmon_method": "find_by_registry_keys",
+        "simmon_method_args": [
+            [
+                "SOFTWARE\\WOW6432Node\\Britton IT Ltd\\InstalledProducts\\CrewChiefV4",
+                "SOFTWARE\\Britton IT Ltd\\InstalledProducts\\CrewChiefV4",
+            ],
+            "InstallLocation",
+        ],
+    },
+    "kneeboard": {
+        "name": "OpenKneeboard",
+        "installdir": "",
+        "executable": "OpenKneeboardApp.exe",
+        "exe_sub_path": "",
+        "simmon_method": "find_by_registry_keys_current_user",
+        "simmon_method_args": [["SOFTWARE\\Fred Emmott\\OpenKneeboard"], "InstallationBinPath"],
+    },
+    "sim_hub": {
+        "name": "SimHub",
+        "installdir": "",
+        "executable": "SimHubWPF.exe",
+        "exe_sub_path": "",
+        "simmon_method": "find_by_registry_keys_current_user",
+        "simmon_method_args": [["SOFTWARE\\SimHub"], "InstallDirectory"],
     },
 }
 

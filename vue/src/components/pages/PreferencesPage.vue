@@ -90,6 +90,8 @@ export default {
       appAutostart: [],
       appAutostartOptions: [
           {text: 'OpenKneeboard', value: 'kneeboard'},
+          {text: 'CrewChiefV4', value: 'crew_chief'},
+          {text: 'SimHub', value: 'sim_hub'},
       ],
       appOptions: [
         {text: 'Enable Audio', value: 'audio', description: 'Weather to play audio feedback when using certain actions within the app.'},
