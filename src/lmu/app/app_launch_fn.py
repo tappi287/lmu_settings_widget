@@ -73,3 +73,24 @@ def get_open_kneeboard_location():
     if location:
         return json.dumps({"result": True, "data": location.as_posix()})
     return json.dumps({"result": False, "msg": f"Could not get open kneeboard location: {location}"})
+
+
+@capture_app_exceptions
+def get_pimax_play_location():
+    location = ext_applications.get_app_executable_path("pimax_play")
+    if location:
+        return json.dumps({"result": True, "data": location.as_posix()})
+    return json.dumps({"result": False, "msg": f"Could not get Pimax Play Client location: {location}"})
+
+
+@capture_app_exceptions
+def launch_pimax_play():
+    msg = "Launched Pimax Play"
+    try:
+        ext_applications.start_application("pimax_play")
+        return json.dumps({"result": True, "msg": msg})
+    except Exception as e:
+        msg = f"Error calling autostart for Pimax Play Client: {e}"
+        logging.error(msg)
+
+    return json.dumps({"result": False, "msg": msg})

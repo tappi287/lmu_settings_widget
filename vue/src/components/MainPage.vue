@@ -51,7 +51,10 @@
 
       <!-- Right aligned buttons -->
       <div class="text-right" id="nav-right">
-        <b-button size="sm" variant="rf-secondary" class="ml-2"
+        <b-button size="sm" variant="rf-secondary" class="ml-2 pimax-btn" v-if="pimaxPlayAvailable"
+                  @click="launchPimaxPlay" v-b-popover.bottom.hover="'Launch Pimax Play'">
+        </b-button>
+        <b-button size="sm" variant="rf-secondary" class="ml-2" v-if="!pimaxPlayAvailable"
                   @click="launchSteamVr" v-b-popover.bottom.hover="'Launch SteamVR'">
           <b>VR</b>
         </b-button>
@@ -253,6 +256,7 @@ import RfactorOverlay from "@/components/widgets/RfactorOverlay.vue";
 import PreferencesPage from "@/components/pages/PreferencesPage.vue";
 import lmwLogoUrl from "@/assets/lmw_logo.png"
 import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
+import pimaxLogoUrl from "@/assets/Pimax_Innovation_logo.svg"
 import FuelCalc from "@/components/pages/FuelCalc.vue";
 import KneeBoard from "@/components/pages/KneeBoard.vue";
 
@@ -277,6 +281,7 @@ export default {
       lmwLogoUrl: lmwLogoUrl,
       lmwLogoWhiteUrl: lmwLogoWhiteUrl,
       heartBeatClass: '',
+      pimaxPlayAvailable: false
     }
   },
   props: {rfactorVersion: String, isDev: Boolean},
@@ -427,6 +432,27 @@ export default {
         await this.$refs.ses.update()
       }
     },
+    getPimaxPlayLocation() {
+      this.pimaxPlayAvailable = false;
+      window.eel.get_pimax_play_location()((data) => {
+        try {
+          const r = JSON.parse(data);
+          if (r.result !== undefined && r.result) {
+            this.pimaxPlayAvailable = true;
+          }
+        } catch (error) {
+          console.error('Error while trying to get Pimax Play Location:', error);
+        }
+      });
+    },
+    launchPimaxPlay: async function () {
+      let r = await getEelJsonObject(window.eel.launch_pimax_play()())
+      if (r !== undefined && r.result) {
+        this.makeToast(r.msg, 'success', 'Pimax Play Launch')
+      } else if (r !== undefined && !r.result) {
+        this.makeToast(r.msg, 'danger', 'Pimax Play Launch')
+      }
+    },
     launchSteamVr: async function () {
       let r = await getEelJsonObject(window.eel.run_steamvr()())
       if (r !== undefined && r.result) {
@@ -485,6 +511,9 @@ export default {
         clearInterval(interval)
       }
     }, 50)
+
+    // Get Pimax Play Location / Availability later
+    setTimeout(() => this.getPimaxPlayLocation(), 200)
   },
   beforeDestroy() {
     this.$eventHub.$off('navigate', this.navigate)
@@ -548,5 +577,13 @@ export default {
 
 .search-off {
   opacity: 0.3;
+}
+
+.pimax-btn {
+  width: 33.5px;
+  height: 29px;
+  background: url("@/assets/Pimax_Innovation_logo.svg") center no-repeat;
+  background-size: 75%;
+  filter: saturate(0%);
 }
 </style>

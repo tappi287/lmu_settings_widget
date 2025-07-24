@@ -74,6 +74,14 @@ KNOWN_APPS = {
         "simmon_method": "find_by_registry_keys_current_user",
         "simmon_method_args": [["SOFTWARE\\SimHub"], "InstallDirectory"],
     },
+    "pimax_play": {
+        "name": "Pimax Play",
+        "installdir": "",
+        "executable": "PimaxClient.exe",
+        "exe_sub_path": "PimaxClient/pimaxui",
+        "simmon_method": "find_by_registry_keys",
+        "simmon_method_args": [["SOFTWARE\\Pimax"], "InstallPath"],
+    },
 }
 
 GAME_EXECUTABLE = KNOWN_APPS["2399420"]["executable"]

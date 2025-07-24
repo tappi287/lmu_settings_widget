@@ -26,8 +26,13 @@ def get_open_kneeboard_location():
 
 
 @eel.expose
-def run_open_kneeboard():
-    return app_launch_fn.run_open_kneeboard()
+def get_pimax_play_location():
+    return app_launch_fn.get_pimax_play_location()
+
+
+@eel.expose
+def launch_pimax_play():
+    return app_launch_fn.launch_pimax_play()
 
 
 def expose_launch_methods():
