@@ -8,7 +8,7 @@
       },
       {
         "key": "Texture Sharpening",
-        "value": 3
+        "value": 5
       },
       {
         "key": "Heat FX Fade Speed",
@@ -33,10 +33,6 @@
       {
         "key": "Rearview Swingman",
         "value": true
-      },
-      {
-        "key": "Screenshot Format",
-        "value": 1
       },
       {
         "key": "Sun Occlusion",
@@ -103,11 +99,11 @@
       },
       {
         "key": "Road Reflections",
-        "value": 2
+        "value": 1
       },
       {
         "key": "Environment Reflections",
-        "value": 2
+        "value": 1
       },
       {
         "key": "Motion blur",
@@ -179,15 +175,15 @@
     "options": [
       {
         "key": "CAS_Contrast",
-        "value": 0
+        "value": 0.16
       },
       {
         "key": "CAS_Sharpening",
-        "value": 1.3
+        "value": 1.18
       },
       {
         "key": "CAS_Contrast_Clamp",
-        "value": 0.1
+        "value": 0.11
       }
     ],
     "title": "AMD Fidelity FX (CAS)"
@@ -297,15 +293,15 @@
     "options": [
       {
         "key": "LUT_AmountChroma",
-        "value": 0.85
+        "value": 1
       },
       {
         "key": "LUT_AmountLuma",
-        "value": 0.85
+        "value": 1
       },
       {
         "key": "LUT_TextureName",
-        "value": "\"rF2_ToneDownDay.png\""
+        "value": "\"Super_ToneDownDay.png\""
       }
     ],
     "title": "Look Up Table"
@@ -387,11 +383,11 @@
     "options": [
       {
         "key": "VR HUD Scale",
-        "value": 0.65
+        "value": 0.55
       },
       {
         "key": "VR Menu Scale",
-        "value": 0.65
+        "value": 0.5
       },
       {
         "key": "VR IPD Scale",
@@ -399,11 +395,11 @@
       },
       {
         "key": "VR HUD Depth",
-        "value": 0.58
+        "value": 0.55
       },
       {
         "key": "VR Menu Depth",
-        "value": 0.58
+        "value": 0.75
       },
       {
         "key": "VR Projection Mode",
