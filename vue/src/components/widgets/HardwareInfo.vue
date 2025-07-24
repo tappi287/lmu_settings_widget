@@ -1,7 +1,7 @@
 <template>
   <div class="hardware-info-container text-left">
     <!-- CPU Utilization -->
-    <div class="system-info-section">
+    <div class="system-info-section d-none">
       <div class="info-label">CPU Utilization</div>
       
       <!-- Top 8 CPU Cores -->
@@ -18,34 +18,43 @@
 
     <!-- RAM Information -->
     <div class="system-info-section">
-      <div class="info-label">RAM: {{ formatMemory(hardwareInfo.ram_used) }} / {{ formatMemory(hardwareInfo.ram_total) }} ({{ Math.round(hardwareInfo.ram_used_percent) }}%)</div>
+      <div class="info-label">
+        RAM: <div class="float-right">{{ formatMemory(hardwareInfo.ram_used) }} / {{ formatMemory(hardwareInfo.ram_total) }} ({{ Math.round(hardwareInfo.ram_used_percent) }}%)</div>
+      </div>
       <b-progress height="20px" class="mb-3 rounded">
-        <b-progress-bar :variant="getMemoryVariant(hardwareInfo.ram_used_percent)" :value="hardwareInfo.ram_used_percent" :max="100" />
+        <b-progress-bar class="hw-bar" :value="hardwareInfo.ram_used_percent" :max="100">
+          {{ Math.round(hardwareInfo.ram_used_percent) }}%
+        </b-progress-bar>
       </b-progress>
     </div>
 
     <!-- GPU Information (for each GPU) -->
     <div v-for="(gpu, index) in hardwareInfo.gpus" :key="'gpu-' + index" class="system-info-section">
       <div class="info-label">
-        GPU {{ index + 1 }} Load
+        GPU {{ index + 1 }} vRAM <div class="float-right">{{ formatMemory(gpu.vram_used) }} / {{ formatMemory(gpu.vram_total) }} ({{ Math.round(gpu.vram_used_percent) }}%)</div>
       </div>
       <b-progress height="20px" class="mb-3 rounded">
-        <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.gpu_utilization" :max="100">
-          {{ gpu.gpu_utilization }}%
-        </b-progress-bar>
-      </b-progress>
-      <div class="info-label">
-        GPU {{ index + 1 }}: {{ formatMemory(gpu.vram_used) }} / {{ formatMemory(gpu.vram_total) }}
-      </div>
-      <b-progress height="20px" class="mb-3 rounded">
-        <b-progress-bar :variant="getMemoryVariant(gpu.vram_used_percent)" :value="gpu.vram_used_percent" :max="100">
+        <b-progress-bar class="hw-bar" :value="gpu.vram_used_percent" :max="100">
           {{ Math.round(gpu.vram_used_percent) }}%
         </b-progress-bar>
       </b-progress>
 
       <div class="info-label">
-        GPU Temp: {{ gpu.gpu_temperature }}°C | GPU Load: {{ gpu.gpu_utilization }}%
+        GPU {{ index + 1 }} Load <div class="float-right">{{ gpu.gpu_utilization }}%</div>
       </div>
+      <b-progress height="20px" class="mb-3 rounded">
+        <b-progress-bar class="hw-bar" :value="gpu.gpu_utilization" :max="100">
+          {{ gpu.gpu_utilization }}%
+        </b-progress-bar>
+      </b-progress>
+      <div class="info-label">
+        GPU Temperature<div class="float-right">{{ gpu.gpu_temperature }}°C</div>
+      </div>
+      <b-progress height="20px" class="mb-3 rounded">
+        <b-progress-bar class="hw-bar" :value="gpu.gpu_temperature" :max="100">
+          {{ gpu.gpu_temperature }}°C
+        </b-progress-bar>
+      </b-progress>
     </div>
   </div>
 </template>
@@ -106,9 +115,22 @@ export default {
       return (bytes / 1024 / 1024 / 1024).toFixed(2) + ' GB';
     },
     getMemoryVariant(percentage) {
-      if (percentage < 50) return 'success';
-      if (percentage < 80) return 'warning';
+      if (percentage < 50) return 'secondary';
+      if (percentage < 80) return 'success';
       return 'danger';
+    },
+    getGpuTemperatureStyle(temp) {
+      let color;
+      if (temp > 90) { color = '#4e835c'; }
+      if (temp < 90) { color = '#5c8868'; }
+      if (temp < 70) { color = '#6a8771'; }
+      if (temp < 60) { color = '#768c7c'; }
+      if (temp < 50) { color = '#57675b'; }
+      if (temp < 40) { color = '#606a62'; }
+      if (temp < 30) { color = '#565c58'; }
+      return {
+        'background-color': color
+      };
     },
     getCpuBarStyle(usage) {
       // Farbwerte basierend auf den Anforderungen
@@ -189,5 +211,9 @@ export default {
 
 .progress {
   background: rgba(174, 193, 211, 0.2);
+}
+
+.hw-bar {
+  background-color: #4bae4f;
 }
 </style>

@@ -21,7 +21,7 @@
 
 .metrics-container {
   display: flex;
-  justify-content: center;
+  justify-content: end;
 }
 
 .main-metrics-section .metric-value {
@@ -38,7 +38,7 @@
 
 .chart-container {
   height: 6rem;
-  width: 48%;
+  width: 50%;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   position: relative;
@@ -83,7 +83,8 @@
 }
 
 .metric-setting {
-  width: 50%;
+  width: 30%;
+  align-items: start;
 }
 
 .metric-setting-item {
@@ -99,7 +100,8 @@
   vertical-align: -0.251em !important;
 }
 
-.metric-setting .setting-field { width: 100%; }
+.metric-setting .setting-field { width: 100%; background: transparent; }
+.metric-setting .info-field, .metric-setting button { background: transparent; color: #dcdcdc}
 .metric-setting .input-group-prepend, .metric-setting .input-group-append {
   width: 50%;
 }

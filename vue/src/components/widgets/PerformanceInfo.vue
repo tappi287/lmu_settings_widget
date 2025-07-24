@@ -115,10 +115,12 @@ export default {
           {name: 'GPU Power', key: 'gpu_power_avg', unit: "W", nDigits: 1},
           {name: 'Stall', key: 'frame_pacing_stall_avg', unit: 'ms', nDigits: 1},
         ],
+        /*
         [
           {name: 'CPU Load', key: 'cpu_utilization', unit: '%'},
           {name: 'CPU Frequency', key: 'cpu_frequency', unit: 'GHz'},
         ],
+        */
         [
           {name: 'Display Latency', key: 'display_latency_avg', unit: 'ms', nDigits: 2},
           // {name: 'Display Duration', key: 'display_duration_avg', unit: 'ms', nDigits: 2},

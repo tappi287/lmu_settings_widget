@@ -45,11 +45,11 @@
 
         <!-- Hardware Monitor -->
         <div class="hardware-panel h-panel">
-          <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-right"
+          <b-card class="mt-2 setting-card panel-card" header-class="m-0 p-2 text-left"
                   bg-variant="dark" text-variant="white">
             <template #header>
-              <span class="mr-2">System</span>
               <b-icon icon="pie-chart-fill"></b-icon>
+              <span class="ml-2">System</span>
               <slot name="header"></slot>
             </template>
             <HardwareInfo :hardware-info="hardwareInfo" />
@@ -63,8 +63,8 @@
       <b-overlay no-wrap :show="!metricsEnabled && !showHelp" variant="transparent">
         <template v-slot:overlay>
           <b-card class="rounded k-overlay" bg-variant="dark" text-variant="white">
-            <b-checkbox switch @change="switchMetrics">Enable Metrics</b-checkbox>
-            <b-card-text class="mt-4">
+            <h5 class="mb-0"><b-checkbox variant="success" switch @change="switchMetrics">Enable Metrics</b-checkbox></h5>
+            <b-card-text class="mt-2">
               Enable performance metric capturing with the PresentMon service.<br />
               <b-link @click="showHelp = true">More Info...</b-link>
             </b-card-text>
