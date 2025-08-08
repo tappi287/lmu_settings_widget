@@ -129,12 +129,6 @@ class Command:
         return False
 
     def wait_for_state_method(self):
-        if not RfactorConnect.rest_api_enabled:
-            RfactorStatusEvent.set(f"Waiting ...")
-            gevent.sleep(12.0)
-            self.finished = True
-            return
-
         if self.data == RfactorConnect.state:
             logging.debug("Found desired command state: %s", RfactorState.names.get(self.data))
             self.finished = True
