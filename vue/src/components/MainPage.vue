@@ -313,7 +313,14 @@ export default {
       this.live = event.detail
       if (this.live) {
         this.stopSlideShow();
-        this.navigate(6)
+
+        // Navigate to KneeBoard Page if game is live, metrics enabled and OpenKneeboard Autostart activated
+        if (this.$refs.preferences.appModules.indexOf('show_hardware_info') !== -1) {
+          if (this.$refs.preferences.appAutostart.indexOf('kneeboard') !== -1) {
+            this.navigate(6)
+          }
+        }
+
         this.wasLive = true
         if (this.minimizeRfOverlay) {
           this.$refs.rfactorOverlay.minimize()
