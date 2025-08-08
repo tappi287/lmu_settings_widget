@@ -86,7 +86,7 @@ export default {
           // {text: 'Show Server Favourites', value: 'favs'},
           {text: 'Show Controller Devices', value: 'cont'}
       ],
-      appModules: ['audio', 'edge_preferred'],
+      appModules: ['audio', 'edge_preferred', 'use_rest_api'],
       appAutostart: [],
       appAutostartOptions: [
           {text: 'OpenKneeboard', value: 'kneeboard'},
@@ -96,6 +96,7 @@ export default {
       appOptions: [
         {text: 'Enable Audio', value: 'audio', description: 'Weather to play audio feedback when using certain actions within the app.'},
         {text: 'Prefer Edge Browser', value: 'edge_preferred', description: 'Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.'},
+        {text: 'Use LMU Rest API', value: 'use_rest_api', description: 'Use the Le Mans Ultimate RestAPI to control Replays and send Quit Events.'},
         {text: 'Performance Monitoring', value: 'show_hardware_info', description: 'Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.'},
       ],
       lmwLogoUrl: lmwLogoUrl

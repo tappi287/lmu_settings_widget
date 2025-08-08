@@ -29,7 +29,7 @@ class AppSettings(JsonRepr):
     needs_admin = False
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
-    app_preferences = {"appModules": ["audio", "edge_preferred"], "autostart": []}
+    app_preferences = {"appModules": ["audio", "edge_preferred", "use_rest_api"], "autostart": []}
 
     rf_overwrite_location = ""
 
@@ -355,3 +355,17 @@ class AppSettings(JsonRepr):
         # -- Update WebUi Content Selection Settings for next run
         if rf.webui_content_selection:
             cls.content_selected = rf.webui_content_selection
+
+    @staticmethod
+    def update_preferences(event_objects):
+        event_map = {
+            "show_hardware_info": "EnableMetricsEvent",
+            "use_rest_api": "EnableRestAPIEvent",
+        }
+        for key, event_class_name in event_map.items():
+            # Get app preferences value
+            value = True if key in AppSettings.app_preferences.get("appModules", list()) else False
+            for event_object in event_objects:
+                if event_object.__name__ == event_class_name:
+                    # Set event value
+                    event_object.set(value)
