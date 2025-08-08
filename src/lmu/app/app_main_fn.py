@@ -10,7 +10,7 @@ from lmu.lmu_location import RfactorLocation
 from lmu.mods import openxr
 from lmu.preset.preset import PresetType
 from lmu.preset.preset_base import load_preset
-from lmu.rf2events import EnableMetricsEvent
+from lmu.rf2events import EnableMetricsEvent, EnableRestAPIEvent
 from lmu.utils import capture_app_exceptions
 
 
@@ -154,16 +154,14 @@ def get_apply_webui_settings():
 @capture_app_exceptions
 def save_app_preferences(app_preferences: dict):
     AppSettings.app_preferences = app_preferences
-    metrics_enabled = True if "show_hardware_info" in AppSettings.app_preferences.get("appModules", list()) else False
-    EnableMetricsEvent.set(metrics_enabled)
+    AppSettings.update_preferences((EnableMetricsEvent, EnableRestAPIEvent))
     AppSettings.save()
     return json.dumps({"result": True})
 
 
 @capture_app_exceptions
 def load_app_preferences():
-    metrics_enabled = True if "show_hardware_info" in AppSettings.app_preferences.get("appModules", list()) else False
-    EnableMetricsEvent.set(metrics_enabled)
+    AppSettings.update_preferences((EnableMetricsEvent, EnableRestAPIEvent))
     return json.dumps({"result": True, "preferences": AppSettings.app_preferences})
 
 

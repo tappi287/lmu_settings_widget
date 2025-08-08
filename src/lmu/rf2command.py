@@ -204,136 +204,20 @@ class Command:
         self.finished = True
         return
 
-        # -- Set Series/Cars/Tracks
-        logging.debug("Executing command get available rF Series/Cars/Tracks content.")
-        RfactorStatusEvent.set("Getting available content via WebUI")
-
-        # -- Check if All Tracks Cars is selected
-        c = RfactorConnect.get_request("/rest/race/selection")
-        if self._check_request(c):
-            current_selection = c.json() or dict()
-            current_series = current_selection.get("series", dict()).get("id") or current_selection.get(
-                "series", dict()
-            ).get("signature")
-
-            all_series = self._get_all_tracks_cars_series(dict()).get("series", "")
-
-            if current_series and all_series and current_series != all_series:
-                logging.debug("Skipping get content command. All Tracks and Cars series is not active.")
-                self.finished = True
-                return
-        else:
-            logging.debug("Could not get current content selection")
-            return
-
-        # -- Get content
-        for url, name in zip(AppSettings.content_urls, AppSettings.content_keys):
-            r = RfactorConnect.get_request(url)
-            if not r:
-                # -- Probably no connection
-                self.finished = True
-                return
-
-            if self._check_request(r):
-                self.finished = True
-                try:
-                    AppSettings.content[name] = r.json()
-                except Exception as e:
-                    logging.error("Could not decode response to get content request: %s %s", name, e)
-            gevent.sleep(0.01)
-
-        AppSettings.save(save_content=True)
-
     def set_content_method(self):
         # -- Not supported in LMU for now
         self.finished = True
         return
 
-        # -- Set Series/Cars/Tracks
-        logging.debug("Executing command set rF Series/Cars/Tracks content.")
-        RfactorStatusEvent.set("Setting content via WebUI")
-
-        # -- LookUp All tracks & Cars Series if no series selected
-        selected = self.data
-        if not selected.get("series"):
-            selected = self._get_all_tracks_cars_series(selected)
-
-        content_updated = False
-        for url, name in zip(AppSettings.content_urls, AppSettings.content_keys):
-            content_id, retries = selected.get(name), 3
-            if not content_id:
-                continue
-
-            # -- Check the current selection
-            s = RfactorConnect.get_request("/rest/race/selection")
-            if self._check_request(s):
-                current_selection = s.json() or dict()
-                if "car" in current_selection.keys():
-                    current_selection["cars"] = current_selection.pop("car")
-                if "track" in current_selection.keys():
-                    current_selection["tracks"] = current_selection.pop("track")
-
-                current_id = current_selection[name].get("id") or current_selection[name].get("signature")
-
-                # -- Skip selection if selection already matches
-                if current_id == content_id:
-                    logging.debug("Skipping already selected: %s %s", name, current_id)
-                    continue
-
-            # -- Content get request to enumerate content in WebUi
-            c = RfactorConnect.get_request(url=url)
-            if not c:
-                # -- Probably no connection
-                self.finished = True
-                return
-
-            # -- Try POST set request
-            while (retries := retries - 1) >= 0:
-                logging.debug("Requesting set content: %s %s", url, content_id)
-                if url == CommandUrls.series:
-                    r = RfactorConnect.post_request(**CommandUrls.set_series_args(content_id))
-                else:
-                    r = RfactorConnect.post_request(url, data=content_id)
-                if self._check_request(r):
-                    break
-                else:
-                    try:
-                        # -- Try a get content request to workaround internal WebUI error
-                        gevent.sleep(0.1)
-                        logging.debug("Trying workaround get content request to %s", url)
-                        c = RfactorConnect.get_request(url=url)
-                        if not c:
-                            # -- Probably no connection
-                            self.finished = True
-                            return
-
-                        # -- Try to update the content list
-                        if self._check_request(c):
-                            AppSettings.content[name] = c.json()
-                            # -- Try to get an updated signature of the All Tracks & Cars Series
-                            if url == CommandUrls.series:
-                                selected = self._get_all_tracks_cars_series(selected)
-                                content_id = selected["series"]
-                                logging.debug("Updated All Tracks & Cars Series to: %s", content_id)
-                            content_updated = True
-
-                        gevent.sleep(0.1)
-                    except Exception as e:
-                        logging.error("Error during workaround get content request: %s", e)
-                    logging.debug("Re-trying failed set content request #%s", retries)
-
-        if content_updated:
-            logging.debug("Updated content during Set Content Command. Saving updated content list.")
-            AppSettings.save(save_content=True)
-
-        AppAudioFx.play_audio(AppAudioFx.switch)
-        # -- Navigate to Main Menu
-        RfactorConnect.post_request("/navigation/action/NAV_TO_MAIN_MENU", data=None)
-        self.finished = True
-
     def set_session_settings_method(self):
         if not self.data or not isinstance(self.data, dict):
             logging.error("Command set_session_settings was not provided with data of the correct type!")
+            return
+
+        # -- Check API enabled
+        if not RfactorConnect.rest_api_enabled:
+            logging.info("Skipping command set_session_settings because rF2 REST API use not enabled.")
+            self.finished = True
             return
 
         # -- Update Session Settings

@@ -17,11 +17,13 @@ from lmu.rf2events import (
     EnableMetricsEvent,
     PerformanceMetricsEvent,
     PresentMonVersionEvent,
+    EnableRestAPIEvent,
 )
 from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
 ENABLE_METRICS = False
+ENABLE_REST_API = True
 PRESENT_MON_RETRIES = 0
 MAX_PRESENT_MON_RETRIES = 5
 
@@ -71,6 +73,20 @@ def _rfactor_changed_from_live():
             logging.error(f"Error stopping PresentMon: {e}")
 
 
+def _check_and_setup_rest_api():
+    """Check and update if we should enable/disable REST API to rF2"""
+    global ENABLE_REST_API
+
+    # -- Receive REST API enabled/disabled updates
+    if EnableRestAPIEvent.event.is_set():
+        rest_api_enabled = EnableRestAPIEvent.get_nowait()
+        ENABLE_REST_API = rest_api_enabled if rest_api_enabled is not None else False
+        if not ENABLE_REST_API:
+            logging.info("rFactor 2 REST API set to disabled. CommandQueue will not be run.")
+        RfactorConnect.rest_api_enabled = ENABLE_REST_API
+        EnableRestAPIEvent.reset()
+
+
 def _check_and_setup_performance_metrics():
     """Receive Metrics enable/disable events and setup PresentMon instance if not present"""
     global ENABLE_METRICS
@@ -103,6 +119,7 @@ def _rfactor_greenlet_loop():
         # -- Reset Quit Event
         RfactorQuitEvent.reset()
 
+    _check_and_setup_rest_api()
     _check_and_setup_performance_metrics()
 
     # -- While we are live

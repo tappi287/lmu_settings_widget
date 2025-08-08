@@ -43,6 +43,7 @@ class RfactorPlayer:
         self.location = Path("../modules")
         self.version_file = Path()
         self.version = ""
+        self.pid = 0
 
         self.options = self.Options()
         self.controller_devices = dict()
@@ -446,7 +447,8 @@ class RfactorPlayer:
             cmd += ["+multiplayer", f'+connect={":" if p else ""}{p}{"@" if p else ""}{ip}:{port}']
 
         logging.info("Launching %s", cmd)
-        subprocess.Popen(cmd, cwd=self.location)
+        process = subprocess.Popen(cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS)
+        self.pid = process.pid
         return True
 
     def run_rfactor_with_present_mon(self, method: int = 0, server_info: Optional[dict] = None):

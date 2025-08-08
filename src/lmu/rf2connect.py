@@ -123,6 +123,7 @@ class RfactorConnect:
     web_ui_port: int = 0  # Call update_web_ui_port to update the port from current player.json
     state = 0  # RfactorState
     get_request_time = 0.5  # float seconds timeout for get requests
+    rest_api_enabled = True
 
     long_timeout = 120.0  # Maximum connection check timeout
     idle_timeout = 15.0  # Start with this time out after an active connection
@@ -155,6 +156,10 @@ class RfactorConnect:
     @classmethod
     def base_url(cls) -> str:
         return f"http://{cls.host}:{cls.web_ui_port}"
+
+    @classmethod
+    def set_pid(cls, pid: int) -> None:
+        cls.rf2_pid = pid
 
     @classmethod
     def get_pid(cls) -> int:
@@ -203,10 +208,12 @@ class RfactorConnect:
         """Check if Web UI connection is available every timeout interval
         or use shared memory if reported to be available.
         """
-        response = _RfactorConnectRequestThread.check_response()
-        if response is not None:
-            cls.set_state(response)
-            return
+        if RfactorConnect.rest_api_enabled:
+            # -- Rest API enabled
+            response = _RfactorConnectRequestThread.check_response()
+            if response is not None:
+                cls.set_state(response)
+                return
 
         if cls.enable_shared_mem_check:
             cls._shared_memory_check()
@@ -225,8 +232,24 @@ class RfactorConnect:
             if not cls.update_web_ui_port():
                 return
 
+        # -- Check for a process if Rest API disabled
+        if not RfactorConnect.rest_api_enabled:
+            # -- Rest API disabled
+            if cls._rf2_processes_detected():
+                if cls.state != RfactorState.ready:
+                    logging.debug(
+                        f"Found Game Executable Process ID: {cls.rf2_pid} Setting Game Executable state to ready."
+                    )
+                    cls.set_state({"status_code": 200})
+            else:
+                logging.debug("Game Executable Process ID: %s not found.", cls.rf2_pid)
+                if cls.state != RfactorState.unavailable:
+                    logging.debug("Setting Game Executable state to unavailable.")
+                    cls.set_state(False)
+            cls.last_connection_check = time.time()  # Update TimeOut
+
         # -- Check navigation state in http request thread
-        if _RfactorConnectRequestThread.request_queue.empty():
+        if _RfactorConnectRequestThread.request_queue.empty() and RfactorConnect.rest_api_enabled:
             # logging.debug('Checking for rFactor 2 http connection. Interval: %.2f', timeout)
             cls.last_connection_check = time.time()  # Update TimeOut
             _RfactorConnectRequestThread.request_queue.put({"method": "GET", "url": "/navigation/state"})

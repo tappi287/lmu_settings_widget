@@ -7,7 +7,7 @@ from typing import Optional
 from lmu.app_settings import AppSettings
 from lmu.lmu_game import RfactorPlayer
 from lmu.rf2command import CommandQueue, Command
-from lmu.rf2connect import RfactorState
+from lmu.rf2connect import RfactorState, RfactorConnect
 from lmu.utils import capture_app_exceptions
 from lmu.mods import ext_applications
 from lmu.valve.steam_utils import SteamApps
@@ -50,6 +50,8 @@ def run_rfactor(server_info: Optional[dict] = None, method: Optional[int] = 0):
     rf, result = RfactorPlayer(), False
     if rf.is_valid:
         result = rf.run_rfactor(method, server_info)
+        if result and rf.pid >= 0:
+            RfactorConnect.rf2_pid = rf.pid
         if not server_info:
             CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=10.0))
 
