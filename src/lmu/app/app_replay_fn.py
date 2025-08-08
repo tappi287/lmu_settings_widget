@@ -3,6 +3,7 @@ import logging
 from typing import Optional
 
 import eel
+import gevent
 
 from .. import rf2replays
 from ..app_settings import AppSettings
@@ -12,7 +13,7 @@ from ..preset.preset_base import load_presets_from_dir
 from ..preset.presets_dir import get_user_presets_dir
 from ..preset.settings_model import VideoSettings
 from ..rf2command import CommandQueue, Command
-from ..rf2connect import RfactorState
+from ..rf2connect import RfactorState, RfactorConnect
 from ..rf2events import RfactorLiveEvent
 from ..utils import capture_app_exceptions
 
@@ -123,6 +124,9 @@ def play_replay(replay_name):
 
     # -- Start rFactor 2
     result = rf.run_rfactor(method=launch_method)
+    if result and rf.pid >= 0:
+        RfactorConnect.rf2_pid = rf.pid
+
     if not result:
         # -- Restore non-replay graphics preset
         selected_preset_name = AppSettings.selected_presets.get(str(PresetType.graphics))
@@ -133,12 +137,13 @@ def play_replay(replay_name):
     # -- Tell the rFactor Greenlet to play a replay in next iteration
     # 1. Wait for UI
     CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120.0))
+    CommandQueue.append(Command(Command.nav_action, data="TO_MAIN_MENU", timeout=30.0))
     # 2. Load Replay
     CommandQueue.append(Command(Command.play_replay, replay_name, timeout=30.0))
     # 3. Wait UI Loading State
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.loading, timeout=30.0))
+    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.loading, timeout=30.0))
     # 4. Wait UI Ready State
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=800.0))
+    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=800.0))
     # 5. Switch FullScreen
     # CommandQueue.append(Command(Command.nav_action, data="NAV_TO_FULL_EVENT_MONITOR", timeout=30.0))
 

@@ -166,9 +166,9 @@ class RfactorConnect:
         for proc in psutil.process_iter(["pid", "name"]):
             if proc.info["name"].lower().startswith(GAME_EXECUTABLE.lower()):
                 cls.rf2_pid = proc.info["pid"]
-                logging.info("Found Game Executable Process ID: %s", cls.rf2_pid)
+                logging.info("process_iter found Game Executable Process ID: %s", cls.rf2_pid)
                 return cls.rf2_pid
-        logging.info("Could not find Game Executable with Process ID: %s", cls.rf2_pid)
+        logging.debug("Could not find Game Executable with Process ID: %s", cls.rf2_pid)
         return -1
 
     @classmethod
@@ -242,9 +242,9 @@ class RfactorConnect:
                     )
                     cls.set_state({"status_code": 200})
             else:
-                logging.debug("Game Executable Process ID: %s not found.", cls.rf2_pid)
                 if cls.state != RfactorState.unavailable:
-                    logging.debug("Setting Game Executable state to unavailable.")
+                    logging.debug(f"Setting Game Executable({cls.rf2_pid}) state to unavailable.")
+                    cls.rf2_pid = None
                     cls.set_state(False)
             cls.last_connection_check = time.time()  # Update TimeOut
 
@@ -315,7 +315,8 @@ class RfactorConnect:
             return False
 
         r = cls.get_request(f"/rest/watch/play/{replay_id}")
-        if r.status_code not in (200, 204):
+        status = r.status_code if r is not None else None
+        if status not in (200, 204):
             logging.debug(f"Request to play Replay #{replay_id} failed.")
             return False
         return True

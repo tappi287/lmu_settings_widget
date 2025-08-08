@@ -387,15 +387,16 @@ def convert_unit(size_in_bytes, unit):
 
 
 def rfactor_process_with_id_exists(pid: Optional[int]) -> bool:
-    if not pid:
+    if not pid or pid < 0:
         return False
 
     try:
         p = psutil.Process(pid)
-        if p.name().lower().startswith(GAME_EXECUTABLE):
+        if p.name().lower().startswith(GAME_EXECUTABLE.lower()):
             return True
     except psutil.NoSuchProcess:
-        return False
+        pass
+    return False
 
 
 def get_widest(str_list, space=3):

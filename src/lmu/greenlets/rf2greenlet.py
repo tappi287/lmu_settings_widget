@@ -82,7 +82,7 @@ def _check_and_setup_rest_api():
         rest_api_enabled = EnableRestAPIEvent.get_nowait()
         ENABLE_REST_API = rest_api_enabled if rest_api_enabled is not None else False
         if not ENABLE_REST_API:
-            logging.info("rFactor 2 REST API set to disabled. CommandQueue will not be run.")
+            logging.info("rFactor 2 REST API set to disabled.")
         RfactorConnect.rest_api_enabled = ENABLE_REST_API
         EnableRestAPIEvent.reset()
 
