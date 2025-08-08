@@ -1,5 +1,5 @@
 <template>
-  <div class="knee-board-container">
+  <div class="knee-board-container position-relative">
     <b-input-group size="sm">
       <b-input-group-prepend>
         <!-- Title -->
@@ -58,20 +58,22 @@
       </div>
 
       <!-- Spacer <div style="height: 30vh;"></div> -->
-
-      <!-- Enable Metrics Overlay -->
-      <b-overlay no-wrap :show="!metricsEnabled && !showHelp" variant="transparent">
-        <template v-slot:overlay>
-          <b-card class="rounded k-overlay" bg-variant="dark" text-variant="white">
-            <h5 class="mb-0"><b-checkbox variant="success" switch @change="switchMetrics">Enable Metrics</b-checkbox></h5>
-            <b-card-text class="mt-2">
-              Enable performance metric capturing with the PresentMon service.<br />
-              <b-link @click="showHelp = true">More Info...</b-link>
-            </b-card-text>
-          </b-card>
-        </template>
-      </b-overlay>
     </div>
+
+    <!-- Enable Metrics Overlay -->
+    <b-overlay no-wrap :show="!metricsEnabled && !showHelp" variant="transparent">
+      <template v-slot:overlay>
+        <b-card class="rounded k-overlay" bg-variant="dark" text-variant="white">
+          <h5 class="mb-0"><b-checkbox variant="success" switch @change="switchMetrics">Enable Metrics</b-checkbox></h5>
+          <b-card-text class="mt-2">
+            Enable performance metric capturing with the PresentMon service.<br />
+            <b-link @click="showHelp = true">More Info...</b-link>
+          </b-card-text>
+        </b-card>
+      </template>
+    </b-overlay>
+
+    <!-- Help Overlay -->
     <b-overlay class="kneeboard-help k-overlay" no-wrap :show="showHelp" variant="transparent" blur="1px">
       <template v-slot:overlay>
         <KneeBoardHelp @close="showHelp=false"></KneeBoardHelp>
