@@ -43,7 +43,7 @@ def _get_steam_apps_known_app(app_key: str) -> dict:
 def get_app_executable_path(app_key: str) -> Optional[WindowsPath]:
     known_apps_entry = _get_steam_apps_known_app(app_key)
     if known_apps_entry:
-        path = WindowsPath(known_apps_entry.get("installdir", ""))
+        path = WindowsPath(known_apps_entry.get("installdir") or str())
         executable_sub_path = known_apps_entry.get("exe_sub_path", "")
         if executable_sub_path:
             executable_path = path / executable_sub_path / known_apps_entry.get("executable", "")
