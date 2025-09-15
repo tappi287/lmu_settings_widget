@@ -20,9 +20,19 @@ from lmu.settingsdef import graphics
 
 class VrToolKit:
     RESHADE_ZIP = "VRToolkitReshadeUniversal_1.0.4_plus_Clarity.zip"
-    RESHADE_PRESET_DIR = "reshade-shaders/Presets/"
+    RESHADE_PRESET_BASE_DIR = "reshade-shaders"
+    RESHADE_PRESET_DIR = f"{RESHADE_PRESET_BASE_DIR}/Presets/"
     RESHADE_TARGET_PRESET_NAME = "lmu_widget_preset.ini"
     RESHADE_INI_NAME = "ReShade.ini"
+    RESHADE_INI_PATHS = [
+        ("PresetPath", RESHADE_PRESET_DIR + RESHADE_TARGET_PRESET_NAME),
+        # ("CurrentPresetPath", f"{RESHADE_PRESET_DIR}/**"),
+        # ("EffectSearchPaths", f"{RESHADE_PRESET_BASE_DIR}/Shaders/**"),
+        ("PresetFiles", RESHADE_PRESET_DIR),
+        # ("ScreenshotPath", f"{RESHADE_PRESET_BASE_DIR}/Screenshots"),
+        # ("TextureSearchPaths", f"{RESHADE_PRESET_BASE_DIR}/Textures"),
+        # ("EffectSearchPaths", f"{RESHADE_PRESET_BASE_DIR}/"),
+    ]
     RESHADE_VR_INI_NAME = "ReShadeVR.ini"
     OPEN_XR_API_LAYER_REG_PATH = "SOFTWARE\\Khronos\\OpenXR\\1\\ApiLayers\\Implicit"
     RESHADE_INI_ADDON_SYNC_LINE = "SyncEffectRuntimes=1"
@@ -295,8 +305,6 @@ class VrToolKit:
     @staticmethod
     def _update_reshade_ini(base_dir: Path, vr_ini=False):
         """update the global reshade preset ini to update preset path"""
-        reshade_preset_dir_str = VrToolKit.RESHADE_PRESET_DIR.replace("/", "\\")
-        reshade_preset_path = f".\\{reshade_preset_dir_str}{VrToolKit.RESHADE_TARGET_PRESET_NAME}"
         reshade_ini = base_dir / VrToolKit.RESHADE_VR_INI_NAME if vr_ini else base_dir / VrToolKit.RESHADE_INI_NAME
 
         reshade_ini_lines, updated_ini_lines = list(), list()
@@ -305,15 +313,21 @@ class VrToolKit:
         with open(reshade_ini, "r") as f:
             reshade_ini_lines = f.readlines()
 
+        # -- Check if VrToolKit.RESHADE_INI_ADDON_SYNC_LINE is present
+        _sync_effect_runtime_line_present = len([l for l in reshade_ini_lines if l.startswith(VrToolKit.RESHADE_INI_ADDON_SYNC_LINE)]) > 0
+
         for line in reshade_ini_lines:
-            if line.startswith("PresetPath="):
-                line = f"PresetPath={reshade_preset_path}\n"
+            # -- Update path entries
+            for line_id, path in VrToolKit.RESHADE_INI_PATHS:
+                if line.startswith(line_id):
+                    new_path = ".\\" + path.replace("/", "\\")
+                    line = f"{line_id}={new_path}\n"
             # -- VRToolkit default setting seems to set this to 1 which results in
             #    settings updates not being applied on start up
             if line.startswith("NoReloadOnInitForNonVR"):
                 line = "NoReloadOnInitForNonVR=0\n"
             # -- Make sure VR and Desktop Runtimes are in sync
-            if line.startswith("[ADDON]"):
+            if line.startswith("[ADDON]") and not _sync_effect_runtime_line_present:
                 updated_ini_lines.append(line)
                 updated_ini_lines.append(VrToolKit.RESHADE_INI_ADDON_SYNC_LINE)
                 continue
