@@ -2,8 +2,8 @@ import logging
 from enum import Enum
 from typing import Union, List, Optional
 
-from ..settingsdef import graphics, generic, controls, headlights
-from ..utils import JsonRepr
+from lmu.settingsdef import graphics, generic, controls, headlights
+from lmu.utils import JsonRepr
 
 _allowed_value_types = (bool, str, int, float)
 FLOAT_SETTING_NDIGITS = 3

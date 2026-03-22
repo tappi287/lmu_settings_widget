@@ -7,13 +7,22 @@ from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
 
-from lmu.globals import LMU_APPID, LAUNCH_EXECUTABLE
+from lmu.globals import LMU_APPID, LAUNCH_EXECUTABLE, GAME_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
 from lmu.preset.settings_model_base import OPTION_CLASSES
 from lmu.valve.steam_utils import SteamApps
 from lmu.mods.vrtoolkit import VrToolKit
+
+
+def get_launch_executable() -> str:
+    from lmu.app_settings import AppSettings
+
+    app_module_prefs = getattr(AppSettings, "app_preferences", dict()).get("appModules", list())
+    if "use_eac_wrapper" in app_module_prefs:
+        return LAUNCH_EXECUTABLE
+    return GAME_EXECUTABLE
 
 
 class RfactorPlayer:
@@ -74,13 +83,22 @@ class RfactorPlayer:
         del player_json
 
         # -- Read Controller JSON
-        controller_json = self.read_player_json_dict(self.controller_file, encoding="cp1252")
+        controller_json = self.read_player_json_dict(
+            self.controller_file, encoding="cp1252"
+        )
         self.read_controller_devices(controller_json)
-        r = self._read_options_from_target(OptionsTarget.controller_json, controller_json) and r
+        r = (
+            self._read_options_from_target(
+                OptionsTarget.controller_json, controller_json
+            )
+            and r
+        )
         del controller_json
 
         # -- Read Keyboard JSON
-        keyboard_json = self.read_player_json_dict(self.keyboard_file, encoding="cp1252")
+        keyboard_json = self.read_player_json_dict(
+            self.keyboard_file, encoding="cp1252"
+        )
         self._read_options_from_target(OptionsTarget.keyboard_json, keyboard_json)
         del keyboard_json
 
@@ -96,12 +114,17 @@ class RfactorPlayer:
         # -- Get Options from dx_config
         for preset_options in self._get_target_options(OptionsTarget.dx_config):
             if not self._get_options_from_dx_config(preset_options, config):
-                self.error += f"Could not read LMU CONFIG_DX11.ini for " f"{preset_options.__class__.__name__}\n"
+                self.error += (
+                    f"Could not read LMU CONFIG_DX11.ini for "
+                    f"{preset_options.__class__.__name__}\n"
+                )
                 self.is_valid = False
                 return
 
         # -- Get ReShade Options
-        vr_toolkit = VrToolKit(self._get_target_options(OptionsTarget.reshade), self.location)
+        vr_toolkit = VrToolKit(
+            self._get_target_options(OptionsTarget.reshade), self.location
+        )
 
         result = vr_toolkit.read()
         if not result:
@@ -109,7 +132,9 @@ class RfactorPlayer:
 
         self.is_valid = True
 
-    def _get_target_options(self, target: OptionsTarget, options=None) -> Iterator[BaseOptions]:
+    def _get_target_options(
+        self, target: OptionsTarget, options=None
+    ) -> Iterator[BaseOptions]:
         if options is None:
             options = self.options
 
@@ -120,8 +145,14 @@ class RfactorPlayer:
 
     def _read_options_from_target(self, target: OptionsTarget, json_dict) -> bool:
         for preset_options in self._get_target_options(target):
-            if not self._get_options_from_player_json(preset_options, json_dict) and preset_options.mandatory:
-                self.error += f"Could not read LMU settings for " f"{preset_options.__class__.__name__}\n"
+            if (
+                not self._get_options_from_player_json(preset_options, json_dict)
+                and preset_options.mandatory
+            ):
+                self.error += (
+                    f"Could not read LMU settings for "
+                    f"{preset_options.__class__.__name__}\n"
+                )
                 self.is_valid = False
                 return False
         return True
@@ -144,14 +175,23 @@ class RfactorPlayer:
         self.update_webui_settings(preset, OptionsTarget.webui_content)
 
         # -- Update Player Json settings
-        player_json_dict = self.read_player_json_dict(self.player_file, encoding="utf-8")
-        update_result = self._write_to_target(OptionsTarget.player_json, preset, player_json_dict)
+        player_json_dict = self.read_player_json_dict(
+            self.player_file, encoding="utf-8"
+        )
+        update_result = self._write_to_target(
+            OptionsTarget.player_json, preset, player_json_dict
+        )
 
         # -- Update Controller Json settings
-        controller_json_dict = self.read_player_json_dict(self.controller_file, encoding="cp1252")
+        controller_json_dict = self.read_player_json_dict(
+            self.controller_file, encoding="cp1252"
+        )
         preset.additional_write_operations(controller_json=controller_json_dict)
         update_result = (
-            self._write_to_target(OptionsTarget.controller_json, preset, controller_json_dict) and update_result
+            self._write_to_target(
+                OptionsTarget.controller_json, preset, controller_json_dict
+            )
+            and update_result
         )
 
         if not update_result:
@@ -159,7 +199,9 @@ class RfactorPlayer:
 
         # -- Write JSON files
         r = self.write_json(player_json_dict, self.player_file, encoding="utf-8")
-        return r and self.write_json(controller_json_dict, self.controller_file, encoding="cp1252")
+        return r and self.write_json(
+            controller_json_dict, self.controller_file, encoding="cp1252"
+        )
 
     def update_webui_settings(self, preset, target):
         for preset_options in self._get_target_options(target, preset):
@@ -178,7 +220,9 @@ class RfactorPlayer:
             return False
         return True
 
-    def _write_to_target(self, target: OptionsTarget, preset: BasePreset, json_dict: dict) -> bool:
+    def _write_to_target(
+        self, target: OptionsTarget, preset: BasePreset, json_dict: dict
+    ) -> bool:
         for preset_options in self._get_target_options(target, preset):
             if not self._update_player_json(json_dict, preset_options):
                 return False
@@ -201,12 +245,16 @@ class RfactorPlayer:
                     logging.error(self.error)
                     continue
                 if option.value is not None:
-                    ini_config[ini_config.default_section][option.key] = str(option.value)
+                    ini_config[ini_config.default_section][option.key] = str(
+                        option.value
+                    )
                     logging.info("Updated Dx Setting: %s: %s", option.key, option.value)
                     settings_updated = True
 
         if not settings_updated:
-            logging.info("Found no updated Video Settings. Skipping update of dx_config!")
+            logging.info(
+                "Found no updated Video Settings. Skipping update of dx_config!"
+            )
             return
 
         # -- Write Video Config.ini
@@ -247,8 +295,14 @@ class RfactorPlayer:
         for option in preset_options.options:
             if option.key in preset_options.skip_keys:
                 continue
-            if option.key not in player_json_dict[preset_options.key] and not option.create_in_json:
-                logging.warning("Skipping Setting: %s in <Settings>.JSON that could not be located!", option.key)
+            if (
+                option.key not in player_json_dict[preset_options.key]
+                and not option.create_in_json
+            ):
+                logging.warning(
+                    "Skipping Setting: %s in <Settings>.JSON that could not be located!",
+                    option.key,
+                )
                 continue
             if option.value is None:
                 logging.debug("Skipping write of %s because value is None.", option.key)
@@ -287,7 +341,9 @@ class RfactorPlayer:
         return result
 
     @staticmethod
-    def _get_options_from_dx_config(video_settings: BaseOptions, config: ConfigParser) -> bool:
+    def _get_options_from_dx_config(
+        video_settings: BaseOptions, config: ConfigParser
+    ) -> bool:
         if not config:
             return False
         config_dict = config[config.default_section]
@@ -308,7 +364,9 @@ class RfactorPlayer:
         return settings_updated
 
     @staticmethod
-    def _get_options_from_player_json(preset_options: BaseOptions, player_json: dict) -> bool:
+    def _get_options_from_player_json(
+        preset_options: BaseOptions, player_json: dict
+    ) -> bool:
         if not player_json:
             return False
 
@@ -323,7 +381,9 @@ class RfactorPlayer:
 
         return settings_updated
 
-    def read_player_json_dict(self, file: Path, encoding: Optional[str] = None) -> Optional[dict]:
+    def read_player_json_dict(
+        self, file: Path, encoding: Optional[str] = None
+    ) -> Optional[dict]:
         if not file.exists() or not file.is_file():
             return
 
@@ -340,7 +400,9 @@ class RfactorPlayer:
                     with open(file, "r", encoding=encoding) as f:
                         return json.load(f)
                 except UnicodeDecodeError as e:
-                    logging.debug("Could not decode JSON data with encoding %s: %s", encoding, e)
+                    logging.debug(
+                        "Could not decode JSON data with encoding %s: %s", encoding, e
+                    )
                     continue
             except Exception as e:
                 msg = f"Could not read {file.name} file! {e}"
@@ -416,7 +478,7 @@ class RfactorPlayer:
         # Solution for non-loading rF2 plugins in PyInstaller executable:
         #    ctypes.windll.kernel32.SetDllDirectoryA(None)
         # See https://github.com/pyinstaller/pyinstaller/wiki/Recipe-subprocess#windows-dll-loading-order
-        executable = self.location / LAUNCH_EXECUTABLE
+        executable = self.location / get_launch_executable()
         if method in (1, 3) and not executable.exists():
             logging.error(f"Could not locate executable: {executable}")
             return False
@@ -442,23 +504,33 @@ class RfactorPlayer:
             cmd += ["+VR"]
 
         if server_info:
-            ip, port = server_info.get("address", ("localhost",))[0], server_info.get("port", "64297")
+            ip, port = (
+                server_info.get("address", ("localhost",))[0],
+                server_info.get("port", "64297"),
+            )
             p = server_info.get("password")
-            cmd += ["+multiplayer", f'+connect={":" if p else ""}{p}{"@" if p else ""}{ip}:{port}']
+            cmd += [
+                "+multiplayer",
+                f"+connect={':' if p else ''}{p}{'@' if p else ''}{ip}:{port}",
+            ]
 
         logging.info("Launching %s", cmd)
-        process = subprocess.Popen(cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS)
+        process = subprocess.Popen(
+            cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS
+        )
         self.pid = process.pid
         return True
 
-    def run_rfactor_with_present_mon(self, method: int = 0, server_info: Optional[dict] = None):
+    def run_rfactor_with_present_mon(
+        self, method: int = 0, server_info: Optional[dict] = None
+    ):
         """Start game binary and watch with present mon."""
         if not self._check_bin_dir():
             self.error += "Could not locate Le Mans Ultimate Bin directory.\n"
             return False
         from lmu.benchmark.present_mon_wrapper import PresentMon
 
-        executable = self.location / LAUNCH_EXECUTABLE
+        executable = self.location / get_launch_executable()
         # Build command
         cmd = [str(WindowsPath(executable))]
         # VR settings from WebUI
@@ -470,7 +542,9 @@ class RfactorPlayer:
         process = None
         monitor = None
         try:
-            process = subprocess.Popen(cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS)
+            process = subprocess.Popen(
+                cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS
+            )
             logging.info(f"rFactor 2 process started with PID: {process.pid}")
 
             # Start PresentMon monitoring

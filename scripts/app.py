@@ -58,6 +58,13 @@ def prepare_app_start() -> bool:
     AppSettings.load()
     AppSettings.copy_default_presets()
     AppSettings.delete_current_settings_presets()
+    if hasattr(AppSettings, 'eac_wrapper_set') and AppSettings.eac_wrapper_set is False:
+        m = AppSettings.app_preferences["appModules"]
+        if "use_eac_wrapper" not in m:
+            m.append("use_eac_wrapper")
+            AppSettings.app_preferences["appModules"] = m
+            AppSettings.eac_wrapper_set = True
+            AppSettings.save()
 
     if FROZEN:
         # Set Exception hook

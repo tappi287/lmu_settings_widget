@@ -27,9 +27,10 @@ class AppSettings(JsonRepr):
 
     backup_created = False
     needs_admin = False
+    eac_wrapper_set = False
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
-    app_preferences = {"appModules": ["audio", "edge_preferred", "use_rest_api"], "autostart": []}
+    app_preferences = {"appModules": ["audio", "edge_preferred", "use_rest_api", "use_eac_wrapper"], "autostart": []}
 
     rf_overwrite_location = ""
 
