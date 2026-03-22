@@ -42,6 +42,7 @@ KNOWN_APPS = {
         "name": "Le Mans Ultimate",
         "installdir": "Le Mans Ultimate",
         "executable": "Le Mans Ultimate.exe",
+        "launch_executable": "start_protected_game.exe",
         "exe_sub_path": "",
     },
     "crew_chief": {
@@ -85,6 +86,7 @@ KNOWN_APPS = {
 }
 
 GAME_EXECUTABLE = KNOWN_APPS["2399420"]["executable"]
+LAUNCH_EXECUTABLE = KNOWN_APPS["2399420"]["launch_executable"]
 
 RF2_APPID = [k for k in KNOWN_APPS.keys()][0]
 FPSVR_APPID = [k for k in KNOWN_APPS.keys()][1]

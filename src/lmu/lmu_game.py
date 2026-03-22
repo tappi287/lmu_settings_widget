@@ -7,7 +7,7 @@ from configparser import ConfigParser
 from pathlib import Path, WindowsPath
 from typing import Optional, Iterator, Union, Type
 
-from lmu.globals import LMU_APPID, GAME_EXECUTABLE
+from lmu.globals import LMU_APPID, LAUNCH_EXECUTABLE
 from lmu.lmu_location import RfactorLocation
 from lmu.preset.preset import BasePreset, PresetType
 from lmu.preset.settings_model import BaseOptions, OptionsTarget
@@ -416,7 +416,7 @@ class RfactorPlayer:
         # Solution for non-loading rF2 plugins in PyInstaller executable:
         #    ctypes.windll.kernel32.SetDllDirectoryA(None)
         # See https://github.com/pyinstaller/pyinstaller/wiki/Recipe-subprocess#windows-dll-loading-order
-        executable = self.location / GAME_EXECUTABLE
+        executable = self.location / LAUNCH_EXECUTABLE
         if method in (1, 3) and not executable.exists():
             logging.error(f"Could not locate executable: {executable}")
             return False
@@ -458,7 +458,7 @@ class RfactorPlayer:
             return False
         from lmu.benchmark.present_mon_wrapper import PresentMon
 
-        executable = self.location / GAME_EXECUTABLE
+        executable = self.location / LAUNCH_EXECUTABLE
         # Build command
         cmd = [str(WindowsPath(executable))]
         # VR settings from WebUI

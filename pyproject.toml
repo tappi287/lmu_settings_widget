@@ -1,6 +1,6 @@
 [project]
 name = "lmu-settings-widget"
-version = "1.0.3"
+version = "1.1.0"
 description = ""
 authors = [
   { name = "Stefan Tapper", email = "tapper.stefan@gmail.com" },
@@ -18,17 +18,17 @@ dependencies = [
   "lxml==6.0.0",
   "iniconfig==2.1.0",
   "pynvml==12.0.0",
-  "py-cpuinfo==9.0.0",
+  "py-cpuinfo==9.0.0"
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-  "pyinstaller>=6.9.0, <7.0.0",
-  "pyinstaller-hooks-contrib>=2024.7",
+  "ruff>=0.15.7",
+  "pyinstaller>=6.19.0, <7.0.0",
+  "pyinstaller-hooks-contrib>=2026.3",
   "pywin32-ctypes>=0.2.0",
-  "pytest>=8.3.3, <9.0.0",
-  "mypy-extensions==1.1.0",
-  "black==25.1.0",
+  "pytest>=9.0.2",
+  "mypy-extensions==1.1.0"
 ]
 
 [build-system]

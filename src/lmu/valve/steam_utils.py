@@ -57,7 +57,7 @@ class SteamApps:
         if sys.platform != "linux":
             # Windows use registry entry
             try:
-                key = registry.OpenKey(registry.HKEY_CURRENT_USER, "Software\Valve\Steam")
+                key = registry.OpenKey(registry.HKEY_CURRENT_USER, "Software\\Valve\\Steam")
             except FileNotFoundError as e:
                 logging.error(e)
                 return None
