@@ -1,5 +1,4 @@
 from lmu import rf2connect
-from lmu.rf2sharedmem.sharedMemoryAPI import SimInfoAPI
 
 
 def test_get_request():
@@ -26,9 +25,3 @@ def test_get_request():
         "ve": 0.0,
     }
     print(response.text)
-
-
-def test_sm_info():
-    sim_info = SimInfoAPI()
-    telemetry = sim_info.playersVehicleTelemetry()
-    print(telemetry)

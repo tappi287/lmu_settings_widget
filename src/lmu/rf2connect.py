@@ -10,7 +10,7 @@ import psutil
 from lmu.directInputKeySend import PressReleaseKey
 from lmu.globals import GAME_EXECUTABLE
 from lmu.http import HTTPSession, HTTPResponse
-from lmu.rf2sharedmem.sharedMemoryAPI import SimInfoAPI
+from lmu.sim_info_api import SimInfoAPI
 from lmu.lmu_game import RfactorPlayer
 from lmu.utils import rfactor_process_with_id_exists
 
@@ -215,13 +215,24 @@ class RfactorConnect:
 
     @classmethod
     def set_pid(cls, pid: int) -> None:
-        cls.rf2_pid = pid
+        if pid:
+            cls.rf2_pid = pid
 
     @classmethod
     def get_pid(cls) -> int:
+        shared_mem_last_known_pid = cls.shared_memory_obj.get_last_known_pid()
+        if shared_mem_last_known_pid is not None:
+            try:
+                p = psutil.Process(shared_mem_last_known_pid)
+                if p.name().lower() == GAME_EXECUTABLE.lower():
+                    cls.set_pid(shared_mem_last_known_pid)
+                    return shared_mem_last_known_pid
+            except psutil.NoSuchProcess:
+                pass
+
         for proc in psutil.process_iter(["pid", "name"]):
             if proc.info["name"].lower().startswith(GAME_EXECUTABLE.lower()):
-                cls.rf2_pid = proc.info["pid"]
+                cls.set_pid(proc.info.get("pid"))
                 logging.info(
                     "process_iter found Game Executable Process ID: %s", cls.rf2_pid
                 )
@@ -240,45 +251,19 @@ class RfactorConnect:
 
     @classmethod
     def _shared_memory_check(cls):
-        # -- Check if shared Memory available
-        if not cls.shared_memory_obj.sharedMemoryVerified:
-            if cls.shared_memory_obj.isRF2running():
-                if not cls.shared_memory_obj.isSharedMemoryAvailable():
-                    logging.info(
-                        "Shared memory not available: Disabling Shared Memory Updates"
-                    )
-                    cls.enable_shared_mem_check = False
-                    return
-        # -- Shared Memory available
-        else:
-            if not cls.shared_memory_obj.isRF2running():
-                # -- Do an extra check for running rF2 processes
-                if cls._rf2_processes_detected():
-                    cls.set_to_active_timeout()
-                    # -- Shared memory no longer available but UI processes still running
-                    return
-
-                # -- Set unavailable
-                logging.info(
-                    "Setting rF2 State to unavailable from shared memory state."
-                )
-                cls.state = RfactorState.unavailable
-                cls.check_for_rf_pid = True
+        return cls.shared_memory_obj.is_lmu_running()
 
     @classmethod
     def check_connection(cls) -> None:
         """Check if Web UI connection is available every timeout interval
         or use shared memory if reported to be available.
         """
+        # - Check request -queue- for responses (this does not trigger a request)
         if RfactorConnect.rest_api_enabled:
-            # -- Rest API enabled
             response = _RfactorConnectRequestThread.check_response()
             if response is not None:
                 cls.set_state(response)
                 return
-
-        if cls.enable_shared_mem_check:
-            cls._shared_memory_check()
 
         # - Only check every connection_check_interval
         timeout = min(cls.long_timeout, cls.connection_check_interval)
@@ -294,25 +279,18 @@ class RfactorConnect:
             if not cls.update_web_ui_port():
                 return
 
-        # -- Check for a process if Rest API disabled
-        if not RfactorConnect.rest_api_enabled:
-            # -- Rest API disabled
-            if cls._rf2_processes_detected():
-                if cls.state != RfactorState.ready:
-                    logging.debug(
-                        f"Found Game Executable Process ID: {cls.rf2_pid} Setting Game Executable state to ready."
-                    )
-                    cls.set_state({"status_code": 200})
-            else:
-                if cls.state != RfactorState.unavailable:
-                    logging.debug(
-                        f"Setting Game Executable({cls.rf2_pid}) state to unavailable."
-                    )
-                    cls.rf2_pid = None
-                    cls.set_state(False)
-            cls.last_connection_check = time.time()  # Update TimeOut
+        if cls._shared_memory_check():
+            if cls.state != RfactorState.ready:
+                cls.set_state({"status_code": 200})
+        else:
+            if cls.state != RfactorState.unavailable:
+                logging.debug(f"Setting Game Executable({cls.rf2_pid}) state to unavailable.")
+                cls.rf2_pid = None
+                cls.set_state(False)
 
-        # -- Check navigation state in http request thread
+        cls.last_connection_check = time.time()  # Update TimeOut
+
+        # -- Check navigation state in the http request thread
         if (
             _RfactorConnectRequestThread.request_queue.empty()
             and RfactorConnect.rest_api_enabled
@@ -354,11 +332,6 @@ class RfactorConnect:
                 cls.set_to_active_timeout()
             elif cls.state == RfactorState.unavailable:
                 cls.set_to_idle_timeout()
-            elif (
-                cls.state == RfactorState.ready and cls.enable_shared_mem_check is None
-            ):
-                logging.info("Enabling Shared Memory Updates")
-                cls.enable_shared_mem_check = True
             logging.debug(
                 "Updating rFactor 2 state to: %s", RfactorState.names.get(cls.state)
             )

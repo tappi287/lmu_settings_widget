@@ -1,6 +1,7 @@
 """Connect to rFactor 2 Ui via it's rest api"""
 
 import logging
+import time
 
 import eel
 import gevent
@@ -26,6 +27,8 @@ ENABLE_METRICS = False
 ENABLE_REST_API = True
 PRESENT_MON_RETRIES = 0
 MAX_PRESENT_MON_RETRIES = 5
+PRESENT_MON_START_TIMEOUT = 15
+LAST_LIVE_STATE_CHANGE = time.time()
 
 
 def _while_rfactor_is_live():
@@ -37,14 +40,16 @@ def _while_rfactor_is_live():
 
     # -- init PresentMon
     if ENABLE_METRICS and not RfactorConnect.present_mon.is_tracking_process:
-        if RfactorConnect.rf2_pid is not None and PRESENT_MON_RETRIES < MAX_PRESENT_MON_RETRIES:
-            try:
-                if not RfactorConnect.present_mon.start(RfactorConnect.rf2_pid):
-                    PRESENT_MON_RETRIES += 1
-                    RfactorConnect.present_mon.stop()
-                logging.info(f"PresentMon for PID {RfactorConnect.rf2_pid} started")
-            except Exception as e:
-                logging.error(f"Error starting PresentMon Query: {e}")
+        if time.time() - LAST_LIVE_STATE_CHANGE > PRESENT_MON_START_TIMEOUT:
+            rf2pid = RfactorConnect.get_pid()
+            if rf2pid is not None and PRESENT_MON_RETRIES < MAX_PRESENT_MON_RETRIES:
+                try:
+                    if not RfactorConnect.present_mon.start(rf2pid):
+                        PRESENT_MON_RETRIES += 1
+                        RfactorConnect.present_mon.stop()
+                    logging.info(f"PresentMon for PID {rf2pid} started")
+                except Exception as e:
+                    logging.error(f"Error starting PresentMon Query: {e}")
 
     # -- Get PresentMon Metrics and store in AsyncResult
     if ENABLE_METRICS and RfactorConnect.present_mon.is_tracking_process:
@@ -139,6 +144,8 @@ def _rfactor_greenlet_loop():
         # -- Report state change to frontend
         RfactorLiveEvent.set(True)
         RfactorConnect.set_to_active_timeout()
+        global LAST_LIVE_STATE_CHANGE
+        LAST_LIVE_STATE_CHANGE = time.time()
 
     # ---------------------------
     # -- COMMAND QUEUE

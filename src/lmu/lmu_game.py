@@ -518,7 +518,8 @@ class RfactorPlayer:
         process = subprocess.Popen(
             cmd, cwd=self.location, creationflags=subprocess.DETACHED_PROCESS
         )
-        self.pid = process.pid
+        if get_launch_executable().lower() == GAME_EXECUTABLE.lower():
+            self.pid = process.pid
         return True
 
     def run_rfactor_with_present_mon(
