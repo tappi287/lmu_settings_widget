@@ -11,7 +11,7 @@ except ImportError:
 from PyInstaller.utils.hooks import get_package_paths
 
 block_cipher = None
-excluded_modules = ["cryptography"]
+excluded_modules = ["cryptography", "ruff", "pyinstaller", "pyinstaller_hooks_contrib", "pywin32_ctypes", "pytest"]
 
 # ----- define app name
 APP_NAME = "LMU-Settings-Widget"

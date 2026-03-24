@@ -13,12 +13,11 @@ dependencies = [
   "appdirs>=1.4.4, <2.0.0",
   "pygame==2.6.1",
   "psutil==7.2.2",
-  "gevent-websocket==0.10.1",
   "gevent==25.9.1",
   "lxml==6.0.2",
-  "iniconfig==2.3.0",
   "py-cpuinfo==9.0.0",
   "nvidia-ml-py==13.595.45",
+  "greenlet==3.3.2",
 ]
 
 [dependency-groups]
@@ -28,7 +27,6 @@ dev = [
   "pyinstaller-hooks-contrib>=2026.3",
   "pywin32-ctypes>=0.2.0",
   "pytest>=9.0.2",
-  "mypy-extensions==1.1.0"
 ]
 
 [build-system]
