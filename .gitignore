@@ -2,3 +2,4 @@
 /vue/node_modules/
 /poetry.lock
 /.idea
+/private

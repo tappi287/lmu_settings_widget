@@ -181,7 +181,7 @@ class Command:
 
     def nav_action_method(self):
         if not isinstance(self.data, str):
-            logging.error(f"Navigation command needs a string argument")
+            logging.error("Navigation command needs a string argument")
             return
 
         # -- Log navigation target
@@ -191,7 +191,7 @@ class Command:
         RfactorStatusEvent.set(f"Navigating to {nav_message}")
         logging.debug(f"Executing nav action [{nav_message}] command: {self.data}")
 
-        RfactorConnect.post_request(f"/navigation/action/{self.data}")
+        RfactorConnect.navigate_to(self.data)
         self.finished = True
 
     @staticmethod
@@ -261,8 +261,6 @@ class Command:
                     break
 
         AppAudioFx.play_audio(AppAudioFx.switch)
-        # -- Navigate to Main Menu
-        RfactorConnect.post_request("/navigation/action/NAV_TO_MAIN_MENU", data=None)
         self.finished = True
 
     def start_race_method(self):
@@ -341,12 +339,12 @@ class Command:
 
     def record_benchmark_method(self):
         RecordBenchmarkEvent.set(True)
-        RfactorStatusEvent.set(f"Recording Benchmark.")
+        RfactorStatusEvent.set("Recording Benchmark.")
         AppAudioFx.play_audio(AppAudioFx.ping)
         self.finished = True
 
     def replay_playback_method(self):
-        if self.data:
+        if isinstance(self.data, int):
             RfactorConnect.replay_playback_command(self.data)
         else:
             logging.error("Command replay playback did not contain any argument.")
@@ -383,7 +381,7 @@ class Command:
         self.finished = True
 
     def ai_take_control_method(self):
-        RfactorStatusEvent.set(f"Requesting AI Control for current vehicle.")
+        RfactorStatusEvent.set("Requesting AI Control for current vehicle.")
         logging.debug("Requesting AI Control for current vehicle.")
         RfactorConnect.post_request("/rest/sessions/ai/TakeDriverControl")
         self.finished = True

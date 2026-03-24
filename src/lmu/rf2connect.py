@@ -7,14 +7,40 @@ from typing import Optional, Union
 import gevent
 import psutil
 
-from lmu import requests
 from lmu.directInputKeySend import PressReleaseKey
 from lmu.globals import GAME_EXECUTABLE
+from lmu.http import HTTPSession, HTTPResponse
 from lmu.rf2sharedmem.sharedMemoryAPI import SimInfoAPI
 from lmu.lmu_game import RfactorPlayer
 from lmu.utils import rfactor_process_with_id_exists
 
 CONNECTION_DEBUG = False
+
+# Retry configuration
+KNOWN_NAV_PATHS = {
+    "NAV_RACE_MULTIPLAYER",
+    "NAV_SPECTATE_MULTIPLAYER",
+    "NAV_TO_MAIN_MENU",
+    "NAV_TO_EVENT_INPUT",
+    "NAV_FOCUS_EVENT",
+    "NAV_BACK_TO_EVENT",
+    "NAV_TO_EVENT_MONITOR",
+    "NAV_TO_FULL_EVENT_MONITOR",
+    "NAV_NEXT_SESSION",
+    "NAV_EXIT",
+}
+
+KNOWN_VCR_COMMANDS = {
+    0: "VCRCOMMAND_STOP",
+    1: "VCRCOMMAND_END",
+    3: "VCRCOMMAND_REVERSESCAN",
+    4: "VCRCOMMAND_PLAYBACKWARDS",
+    5: "VCRCOMMAND_SLOWBACKWARDS",
+    6: "VCRCOMMAND_STOP",
+    7: "VCRCOMMAND_SLOW",
+    8: "VCRCOMMAND_PLAY",
+    9: "VCRCOMMAND_FORWARDSCAN",
+}
 
 
 class RfactorState:
@@ -34,7 +60,9 @@ class _RfactorConnectRequestThread:
     request_thread: Optional[Thread] = None
 
     @staticmethod
-    def _request_thread_loop(request_queue: Queue, response_queue: Queue, close_event: Event):
+    def _request_thread_loop(
+        request_queue: Queue, response_queue: Queue, close_event: Event
+    ):
         logging.debug("RfactorConnect request thread started.")
 
         while not close_event.is_set():
@@ -82,7 +110,9 @@ class _RfactorConnectRequestThread:
                         response.status_code,
                         response.text,
                     )
-                response_queue.put(response or False)  # Make sure we do not put None in the queue
+                response_queue.put(
+                    response or False
+                )  # Make sure we do not put None in the queue
 
         logging.debug("RfactorConnect request thread exiting.")
 
@@ -100,7 +130,8 @@ class _RfactorConnectRequestThread:
     @classmethod
     def start_request_thread(cls):
         cls.request_thread = Thread(
-            target=cls._request_thread_loop, args=(cls.request_queue, cls.response_queue, cls.close_event)
+            target=cls._request_thread_loop,
+            args=(cls.request_queue, cls.response_queue, cls.close_event),
         )
         cls.request_thread.start()
 
@@ -120,7 +151,9 @@ class RfactorConnect:
     """
 
     host = "localhost"
-    web_ui_port: int = 0  # Call update_web_ui_port to update the port from current player.json
+    web_ui_port: int = (
+        0  # Call update_web_ui_port to update the port from current player.json
+    )
     state = 0  # RfactorState
     get_request_time = 0.5  # float seconds timeout for get requests
     rest_api_enabled = True
@@ -130,7 +163,9 @@ class RfactorConnect:
     active_timeout = 1.0  # Check connection timeout while eg. loading
 
     last_connection_check = time.time()
-    connection_check_interval = idle_timeout  # Revalidate connection every float seconds
+    connection_check_interval = (
+        idle_timeout  # Revalidate connection every float seconds
+    )
 
     # -- Track rF2 available state changes
     last_rfactor_live_state = False
@@ -145,6 +180,9 @@ class RfactorConnect:
 
     _timestamp = 0
 
+    # -- HTTP Session for persistent connections (connection pooling)
+    _session: Optional[HTTPSession] = None
+
     @staticmethod
     def start_request_thread():
         _RfactorConnectRequestThread.start_request_thread()
@@ -152,6 +190,24 @@ class RfactorConnect:
     @staticmethod
     def stop_request_thread() -> None:
         _RfactorConnectRequestThread.stop_request_thread()
+
+    @classmethod
+    def _get_session(cls) -> HTTPSession:
+        """Get or create a persistent HTTPSession for connection pooling."""
+        if cls._session is None or cls._session.port != cls.web_ui_port:
+            if cls._session:
+                cls._session.close()
+            cls._session = HTTPSession(
+                cls.host, cls.web_ui_port, timeout=cls.get_request_time
+            )
+        return cls._session
+
+    @classmethod
+    def close_session(cls) -> None:
+        """Close the persistent session and release connections."""
+        if cls._session is not None:
+            cls._session.close()
+            cls._session = None
 
     @classmethod
     def base_url(cls) -> str:
@@ -166,7 +222,9 @@ class RfactorConnect:
         for proc in psutil.process_iter(["pid", "name"]):
             if proc.info["name"].lower().startswith(GAME_EXECUTABLE.lower()):
                 cls.rf2_pid = proc.info["pid"]
-                logging.info("process_iter found Game Executable Process ID: %s", cls.rf2_pid)
+                logging.info(
+                    "process_iter found Game Executable Process ID: %s", cls.rf2_pid
+                )
                 return cls.rf2_pid
         logging.debug("Could not find Game Executable with Process ID: %s", cls.rf2_pid)
         return -1
@@ -186,7 +244,9 @@ class RfactorConnect:
         if not cls.shared_memory_obj.sharedMemoryVerified:
             if cls.shared_memory_obj.isRF2running():
                 if not cls.shared_memory_obj.isSharedMemoryAvailable():
-                    logging.info("Shared memory not available: Disabling Shared Memory Updates")
+                    logging.info(
+                        "Shared memory not available: Disabling Shared Memory Updates"
+                    )
                     cls.enable_shared_mem_check = False
                     return
         # -- Shared Memory available
@@ -199,7 +259,9 @@ class RfactorConnect:
                     return
 
                 # -- Set unavailable
-                logging.info("Setting rF2 State to unavailable from shared memory state.")
+                logging.info(
+                    "Setting rF2 State to unavailable from shared memory state."
+                )
                 cls.state = RfactorState.unavailable
                 cls.check_for_rf_pid = True
 
@@ -243,16 +305,23 @@ class RfactorConnect:
                     cls.set_state({"status_code": 200})
             else:
                 if cls.state != RfactorState.unavailable:
-                    logging.debug(f"Setting Game Executable({cls.rf2_pid}) state to unavailable.")
+                    logging.debug(
+                        f"Setting Game Executable({cls.rf2_pid}) state to unavailable."
+                    )
                     cls.rf2_pid = None
                     cls.set_state(False)
             cls.last_connection_check = time.time()  # Update TimeOut
 
         # -- Check navigation state in http request thread
-        if _RfactorConnectRequestThread.request_queue.empty() and RfactorConnect.rest_api_enabled:
+        if (
+            _RfactorConnectRequestThread.request_queue.empty()
+            and RfactorConnect.rest_api_enabled
+        ):
             # logging.debug('Checking for rFactor 2 http connection. Interval: %.2f', timeout)
             cls.last_connection_check = time.time()  # Update TimeOut
-            _RfactorConnectRequestThread.request_queue.put({"method": "GET", "url": "/navigation/state"})
+            _RfactorConnectRequestThread.request_queue.put(
+                {"method": "GET", "url": "/navigation/state"}
+            )
 
     @classmethod
     def set_state(cls, nav_state: Union[bool, dict]) -> None:
@@ -285,10 +354,14 @@ class RfactorConnect:
                 cls.set_to_active_timeout()
             elif cls.state == RfactorState.unavailable:
                 cls.set_to_idle_timeout()
-            elif cls.state == RfactorState.ready and cls.enable_shared_mem_check is None:
+            elif (
+                cls.state == RfactorState.ready and cls.enable_shared_mem_check is None
+            ):
                 logging.info("Enabling Shared Memory Updates")
                 cls.enable_shared_mem_check = True
-            logging.debug("Updating rFactor 2 state to: %s", RfactorState.names.get(cls.state))
+            logging.debug(
+                "Updating rFactor 2 state to: %s", RfactorState.names.get(cls.state)
+            )
 
     @classmethod
     def get_replays(cls) -> list:
@@ -323,15 +396,15 @@ class RfactorConnect:
 
     @classmethod
     def replay_playback_command(cls, command: int) -> bool:
-        """0 - Jump to Start   |<
-        1 - Jump to End     >|
-        2-5 - Super Fast Reverse, Fast Reverse, Play Reverse, Slow-Mo Reverse
-        6 - Pause
-        7-10 - Slow-Mo Forward, Play Forward, Fast Forward, Super Fast Forward
+        """ 0 - Jump to Start   |<
+            1 - Jump to End     >|
+            2-5 - Super Fast Reverse, Fast Reverse, Play Reverse, Slow-Mo Reverse
+            6 - Pause
+            7-10 - Slow-Mo Forward, Play Forward, Fast Forward, Super Fast Forward
         """
         if cls.state != RfactorState.ready:
             return False
-        r = cls.put_request("/rest/watch/replayCommand", json=command)
+        r = cls.put_request(f"/rest/watch/replayCommand/{KNOWN_VCR_COMMANDS.get(command) or command}")
         if r.status_code not in (200, 204):
             logging.debug(f"Request to Replay ReplayCommand #{command} failed.")
             return False
@@ -339,10 +412,10 @@ class RfactorConnect:
 
     @classmethod
     def replay_time_command(cls, replay_time: float):
-        """/rest/replay/replaytime PUT"""
+        """/rest/watch/replaytime/{time} PUT"""
         if cls.state != RfactorState.ready:
             return False
-        r = cls.put_request("/rest/replay/replaytime", json=replay_time)
+        r = cls.put_request(f"/rest/watch/replaytime/{replay_time}")
         if r.status_code not in (200, 204):
             logging.debug(f"Request to Replay Time {replay_time} failed.")
             return False
@@ -358,6 +431,31 @@ class RfactorConnect:
             return False
 
         r = cls.post_request("/navigation/action/NAV_EXIT")
+
+        return True if r and r.status_code in (200, 201, 202, 203, 204) else False
+
+    @classmethod
+    def navigate_to(cls, action: str) -> bool:
+        """Navigate to a specific screen/action in the rF2 UI.
+
+        Args:
+            action: The navigation action to perform (e.g., 'NAV_EXIT', 'NAV_OPTIONS', etc.)
+                    Must be in KNOWN_NAV_PATHS
+
+        Returns:
+            True if navigation was successful, False otherwise
+        """
+        if action not in KNOWN_NAV_PATHS:
+            logging.error(
+                "Invalid navigation action(not in KNOWN_NAV_PATHS): %s", action
+            )
+            return False
+
+        cls.wait_for_rf2_ui(5.0)
+        if cls.state != RfactorState.ready:
+            return False
+
+        r = cls.post_request(f"/navigation/action/{action}")
 
         return True if r and r.status_code in (200, 201, 202, 203, 204) else False
 
@@ -391,39 +489,56 @@ class RfactorConnect:
         logging.info("Waiting for active rF Web UI timed out.")
 
     @classmethod
-    def get_request(cls, url) -> Optional[requests.RequestResponse]:
+    def get_request(cls, url) -> Optional[HTTPResponse]:
         try:
-            r = requests.get(f"{cls.base_url()}{url}", timeout=cls.get_request_time)
+            session = cls._get_session()
+            r = session.get(url, timeout=cls.get_request_time)
         except Exception as e:
             if CONNECTION_DEBUG:
-                logging.debug("Error during get request: %s", e)
-            return
+                logging.debug("Error during get request to %s: %s", url, e)
+            return None
 
         if r.status_code not in (200, 201, 202, 203, 204):
-            logging.info("Request failed to %s, status %s, data %s", url, r.status_code, r.text)
+            logging.info(
+                "Request failed to %s, status %s, data %s", url, r.status_code, r.text
+            )
 
         return r
 
     @classmethod
-    def post_request(cls, url, data=None, json=None, headers=None) -> Optional[requests.RequestResponse]:
+    def post_request(
+        cls, url, data=None, json=None, headers=None
+    ) -> Optional[HTTPResponse]:
         try:
-            r = requests.post(f"{cls.base_url()}{url}", data=data, json=json, headers=headers)
+            session = cls._get_session()
+            r = session.post(url, json_data=json, headers=headers)
         except Exception as exc:
-            logging.error("Could not connect to rFactor 2 Web UI: %s", exc)
-            return
+            logging.error(
+                "Could not connect to rFactor 2 Web UI for POST %s: %s", url, exc
+            )
+            return None
 
-        logging.info("Response for POST request to %s was %s %s", url, r.status_code, r.text)
+        logging.info(
+            "Response for POST request to %s was %s %s", url, r.status_code, r.text
+        )
         return r
 
     @classmethod
-    def put_request(cls, url, data=None, json=None, headers=None) -> Optional[requests.RequestResponse]:
+    def put_request(
+        cls, url, data=None, json=None, headers=None
+    ) -> Optional[HTTPResponse]:
         try:
-            r = requests.put(f"{cls.base_url()}{url}", data=data, json=json, headers=headers)
+            session = cls._get_session()
+            r = session.put(url, json_data=json, headers=headers)
         except Exception as exc:
-            logging.error("Could not connect to rFactor 2 Web UI: %s", exc)
-            return
+            logging.error(
+                "Could not connect to rFactor 2 Web UI for PUT %s: %s", url, exc
+            )
+            return None
 
-        logging.info("Response for PUT request to %s was %s %s", url, r.status_code, r.text)
+        logging.info(
+            "Response for PUT request to %s was %s %s", url, r.status_code, r.text
+        )
         return r
 
     @staticmethod
@@ -433,6 +548,21 @@ class RfactorConnect:
             if hasattr(rf.options, "misc_options"):
                 o = rf.options.misc_options.get_option("WebUI port")
                 RfactorConnect.web_ui_port = o.value
-                logging.debug("Updated RfactorConnect Web UI port to: %s", RfactorConnect.web_ui_port)
+                logging.debug(
+                    "Updated RfactorConnect Web UI port to: %s",
+                    RfactorConnect.web_ui_port,
+                )
                 return True
         return False
+
+
+def cleanup():
+    """Cleanup function to be called on module exit to release resources."""
+    RfactorConnect.close_session()
+    _RfactorConnectRequestThread.stop_request_thread()
+
+
+# Register cleanup function to be called on interpreter exit
+import atexit
+
+atexit.register(cleanup)
