@@ -96,7 +96,7 @@ export default {
       appOptions: [
         {text: 'Enable Audio', value: 'audio', description: 'Weather to play audio feedback when using certain actions within the app.'},
         {text: 'Prefer Edge Browser', value: 'edge_preferred', description: 'Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.'},
-        {text: 'Use LMU Rest API', value: 'use_rest_api', description: 'Use the Le Mans Ultimate RestAPI to get the current game state. This became unstable since v1.x. Enable this only once the LMU Devs provided an update.'},
+        /*{text: 'Use LMU Rest API', value: 'use_rest_api', description: 'Use the Le Mans Ultimate RestAPI to get the current game state.'},*/
         {text: 'Use Easy-Anti-Cheat wrapper executable', value: 'use_eac_wrapper', description: 'Use the Easy-Anti-Cheat wrapper executable "start_protected_game.exe" to enable the game\'s anti-cheat system. Disabling this will disable any online features.'},
         {text: 'Performance Monitoring', value: 'show_hardware_info', description: 'Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.'},
       ],

@@ -30,7 +30,7 @@ class AppSettings(JsonRepr):
     eac_wrapper_set = False
     selected_presets: Dict[str, str] = dict()
     replay_preset = str()
-    app_preferences = {"appModules": ["audio", "edge_preferred", "use_rest_api", "use_eac_wrapper"], "autostart": []}
+    app_preferences = {"appModules": ["audio", "edge_preferred", "use_eac_wrapper"], "autostart": []}
 
     rf_overwrite_location = ""
 
@@ -298,6 +298,11 @@ class AppSettings(JsonRepr):
 
             if version != cls.last_rf_version:
                 cls.last_rf_version = version
+
+                # -- Disable LMU RestAPI from > v1.20000
+                if "use_rest_api" in cls.app_preferences["appModules"]:
+                    cls.app_preferences["appModules"].remove("use_rest_api")
+
                 # -- Actions on an updated version
                 pass
                 # -- Save updated version
