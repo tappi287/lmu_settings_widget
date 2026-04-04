@@ -9,7 +9,7 @@ import psutil
 
 from lmu.directInputKeySend import PressReleaseKey
 from lmu.globals import GAME_EXECUTABLE
-from lmu.http import HTTPSession, HTTPResponse
+from lmu.http_client import HTTPSession, HTTPResponse
 from lmu.sim_info_api import SimInfoAPI
 from lmu.lmu_game import RfactorPlayer
 from lmu.utils import rfactor_process_with_id_exists

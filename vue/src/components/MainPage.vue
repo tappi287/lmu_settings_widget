@@ -35,6 +35,9 @@
         <b-nav-item :active="navActive === 6" @click="navActive=6" link-classes="pl-0">
           KneeBoard
         </b-nav-item>
+        <b-nav-item :active="navActive === 10" @click="navActive=10" link-classes="pl-0">
+          Race Schedule
+        </b-nav-item>
       </b-nav>
 
       <!-- Right aligned nav items -->
@@ -180,6 +183,9 @@
 
     <KneeBoard ref="kneeboard" :prefs="$refs.preferences" v-if="navActive === 6" :live="live" />
 
+    <!-- Race Schedule -->
+    <RaceSchedule v-if="navActive === 10"/>
+
     <!-- Wiki -->
     <AppWiki v-if="navActive === 7" @nav="navigate"/>
 
@@ -259,6 +265,7 @@ import lmwLogoWhiteUrl from "@/assets/lmw_logo_white.png"
 import pimaxLogoUrl from "@/assets/Pimax_Innovation_logo.svg"
 import FuelCalc from "@/components/pages/FuelCalc.vue";
 import KneeBoard from "@/components/pages/KneeBoard.vue";
+import RaceSchedule from "@/components/pages/RaceSchedule.vue";
 
 export default {
   name: 'MainPage',
@@ -526,6 +533,7 @@ export default {
     this.$eventHub.$off('navigate', this.navigate)
   },
   components: {
+    RaceSchedule,
     KneeBoard,
     FuelCalc,
     PreferencesPage,
