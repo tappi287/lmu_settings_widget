@@ -141,10 +141,11 @@ class _RfactorConnectRequestThread:
     def stop_request_thread(cls) -> None:
         logging.debug("Stopping RfactorConnect request thread.")
         cls.close_event.set()
-        if cls.request_thread.is_alive():
-            logging.debug("Joining RfactorConnect request thread.")
-            cls.request_thread.join(timeout=5.0)
-            logging.debug("RfactorConnect request thread joined.")
+        if cls.request_thread is not None:
+            if cls.request_thread.is_alive():
+                logging.debug("Joining RfactorConnect request thread.")
+                cls.request_thread.join(timeout=5.0)
+                logging.debug("RfactorConnect request thread joined.")
 
 
 class RfactorConnect:
