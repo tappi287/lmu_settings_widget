@@ -111,7 +111,7 @@ def _main_app_loop():
             CLOSE_EVENT.set()
 
     # -- Shutdown Greenlets
-    logging.debug("Shutting down Greenlets.")
+    logging.info("Shutting down Greenlets.")
     gevent.joinall((cg, rg), timeout=15.0, raise_error=True)
 
 
@@ -153,6 +153,7 @@ def start_eel(npm_serve=True):
                 port=port,
                 block=False,
                 cmdline_args=[edge_cmd, "--profile-directory=Default", f"--app={start_url}"],
+                close_callback=close_callback
             )
         else:
             eel.start(page, host=host, port=port, block=False, close_callback=close_callback)
@@ -167,11 +168,13 @@ def start_eel(npm_serve=True):
                 port=port,
                 block=False,
                 cmdline_args=[edge_cmd, "--profile-directory=Default", f"--app={start_url}"],
+                close_callback=close_callback
             )
         # Fallback to opening a regular browser window
         else:
             logging.info("Falling back to default Web Browser")
-            eel.start(page, mode=None, app_mode=False, host=host, port=port, block=False)
+            eel.start(page, mode=None, app_mode=False, host=host, port=port, block=False,
+                      close_callback=close_callback)
             # Open system default web browser
             gevent.spawn_later(1.0, webbrowser.open_new_tab, start_url)
 
