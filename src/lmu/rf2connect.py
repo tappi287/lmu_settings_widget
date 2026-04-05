@@ -47,9 +47,10 @@ class RfactorState:
     unavailable = 0
     loading = 1
     ready = 2
+    api_available = 3
     waiting_for_process = 10
 
-    names = {0: "Unavailable", 1: "Loading", 2: "Ready"}
+    names = {0: "Unavailable", 1: "Loading", 2: "Ready", 3: "API available", 10: "waiting_for_process"}
 
 
 class _RfactorConnectRequestThread:
@@ -86,6 +87,7 @@ class _RfactorConnectRequestThread:
                 if response:
                     if response.status_code in (200, 201, 202, 203, 204):
                         response_json = response.json()
+                        response_json["status_code"] = response.status_code
                     else:
                         logging.debug(
                             "Request Thread received error response for GET request to %s %s %s",
@@ -252,6 +254,12 @@ class RfactorConnect:
     @classmethod
     def _shared_memory_check(cls):
         return cls.shared_memory_obj.is_lmu_running()
+    
+    @classmethod
+    def check_if_state_ready(cls):
+        if cls.state in (RfactorState.ready, RfactorState.api_available):
+            return True
+        return False
 
     @classmethod
     def check_connection(cls) -> None:
@@ -259,11 +267,11 @@ class RfactorConnect:
         or use shared memory if reported to be available.
         """
         # - Check request -queue- for responses (this does not trigger a request)
-        if RfactorConnect.rest_api_enabled:
-            response = _RfactorConnectRequestThread.check_response()
-            if response is not None:
-                cls.set_state(response)
-                return
+        response = _RfactorConnectRequestThread.check_response()
+        if response is not None:
+            # logging.info(f"Updating rf2 state from response: {response}")
+            cls.set_state(response)
+            return
 
         # - Only check every connection_check_interval
         timeout = min(cls.long_timeout, cls.connection_check_interval)
@@ -279,9 +287,10 @@ class RfactorConnect:
             if not cls.update_web_ui_port():
                 return
 
-        if cls._shared_memory_check():
-            if cls.state != RfactorState.ready:
-                cls.set_state({"status_code": 200})
+        shared_mem_avail = cls._shared_memory_check()
+        if shared_mem_avail:
+            if not cls.check_if_state_ready():
+                cls.set_state({"status_code": -1})
         else:
             if cls.state != RfactorState.unavailable:
                 logging.debug(f"Setting Game Executable({cls.rf2_pid}) state to unavailable.")
@@ -290,12 +299,13 @@ class RfactorConnect:
 
         cls.last_connection_check = time.time()  # Update TimeOut
 
+        # Skip http requests if shared memory not available/game not running
+        if not shared_mem_avail:
+            return
+
         # -- Check navigation state in the http request thread
-        if (
-            _RfactorConnectRequestThread.request_queue.empty()
-            and RfactorConnect.rest_api_enabled
-        ):
-            # logging.debug('Checking for rFactor 2 http connection. Interval: %.2f', timeout)
+        if _RfactorConnectRequestThread.request_queue.empty():
+            # logging.debug('Checking for rFactor 2 http connection. State: %s Interval: %.2f', RfactorState.names.get(RfactorConnect.state), timeout)
             cls.last_connection_check = time.time()  # Update TimeOut
             _RfactorConnectRequestThread.request_queue.put(
                 {"method": "GET", "url": "/navigation/state"}
@@ -304,18 +314,18 @@ class RfactorConnect:
     @classmethod
     def set_state(cls, nav_state: Union[bool, dict]) -> None:
         previous_state = int(cls.state)
-
+        
         if isinstance(nav_state, dict):
-            if nav_state.get("status_code", 200) != 200:
+            if nav_state.get("status_code") == -1:
+                # SharedMemory available
+                cls.state = RfactorState.ready
+            elif nav_state.get("status_code", 200) != 200:
                 # -- Assume loading state if we received a request with a non 200 status
                 cls.state = RfactorState.loading
-            else:
-                # -- Set State loading or ready
-                cls.state = (
-                    RfactorState.loading
-                    if nav_state.get("loadingStatus", dict()).get("loading")
-                    else RfactorState.ready
-                )
+            elif nav_state.get("status_code") == 200:
+                cls.state = RfactorState.api_available
+            elif nav_state.get("loadingStatus", dict()).get("loading"):
+                cls.state = RfactorState.loading
         elif nav_state is False:
             if cls._rf2_processes_detected():
                 # -- UI Processes still active
@@ -340,7 +350,7 @@ class RfactorConnect:
     def get_replays(cls) -> list:
         """Request all replays from the rFactor 2 UI"""
         cls.wait_for_rf2_ui(5.0)
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return list()
 
         r = cls.get_request("/rest/watch/replays")
@@ -357,7 +367,7 @@ class RfactorConnect:
     def play_replay(cls, replay_id: int) -> bool:
         """Request rFactor 2 to play the replay with the provided id"""
         cls.wait_for_rf2_ui(5.0)
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return False
 
         r = cls.get_request(f"/rest/watch/play/{replay_id}")
@@ -375,7 +385,7 @@ class RfactorConnect:
             6 - Pause
             7-10 - Slow-Mo Forward, Play Forward, Fast Forward, Super Fast Forward
         """
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return False
         r = cls.put_request(f"/rest/watch/replayCommand/{KNOWN_VCR_COMMANDS.get(command) or command}")
         if r.status_code not in (200, 204):
@@ -386,7 +396,7 @@ class RfactorConnect:
     @classmethod
     def replay_time_command(cls, replay_time: float):
         """/rest/watch/replaytime/{time} PUT"""
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return False
         r = cls.put_request(f"/rest/watch/replaytime/{replay_time}")
         if r.status_code not in (200, 204):
@@ -400,7 +410,7 @@ class RfactorConnect:
         PressReleaseKey("DIK_ESCAPE")  # Hit Escape
 
         cls.wait_for_rf2_ui(5.0)
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return False
 
         r = cls.post_request("/navigation/action/NAV_EXIT")
@@ -425,7 +435,7 @@ class RfactorConnect:
             return False
 
         cls.wait_for_rf2_ui(5.0)
-        if cls.state != RfactorState.ready:
+        if not cls.check_if_state_ready():
             return False
 
         r = cls.post_request(f"/navigation/action/{action}")
@@ -455,7 +465,7 @@ class RfactorConnect:
             cls.check_connection()
             if wait_for_state_change and cls.state != previous_state:
                 wait_for_state_change = False
-            if cls.state == RfactorState.ready and not wait_for_state_change:
+            if cls.check_if_state_ready() and not wait_for_state_change:
                 return
             gevent.sleep(0.5)
 

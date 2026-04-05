@@ -52,7 +52,7 @@ class BenchmarkQueue:
 
 def create_benchmark_commands(ai_key: str, fps_key: str, recording_timeout: int, replay: Optional[str] = None):
     # Wait for UI
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120.0))
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=120.0))
 
     if replay is None:
         # -- Set session settings

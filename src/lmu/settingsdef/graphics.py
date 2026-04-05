@@ -89,13 +89,22 @@ adjustable_graphics_settings = {
         "settings": (
             {"value": 0, "name": "Off"},
             {"value": 1, "name": "Low", "desc": "Cheap soft edges"},
-            {"value": 2, "name": "High", "desc": "Depth buffered soft edges", "perf": "G+0,57% C+2,57%"},
+            {
+                "value": 2,
+                "name": "High",
+                "desc": "Depth buffered soft edges",
+                "perf": "G+0,57% C+2,57%",
+            },
         ),
     },
     "Rain FX Quality": {
         "name": "Rain Drops",
         "value": 3,
-        "settings": ({"value": 0, "name": "Low"}, {"value": 1, "name": "Medium"}, {"value": 2, "name": "High"}),
+        "settings": (
+            {"value": 0, "name": "Low"},
+            {"value": 1, "name": "Medium"},
+            {"value": 2, "name": "High"},
+        ),
     },
     "Road Reflections": {
         "name": "Road Reflection",
@@ -129,7 +138,15 @@ adjustable_graphics_settings = {
     "Max Visible Vehicles": {
         "name": "Visible Vehicles",
         "value": 12,
-        "settings": ({"settingType": "range", "min": 5, "max": 105, "step": 1, "desc": "LMU default setting: 12"},),
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 5,
+                "max": 105,
+                "step": 1,
+                "desc": "LMU default setting: 12",
+            },
+        ),
     },
     "Screen Space Ambient Occlusion": {
         "name": "Ambient Occlusion",
@@ -194,7 +211,8 @@ view_settings = {
                 "max": 1.0,
                 "step": 0.01,
                 "display": "floatpercent",
-                "desc": "Fraction of head physics movement applied to " "cockpit view (position AND rotation)",
+                "desc": "Fraction of head physics movement applied to "
+                "cockpit view (position AND rotation)",
             },
         ),
     },
@@ -202,14 +220,23 @@ view_settings = {
         "name": "Steering Wheel",
         "value": 0,
         "settings": (
-            {"value": 0, "name": "On [Default]", "desc": "Moving steering wheel and arms"},
+            {
+                "value": 0,
+                "name": "On [Default]",
+                "desc": "Moving steering wheel and arms",
+            },
             {"value": 1, "name": "Fixed", "desc": "Non-moving steering wheel or arms"},
             {
                 "value": 2,
                 "name": "Off",
-                "desc": "No steering wheel or arms (in cockpit only " "while player-controlled)",
+                "desc": "No steering wheel or arms (in cockpit only "
+                "while player-controlled)",
             },
-            {"value": 3, "name": "No arms", "desc": "Moving steering wheel but no arms"},
+            {
+                "value": 3,
+                "name": "No arms",
+                "desc": "Moving steering wheel but no arms",
+            },
         ),
     },
     "Vertical FOV Degrees": {
@@ -325,7 +352,7 @@ vr_graphics_settings = {
                 "desc": "Enable VR hidden area mask, may improve VR performance.",
             },
         ),
-    },
+    }
 }
 
 advanced_settings = {
@@ -334,7 +361,11 @@ advanced_settings = {
         "value": True,
         "settings": (
             {"value": False, "name": "Disabled"},
-            {"value": True, "name": "Enabled [Default]", "desc": "Soften edges around alpha test objects"},
+            {
+                "value": True,
+                "name": "Enabled [Default]",
+                "desc": "Soften edges around alpha test objects",
+            },
         ),
     },
     "Texture Sharpening": {
@@ -345,10 +376,26 @@ advanced_settings = {
                 "value": 0,
                 "name": "Off",
             },
-            {"value": 1, "name": "+2.0", "desc": "Sharpen textures using MIP LOD bias (very blurry)"},
-            {"value": 2, "name": "+1.0", "desc": "Sharpen textures using MIP LOD bias (blurry)"},
-            {"value": 3, "name": "-1.0", "desc": "Sharpen textures using MIP LOD bias (sharp)"},
-            {"value": 4, "name": "-2.0", "desc": "Sharpen textures using MIP LOD bias (very sharp)"},
+            {
+                "value": 1,
+                "name": "+2.0",
+                "desc": "Sharpen textures using MIP LOD bias (very blurry)",
+            },
+            {
+                "value": 2,
+                "name": "+1.0",
+                "desc": "Sharpen textures using MIP LOD bias (blurry)",
+            },
+            {
+                "value": 3,
+                "name": "-1.0",
+                "desc": "Sharpen textures using MIP LOD bias (sharp)",
+            },
+            {
+                "value": 4,
+                "name": "-2.0",
+                "desc": "Sharpen textures using MIP LOD bias (very sharp)",
+            },
             {"value": 5, "name": "Auto [Default]"},
         ),
     },
@@ -359,9 +406,14 @@ advanced_settings = {
             {
                 "value": 30,
                 "name": "30 [Default]",
-                "desc": "Speed at which exhaust heat effects reduce " "by half (0 to completely disable)",
+                "desc": "Speed at which exhaust heat effects reduce "
+                "by half (0 to completely disable)",
             },
-            {"value": 0, "name": "0", "desc": "Fixes visual artefact bubble behind certain cars in VR."},
+            {
+                "value": 0,
+                "name": "0",
+                "desc": "Fixes visual artefact bubble behind certain cars in VR.",
+            },
         ),
     },
     "Rearview Particles": {
@@ -385,7 +437,8 @@ advanced_settings = {
                 "min": 0,
                 "max": 250,
                 "step": 20,
-                "desc": "Back plane distance(view distance) for mirror " "(0.0 = use default for scene)",
+                "desc": "Back plane distance(view distance) for mirror "
+                "(0.0 = use default for scene)",
             },
         ),
     },
@@ -393,7 +446,11 @@ advanced_settings = {
         "name": "Rearview Driving",
         "value": True,
         "settings": (
-            {"value": False, "name": "Off", "desc": "Applies to in-game nosecam, cockpit, and TV cockpit"},
+            {
+                "value": False,
+                "name": "Off",
+                "desc": "Applies to in-game nosecam, cockpit, and TV cockpit",
+            },
             {"value": True, "name": "On"},
         ),
     },
@@ -418,14 +475,24 @@ advanced_settings = {
         "value": False,
         "settings": (
             {"value": False, "name": "Off [Default]"},
-            {"value": True, "name": "On", "desc": "Sunlight is affected by cloud cover"},
+            {
+                "value": True,
+                "name": "On",
+                "desc": "Sunlight is affected by cloud cover",
+            },
         ),
     },
     "Max Framerate": {
         "name": "Max Framerate",
         "value": 0,
         "settings": (
-            {"settingType": "range", "min": 0, "max": 288, "step": 1, "desc": "0 to disable, LMU default setting: 0"},
+            {
+                "settingType": "range",
+                "min": 0,
+                "max": 288,
+                "step": 1,
+                "desc": "0 to disable, LMU default setting: 0",
+            },
         ),
     },
     "Max Headlights": {
@@ -446,7 +513,11 @@ advanced_settings = {
         "value": True,
         "settings": (
             {"value": False, "name": "Off"},
-            {"value": True, "name": "On [Default]", "desc": "Headlights illuminate other cars."},
+            {
+                "value": True,
+                "name": "On [Default]",
+                "desc": "Headlights illuminate other cars.",
+            },
         ),
     },
 }
@@ -456,7 +527,7 @@ adjustable_video_settings = {
         "name": "Launch",
         "value": 1,
         "_type": int,
-        "desc": "Choose how this widget should launch LMU " "if this preset is selected.",
+        "desc": "Choose how this widget should launch LMU if this preset is selected.",
         "hidden": False,
         "settings": (
             {"value": 1, "name": "via Executable (Desktop)"},
@@ -490,27 +561,43 @@ adjustable_video_settings = {
         "name": "FXAA",
         "value": 0,
         "_type": int,
-        "desc": "Can not be used with FSAA. You should prefer FSAA " "whenever possible.",
+        "desc": "Can not be used with FSAA. You should prefer FSAA whenever possible.",
         "settings": (
             {"value": 0, "name": "Off"},
-            {"value": 1, "name": "On", "desc": "Cheap post processing filter to smooth " "high contrast edges."},
+            {
+                "value": 1,
+                "name": "On",
+                "desc": "Cheap post processing filter to smooth high contrast edges.",
+            },
         ),
-    },
+    }
 }
+
 resolution_video_settings = {
     "WindowedMode": {
         "name": "Windowed Mode",
         "value": None,
         "hidden": True,
-        "settings": ({"value": 0, "name": "Fullscreen"}, {"value": 1, "name": "Windowed"}),
+        "settings": (
+            {"value": 0, "name": "Fullscreen"},
+            {"value": 1, "name": "Windowed"},
+        ),
     },
     "Borderless": {
         "name": "Borderless",
         "value": None,
         "hidden": True,
-        "settings": ({"value": 0, "name": "Windowed"}, {"value": 1, "name": "Borderless"}),
+        "settings": (
+            {"value": 0, "name": "Windowed"},
+            {"value": 1, "name": "Borderless"},
+        ),
     },
-    "VideoMode": {"name": "Resolution", "value": None, "hidden": True, "settings": ({"value": 125, "name": "FullHD"},)},
+    "VideoMode": {
+        "name": "Resolution",
+        "value": None,
+        "hidden": True,
+        "settings": ({"value": 125, "name": "FullHD"},),
+    },
     "VideoRefresh": {
         "name": "Refresh Rate",
         "value": None,
@@ -564,8 +651,16 @@ reshade_settings = {
         "desc": "Configures the sharpening/clarity modes",
         "settings": (
             {"value": 0, "name": "Disabled"},
-            {"value": 1, "name": "FAS [Default]", "desc": "Use Filmic anamorph sharpening"},
-            {"value": 2, "name": "AMD CAS", "desc": "Use AMD Fidelity FX contrast adaptive sharpening (CAS)"},
+            {
+                "value": 1,
+                "name": "FAS [Default]",
+                "desc": "Use Filmic anamorph sharpening",
+            },
+            {
+                "value": 2,
+                "name": "AMD CAS",
+                "desc": "Use AMD Fidelity FX contrast adaptive sharpening (CAS)",
+            },
         ),
     },
     "VRT_ANTIALIASING_MODE": {
@@ -584,8 +679,16 @@ reshade_settings = {
         "desc": "Configures the color correction modes",
         "settings": (
             {"value": 0, "name": "Disabled [Default]"},
-            {"value": 1, "name": "LUT", "desc": "Uses a LUT (Look up table) for specialized and complex corrections."},
-            {"value": 2, "name": "Contrast & Saturation", "desc": "Adjust Contrast and Saturation"},
+            {
+                "value": 1,
+                "name": "LUT",
+                "desc": "Uses a LUT (Look up table) for specialized and complex corrections.",
+            },
+            {
+                "value": 2,
+                "name": "Contrast & Saturation",
+                "desc": "Adjust Contrast and Saturation",
+            },
         ),
     },
     "VRT_DITHERING": {
@@ -611,7 +714,8 @@ reshade_settings = {
             {
                 "value": 1,
                 "name": "Enabled [Default]",
-                "desc": "Uses circular mask to improve shader performance on games rendering on " "DX10 or higher",
+                "desc": "Uses circular mask to improve shader performance on games rendering on "
+                "DX10 or higher",
             },
         ),
     },
@@ -630,7 +734,10 @@ clarity_settings = {
         "name": "RGB Mode",
         "value": 0,
         "desc": "Runs Clarity in RGB instead of luma.",
-        "settings": ({"value": 0, "name": "Luma [Default]"}, {"value": 1, "name": "RGB"}),
+        "settings": (
+            {"value": 0, "name": "Luma [Default]"},
+            {"value": 1, "name": "RGB"},
+        ),
     },
     "UseClarityDebug": {
         "name": "Debug Mode",
@@ -680,7 +787,8 @@ reshade_mask = {
                 "min": 0.30,
                 "max": 0.5,
                 "step": 0.01,
-                "desc": "Adjusts the mask offset from the center horizontally " "[Default 0.30]",
+                "desc": "Adjusts the mask offset from the center horizontally "
+                "[Default 0.30]",
             },
         ),
     },
@@ -703,7 +811,15 @@ reshade_fas = {
     "FAS_Strength": {
         "name": "Strength",
         "value": 125.0,
-        "settings": ({"settingType": "range", "min": 0.0, "max": 250.0, "step": 1.0, "desc": "[Default 125]"},),
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.0,
+                "max": 250.0,
+                "step": 1.0,
+                "desc": "[Default 125]",
+            },
+        ),
     },
     "FAS_Radius": {
         "name": "Radius",
@@ -721,7 +837,15 @@ reshade_fas = {
     "FAS_Clamp": {
         "name": "Clamping",
         "value": 0.525,
-        "settings": ({"settingType": "range", "min": 0.500, "max": 1.00, "step": 0.001, "desc": "[Default 0.525]"},),
+        "settings": (
+            {
+                "settingType": "range",
+                "min": 0.500,
+                "max": 1.00,
+                "step": 0.001,
+                "desc": "[Default 0.525]",
+            },
+        ),
     },
 }
 reshade_cas = {
@@ -882,7 +1006,13 @@ reshade_cc = {
         "name": "Saturation",
         "value": 1.0,
         "settings": (
-            {"settingType": "range", "min": 0.0, "max": 2.0, "step": 0.01, "desc": "Adjust saturation [Default 1.0]"},
+            {
+                "settingType": "range",
+                "min": 0.0,
+                "max": 2.0,
+                "step": 0.01,
+                "desc": "Adjust saturation [Default 1.0]",
+            },
         ),
     },
 }
@@ -910,7 +1040,8 @@ reshade_aa = {
                 "min": 0.0,
                 "max": 1.0,
                 "step": 0.005,
-                "desc": "The minimum amount of local contrast required to apply algorithm. " "[Default 0.125]",
+                "desc": "The minimum amount of local contrast required to apply algorithm. "
+                "[Default 0.125]",
             },
         ),
     },
@@ -923,7 +1054,8 @@ reshade_aa = {
                 "min": 0.0,
                 "max": 1.0,
                 "step": 0.01,
-                "desc": "Pixels darker than this are not processed in order to " "increase performance. [Default 0.0]",
+                "desc": "Pixels darker than this are not processed in order to "
+                "increase performance. [Default 0.0]",
             },
         ),
     },
@@ -950,7 +1082,8 @@ reshade_clarity = {
                 "min": 1.0,
                 "max": 5.0,
                 "step": 1.0,
-                "desc": "Additional adjustment for the blur radius. Increasing " "the value will increase the radius.",
+                "desc": "Additional adjustment for the blur radius. Increasing "
+                "the value will increase the radius.",
             },
         ),
     },
@@ -1071,7 +1204,8 @@ reshade_clarity = {
                 "min": 0.00,
                 "max": 1.0,
                 "step": 0.01,
-                "desc": "Additional adjustment for the blur radius. Increasing the value will " "increase the radius.",
+                "desc": "Additional adjustment for the blur radius. Increasing the value will "
+                "increase the radius.",
             },
         ),
     },

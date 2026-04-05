@@ -65,7 +65,7 @@ def get_content():
 def refresh_content():
     logging.debug("Queuing set/get content requests for a content refresh.")
     # -- Wait for Ui
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120))
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=120))
 
     # -- Switch to All Tracks & Cars Series
     selected = AppSettings.content_selected

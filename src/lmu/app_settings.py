@@ -371,6 +371,8 @@ class AppSettings(JsonRepr):
         for key, event_class_name in event_map.items():
             # Get app preferences value
             value = True if key in AppSettings.app_preferences.get("appModules", list()) else False
+            # Overwrite enable rest api in newer builds
+            value = True if key == "use_rest_api" else value
             for event_object in event_objects:
                 if event_object.__name__ == event_class_name:
                     # Set event value

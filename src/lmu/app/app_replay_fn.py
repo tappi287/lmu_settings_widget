@@ -3,15 +3,14 @@ import logging
 from typing import Optional
 
 import eel
-import gevent
 
 from .. import rf2replays
 from ..app_settings import AppSettings
 from ..lmu_game import RfactorPlayer
 from ..preset.preset import GraphicsPreset, PresetType
-from ..preset.preset_base import load_presets_from_dir
+from ..preset.preset_base import load_presets_from_dir, PRESET_TYPES
 from ..preset.presets_dir import get_user_presets_dir
-from ..preset.settings_model import VideoSettings
+from ..preset.settings_model import VideoSettings, GameOptions
 from ..rf2command import CommandQueue, Command
 from ..rf2connect import RfactorState, RfactorConnect
 from ..rf2events import RfactorLiveEvent
@@ -88,9 +87,22 @@ def apply_gfx_preset_with_name(rf: RfactorPlayer, preset_name: str) -> Optional[
         return selected_preset
 
 
+def apply_disable_play_movies(rf: RfactorPlayer):
+    # -- Apply Play Movies 0
+    current_adv_preset = PRESET_TYPES.get(PresetType.advanced_settings)()
+    current_adv_preset.update(rf)
+    advanced_settings: GameOptions = getattr(
+        current_adv_preset, GameOptions.app_key, GameOptions()
+    )
+    play_movies_opt = advanced_settings.get_option("Play Movies")
+    play_movies_opt.value = 0
+    rf.write_settings(current_adv_preset)
+    eel.sleep(0.01)
+
+
 def _switch_replay_while_live(replay_name):
     # 1. Wait for UI
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120.0))
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=120.0))
     # 2. Back to main menu
     CommandQueue.append(Command(Command.nav_action, data="NAV_BACK_TO_MAIN_MENU", timeout=20.0))
     # 3. Wait for UI
@@ -122,6 +134,11 @@ def play_replay(replay_name):
     if launch_option:
         launch_method = launch_option.value
 
+    # -- Apply Play Movies: 0
+    #    applies the current Gfx Preset with Play Movies set to 0
+    #    has no effect in v1.3
+    # apply_disable_play_movies(rf)
+
     # -- Start rFactor 2
     result = rf.run_rfactor(method=launch_method)
     if result and rf.pid >= 0:
@@ -130,20 +147,26 @@ def play_replay(replay_name):
     if not result:
         # -- Restore non-replay graphics preset
         selected_preset_name = AppSettings.selected_presets.get(str(PresetType.graphics))
-        apply_gfx_preset_with_name(rf, selected_preset_name)
-        logging.info("Restored non-replay preset %s", selected_preset_name)
+        if selected_preset_name:
+            apply_gfx_preset_with_name(rf, selected_preset_name)
+            logging.info("Restored non-replay preset %s", selected_preset_name)
         return json.dumps({"result": False, "msg": f"Could not launch LMU: {rf.error}"})
 
     # -- Tell the rFactor Greenlet to play a replay in next iteration
     # 1. Wait for UI
-    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=120.0))
-    CommandQueue.append(Command(Command.nav_action, data="NAV_TO_MAIN_MENU", timeout=30.0))
+    CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=120.0))
+    # 2. Skip intro video
+    CommandQueue.append(Command(Command.timeout_command, data=12.0, timeout=15.0))
+    CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
+    CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
+    CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
+    CommandQueue.append(Command(Command.timeout_command, data=1.0, timeout=5.0))
     # 2. Load Replay
-    CommandQueue.append(Command(Command.play_replay, replay_name, timeout=30.0))
+    CommandQueue.append(Command(Command.play_replay, replay_name, timeout=15.0))
     # 3. Wait UI Loading State
-    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.loading, timeout=30.0))
+    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.loading, timeout=60.0))
     # 4. Wait UI Ready State
-    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=800.0))
+    # CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=800.0))
     # 5. Switch FullScreen
     # CommandQueue.append(Command(Command.nav_action, data="NAV_TO_FULL_EVENT_MONITOR", timeout=30.0))
 
