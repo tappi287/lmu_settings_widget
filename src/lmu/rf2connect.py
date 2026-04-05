@@ -254,7 +254,7 @@ class RfactorConnect:
 
     @classmethod
     def _shared_memory_check(cls):
-        return cls.shared_memory_obj.is_lmu_running()
+        return cls.shared_memory_obj.is_lmu_running(check_process=False)
     
     @classmethod
     def check_if_state_ready(cls):
@@ -270,7 +270,7 @@ class RfactorConnect:
         # - Check request -queue- for responses (this does not trigger a request)
         response = _RfactorConnectRequestThread.check_response()
         if response is not None:
-            # logging.info(f"Updating rf2 state from response: {response}")
+            logging.info(f"Updating rf2 state from response: {response}")
             cls.set_state(response)
             return
 
@@ -291,6 +291,7 @@ class RfactorConnect:
         shared_mem_avail = cls._shared_memory_check()
         if shared_mem_avail:
             if not cls.check_if_state_ready():
+                # logging.info("Updating rf2 start from shared memory being available.")
                 cls.set_state({"status_code": -1})
         else:
             if cls.state != RfactorState.unavailable:
@@ -305,8 +306,11 @@ class RfactorConnect:
             return
 
         # -- Check navigation state in the http request thread
-        if _RfactorConnectRequestThread.request_queue.empty():
-            # logging.debug('Checking for rFactor 2 http connection. State: %s Interval: %.2f', RfactorState.names.get(RfactorConnect.state), timeout)
+        if _RfactorConnectRequestThread.request_queue.empty() and cls.rest_api_enabled:
+            logging.debug(
+                'Checking for rFactor 2 http connection. State: %s Interval: %.2f',
+                RfactorState.names.get(RfactorConnect.state), timeout
+            )
             cls.last_connection_check = time.time()  # Update TimeOut
             _RfactorConnectRequestThread.request_queue.put(
                 {"method": "GET", "url": "/navigation/state"}

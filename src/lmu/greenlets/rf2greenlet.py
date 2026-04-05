@@ -24,7 +24,7 @@ from lmu.benchmark.present_mon_wrapper import PresentMon
 from lmu.utils import capture_app_exceptions
 
 ENABLE_METRICS = False
-ENABLE_REST_API = True
+ENABLE_REST_API = False
 PRESENT_MON_RETRIES = 0
 MAX_PRESENT_MON_RETRIES = 5
 PRESENT_MON_START_TIMEOUT = 15
@@ -88,6 +88,8 @@ def _check_and_setup_rest_api():
         ENABLE_REST_API = rest_api_enabled if rest_api_enabled is not None else False
         if not ENABLE_REST_API:
             logging.info("rFactor 2 REST API set to disabled.")
+        else:
+            logging.info("rFactor 2 REST API set to enabled.")
         RfactorConnect.rest_api_enabled = ENABLE_REST_API
         EnableRestAPIEvent.reset()
 
@@ -150,6 +152,12 @@ def _rfactor_greenlet_loop():
     # ---------------------------
     # -- COMMAND QUEUE
     # ---------------------------
+    if not CommandQueue.is_empty():
+        if not ENABLE_REST_API:
+            EnableRestAPIEvent.set(True)
+    else:
+        if ENABLE_REST_API:
+            EnableRestAPIEvent.set(False)
     CommandQueue.run()
 
 
@@ -158,6 +166,7 @@ def rfactor_greenlet():
     logging.info("rFactor Greenlet started.")
     RfactorConnect.start_request_thread()
     rfb = RfactorBenchmark()
+    EnableRestAPIEvent.set(False)
 
     while True:
         # -- App functionality

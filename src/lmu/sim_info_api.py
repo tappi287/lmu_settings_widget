@@ -89,7 +89,7 @@ class SimInfoAPI:
         return cls._last_known_pid
 
     @classmethod
-    def is_lmu_running(cls):
+    def is_lmu_running(cls, check_process: bool = True):
         """
         Check if LMU is running.
 
@@ -110,4 +110,7 @@ class SimInfoAPI:
             return True
 
         # Slow path: check if game process is running
-        return cls.is_game_running()
+        if check_process:
+            return cls.is_game_running()
+        else:
+            return False

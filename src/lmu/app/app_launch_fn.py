@@ -52,8 +52,6 @@ def run_rfactor(server_info: Optional[dict] = None, method: Optional[int] = 0):
         result = rf.run_rfactor(method, server_info)
         if result and rf.pid >= 0:
             RfactorConnect.rf2_pid = rf.pid
-        if not server_info:
-            CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.ready, timeout=10.0))
 
     return json.dumps({"result": result, "msg": rf.error})
 
