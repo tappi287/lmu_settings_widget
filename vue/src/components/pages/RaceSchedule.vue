@@ -1,16 +1,5 @@
 <template>
-  <div id="lmu-portal" class="position-relative" v-cloak>
-    <b-input-group size="sm" class="mb-2">
-      <b-input-group-prepend>
-        <!-- Title -->
-        <b-link :href="url" target="_blank">
-          <b-input-group-text class="bg-transparent no-border title text-white pl-0">
-            LMURaces.com
-          </b-input-group-text>
-        </b-link>
-      </b-input-group-prepend>
-    </b-input-group>
-
+  <div id="event-viewer" class="position-relative" v-cloak>
     <!-- Loading Indicator -->
     <div v-if="isLoading" class="loading-container">
       <b-spinner />
@@ -41,7 +30,7 @@ export default {
     return {
       logoUrl: lmwLogoUrl,
       isLoading: true,
-      url: "https://lmuraces.com/",
+      url: "https://bot.ilikeviecher.com/event_viewer",
       proxyError: null,
       canOpenDirect: true,
       retryCount: 0,
@@ -95,10 +84,11 @@ export default {
 </script>
 
 <style scoped>
-#lmu-portal {
+#event-viewer {
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .loading-container {
