@@ -88,7 +88,6 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
 }
 
 .loading-container {
