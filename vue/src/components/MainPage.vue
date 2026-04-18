@@ -36,8 +36,13 @@
           KneeBoard
         </b-nav-item>
         <b-nav-item :active="navActive === 10" @click="navActive=10" link-classes="pl-0">
-          Race Schedule
+          Schedule
         </b-nav-item>
+        <template v-if="pitWallAvailable">
+          <b-nav-item :active="navActive === 11" @click="navActive=11" link-classes="pl-0">
+            PitWall
+          </b-nav-item>
+        </template>
       </b-nav>
 
       <!-- Right aligned nav items -->
@@ -186,6 +191,13 @@
     <!-- Race Schedule -->
     <RaceSchedule v-if="navActive === 10"/>
 
+    <!-- PitWall -->
+    <template v-if="pitWallAvailable">
+      <keep-alive>
+        <PitWall v-if="navActive === 11"/>
+      </keep-alive>
+    </template>
+
     <!-- Wiki -->
     <AppWiki v-if="navActive === 7" @nav="navigate"/>
 
@@ -266,6 +278,7 @@ import pimaxLogoUrl from "@/assets/Pimax_Innovation_logo.svg"
 import FuelCalc from "@/components/pages/FuelCalc.vue";
 import KneeBoard from "@/components/pages/KneeBoard.vue";
 import RaceSchedule from "@/components/pages/RaceSchedule.vue";
+import PitWall from "@/components/pages/PitWall.vue";
 
 export default {
   name: 'MainPage',
@@ -288,7 +301,8 @@ export default {
       lmwLogoUrl: lmwLogoUrl,
       lmwLogoWhiteUrl: lmwLogoWhiteUrl,
       heartBeatClass: '',
-      pimaxPlayAvailable: false
+      pimaxPlayAvailable: false,
+      pitWallAvailable: false
     }
   },
   props: {rfactorVersion: String, isDev: Boolean},
@@ -442,6 +456,8 @@ export default {
     },
     rfactorLaunched: async function () {
       await this.stopSlideShow()
+      setTimeout(() => this.checkPiWallAvailable(), 400)
+
       if (this.$refs.ses !== undefined) {
         await this.$refs.ses.update()
       }
@@ -466,6 +482,18 @@ export default {
       } else if (r !== undefined && !r.result) {
         this.makeToast(r.msg, 'danger', 'Pimax Play Launch')
       }
+    },
+    checkPiWallAvailable: async function() {
+      try {
+        const r = await fetch("http://localhost:9000")
+        if (r.ok) {
+          this.pitWallAvailable = true
+          return null
+        }
+      } catch (error) {
+        return null
+      }
+      this.pitWallAvailable = false
     },
     launchSteamVr: async function () {
       let r = await getEelJsonObject(window.eel.run_steamvr()())
@@ -528,11 +556,13 @@ export default {
 
     // Get Pimax Play Location / Availability later
     setTimeout(() => this.getPimaxPlayLocation(), 200)
+    setTimeout(() => this.checkPiWallAvailable(), 400)
   },
   beforeDestroy() {
     this.$eventHub.$off('navigate', this.navigate)
   },
   components: {
+    PitWall,
     RaceSchedule,
     KneeBoard,
     FuelCalc,

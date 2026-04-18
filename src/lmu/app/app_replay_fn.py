@@ -156,11 +156,11 @@ def play_replay(replay_name):
     # 1. Wait for UI
     CommandQueue.append(Command(Command.wait_for_state, data=RfactorState.api_available, timeout=120.0))
     # 2. Skip intro video
-    CommandQueue.append(Command(Command.timeout_command, data=12.0, timeout=15.0))
+    CommandQueue.append(Command(Command.timeout_command, data=18.0, timeout=20.0))
     CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
     CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
     CommandQueue.append(Command(Command.press_key, data="DIK_SPACE", timeout=2.0))
-    CommandQueue.append(Command(Command.timeout_command, data=1.0, timeout=5.0))
+    CommandQueue.append(Command(Command.timeout_command, data=2.0, timeout=5.0))
     # 2. Load Replay
     CommandQueue.append(Command(Command.play_replay, replay_name, timeout=15.0))
     # 3. Wait UI Loading State
