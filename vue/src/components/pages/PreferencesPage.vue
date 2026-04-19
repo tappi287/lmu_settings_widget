@@ -22,10 +22,10 @@
 
       <b-row v-for="option in appOptions" no-gutters>
         <b-form-checkbox
-          v-model="appModules"
-          :key="option.value"
-          :value="option.value"
-          @change="save"
+            v-model="appModules"
+            :key="option.value"
+            :value="option.value"
+            @change="save"
         >
           <b-col cols="4"><b>{{ option.text }}</b></b-col>
           <b-col class="text-white-50">{{ option.description }}</b-col>
@@ -43,8 +43,19 @@
       <b-card-text>
         Which applications to automatically launch along with the game. This detects already running applications.
       </b-card-text>
-
-      <b-checkbox-group :options="appAutostartOptions" v-model="appAutostart" @change="save" />
+      <b-form-checkbox-group v-model="appAutostart">
+        <template v-for="option in appAutostartOptions">
+          <b-form-checkbox
+              :key="option.value"
+              :value="option.value"
+              :disabled="option.disabled"
+              v-b-popover.hover.auto="option.location !== null ? 'Found at: ' + option.location : ''"
+              @change="save"
+          >
+            {{ option.text }}
+          </b-form-checkbox>
+        </template>
+      </b-form-checkbox-group>
     </b-card>
 
     <b-card class="setting-card mb-2" bg-variant="dark" text-variant="white" footer-class="pt-0">
@@ -52,7 +63,7 @@
         <h5 class="mb-0"><span class="title">Dashboard</span></h5>
       </template>
 
-      <b-checkbox-group :options="dashboardOptions" v-model="dashboardModules" @change="save" />
+      <b-checkbox-group :options="dashboardOptions" v-model="dashboardModules" @change="save"/>
 
       <b-card-text class="mt-3">
         Choose what you would like to see on your dashboard.
@@ -64,7 +75,7 @@
       <template #header>
         <h6 class="mb-0 text-center"><span class="title">Le Mans Ultimate Location</span></h6>
       </template>
-      <RfLocation />
+      <RfLocation/>
     </b-card>
   </div>
 </template>
@@ -82,29 +93,46 @@ export default {
     return {
       dashboardModules: ['img', 'favs', 'cont'],
       dashboardOptions: [
-          // {text: 'Play Image Slideshow', value: 'img'},
-          // {text: 'Show Server Favourites', value: 'favs'},
-          {text: 'Show Controller Devices', value: 'cont'}
+        // {text: 'Play Image Slideshow', value: 'img'},
+        // {text: 'Show Server Favourites', value: 'favs'},
+        {text: 'Show Controller Devices', value: 'cont'}
       ],
       appModules: ['audio', 'edge_preferred', 'use_rest_api'],
       appAutostart: [],
       appAutostartOptions: [
-          {text: 'OpenKneeboard', value: 'kneeboard'},
-          {text: 'CrewChiefV4', value: 'crew_chief'},
-          {text: 'SimHub', value: 'sim_hub'},
+        {text: 'OpenKneeboard', value: 'kneeboard', disabled: false, location: null},
+        {text: 'CrewChiefV4', value: 'crew_chief', disabled: false, location: null},
+        {text: 'SimHub', value: 'sim_hub', disabled: false, location: null},
+        {text: 'LMU PitWall', value: 'lmu_pitwall', disabled: false, location: null},
       ],
       appOptions: [
-        {text: 'Enable Audio', value: 'audio', description: 'Weather to play audio feedback when using certain actions within the app.'},
-        {text: 'Prefer Edge Browser', value: 'edge_preferred', description: 'Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.'},
+        {
+          text: 'Enable Audio',
+          value: 'audio',
+          description: 'Weather to play audio feedback when using certain actions within the app.'
+        },
+        {
+          text: 'Prefer Edge Browser',
+          value: 'edge_preferred',
+          description: 'Prefer the Windows builtin Chromium Edge browser over Google Chrome to render this app. Changes apply after an app restart.'
+        },
         /*{text: 'Use LMU Rest API', value: 'use_rest_api', description: 'Use the Le Mans Ultimate RestAPI to get the current game state.'},*/
-        {text: 'Use Easy-Anti-Cheat wrapper executable', value: 'use_eac_wrapper', description: 'Use the Easy-Anti-Cheat wrapper executable "start_protected_game.exe" to enable the game\'s anti-cheat system. Disabling this will disable any online features.'},
-        {text: 'Performance Monitoring', value: 'show_hardware_info', description: 'Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.'},
+        {
+          text: 'Use Easy-Anti-Cheat wrapper executable',
+          value: 'use_eac_wrapper',
+          description: 'Use the Easy-Anti-Cheat wrapper executable "start_protected_game.exe" to enable the game\'s anti-cheat system. Disabling this will disable any online features.'
+        },
+        {
+          text: 'Performance Monitoring',
+          value: 'show_hardware_info',
+          description: 'Weather to collect hardware stats like CPU/GPU Load and performance metrics with PresentMon displayed on the Kneeboard page.'
+        },
       ],
       lmwLogoUrl: lmwLogoUrl
     }
   },
   methods: {
-    async save () {
+    async save() {
       let appPref = {}
       appPref['dashboardModules'] = this.dashboardModules
       appPref['appModules'] = this.appModules
@@ -112,7 +140,23 @@ export default {
 
       await getEelJsonObject(window.eel.save_app_preferences(appPref)())
     },
-    async load () {
+    async load() {
+      const apps = this.appAutostartOptions.map(option => option.value);
+      const appResults = await getEelJsonObject(window.eel.get_autostart_apps(apps)())
+
+      if (appResults.result) {
+        for (const [appName, location] of Object.entries(appResults.data)) {
+          const opt = this.appAutostartOptions.find(o => o.value === appName)
+          if (opt) {
+            opt.location = location
+            opt.disabled = location === null
+            if (opt.disabled) {
+              opt.text = `${opt.text} (not found)`
+            }
+          }
+        }
+      }
+
       const r = await getEelJsonObject(window.eel.load_app_preferences()())
       if (r.result) {
         const appPref = r.preferences
@@ -135,6 +179,11 @@ export default {
 </script>
 
 <style scoped>
-  .rpl-icon { width: 2.075rem; }
-  .rpl-con { margin-top: .1rem; }
+.rpl-icon {
+  width: 2.075rem;
+}
+
+.rpl-con {
+  margin-top: .1rem;
+}
 </style>

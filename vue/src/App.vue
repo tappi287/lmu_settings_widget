@@ -176,7 +176,9 @@ export default {
       this.error = error
     },
     requestClose: async function () {
-      await window.eel.close_request()
+      if (!this.isDev) {
+        await window.eel.close_request()
+      }
     },
     reRunAsAdmin: async function () {
       await window.eel.re_run_admin()

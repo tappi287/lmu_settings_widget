@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 import eel
 
@@ -18,6 +18,11 @@ def run_rfactor(server_info: Optional[dict] = None, method: Optional[int] = 0):
 @eel.expose
 def run_steamvr():
     return app_launch_fn.run_steamvr()
+
+
+@eel.expose
+def get_autostart_apps(apps: List[str]):
+    return app_launch_fn.get_autostart_apps(apps)
 
 
 @eel.expose

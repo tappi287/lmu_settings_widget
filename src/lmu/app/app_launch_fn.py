@@ -2,7 +2,7 @@ import json
 import logging
 import subprocess
 from pathlib import WindowsPath, Path
-from typing import Optional
+from typing import Optional, List
 
 from lmu.app_settings import AppSettings
 from lmu.lmu_game import RfactorPlayer
@@ -65,6 +65,16 @@ def run_steamvr():
     except Exception as e:
         return json.dumps({"result": False, "msg": f"Error launching SteamVR: {e}"})
     return json.dumps({"result": True, "msg": "Launched SteamVR"})
+
+
+@capture_app_exceptions
+def get_autostart_apps(apps: List[str]):
+    result = dict()
+    for app_name in apps:
+        location = ext_applications.get_app_executable_path(app_name)
+        result[app_name] = location.as_posix() if location else None
+
+    return json.dumps({"result": True, "data": result})
 
 
 @capture_app_exceptions

@@ -36,8 +36,18 @@ UPDATE_INSTALL_FILE = "LMU_Settings_Wizard_{version}_win64"
 DEFAULT_LOG_LEVEL = "DEBUG"
 
 KNOWN_APPS = {
-    "365960": {"name": "rFactor 2", "installdir": "rFactor 2", "executable": "rFactor2.exe", "exe_sub_path": "Bin64/"},
-    "908520": {"name": "fpsVR", "installdir": "fpsVR", "executable": "fpsVR.exe", "exe_sub_path": ""},
+    "365960": {
+        "name": "rFactor 2",
+        "installdir": "rFactor 2",
+        "executable": "rFactor2.exe",
+        "exe_sub_path": "Bin64/",
+    },
+    "908520": {
+        "name": "fpsVR",
+        "installdir": "fpsVR",
+        "executable": "fpsVR.exe",
+        "exe_sub_path": "",
+    },
     "2399420": {
         "name": "Le Mans Ultimate",
         "installdir": "Le Mans Ultimate",
@@ -65,7 +75,10 @@ KNOWN_APPS = {
         "executable": "OpenKneeboardApp.exe",
         "exe_sub_path": "",
         "simmon_method": "find_by_registry_keys_current_user",
-        "simmon_method_args": [["SOFTWARE\\Fred Emmott\\OpenKneeboard"], "InstallationBinPath"],
+        "simmon_method_args": [
+            ["SOFTWARE\\Fred Emmott\\OpenKneeboard"],
+            "InstallationBinPath",
+        ],
     },
     "sim_hub": {
         "name": "SimHub",
@@ -82,6 +95,15 @@ KNOWN_APPS = {
         "exe_sub_path": "PimaxClient/pimaxui",
         "simmon_method": "find_by_registry_keys",
         "simmon_method_args": [["SOFTWARE\\Pimax"], "InstallPath"],
+    },
+    # InnoSetup https://github.com/Swizzjack/lmu-pitwall/blob/main/installer/lmu-pitwall-installer.iss
+    "lmu_pitwall": {
+        "name": "LMU PitWall",
+        "installdir": "",
+        "executable": "lmu-pitwall.exe",
+        "exe_sub_path": "",
+        "simmon_method": "find_by_registry_keys_current_user",
+        "simmon_method_args": [["Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B8F3A2E1-7C4D-4E9F-A1B2-3D4E5F6A7B8C}_is1"], "InstallLocation"],
     },
 }
 
